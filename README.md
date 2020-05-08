@@ -1,19 +1,8 @@
 # community
 
-## Project setup
-```
-npm install
-```
+该项目是用vue框架开发的单页面应用项目。
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+**技术栈**
 
-### Compiles and minifies for production
-```
-npm run build
-```
+@vue/cli 4.3.1+ vue-router + axios + vuex + Element UI 
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
