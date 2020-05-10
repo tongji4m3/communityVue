@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3>PrincipalRegister</h3>
+        <h3>StudentCorporations组件</h3>
     </div>
 </template>
 
