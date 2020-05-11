@@ -39,6 +39,17 @@
                 </el-table-column>
 
             </el-table>
+
+<!--            分页区域-->
+            <el-pagination
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                    :current-page="queryInfo.pageNum"
+                    :page-sizes="[1, 2, 5, 10]"
+                    :page-size="queryInfo.pageSize"
+                    layout="total, sizes, prev, pager, next, jumper"
+                    :total="total">
+            </el-pagination>
         </el-card>
 
         <!--        添加活动对话框-->
@@ -106,9 +117,11 @@
             return {
                 //    获取活动列表参数对象
                 queryInfo: {
-                    username:window.sessionStorage.getItem('username'),
+                    username: window.sessionStorage.getItem('username'),
                     query: '',
+                    //当前的页码
                     pageNum: 1,
+                    //每页显示的条数
                     pageSize: 2
                 },
                 activityList: [],
@@ -140,13 +153,27 @@
                 console.log(result.data);
                 if (result.data.status !== "200")
                 {
-                    console.log("失败了");
+                    this.$message.info(result.data.msg);
                 } else
                 {
                     this.activityList = result.data.activities;
-                    this.total = result.data.total;
+                    this.total = parseInt(result.data.total);
                 }
             },
+            //监听pageSize改变的事件
+            handleSizeChange(newSize)
+            {
+                this.queryInfo.pageSize = newSize;
+                this.getActivityList();
+            },
+            //监听pageNum改变的事件
+            handleCurrentChange(newPage)
+            {
+                this.queryInfo.pageNum = newPage;
+                this.getActivityList();
+            },
+
+
             //点击确定按钮后,添加活动
             async addActivity()
             {
@@ -194,55 +221,54 @@
                     this.editDialogVisible = true;
                 }
             },
-            cancelEdit(){
+            cancelEdit()
+            {
                 this.editDialogVisible = false;
             },
             async editActivity()
             {
                 let result = await this.$http.post(this.$api.PrincipalUpdateOneActivityUrl, {
-                    id:this.editForm.id,
-                    description:this.editForm.description,
-                    cost:this.editForm.cost,
-                    money:this.editForm.money
+                    id: this.editForm.id,
+                    description: this.editForm.description,
+                    cost: this.editForm.cost,
+                    money: this.editForm.money
                 });
                 status = result.data.status;
                 if (!status || status !== "200")
                 {
-                    console.log("修改失败");
+                    this.$message.info(result.data.msg);
                 }
                 //关闭对话框
                 this.editDialogVisible = false;
-            //    刷新数据列表
+                //    刷新数据列表
                 this.getActivityList();
-            //    提示成功
+                //    提示成功
                 this.$message.success("更新用户成功!");
             },
             //根据ID删除对应信息
             async removeById(id)
             {
-            //    弹框提示
+                //    弹框提示
                 let confirmResult = await this.$confirm('此操作将永久删除该活动, 是否继续?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'
-                }).catch(err=>err);
-            //    如果选择不删除
-                if(confirmResult!=="confirm")
+                }).catch(err => err);
+                //    如果选择不删除
+                if (confirmResult !== "confirm")
                 {
                     return this.$message.info("已经取消删除");
-                }
-                else
+                } else
                 {
                     let result = await this.$http.post(this.$api.PrincipalDeleteActivityUrl, id);
                     status = result.data.status;
                     if (!status || status !== "200")
                     {
-                        this.$message.info("删除失败!");
+                        this.$message.info(result.data.msg);
                     }
                     this.$message.info("删除成功!");
                     this.getActivityList();
                 }
-
             }
         }
     }

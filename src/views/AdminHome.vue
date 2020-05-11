@@ -19,11 +19,13 @@
                     <el-menu-item index="/adminAnnouncement">发布公告</el-menu-item>
                     <el-submenu index="1">
                         <template slot="title">社团管理</template>
-                        <el-menu-item index="/adminStudent">学生管理</el-menu-item>
-                        <el-menu-item index="/adminCheck">社团审核</el-menu-item>
-                        <el-menu-item index="/adminActivity">社团活动审核</el-menu-item>
-                        <el-menu-item index="/adminInformation">社团信息查询</el-menu-item>
-                        <el-menu-item index="/adminReward">社团奖惩评级</el-menu-item>
+                        <el-menu-item index="/adminStudent">社团学生管理</el-menu-item>
+                        <el-menu-item index="/adminInformation">社团信息管理</el-menu-item>
+                    </el-submenu>
+                    <el-submenu index="2">
+                        <template slot="title">社团审核</template>
+                        <el-menu-item index="/adminCheckActivity">社团活动审核</el-menu-item>
+                        <el-menu-item index="/adminCheckSponsor">社团赞助审核</el-menu-item>
                     </el-submenu>
                 </el-menu>
             </el-aside>

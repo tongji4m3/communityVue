@@ -18,8 +18,21 @@ import JoinActivity from '../components/studentHome/JoinActivity'
 import PrincipalHome from '../views/PrincipalHome'
 import PrincipleWelcome from '../components/principalHome/PrincipleWelcome'
 import PrincipalActivity from '../components/principalHome/PrincipalActivity'
+import PrincipalChange from '../components/principalHome/PrincipalChange'
+import PrincipalNotice from '../components/principalHome/PrincipalNotice'
+import PrincipalMember from '../components/principalHome/PrincipalMember'
+import PrincipalCheckJoin from '../components/principalHome/PrincipalCheckJoin'
+import PrincipalCheckActivity from '../components/principalHome/PrincipalCheckActivity'
+import PrincipalSponsor from '../components/principalHome/PrincipalSponsor'
 
 import AdminHome from '../views/AdminHome'
+import AdminWelcome from '../components/adminHome/AdminWelcome'
+import AdminSystem from '../components/adminHome/AdminSystem'
+import AdminAnnouncement from '../components/adminHome/AdminAnnouncement'
+import AdminStudent from '../components/adminHome/AdminStudent'
+import AdminInformation from '../components/adminHome/AdminInformation'
+import AdminCheckActivity from '../components/adminHome/AdminCheckActivity'
+import AdminCheckSponsor from '../components/adminHome/AdminCheckSponsor'
 
 
 
@@ -59,14 +72,31 @@ const routes = [
         component: PrincipalHome,
         redirect:'/principleWelcome',
         children:[
-            {path: '/PrincipleWelcome', component: PrincipleWelcome},
-            {path: '/principalActivity', component: PrincipalActivity}
+            {path: '/principleWelcome', component: PrincipleWelcome},
+            {path: '/principalActivity', component: PrincipalActivity},
+            {path: '/principalChange', component: PrincipalChange},
+            {path: '/principalNotice', component: PrincipalNotice},
+            {path: '/principalMember', component: PrincipalMember},
+            {path: '/principalCheckJoin', component: PrincipalCheckJoin},
+            {path: '/principalCheckActivity', component: PrincipalCheckActivity},
+            {path: '/principalSponsor', component: PrincipalSponsor}
         ]
 
     },
     {
         path: '/adminHome',
-        component: AdminHome
+        component: AdminHome,
+        redirect:'/adminWelcome',
+        children:[
+            {path: '/adminWelcome', component: AdminWelcome},
+            {path: '/adminSystem', component: AdminSystem},
+            {path: '/adminAnnouncement', component: AdminAnnouncement},
+            {path: '/adminStudent', component: AdminStudent},
+            {path: '/adminInformation', component: AdminInformation},
+            {path: '/adminCheckActivity', component: AdminCheckActivity},
+            {path: '/adminCheckSponsor', component: AdminCheckSponsor}
+
+        ]
     },
 ]
 
