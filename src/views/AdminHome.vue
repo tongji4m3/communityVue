@@ -16,7 +16,6 @@
                 <el-menu router
                          background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
                     <el-menu-item index="/adminSystem">社团制度</el-menu-item>
-                    <el-menu-item index="/adminAnnouncement">发布公告</el-menu-item>
                     <el-submenu index="1">
                         <template slot="title">社团管理</template>
                         <el-menu-item index="/adminStudent">社团学生管理</el-menu-item>

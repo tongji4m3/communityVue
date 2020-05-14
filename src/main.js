@@ -22,6 +22,7 @@ Vue.prototype.$http = axios
 //拦截器 发送请求前,会发送一个token
 axios.interceptors.request.use(config =>
 {
+    console.log(window.sessionStorage.getItem('token'))
     config.headers.authorization = window.sessionStorage.getItem('token');
     return config;
 })

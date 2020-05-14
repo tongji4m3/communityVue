@@ -28,7 +28,6 @@ import PrincipalSponsor from '../components/principalHome/PrincipalSponsor'
 import AdminHome from '../views/AdminHome'
 import AdminWelcome from '../components/adminHome/AdminWelcome'
 import AdminSystem from '../components/adminHome/AdminSystem'
-import AdminAnnouncement from '../components/adminHome/AdminAnnouncement'
 import AdminStudent from '../components/adminHome/AdminStudent'
 import AdminInformation from '../components/adminHome/AdminInformation'
 import AdminCheckActivity from '../components/adminHome/AdminCheckActivity'
@@ -90,7 +89,6 @@ const routes = [
         children:[
             {path: '/adminWelcome', component: AdminWelcome},
             {path: '/adminSystem', component: AdminSystem},
-            {path: '/adminAnnouncement', component: AdminAnnouncement},
             {path: '/adminStudent', component: AdminStudent},
             {path: '/adminInformation', component: AdminInformation},
             {path: '/adminCheckActivity', component: AdminCheckActivity},
