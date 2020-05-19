@@ -1,6 +1,6 @@
 // 根路径 请求网址
-//const APIRootUrl = 'http://47.103.203.188:8888/communitySystem/';
-const APIRootUrl = 'http://localhost:8888/communitySystem/';
+const APIRootUrl = 'http://47.103.203.188:8888/communitySystem/';
+//const APIRootUrl = 'http://localhost:8888/communitySystem/';
 
 module.exports = {
     /*

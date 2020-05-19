@@ -14,6 +14,8 @@ import StudentWelcome from '../components/studentHome/StudentWelcome'
 import StudentCorporations from '../components/studentHome/StudentCorporations'
 import JoinCorporations from '../components/studentHome/JoinCorporations'
 import JoinActivity from '../components/studentHome/JoinActivity'
+import JoinedActivity from '../components/studentHome/JoinedActivity'
+import JoinnewActivity from '../components/studentHome/JoinnewActivity'
 
 import PrincipalHome from '../views/PrincipalHome'
 import PrincipleWelcome from '../components/principalHome/PrincipleWelcome'
@@ -63,7 +65,9 @@ const routes = [
             {path: '/studentWelcome', component: StudentWelcome},
             {path: '/studentCorporations', component: StudentCorporations},
             {path: '/joinCorporations', component: JoinCorporations},
-            {path: '/joinActivity', component: JoinActivity}
+            {path: '/joinActivity', component: JoinActivity},
+            {path: '/joinedActivity', component:JoinedActivity},
+            {path: '/joinnewActivity', component: JoinnewActivity}
         ]
     },
     {

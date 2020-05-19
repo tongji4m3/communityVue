@@ -4,7 +4,9 @@
     <el-container class="home-container">
         <!--        头部区域-->
         <el-header>
+            <img src="../assets/img/logo.png"  alt="">
             <div>{{username}}</div>
+            <span>个人主页</span>
             <el-button @click="logout">退出</el-button>
         </el-header>
         <!--        页面主体-->
@@ -16,7 +18,12 @@
                         <el-menu-item index="/studentInformation">个人信息管理</el-menu-item>
                         <el-menu-item index="/studentCorporations">社团信息查询</el-menu-item>
                         <el-menu-item index="/joinCorporations">加入社团</el-menu-item>
-                        <el-menu-item index="joinActivity">参加活动</el-menu-item>
+                    <el-submenu index="3">
+                        <template slot="title">参加活动</template>
+                        <el-menu-item index="/JoinedActivity">已参加活动</el-menu-item>
+                        <el-menu-item index="/JoinnewActivity">参加新活动</el-menu-item>
+                    </el-submenu>
+
                 </el-menu>
             </el-aside>
             <!--            右侧内容主体-->
@@ -55,10 +62,16 @@
         background-color: orange;
         display: flex;
         justify-content: space-between;
+        color :#fff;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+
     }
 
     .el-aside {
         background-color: gray;
+
     }
 
     .el-main {

@@ -64,7 +64,8 @@
                         else if(userType==="admin")
                             await this.$router.push({path: '/adminHome'});
                         else
-                            await this.$router.push({path: '/principalHome'});
+                            await this.$router.push({path: '/studentHome'});
+                            //await this.$router.push({path: '/principalHome'});
                     }
                 });
 
