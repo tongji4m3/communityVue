@@ -46,4 +46,22 @@ module.exports = {
     // 请求参数:id(活动编号)
     // 响应参数:status,msg(错误时)
     PrincipalDeleteActivityUrl: APIRootUrl + 'principal/deleteActivity',
+
+
+    /*
+   studentHome视图
+   JoinnewActivity组件
+   学生参加活动数据接口
+    */
+    //请求参数:query(查询参数 做条件查询时才有,例如"上海",则是要查找活动名称中包含上海的),
+    // pageNum(当前的页码),pageSize(每页显示条数)
+    //响应参数:activities
+    // (活动列表,每个活动内部:{id,name,description,cost,fund,place,time,range,apply_date,status,information,is_public}
+    // （活动编号，活动名称，活动介绍,开销,经费,位置,活动时间，活动人数，活动申请时间,审核状态,审核相关信息,是否公开)
+    // ,total(总页码),status,msg(错误时)
+    StudentGetActivityUrl: APIRootUrl + 'student/getActivity',
+
+
+
+
 };
