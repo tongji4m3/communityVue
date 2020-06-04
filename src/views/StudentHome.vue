@@ -32,7 +32,7 @@
     export default {
         data(){
             return{
-                username: window.sessionStorage.getItem('username')
+                username: window.sessionStorage.getItem('name')
             }
         },
         methods: {

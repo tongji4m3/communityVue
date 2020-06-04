@@ -116,7 +116,7 @@ router.beforeEach((to, from, next) =>
     {
 //    获取token
         let token = window.sessionStorage.getItem("token");
-        if (!token) return next("/welcome");
+        if (!token) return next("/login");
         else return next();
     }
 });

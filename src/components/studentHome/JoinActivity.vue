@@ -1,7 +1,7 @@
 <template>
-    <div>
-        <h3>JoinActivity组件</h3>
-    </div>
+<div>
+    <h3>JoinActivity组件</h3>
+</div>
 </template>
 
 <script></script>
