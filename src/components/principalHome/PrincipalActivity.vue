@@ -191,7 +191,7 @@
         {
             let checkCost = (rule, value, cb) =>
             {
-                const regCost = /^\d{1,8}$/;
+                const regCost = /^\d{1,8}\.?\d{0,2}$/;
                 if (regCost.test(value))
                 {
                     //合法密码
@@ -202,7 +202,7 @@
             };
             let checkFund = (rule, value, cb) =>
             {
-                const regFund = /^\d{1,8}$/;
+                const regFund = /^\d{1,8}\.?\d{0,2}$/;
                 if (regFund.test(value))
                 {
                     //合法密码
@@ -338,8 +338,8 @@
                             {
                                 activityId: 0,
                                 name: this.addForm.name,
-                                fund: parseInt(this.addForm.fund),
-                                cost: parseInt(this.addForm.cost),
+                                fund: parseFloat(this.addForm.fund),
+                                cost: parseFloat(this.addForm.cost),
                                 place: this.addForm.place,
                                 time: this.addForm.time,
                                 description: this.addForm.description,
