@@ -58,4 +58,17 @@ module.exports = {
     // 响应参数:status,msg(错误时)
     PrincipalDeleteOneActivityUrl: APIRootUrl + 'principal/deleteOneActivity',
 
+
+    /*
+    studentHome视图
+    StudentCorporations组件
+    学生界面社团信息数据接口
+    */
+    //请求参数:query(查询参数 做条件查询时才有,例如"上海",则是要查找活动名称中包含上海的),
+    // pageNumber(当前的页码),pageSize(每页显示条数)
+    //响应参数:Corporations
+    // (社团列表,每个社团内部:{}
+    // （社团名称，成立时间，社团性质,社团人数,社团简介,操作)
+    // ,totalCount(总条数),status,msg(错误时)
+    StudentGetActivitiesUrl: APIRootUrl + 'principal/getActivities',
 };
