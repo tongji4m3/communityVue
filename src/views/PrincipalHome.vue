@@ -5,6 +5,9 @@
         <!--        头部区域-->
         <el-header>
             <div>
+                <img src="../assets/img/tj_logo.png" height="60"/>
+            </div>
+            <div>
                 {{username}}
             </div>
             <el-button @click="logout">退出</el-button>
@@ -56,9 +59,13 @@
     }
 
     .el-header {
-        background-color: orange;
+        background-color: yellowgreen;
         display: flex;
         justify-content: space-between;
+        margin-left: 0;
+        padding-left: 0;
+
+
     }
 
     .el-aside {
@@ -66,6 +73,6 @@
     }
 
     .el-main {
-        background-color: pink;
+        background-color: lightgoldenrodyellow;
     }
 </style>

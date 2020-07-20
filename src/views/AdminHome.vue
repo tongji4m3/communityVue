@@ -60,7 +60,7 @@
     }
 
     .el-header {
-        background-color: orange;
+        background-color: yellowgreen;
         display: flex;
         justify-content: space-between;
     }
@@ -70,6 +70,6 @@
     }
 
     .el-main {
-        background-color: pink;
+        background-color: lightgoldenrodyellow;
     }
 </style>
