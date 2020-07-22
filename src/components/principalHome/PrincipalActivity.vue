@@ -7,6 +7,7 @@
             <el-breadcrumb-item>活动管理</el-breadcrumb-item>
         </el-breadcrumb>
 
+        <el-divider></el-divider>
         <!--        卡片-->
         <el-card class="box-card">
             <!--            搜索与添加-->
@@ -18,7 +19,7 @@
                     </el-input>
                 </el-col>
                 <el-col :span="4">
-                    <el-button type="primary" @click="showAddActivity">添加活动</el-button>
+                    <el-button type="success" @click="showAddActivity">添加活动</el-button>
                 </el-col>
             </el-row>
             <!--            活动列表 只展示一些活动信息,详细信息可在详情查看-->
@@ -28,16 +29,16 @@
                 <el-table-column label="活动位置" prop="place"></el-table-column>
                 <el-table-column label="显示详情">
                     <template slot-scope="scope">
-                        <el-button type="primary" @click="showDialog(scope.row.activityId)">查看</el-button>
+                        <el-button type="success" @click="showDialog(scope.row.activityId)">查看</el-button>
                     </template>
                 </el-table-column>
                 <el-table-column label="操作">
                     <template slot-scope="scope">
                         <!--                        修改按钮-->
-                        <el-button type="primary" @click="showEditDialog(scope.row.activityId)"
+                        <el-button type="success" @click="showEditDialog(scope.row.activityId)"
                                    icon="el-icon-edit"></el-button>
                         <!--                        删除按钮-->
-                        <el-button type="primary" @click="removeById(scope.row.activityId)"
+                        <el-button type="success" @click="removeById(scope.row.activityId)"
                                    icon="el-icon-delete"></el-button>
 
                     </template>
