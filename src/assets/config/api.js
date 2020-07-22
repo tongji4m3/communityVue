@@ -1,5 +1,13 @@
 // 根路径 请求网址
+/*
+负责人界面
+ */
 const APIRootUrl = 'http://139.9.134.43:5000/communitySystem/';
+/*
+学生界面
+ */
+const APIRootUrl_stu='https://139.9.134.43:44383/communitySystem/';
+
 
 // const APIRootUrl = 'http://47.103.203.188:8888/communitySystem/';
 //const APIRootUrl = 'http://localhost:8888/communitySystem/';
@@ -64,11 +72,21 @@ module.exports = {
     StudentCorporations组件
     学生界面社团信息数据接口
     */
+
+    //社团信息获取
     //请求参数:query(查询参数 做条件查询时才有,例如"上海",则是要查找活动名称中包含上海的),
     // pageNumber(当前的页码),pageSize(每页显示条数)
     //响应参数:Corporations
     // (社团列表,每个社团内部:{}
     // （社团名称，成立时间，社团性质,社团人数,社团简介,操作)
     // ,totalCount(总条数),status,msg(错误时)
-    StudentGetActivitiesUrl: APIRootUrl + 'principal/getActivities',
+    //StudentGetCorporationsUrl: APIRootUrl_stu + 'Student/getclubInfo',
+    StudentGetCorporationsUrl: APIRootUrl + 'Student/inClub',
+    //社团简介
+    //请求参数:社团id,
+    // pageNumber(当前的页码),pageSize(每页显示条数)
+    //响应参数:社团简介
+    StudentCorporationInformationUrl:APIRootUrl_stu+'getclub_description/{clubid}'
+
+
 };

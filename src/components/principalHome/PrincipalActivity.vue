@@ -231,17 +231,17 @@
 
                 //添加活动表单数据
                 addForm: {
-                    activityId: "",
-                    name: "",
-                    description: "",
-                    cost: "",
-                    fund: "",
-                    place: "",
-                    time: "",
-                    applyDate: "",
-                    isPublic: true,
-                    status: false,
-                    suggestion: "",
+                    // activityId: "",
+                    // name: "",
+                    // description: "",
+                    // cost: "",
+                    // fund: "",
+                    // place: "",
+                    // time: "",
+                    // applyDate: "",
+                    // isPublic: true,
+                    // status: false,
+                    // suggestion: "",
                 },
                 //添加活动的校验规则
                 addFormRules: {
@@ -286,7 +286,9 @@
                     });
 
                 this.activityList = result.data.data;
+                console.log(this.activityList);
                 this.totalCount = parseInt(result.data.totalCount);
+                console.log(this.totalCount);
             },
             //监听pageSize改变的事件
             handleSizeChange(newSize)

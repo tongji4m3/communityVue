@@ -25,20 +25,24 @@
             <el-table :data="corporationsList">
                 <el-table-column type="index"></el-table-column>
                 <el-table-column label="社团名称" prop="name"></el-table-column>
-                <el-table-column label="成立时间" prop="place"></el-table-column>
-                <el-table-column label="社团性质" prop="time"></el-table-column>
-                <el-table-column label="社团人数" prop="range"></el-table-column>
+                <el-table-column label="成立时间"></el-table-column>
+                <el-table-column label="社团性质"></el-table-column>
+                <el-table-column label="社团人数"></el-table-column>
+                <el-table-column label="社团人数"></el-table-column>
+                <el-table-column label="社团人数"></el-table-column>
+                <el-table-column label="社团人数"></el-table-column>
                 <el-table-column label="社团简介">
                     <!--                        查看简介按钮-->
                     <template slot-scope="scope">
-                        <el-button type="primary" @click="showDialog(scope.row.id)">查看</el-button>
+                        <el-button type="primary" @click="showCorporationSummary(scope.row.id)">查看</el-button>
                     </template>
 
                 </el-table-column>
                 <el-table-column label="操作">
                     <template slot-scope="scope">
                         <!--                        加入按钮-->
-                        <el-button type="primary" @click="showEditDialog(scope.row.id)" >加入</el-button>
+                        <!--<el-button type="primary" @click="showEditDialog(scope.row.id)" >加入</el-button>-->
+                        <el-button type="primary">加入</el-button>
                     </template>
                 </el-table-column>
 
@@ -62,15 +66,12 @@
             <!--            展示内容主体区域 -->
             <el-form :model="addForm" label-width="150px">
                 简介：
-
             </el-form>
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
     <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
   </span>
         </el-dialog>
-
-
 
         <!--        修改活动对话框-->
         <el-dialog title="提交申请" ref="editFormRef" :visible.sync="editDialogVisible"
@@ -102,25 +103,14 @@
                 //查询到的当页活动
                 corporationsList: [],
                 //总页码数,用于分页的显示
-                total: 0,
+                totalCount: 0,
                 //添加,修改,展示活动对话框的显示与隐藏
                 addDialogVisible: false,
                 editDialogVisible: false,
                 showDialogVisible: false,
                 //添加活动表单数据
                 addForm: {
-                    id: "",
-                    name: "",
-                    description: "",
-                    cost: "",
-                    fund: "",
-                    place: "",
-                    time: "",
-                    range: "",
-                    apply_date: "",
-                    status: "",
-                    information: "",
-                    is_public: ""
+                    summary: "",
                 },
             }
         },
@@ -133,27 +123,29 @@
         methods: {
             async getCorporationList()
             {
-                let result = await this.$http.post(this.$api.PrincipalGetActivityUrl, this.queryInfo);
-                if (result.data.status !== "200")
-                {
-                    this.$message.info(result.data.msg);
-                } else
-                {
-                    this.corporationsList = result.data.activities;
-                    this.total = parseInt(result.data.total);
-                }
+                let result = await this.$http.post(this.$api.StudentGetCorporationsUrl,
+                    {
+                    query: this.query,
+                    pageNumber: this.pageNumber,
+                    pageSize: this.pageSize,
+                    status: true
+                });
+                this.corporationsList = result.data.data;
+                console.log(this.corporationsList);
+                this.totalCount = parseInt(result.data.totalCount);
+                console.log(this.totalCount);
             },
             //监听pageSize改变的事件
             handleSizeChange(newSize)
             {
                 this.queryInfo.pageSize = newSize;
-                this.getActivityList();
+                this.getCorporationList();
             },
             //监听pageNum改变的事件
             handleCurrentChange(newPage)
             {
                 this.queryInfo.pageNum = newPage;
-                this.getActivityList();
+                this.getCorporationList();
             },
 
             //抽取出来,当弹出的页面结束后,会清空内容
@@ -196,7 +188,7 @@
                     this.$message.info(result.data.msg);
                 } else
                 {
-                    this.addForm = result.data.activity;
+                    this.addForm = result.data.data;
                     this.showDialogVisible = true;
                 }
             },
@@ -212,23 +204,24 @@
                 this.clearAddForm();
                 this.$message.info("取消修改活动!");
             },
+
             //详情页面弹出后,会查询该社团的简介内容并显示
-            async showEditDialog(id)
+            async showCorporationSummary(id)
             {
-                let result = await this.$http.post(this.$api.PrincipalGetOneActivityUrl, id);
+                let result = await this.$http.post(this.$api.StudentCorporationInformationUrl, id);
                 status = result.data.status;
                 if (!status || status !== "200")
                 {
                     this.$message.info(result.data.msg);
                 } else
                 {
-                    this.addForm = result.data.activity;
+                    this.addForm = result.data.data;
                     this.editDialogVisible = true;
                 }
             },
             async editActivity()
             {
-                let result = await this.$http.post(this.$api.PrincipalUpdateActivityUrl, this.addForm);
+                let result = await this.$http.post(this.$api.PrincipalUpdateOneActivityUrl, this.addForm);
                 status = result.data.status;
                 if (!status || status !== "200")
                 {
@@ -238,7 +231,7 @@
                 //关闭对话框
                 this.editDialogVisible = false;
                 //    刷新数据列表
-                this.getActivityList();
+                this.getCorporationList();
                 //    提示成功
                 this.$message.success("提交审核成功!");
             },
