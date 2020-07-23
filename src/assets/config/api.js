@@ -1,5 +1,6 @@
 // 根路径 请求网址
-const APIRootUrl = 'http://139.9.134.43:5000/communitySystem/';
+// const APIRootUrl = 'http://139.9.134.43:5000/communitySystem/';
+const APIRootUrl = 'http://139.9.134.43:5000';
 
 // const APIRootUrl = 'http://47.103.203.188:8888/communitySystem/';
 //const APIRootUrl = 'http://localhost:8888/communitySystem/';
@@ -57,6 +58,41 @@ module.exports = {
     // 请求参数:id(活动编号)
     // 响应参数:status,msg(错误时)
     PrincipalDeleteOneActivityUrl: APIRootUrl + 'principal/deleteOneActivity',
+
+
+    /*
+    PrincipalNotice组件
+    负责人公告管理数据接口
+     */
+    //请求参数:query(查询参数 做条件查询时才有),
+    // pageNumber(当前的页码),pageSize(每页显示条数)
+    //响应参数:announcements
+    PrincipalGetAnnouncementsUrl:APIRootUrl+'/principal/getAnnouncements',
+
+    PrincipalGetOneAnnouncement:APIRootUrl+'/principal/getOneAnnouncement',
+
+    PrincipalAddOneAnnouncement:APIRootUrl+'/principal/addOneAnnouncement',
+
+    PrincipalUpdateOneAnnouncement:APIRootUrl+'/principal/updateOneAnnouncement',
+
+    PrincipalDeleteOneAnnouncement:APIRootUrl+'/principal/deleteOneAnnouncement',
+
+
+
+    /*
+    PrincipalMember组件
+    负责人成员管理数据接口
+     */
+    //请求参数:query(查询参数 做条件查询时才有),
+    // pageNumber(当前的页码),pageSize(每页显示条数)
+    //响应参数:members
+    PrincipalGetClubMembers:APIRootUrl+'/principal/getClubMembers',
+
+    PrincipalDeleteClubMember:APIRootUrl+'/principal/deleteClubMember',
+
+    PrincipalChangeManager:APIRootUrl+'/principal/changeManager',
+
+
 
 
     /*
