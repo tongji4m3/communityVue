@@ -13,7 +13,7 @@
             <el-row :gutter="20">
                 <el-col :span="7">
                     <!--                    搜索取消时也会刷新搜索页面,搜索确定时,将携带query搜索特定内容的社团-->
-                    <el-input clearable @clear="getCorporationList" placeholder="请根据社团名搜索社团" v-model="queryInfo.query">
+                    <el-input clearable @clear="getCorporationList" placeholder="请根据社团名搜索社团" v-model="query">
                         <el-button slot="append" icon="el-icon-search" @click="getCorporationList"></el-button>
                     </el-input>
                 </el-col>
@@ -24,19 +24,15 @@
             <!--            活动列表 只展示一些活动信息,详细信息可在详情查看-->
             <el-table :data="corporationsList">
                 <el-table-column type="index"></el-table-column>
+                <el-table-column label="社团编号" prop="clubId"></el-table-column>
                 <el-table-column label="社团名称" prop="name"></el-table-column>
-                <el-table-column label="成立时间"></el-table-column>
-                <el-table-column label="社团性质"></el-table-column>
-                <el-table-column label="社团人数"></el-table-column>
-                <el-table-column label="社团人数"></el-table-column>
-                <el-table-column label="社团人数"></el-table-column>
-                <el-table-column label="社团人数"></el-table-column>
+                <el-table-column label="社团性质" prop="description"></el-table-column>
+                <el-table-column label="成立时间" prop="establishmentDate"></el-table-column>
+                <el-table-column label="会长"  prop="presidentName"></el-table-column>
                 <el-table-column label="社团简介">
-                    <!--                        查看简介按钮-->
                     <template slot-scope="scope">
-                        <el-button type="primary" @click="showCorporationSummary(scope.row.id)">查看</el-button>
+                        <el-button type="primary" @click="showCorporationSummary(1)">查看</el-button>
                     </template>
-
                 </el-table-column>
                 <el-table-column label="操作">
                     <template slot-scope="scope">
@@ -52,11 +48,11 @@
             <el-pagination
                     @size-change="handleSizeChange"
                     @current-change="handleCurrentChange"
-                    :current-page="queryInfo.pageNum"
+                    :current-page="pageNum"
                     :page-sizes="[1, 2, 5, 10]"
-                    :page-size="queryInfo.pageSize"
+                    :page-size="pageSize"
                     layout="total, sizes, prev, pager, next, jumper"
-                    :total="total">
+                    :total="totalCount">
             </el-pagination>
         </el-card>
 
@@ -93,13 +89,13 @@
         {
             return {
                 //    获取活动列表参数对象
-                queryInfo: {
-                    query: '',
-                    //当前的页码
-                    pageNum: 1,
-                    //每页显示的条数
-                    pageSize: 2
-                },
+
+                query: '',
+                //当前的页码
+                pageNum: 1,
+                //每页显示的条数
+                pageSize: 2,
+
                 //查询到的当页活动
                 corporationsList: [],
                 //总页码数,用于分页的显示
@@ -123,10 +119,10 @@
         methods: {
             async getCorporationList()
             {
-                let result = await this.$http.post(this.$api.StudentGetCorporationsUrl,
+                let result = await this.$http.post(this.$api.StudentCorporationsUrl,
                     {
                     query: this.query,
-                    pageNumber: this.pageNumber,
+                    pageNumber: this.pageNum,
                     pageSize: this.pageSize,
                     status: true
                 });
@@ -138,13 +134,13 @@
             //监听pageSize改变的事件
             handleSizeChange(newSize)
             {
-                this.queryInfo.pageSize = newSize;
+                this.pageSize = newSize;
                 this.getCorporationList();
             },
             //监听pageNum改变的事件
             handleCurrentChange(newPage)
             {
-                this.queryInfo.pageNum = newPage;
+                this.pageNum = newPage;
                 this.getCorporationList();
             },
 
