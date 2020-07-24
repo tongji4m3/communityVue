@@ -134,4 +134,19 @@ module.exports = {
     // ,totalCount(总条数),status,msg(错误时)
     StudentCorporationsUrl:APIRootUrl+'Student/getClubInfo',
 
+
+
+    /*
+    adminHome视图
+    AdminCheckSponsor组件
+    管理员审核赞助接口
+    */
+
+    //赞助列表的获取
+    //请求参数：Query(查询参数:unaudited, failed, pass, all), 
+    //      PageNumber(页号), PageSize(页大小)
+    //响应参数：pageIndex(页码), totalPages(总页数), totolCount(总条数)
+    //data:sponorshipId(赞助id), clubName(社团名称), applyTime(提交时间), 
+    //      sponsor(赞助商), amount(金额), adminName(审核者名字), status(审核状态)
+    AdminGetSponsorListUrl:APIRootUrl+'admin/getsponsorship'
 };
