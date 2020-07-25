@@ -25,7 +25,7 @@
             <!--            公告列表 只展示一些公告信息,详细文本可在详情查看-->
             <el-table :data="AnnouncementList">
                 <el-table-column type="index"></el-table-column>
-                <el-table-column label="公告ID" prop="announcementId"></el-table-column>
+                <el-table-column label="标题" prop="announcementId"></el-table-column>
                 <el-table-column label="公告时间" prop="time"></el-table-column>
                 <el-table-column label="显示详情">
                     <template slot-scope="scope">
@@ -168,7 +168,10 @@
                         status: true
                     });
                 this.AnnouncementList = result.data.data;
-                console.log(this.AnnouncementList);
+                for (let i = 0; i < this.AnnouncementList.length; i++)
+                {
+                    this.AnnouncementList[i].time=this.AnnouncementList[i].time.substring(0,10)
+                }
                 this.totalCount = parseInt(result.data.totalCount);
             },
             //监听pageSize改变的事件

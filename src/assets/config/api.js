@@ -79,15 +79,15 @@ module.exports = {
     //请求参数:query(查询参数 做条件查询时才有),
     // pageNumber(当前的页码),pageSize(每页显示条数)
     //响应参数:announcements
-    PrincipalGetAnnouncementsUrl:APIRootUrl+'/principal/getAnnouncements',
+    PrincipalGetAnnouncementsUrl:APIRootUrl+'principal/getAnnouncements',
 
-    PrincipalGetOneAnnouncement:APIRootUrl+'/principal/getOneAnnouncement',
+    PrincipalGetOneAnnouncement:APIRootUrl+'principal/getOneAnnouncement',
 
-    PrincipalAddOneAnnouncement:APIRootUrl+'/principal/addOneAnnouncement',
+    PrincipalAddOneAnnouncement:APIRootUrl+'principal/addOneAnnouncement',
 
-    PrincipalUpdateOneAnnouncement:APIRootUrl+'/principal/updateOneAnnouncement',
+    PrincipalUpdateOneAnnouncement:APIRootUrl+'principal/updateOneAnnouncement',
 
-    PrincipalDeleteOneAnnouncement:APIRootUrl+'/principal/deleteOneAnnouncement',
+    PrincipalDeleteOneAnnouncement:APIRootUrl+'principal/deleteOneAnnouncement',
 
 
 
@@ -98,11 +98,24 @@ module.exports = {
     //请求参数:query(查询参数 做条件查询时才有),
     // pageNumber(当前的页码),pageSize(每页显示条数)
     //响应参数:members
-    PrincipalGetClubMembers:APIRootUrl+'/principal/getClubMembers',
+    //studentId,number,name,grade,major,phone,position
+    PrincipalGetClubMembers:APIRootUrl+'principal/getClubMembers',
 
-    PrincipalDeleteClubMember:APIRootUrl+'/principal/deleteClubMember',
+    PrincipalGetOneClubMember:APIRootUrl+'principal/getOneClubMember',
 
-    PrincipalChangeManager:APIRootUrl+'/principal/changeManager',
+    //改变职位 传入参数:id,职位名称
+    PrincipalChangePosition:APIRootUrl+'principal/changePosition',
+
+    PrincipalDeleteClubMember:APIRootUrl+'principal/deleteClubMember',
+
+
+    /*
+    PrincipalChange组件
+    负责人换届数据接口
+     */
+    PrincipalChangeManager:APIRootUrl+'principal/getClubChangeManager',
+
+    PrincipalChangeManager:APIRootUrl+'principal/changeManager',
 
 
 
