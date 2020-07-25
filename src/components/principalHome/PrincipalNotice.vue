@@ -25,7 +25,7 @@
             <!--            公告列表 只展示一些公告信息,详细文本可在详情查看-->
             <el-table :data="AnnouncementList">
                 <el-table-column type="index"></el-table-column>
-                <el-table-column label="标题" prop="announcementId"></el-table-column>
+                <el-table-column label="标题" prop="title"></el-table-column>
                 <el-table-column label="公告时间" prop="time"></el-table-column>
                 <el-table-column label="显示详情">
                     <template slot-scope="scope">
@@ -63,8 +63,8 @@
                    width="50%">
             <!--            展示内容主体区域 -->
             <el-form :model="addForm" label-width="150px">
-                <el-form-item label="公告ID:">
-                    <el-input v-model="addForm.announcementId" disabled></el-input>
+                <el-form-item label="公告标题:">
+                    <el-input v-model="addForm.title" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="公告内容:">
                     <el-input v-model="addForm.content" disabled></el-input>
@@ -85,6 +85,9 @@
                    width="50%">
             <!--            内容主体区域 放置一个表单-->
             <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="150px">
+                <el-form-item label="公告标题:" prop="title">
+                    <el-input v-model="addForm.title"></el-input>
+                </el-form-item>
                 <el-form-item label="公告内容:" prop="content">
                     <el-input v-model="addForm.content"></el-input>
                 </el-form-item>
@@ -100,15 +103,11 @@
         <el-dialog title="修改公告" :visible.sync="editDialogVisible"
                    width="50%">
             <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="150px">
-                <el-form-item label="公告ID:" prop="announcementId">
-                    <el-input v-model="addForm.announcementId" disabled></el-input>
+                <el-form-item label="公告标题:" prop="title">
+                    <el-input v-model="addForm.title" ></el-input>
                 </el-form-item>
                 <el-form-item label="公告内容:" prop="content">
                     <el-input v-model="addForm.content"></el-input>
-                </el-form-item>
-                <el-form-item label="公告时间:" prop="time">
-                    <el-date-picker type="date" placeholder="选择日期" v-model="addForm.time"
-                                    style="width: 100%;"></el-date-picker>
                 </el-form-item>
             </el-form>
 
@@ -144,6 +143,7 @@
                 //添加公告表单数据
                 addForm: {
                     AnnouncementId: "",
+                    title:"",
                     content: "",
                     time: "",
                     status: false,
@@ -199,6 +199,7 @@
                 });
 
                 this.addForm.AnnouncementId = "";
+                this.addForm.title = "";
                 this.addForm.content = "";
                 this.addForm.time = '';
             },
@@ -214,7 +215,7 @@
                         let result = await this.$http.post(this.$api.PrincipalAddOneAnnouncement,
                             {
                                 AnnouncementId: 0,
-                                name: this.addForm.name,
+                                title: this.addForm.title,
                                 content: this.addForm.content,
                                 time: this.addForm.time,
                             });

@@ -27,14 +27,10 @@
                 <el-table-column label="年级" prop="grade"></el-table-column>
                 <el-table-column label="专业" prop="major"></el-table-column>
                 <el-table-column label="电话" prop="phone"></el-table-column>
-                <el-table-column label="成员职位" prop="position"></el-table-column>
-                <el-table-column label="操作">
+                <el-table-column label="删除成员">
                     <template slot-scope="scope">
-                        <!--                        修改按钮-->
-                        <el-button type="success" @click="showEditDialog(scope.row.memberId)"
-                                   icon="el-icon-edit"></el-button>
                         <!--                        删除按钮-->
-                        <el-button type="success" @click="removeById(scope.row.memberId)"
+                        <el-button type="success" @click="removeById(scope.row.studentId)"
                                    icon="el-icon-delete"></el-button>
 
                     </template>
@@ -54,30 +50,6 @@
             </el-pagination>
         </el-card>
 
-        <!--        修改成员对话框-->
-        <el-dialog title="修改职位"   :visible.sync="editDialogVisible"
-                   width="50%">
-            <el-form :model="addForm" label-width="150px">
-                <el-form-item label="学号:" prop="number">
-                    <el-input v-model="addForm.name"></el-input>
-                </el-form-item>
-                <el-form-item label="姓名:" prop="name">
-                    <el-input v-model="addForm.name"></el-input>
-                </el-form-item>
-                <el-form-item label="成员职位:" prop="position">
-                    <el-select v-model="addForm.position" placeholder="请重新分配职位">
-                        <el-option label="副社长" value="副社长"></el-option>
-                        <el-option label="骨干" value="骨干"></el-option>
-                        <el-option label="社员" value="社员"></el-option>
-                    </el-select>
-                </el-form-item>
-            </el-form>
-
-            <span slot="footer" class="dialog-footer">
-                    <el-button @click="cancelEdit">取 消</el-button>
-                    <el-button type="primary" @click="editMember">确 定</el-button>
-            </span>
-        </el-dialog>
     </div>
 </template>
 
@@ -140,49 +112,6 @@
                 this.getClubMembers();
             },
 
-            async showDialog(memberId)
-            {
-                let result = await this.$http.post(this.$api.PrincipalGetOneClubMember + "/" + memberId);
-                this.addForm = result.data;
-                console.log(this.addForm);
-                this.showDialogVisible = true;
-            },
-            //显示成员详情页面按确定后的触发事件
-            closeDialogVisible()
-            {
-                this.showDialogVisible = false;
-            },
-            cancelEdit()
-            {
-                this.editDialogVisible = false;
-                this.$message.info("取消修改成员职位!");
-            },
-            //修改成员页面弹出后,会查询要修改的id所对应成员的内容
-            async showEditDialog(memberId)
-            {
-                let result = await this.$http.post(this.$api.PrincipalGetOneClubMember + "/" + memberId);
-                this.addForm = result.data;
-                this.editDialogVisible = true;
-            },
-            editMember: async function ()
-            {
-                this.$refs.addFormRef.validate(
-                    async valid =>
-                    {
-                        if (!valid) return;
-                        console.log(this.addForm);
-                        await this.$http.post(this.$api.PrincipalChangePosition + "/" + this.addForm.memberId, this.addForm);
-                        // this.clearAddForm();
-                        // this.$refs.addFormRef.resetFields();
-                        //关闭对话框
-                        this.editDialogVisible = false;
-                        //    刷新数据列表
-                        await this.getClubMembers();
-                        //    提示成功
-                        this.$message.success("更新用户成功!");
-                    }
-                );
-            },
             //根据ID删除对应信息
             async removeById(memberId)
             {

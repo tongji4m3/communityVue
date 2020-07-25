@@ -101,11 +101,6 @@ module.exports = {
     //studentId,number,name,grade,major,phone,position
     PrincipalGetClubMembers:APIRootUrl+'principal/getClubMembers',
 
-    PrincipalGetOneClubMember:APIRootUrl+'principal/getOneClubMember',
-
-    //改变职位 传入参数:id,职位名称
-    PrincipalChangePosition:APIRootUrl+'principal/changePosition',
-
     PrincipalDeleteClubMember:APIRootUrl+'principal/deleteClubMember',
 
 
@@ -113,7 +108,7 @@ module.exports = {
     PrincipalChange组件
     负责人换届数据接口
      */
-    PrincipalChangeManager:APIRootUrl+'principal/getClubChangeManager',
+    PrincipalGetNextMembers:APIRootUrl+'principal/getNextMembers',
 
     PrincipalChangeManager:APIRootUrl+'principal/changeManager',
 
