@@ -17,9 +17,9 @@
                         <el-button slot="append" icon="el-icon-search" @click="getCorporationList"></el-button>
                     </el-input>
                 </el-col>
-                <el-col :span="4">
-                    <el-button type="primary" @click="addDialogVisible=true">查询社团</el-button>
-                </el-col>
+<!--                <el-col :span="4">-->
+<!--                    <el-button type="primary" @click="addDialogVisible=true">查询社团</el-button>-->
+<!--                </el-col>-->
             </el-row>
             <!--            活动列表 只展示一些活动信息,详细信息可在详情查看-->
             <el-table :data="corporationsList">
@@ -31,10 +31,10 @@
                 <el-table-column label="会长"  prop="presidentName"></el-table-column>
                 <el-table-column label="社团简介">
                     <template slot-scope="scope">
-                        <el-button type="primary" @click="showCorporationSummary(1)">查看</el-button>
+                        <el-button type="primary" @click="showCorporationSummary(scope.row.clubId)">查看</el-button>
                     </template>
                 </el-table-column>
-                <el-table-column label="操作">
+                <el-table-column label="加入社团">
                     <template slot-scope="scope">
                         <!--                        加入按钮-->
                         <!--<el-button type="primary" @click="showEditDialog(scope.row.id)" >加入</el-button>-->
@@ -60,13 +60,15 @@
         <el-dialog title="社团简介" ref="showFormRef" :visible.sync="showDialogVisible"
                    width="50%">
             <!--            展示内容主体区域 -->
-            <el-form :model="addForm" label-width="150px">
-                简介：
+            <el-form :model="addForm" label-width="150px">d
+                <el-form-item label="简介">
+                    <el-input v-model="addForm.summary" disable></el-input>
+                </el-form-item>
             </el-form>
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
-    <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
-  </span>
+                 <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
+            </span>
         </el-dialog>
 
         <!--        修改活动对话框-->
@@ -98,6 +100,8 @@
 
                 //查询到的当页活动
                 corporationsList: [],
+                //存放简介
+                summaryList:[],
                 //总页码数,用于分页的显示
                 totalCount: 0,
                 //添加,修改,展示活动对话框的显示与隐藏
@@ -204,16 +208,10 @@
             //详情页面弹出后,会查询该社团的简介内容并显示
             async showCorporationSummary(id)
             {
-                let result = await this.$http.post(this.$api.StudentCorporationInformationUrl, id);
-                status = result.data.status;
-                if (!status || status !== "200")
-                {
-                    this.$message.info(result.data.msg);
-                } else
-                {
-                    this.addForm = result.data.data;
-                    this.editDialogVisible = true;
-                }
+                let result = await this.$http.post(this.$api.StudentCorporationInformationUrl+'/'+id);
+                this.addForm.summary= result.data;
+                console.log(this.addForm.summary);
+                this.showDialogVisible = true;
             },
             async editActivity()
             {
