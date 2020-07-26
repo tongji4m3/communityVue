@@ -148,5 +148,24 @@ module.exports = {
     //响应参数：pageIndex(页码), totalPages(总页数), totolCount(总条数)
     //data:sponorshipId(赞助id), clubName(社团名称), applyTime(提交时间), 
     //      sponsor(赞助商), amount(金额), adminName(审核者名字), status(审核状态)
-    AdminGetSponsorListUrl:APIRootUrl+'admin/getsponsorship'
+    AdminGetSponsorListUrl:APIRootUrl+'admin/getsponsorships',
+
+    //赞助详情信息获取
+    //请求参数：sponsorshipId(赞助ID)
+    //响应参数：sponorshipId(赞助id), clubName(社团名称), applyTime(提交时间), 
+    //      sponsor(赞助商), amount(金额), adminName(审核者名字), status(审核状态)，
+    //      suggestion(建议)， requirement(需求)
+    AdminGetSponsorshipDetailsUrl:APIRootUrl+'admin/getsponsorshipdetails',
+
+    //批复信息更新
+    //请求参数：sponsorshipId(赞助ID), suggestion(建议)
+    //响应参数：
+    AdminUpdateSuggestionUrl:APIRootUrl+'admin/updatesuggestion',
+
+    //审核状态更新
+    //请求参数：sponsorshipId(赞助ID), status(审核状态)
+    //响应参数：
+    AdminUpdateStatusUrl:APIRootUrl+'admin/updatestatus',
+
+
 };
