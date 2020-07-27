@@ -3,50 +3,43 @@
         <!--        面包屑-->
         <el-breadcrumb separator-class="el-icon-arrow-right">
             <el-breadcrumb-item :to="{ path: '/welcome' }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item :to="{ path: '/StudentWelcome' }">学生首页</el-breadcrumb-item>
-            <el-breadcrumb-item>已加入社团</el-breadcrumb-item>
+            <el-breadcrumb-item :to="{ path: '/StudentWelcome' }">社团信息查询</el-breadcrumb-item>
+            <el-breadcrumb-item>加入社团</el-breadcrumb-item>
         </el-breadcrumb>
 
+
+        <el-alert
+                title="加入社团"
+                type="info"
+                center
+                show-icon>
+        </el-alert>
         <!--        卡片-->
         <el-card class="box-card">
             <!--            搜索与添加-->
             <el-row :gutter="20">
                 <el-col :span="7">
                     <!--                    搜索取消时也会刷新搜索页面,搜索确定时,将携带query搜索特定内容的社团-->
-                    <el-input clearable @clear="getCorporationList" placeholder="请根据社团名搜索社团" v-model="query">
-                        <el-button slot="append" icon="el-icon-search" @click="getCorporationList"></el-button>
-                    </el-input>
+                    <el-steps :active="activeIndex-0" finish-status="success" :space="200">
+                        <el-step title="步骤1" description="确定是这个社团了吗"></el-step>
+                        <el-step title="步骤2" description="录入基本信息"></el-step>
+                        <el-step title="步骤3" description="我也不知道还要干啥"></el-step>
+                    </el-steps>
+
+                    <el-tabs v-model="activeIndex" :tab-position="tabPosition" style="height: 200px;" >
+                        <el-tab-pane label="步骤1" name="0">用户管理</el-tab-pane>
+                        <el-tab-pane label="步骤2" name="1">配置管理</el-tab-pane>
+                        <el-tab-pane label="步骤3" name="2">角色管理</el-tab-pane>
+                    </el-tabs>
                 </el-col>
-<!--                <el-col :span="4">-->
-<!--                    <el-button type="primary" @click="addDialogVisible=true">查询社团</el-button>-->
-<!--                </el-col>-->
+                <!--                <el-col :span="4">-->
+                <!--                    <el-button type="primary" @click="addDialogVisible=true">查询社团</el-button>-->
+                <!--                </el-col>-->
             </el-row>
             <!--            活动列表 只展示一些活动信息,详细信息可在详情查看-->
-            <el-table :data="corporationsList">
-                <el-table-column type="index"></el-table-column>
-                <el-table-column label="社团编号" prop="clubId"></el-table-column>
-                <el-table-column label="社团名称" prop="name"></el-table-column>
-                <el-table-column label="社团性质" prop="type"></el-table-column>
-                <el-table-column label="成立时间" prop="establishmentDate"></el-table-column>
-                <el-table-column label="会长"  prop="presidentName"></el-table-column>
-                <el-table-column label="退出社团">
-                    <template slot-scope="scope">
-                        <el-button type="primary" @click="exitCorporation(scope.row.clubId,scope.row.name)">退出</el-button>
-                    </template>
-                </el-table-column>
 
-            </el-table>
 
-            <!--            分页区域-->
-            <el-pagination
-                    @size-change="handleSizeChange"
-                    @current-change="handleCurrentChange"
-                    :current-page="pageNumber"
-                    :page-sizes="[1, 2, 5, 10]"
-                    :page-size="pageSize"
-                    layout="total, sizes, prev, pager, next, jumper"
-                    :total="totalCount">
-            </el-pagination>
+
         </el-card>
 
 
@@ -121,6 +114,8 @@
 
             };
             return {
+                activeIndex: '0',
+                tabPosition: 'left',
                 //    获取活动列表参数对象
 
                 query: '',
@@ -182,6 +177,10 @@
                 console.log(this.corporationsList);
                 this.totalCount = parseInt(result.data.totalCount);
                 console.log(this.totalCount);
+            },
+
+            next() {
+                if (this.active++ > 2) this.active = 0;
             },
 
             //监听pageSize改变的事件

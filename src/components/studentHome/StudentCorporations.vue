@@ -7,6 +7,13 @@
             <el-breadcrumb-item>社团信息查询</el-breadcrumb-item>
         </el-breadcrumb>
 
+        <el-alert
+                title="已加入的社团为橙色"
+                type="info"
+                center
+                show-icon>
+        </el-alert>
+
         <!--        卡片-->
         <el-card class="box-card">
             <!--            搜索与添加-->
@@ -22,23 +29,21 @@
 <!--                </el-col>-->
             </el-row>
             <!--            活动列表 只展示一些活动信息,详细信息可在详情查看-->
-            <el-table :data="corporationsList">
+            <el-table :data="corporationsList" :row-class-name="tableRowClassName">
                 <el-table-column type="index"></el-table-column>
                 <el-table-column label="社团编号" prop="clubId"></el-table-column>
                 <el-table-column label="社团名称" prop="name"></el-table-column>
-                <el-table-column label="社团性质" prop="description"></el-table-column>
-                <el-table-column label="成立时间" prop="establishmentDate"></el-table-column>
-                <el-table-column label="会长"  prop="presidentName"></el-table-column>
+                <el-table-column label="社团性质" prop="type"></el-table-column>
                 <el-table-column label="社团简介">
                     <template slot-scope="scope">
-                        <el-button type="primary" @click="showCorporationSummary(scope.row.clubId)">查看</el-button>
+                        <el-button type="primary" @click="showCorporationSummary(scope.row.clubId,scope.row.establishmentDate,scope.row.presidentName)">查看</el-button>
                     </template>
                 </el-table-column>
                 <el-table-column label="加入社团">
                     <template slot-scope="scope">
                         <!--                        加入按钮-->
                         <!--<el-button type="primary" @click="showEditDialog(scope.row.id)" >加入</el-button>-->
-                        <el-button type="primary">加入</el-button>
+                        <el-button type="primary" @click="joinNewClub">加入</el-button>
                     </template>
                 </el-table-column>
 
@@ -60,16 +65,26 @@
         <el-dialog title="社团简介" ref="showFormRef" :visible.sync="showDialogVisible"
                    width="50%">
             <!--            展示内容主体区域 -->
-            <el-form :model="addForm" label-width="150px">d
-                <el-form-item label="简介">
-                    <el-input v-model="addForm.summary" disable></el-input>
+            <el-form :model="addForm" label-width="150px">
+                <el-form-item label="成立时间">
+                    <el-input v-model="addForm.date" disabled></el-input>
                 </el-form-item>
+                <el-form-item label="会长">
+                    <el-input v-model="addForm.president" disabled></el-input>
+                </el-form-item>
+                <el-form-item label="简介">
+                    <el-input v-model="addForm.summary" type="textarea" disabled></el-input>
+                </el-form-item>
+
             </el-form>
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
                  <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
             </span>
         </el-dialog>
+
+
+
 
         <!--        修改活动对话框-->
         <el-dialog title="提交申请" ref="editFormRef" :visible.sync="editDialogVisible"
@@ -85,7 +100,20 @@
     </div>
 </template>
 
+
+
+<style>
+    .el-table .warning-row {
+        background: oldlace;
+    }
+
+    .el-table .success-row {
+        background: #f0f9eb;
+    }
+</style>
+
 <script>
+
     export default {
         data()
         {
@@ -111,6 +139,8 @@
                 //添加活动表单数据
                 addForm: {
                     summary: "",
+                    date:"",
+                    president:""
                 },
             }
         },
@@ -121,6 +151,23 @@
             this.getCorporationList();
         },
         methods: {
+
+            tableRowClassName({row, rowIndex}) {
+                if (rowIndex === 0) {
+                    return 'warning-row';
+                }
+                // else if (rowIndex === 3) {
+                //     return 'success-row';
+                // }
+                return '';
+            },
+
+            joinNewClub(){
+
+                this.$router.push({ path:'/joinNewCorporation'})
+
+            },
+
             async getCorporationList()
             {
                 let result = await this.$http.post(this.$api.StudentCorporationsUrl,
@@ -206,10 +253,12 @@
             },
 
             //详情页面弹出后,会查询该社团的简介内容并显示
-            async showCorporationSummary(id)
+            async showCorporationSummary(id,date,president)
             {
                 let result = await this.$http.post(this.$api.StudentCorporationInformationUrl+'/'+id);
                 this.addForm.summary= result.data;
+                this.addForm.date=date;
+                this.addForm.president=president;
                 console.log(this.addForm.summary);
                 this.showDialogVisible = true;
             },

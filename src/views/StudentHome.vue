@@ -15,7 +15,7 @@
                          background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
                         <el-menu-item index="/studentInformation">个人信息管理</el-menu-item>
                         <el-menu-item index="/studentCorporations">社团信息查询</el-menu-item>
-                        <el-menu-item index="/joinCorporations">加入社团</el-menu-item>
+                        <el-menu-item index="/joinCorporations">已加入社团</el-menu-item>
                         <el-menu-item index="joinActivity">参加活动</el-menu-item>
                 </el-menu>
             </el-aside>

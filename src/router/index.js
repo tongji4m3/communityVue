@@ -32,6 +32,7 @@ import AdminStudent from '../components/adminHome/AdminStudent'
 import AdminInformation from '../components/adminHome/AdminInformation'
 import AdminCheckActivity from '../components/adminHome/AdminCheckActivity'
 import AdminCheckSponsor from '../components/adminHome/AdminCheckSponsor'
+import JoinNewCorporation from "../components/studentHome/JoinNewCorporation";
 
 
 
@@ -63,7 +64,8 @@ const routes = [
             {path: '/studentWelcome', component: StudentWelcome},
             {path: '/studentCorporations', component: StudentCorporations},
             {path: '/joinCorporations', component: JoinCorporations},
-            {path: '/joinActivity', component: JoinActivity}
+            {path: '/joinActivity', component: JoinActivity},
+            {path: '/joinNewCorporation', component: JoinNewCorporation}
         ]
     },
     {
