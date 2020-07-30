@@ -143,7 +143,7 @@ module.exports = {
     */
 
     //赞助列表的获取
-    //请求参数：Query(查询参数:unaudited, failed, pass, all), 
+    //请求参数：Status(查询参数:unaudited, failed, pass, all), 
     //      PageNumber(页号), PageSize(页大小)
     //响应参数：pageIndex(页码), totalPages(总页数), totolCount(总条数)
     //data:sponorshipId(赞助id), clubName(社团名称), applyTime(提交时间), 
@@ -157,15 +157,47 @@ module.exports = {
     //      suggestion(建议)， requirement(需求)
     AdminGetSponsorshipDetailsUrl:APIRootUrl+'admin/getsponsorshipdetails',
 
-    //批复信息更新
+    //赞助建议信息更新
     //请求参数：sponsorshipId(赞助ID), suggestion(建议)
     //响应参数：
-    AdminUpdateSuggestionUrl:APIRootUrl+'admin/updatesuggestion',
+    AdminUpdateSponSuggestionUrl:APIRootUrl+'admin/updatesponsuggestion',
 
-    //审核状态更新
+    //赞助审核状态更新
     //请求参数：sponsorshipId(赞助ID), status(审核状态)
     //响应参数：
-    AdminUpdateStatusUrl:APIRootUrl+'admin/updatestatus',
+    AdminUpdateSponStatusUrl:APIRootUrl+'admin/updatesponstatus',
 
+    /*
+    AdminCheckSponsor组件
+    管理员审核赞助接口
+    */
+
+    //活动列表的获取
+    //请求参数：Query(模糊查询字符串)，Status(查询参数:unaudited, failed, pass, all), 
+    //      PageNumber(页号), PageSize(页大小)
+    //响应参数：pageIndex(页码), totalPages(总页数), totolCount(总条数)
+    //data:activityId(活动id), clubName(社团名称), Name(活动名称), 
+    //      fund(经费), place(活动地点), time(活动时间), status(审核状态)
+    AdminGetActivityListUrl:APIRootUrl+'admin/getactivities',
+
+    //活动详情信息获取
+    //请求参数：activityId(活动ID)
+    //响应参数：activityId(活动id), clubName(社团名称), Name(活动名称), 
+    //      fund(经费), cost(开销)，place(活动地点), time(活动时间), 
+    //      status(审核状态)，applyTime(申请时间)，description(活动描述)，
+    //      isPublic(是否公开)，adminName(管理员姓名)，suggestion(建议)，
+    AdminGetActivityDetailsUrl:APIRootUrl+'admin/getactivitydetails',
+
+    //活动建议信息更新
+    //请求参数：activityId(活动ID), suggestion(建议)
+    //响应参数：
+    AdminUpdateActSuggestionUrl:APIRootUrl+'admin/updateactsuggestion',
+
+    //活动审核状态更新
+    //请求参数：activitytId(活动ID), status(审核状态)
+    //响应参数：
+    AdminUpdateActStatusUrl:APIRootUrl+'admin/updateactstatus',
+
+    
 
 };

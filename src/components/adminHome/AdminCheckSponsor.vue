@@ -210,7 +210,7 @@ export default {
                 let sponsorItem = {
                     sponsorshipId: result.data.data[i].sponsorshipId,
                     clubName: result.data.data[i].clubName,
-                    applyTime: result.data.data[i].applyTime,
+                    applyTime: result.data.data[i].applyTime.slice(0, result.data.data[i].applyTime.indexOf('T')),
                     sponsor: result.data.data[i].sponsor,
                     amount: result.data.data[i].amount,
                     status_name: this.status_str(result.data.data[i].status)
@@ -254,6 +254,7 @@ export default {
         async showReplyDialog(pos_in)
         {
             this.replyForm.sponsorshipId = this.sponsorList[pos_in].sponsorshipId;
+            // console.log(this.replyForm.sponsorshipId);
             // let result = await this.$http.post(this.$api.AdminGetSponsorshipDetailsUrl, 
             //     {
             //         sponsorshipId: this.replyForm.sponsorshipId
