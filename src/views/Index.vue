@@ -32,7 +32,7 @@
         justify-content: space-between;
     }
 
-    .el-main {
-        background-color: pink;
-    }
+    /*.el-main {*/
+    /*    background-color: pink;*/
+    /*}*/
 </style>

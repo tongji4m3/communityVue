@@ -132,7 +132,7 @@ module.exports = {
     //请求参数:社团id,
     // pageNumber(当前的页码),pageSize(每页显示条数)
     //响应参数:社团简介
-    StudentCorporationInformationUrl:APIRootUrl+'Student/getClubDescription/{id}',
+    StudentCorporationInformationUrl:APIRootUrl+'Student/getClubDescription',
 
     //获取所有社团信息
     //请求参数:query(查询参数 做条件查询时才有,例如"上海",则是要查找活动名称中包含上海的),
