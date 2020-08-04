@@ -7,9 +7,9 @@
             <div>
                 <img src="../assets/img/tj_logo.png" height=40/>
             </div>
-            <div class="header-name">
-                {{username}}
-            </div>
+<!--            <div class="header-name">-->
+<!--                {{username}}-->
+<!--            </div>-->
             <div class="out-button">
                 <el-button @click="logout" size="medium">  退出</el-button>
             </div>
