@@ -74,7 +74,7 @@
                 :total="totalCount">
         </el-pagination>
          <!-- 展示批复对话框 -->
-        <el-dialog title="活动详情" ref="showFormRef" :visible.sync="replyDialogVisible"
+        <el-dialog title="活动详情" :visible.sync="replyDialogVisible"
                    width="50%">
             <!-- 展示内容主体区域 -->
             <el-form :model="this.replyForm" label-width="150px">
