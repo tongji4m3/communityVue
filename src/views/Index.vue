@@ -1,10 +1,10 @@
 <template>
     <el-container class="index-container">
         <!--        上边框-->
-        <el-header>
+        <el-header >
             <!--            开启了路由模式-->
             <el-menu router
-                     class="el-menu-demo" mode="horizontal" background-color="#545c64"
+                     class="el-menu-demo" mode="horizontal" background-color="rgb(34,34,34)"
                      text-color="#fff" active-text-color="#ffd04b">
 
                 <el-menu-item index="/login">登录</el-menu-item>
@@ -27,12 +27,14 @@
     }
 
     .el-header {
-        background-color: orange;
+        background-color: rgb(43,43,43);
+
         display: flex;
         justify-content: space-between;
     }
 
-    /*.el-main {*/
-    /*    background-color: pink;*/
-    /*}*/
+    .el-main {
+        /*background-color: rgb(239,239,239);*/
+        background-color: rgb(255,255,255);
+    }
 </style>
