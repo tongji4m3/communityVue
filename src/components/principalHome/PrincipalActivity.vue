@@ -139,9 +139,9 @@
             </el-form>
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
-    <el-button @click="cancelAdd">取 消</el-button>
-    <el-button type="primary" @click="addActivity">确 定</el-button>
-  </span>
+                <el-button @click="cancelAdd">取 消</el-button>
+                <el-button type="primary" @click="addActivity">确 定</el-button>
+            </span>
         </el-dialog>
 
         <!--        修改活动对话框-->

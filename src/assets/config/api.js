@@ -37,7 +37,11 @@ module.exports = {
     //响应参数:name
     getClubNameUrl: APIRootUrl + 'principal/getClubName',//获取社团名称
 
+    //请求参数:无
+    //响应参数:password
+    ChangePasswordUrl:APIRootUrl+'user/changePassword',//修改用户密码
 
+    PrincipalGetHistoryPrincipalsUrl:APIRootUrl+'user/GetHistoryPrincipal',
 
     /*
     PrincipalHome视图
