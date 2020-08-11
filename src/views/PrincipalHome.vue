@@ -11,6 +11,9 @@
 <!--                {{username}}-->
 <!--            </div>-->
             <div class="out-button">
+                <el-button @click="changePassword" size="medium">修改密码</el-button>
+                <el-button @click="systemInformation" size="medium">系统消息</el-button>
+                <el-button @click="systemNotice" size="medium">系统公告</el-button>
                 <el-button @click="logout" size="medium">  退出</el-button>
             </div>
         </el-header>
@@ -51,6 +54,18 @@
                 window.sessionStorage.clear();
                 this.$router.push("/index")
             },
+            changePassword()
+            {
+                this.$router.push("/principalChangePassword")
+            },
+            systemInformation()
+            {
+                this.$router.push("/principalSystemInformation")
+            },
+            systemNotice()
+            {
+                this.$router.push("/principalSystemNotice")
+            }
         }
     };
 </script>

@@ -4,8 +4,16 @@
     <el-container class="home-container">
         <!--        头部区域-->
         <el-header>
-            <div>{{username}}</div>
-            <el-button @click="logout">退出</el-button>
+            <div>
+                <img src="../assets/img/tj_logo.png" height=40/>
+            </div>
+<!--            <div>{{username}}</div>-->
+            <div class="out-button">
+                <el-button @click="changePassword" size="medium">修改密码</el-button>
+                <el-button @click="systemInformation" size="medium">系统消息</el-button>
+                <el-button @click="systemNotice" size="medium">系统公告</el-button>
+                <el-button @click="logout" size="medium">退出</el-button>
+            </div>
         </el-header>
         <!--        页面主体-->
         <el-container>
@@ -16,6 +24,7 @@
                         <el-menu-item index="/studentInformation">个人信息管理</el-menu-item>
                         <el-menu-item index="/studentCorporations">社团信息查询</el-menu-item>
                         <el-menu-item index="/joinCorporations">已加入社团</el-menu-item>
+<!--                        <el-menu-item index="/studentActivities">查看活动</el-menu-item>-->
                         <el-menu-item index="joinActivity">参加活动</el-menu-item>
                 </el-menu>
             </el-aside>
@@ -42,6 +51,18 @@
                 window.sessionStorage.clear();
                 this.$router.push("/index")
             },
+            changePassword()
+            {
+                this.$router.push("/studentChangePassword")
+            },
+            systemInformation()
+            {
+                this.$router.push("/studentSystemInformation")
+            },
+            systemNotice()
+            {
+                this.$router.push("/studentSystemNotice")
+            }
         }
     };
 </script>
@@ -52,16 +73,33 @@
     }
 
     .el-header {
-        background-color: orange;
+        background-color: rgb(64,158,255);
         display: flex;
         justify-content: space-between;
+        margin-left: 0;
+        padding-left: 0;
+
     }
 
     .el-aside {
-        background-color: gray;
+        /*background-color: gray;*/
     }
 
     .el-main {
-        background-color: pink;
+        /*background-color: lightgoldenrodyellow;*/
+    }
+
+    .out-button{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    .header-name{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
     }
 </style>

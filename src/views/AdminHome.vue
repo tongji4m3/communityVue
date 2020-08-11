@@ -7,6 +7,7 @@
             <div>
                 {{username}}
             </div>
+            <el-button @click="changePassword" size="medium">修改密码</el-button>
             <el-button @click="logout">退出</el-button>
         </el-header>
         <!--        页面主体-->
@@ -49,6 +50,10 @@
             {
                 window.sessionStorage.clear();
                 this.$router.push("/index")
+            },
+            changePassword()
+            {
+                this.$router.push("/adminChangePassword")
             }
         }
     };
