@@ -9,22 +9,28 @@
         <el-divider></el-divider>
         <!-- 卡片 -->
         <el-card class="box-card">
-            <!-- 分类查询 -->
             <el-row :gutter="20">
-                <el-col :span="3"  class="center">
-                    <p>分类：</p>
+                 <!-- 模糊搜索 -->
+                <el-col :span="10">
+                    <el-input clearable @clear="getSponsorList('all', query)"  placeholder="请输入内容" v-model="query">
+                        <el-button slot="append" icon="el-icon-search" @click="getSponsorList('all', query)"></el-button>
+                    </el-input>
                 </el-col>
-                <el-col :span="3">
-                    <el-button type="primary" @click="getSponsorList('all', 1)">全部</el-button>
+                 <!-- 带状态的模糊搜索 -->
+                <el-col :span="2"  class="center">
+                    <p>状态：</p>
                 </el-col>
-                <el-col :span="3">
-                    <el-button type="primary" @click="getSponsorList('unaudited', 1)">待审核</el-button>
+                <el-col :span="2">
+                    <el-button type="primary" @click="getSponsorList('all', query)">全部</el-button>
                 </el-col>
-                <el-col :span="3">
-                    <el-button type="primary" @click="getSponsorList('pass', 1)">已通过</el-button>
+                <el-col :span="2">
+                    <el-button type="primary" @click="getSponsorList('unaudited', query)">待审核</el-button>
                 </el-col>
-                <el-col :span="3">
-                    <el-button type="primary" @click="getSponsorList('failed', 1)">未通过</el-button>
+                <el-col :span="2">
+                    <el-button type="primary" @click="getSponsorList('pass', query)">已通过</el-button>
+                </el-col>
+                <el-col :span="2">
+                    <el-button type="primary" @click="getSponsorList('failed', query)">未通过</el-button>
                 </el-col>
             </el-row>
         </el-card>
@@ -34,7 +40,7 @@
                 <el-table-column label="社团名称" prop="clubName"></el-table-column>
                 <el-table-column label="赞助商" prop="sponsor"></el-table-column>
                 <el-table-column label="赞助金额" prop="amount"></el-table-column>
-                <el-table-column label="提交时间" prop="applyTime"></el-table-column>
+                <el-table-column label="提交时间" prop="applyDate"></el-table-column>
                 <el-table-column label="审核状态" prop="status_name"></el-table-column>
                 <el-table-column label="申请详情">
                     <template slot-scope="scope">
@@ -88,7 +94,7 @@
                     <el-input v-model="this.replyForm.amount" readonly></el-input>
                 </el-form-item>
                 <el-form-item label="提交时间:">
-                    <el-date-picker type="date" v-model="this.replyForm.applyTime" style="width: 100%;" readonly></el-date-picker>
+                    <el-date-picker type="date" v-model="this.replyForm.applyDate" style="width: 100%;" readonly></el-date-picker>
                 </el-form-item>
                 <el-form-item label="审核状态:">
                     <el-input v-model="this.replyForm.status_name" readonly></el-input>
@@ -144,7 +150,8 @@ export default {
     {
         return {
             //获取赞助列表参数对象
-            query: 'all',
+            status: 'all',
+            query: '',
             //当前的页码
             pageNumber: 1,
             //每页显示的条数
@@ -154,12 +161,11 @@ export default {
                 {
                     sponsorshipId: 0,
                     clubName: "",
-                    applyTime: "",
+                    applyDate: "",
                     sponsor: "",
                     amount: 0,
                     adminName: "",
                     status_name: "",
-                    suggestion: ""
                 },
             ],
             //总条数,用于分页的显示
@@ -172,7 +178,7 @@ export default {
             replyForm: {
                 sponsorshipId: 0,
                 clubName: "",
-                applyTime: "",
+                applyDate: "",
                 sponsor: "",
                 amount: 0,
                 requirement: "",
@@ -188,52 +194,52 @@ export default {
         this.getSponsorList('all');
     },
     methods: {
-        //获取query_in分类，第pageNumber_in页的赞助列表      
-        async getSponsorList(query_in = this.query, pageNumber_in = this.pageNumber)
+        //获取query_in关键字，status状态，第pageNumber_in页的赞助列表   
+        async getSponsorList(status_in = this.status, query_in = this.query, pageNumber_in = this.pageNumber)
         {
+            this.status = status_in;
             this.query = query_in;
             this.pageNumber = pageNumber_in;
             let result = await this.$http.post(this.$api.AdminGetSponsorListUrl,
                 {
-                    query: this.query,
-                    pageNumber: this.pageNumber,
-                    pageSize: this.pageSize,
-                    status: true
+                    status: this.status,
+                    PageQO:{
+                        query: this.query,
+                        pageNumber: this.pageNumber,
+                        pageSize: this.pageSize,
+                    },
                 });
             while(this.sponsorList.length > 0){
                 this.sponsorList.pop();
             }
-            // console.log(result.data);
             var dataItem;
             for(let i = 0; i < result.data.data.length; i++){
-                // console.log(result.data.data[i]);
                 let sponsorItem = {
                     sponsorshipId: result.data.data[i].sponsorshipId,
                     clubName: result.data.data[i].clubName,
-                    applyTime: result.data.data[i].applyTime.slice(0, result.data.data[i].applyTime.indexOf('T')),
+                    applyDate: result.data.data[i].applyDate.slice(0, result.data.data[i].applyDate.indexOf('T')),
                     sponsor: result.data.data[i].sponsor,
                     amount: result.data.data[i].amount,
-                    status_name: this.status_str(result.data.data[i].status)
+                    status_name: this.statusToStr(result.data.data[i].status)
                 };
                 this.sponsorList.push(sponsorItem);
             }
-            // console.log(this.sponsorList);
             this.totalCount = parseInt(result.data.totalCount);
         },
         //监听pageSize改变的事件
         handleSizeChange(newSize)
         {
             this.pageSize = newSize;
-            this.getSponsorList(this.query);
+            this.getSponsorList(this.status);
         },
         //监听pageNum改变的事件
         handleCurrentChange(newPage)
         {
             this.pageNumber = newPage;
-            this.getSponsorList(this.query);
+            this.getSponsorList(this.status);
         },
         //输出status的文字描述
-        status_str(status_int)
+        statusToStr(status_int)
         {
             switch(status_int) {
                 case 0:
@@ -262,12 +268,12 @@ export default {
             // this.replyForm.suggestion = result.data.suggestion;
             // this.replyForm.requirement = result.data.requirement;
             // this.replyForm.clubName = result.data.clubName
-            // this.replyForm.applyTime = result.data.applyTime;
+            // this.replyForm.applyDate = result.data.applyDate;
             // this.replyForm.sponsor = result.data.sponsor;
             // this.replyForm.amount = result.data.amount;
-            // this.replyForm.status_name = status_str(result.data.status);
+            // this.replyForm.status_name = statusToStr(result.data.status);
             this.replyForm.clubName = this.sponsorList[pos_in].clubName
-            this.replyForm.applyTime = this.sponsorList[pos_in].applyTime;
+            this.replyForm.applyDate = this.sponsorList[pos_in].applyDate;
             this.replyForm.sponsor = this.sponsorList[pos_in].sponsor;
             this.replyForm.amount = this.sponsorList[pos_in].amount;
             this.replyForm.status_name = this.sponsorList[pos_in].status_name;
@@ -284,7 +290,7 @@ export default {
         async submitSuggestion()
         {
             this.closeReplyDialog();
-            let result = await this.$http.post(this.$api.AdminUpdateSuggestionUrl, 
+            let result = await this.$http.post(this.$api.AdminUpdateSponSuggestionUrl, 
                 {
                     suggestion: this.replyForm.suggestion
                 });
@@ -292,7 +298,7 @@ export default {
         //更新审核状态并刷新
         async updateStatusAndRefresh(sponsorshipId_in, status_in, dialog = 0)
         {
-            let result = await this.$http.post(this.$api.AdminUpdateStatusUrl, 
+            let result = await this.$http.post(this.$api.AdminUpdateSponStatusUrl, 
                 {
                     sponsorshipId: sponsorshipId_in,
                     status: status_in
@@ -303,10 +309,10 @@ export default {
                     this.getSponsorList();
                     break;
                 case 1://详情界面
-                    this.replyForm.status_name = status_str(status_in);
+                    this.replyForm.status_name = statusToStr(status_in);
                     break;
                 default:
-                    console.log("出现未定义界面变号");
+                    console.log("出现未定义界面编号");
                     break;
             }
         },
