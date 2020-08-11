@@ -6,6 +6,9 @@ import Index from '../views/Index'
 import Welcome from '../components/index/Welcome'
 import Login from '../components/index/Login'
 import StudentRegister from '../components/index/StudentRegister'
+import ChangePassword from '../components/index/ChangePassword'
+import SystemInformation from '../components/index/SystemInformation'
+import SystemNotice from '../components/index/SystemNotice'
 
 //studentHome页面和他的组件
 import StudentHome from '../views/StudentHome'
@@ -52,7 +55,7 @@ const routes = [
         children: [
             {path: '/welcome', component: Welcome},
             {path: '/login', component: Login},
-            {path: '/studentRegister', component: StudentRegister},
+            {path: '/studentRegister', component: StudentRegister}
             ]
     },
     {
@@ -65,7 +68,11 @@ const routes = [
             {path: '/studentCorporations', component: StudentCorporations},
             {path: '/joinCorporations', component: JoinCorporations},
             {path: '/joinActivity', component: JoinActivity},
-            {path: '/joinNewCorporation', component: JoinNewCorporation}
+            {path: '/joinNewCorporation', component: JoinNewCorporation},
+
+            {path: '/studentChangePassword', component: ChangePassword},
+            {path: '/studentSystemInformation', component: SystemInformation},
+            {path: '/studentSystemNotice', component: SystemNotice}
         ]
     },
     {
@@ -80,7 +87,11 @@ const routes = [
             {path: '/principalMember', component: PrincipalMember},
             {path: '/principalCheckJoin', component: PrincipalCheckJoin},
             {path: '/principalCheckActivity', component: PrincipalCheckActivity},
-            {path: '/principalSponsor', component: PrincipalSponsor}
+            {path: '/principalSponsor', component: PrincipalSponsor},
+
+            {path: '/principalChangePassword', component: ChangePassword},
+            {path: '/principalSystemInformation', component: SystemInformation},
+            {path: '/principalSystemNotice', component: SystemNotice}
         ]
 
     },
@@ -94,8 +105,9 @@ const routes = [
             {path: '/adminStudent', component: AdminStudent},
             {path: '/adminInformation', component: AdminInformation},
             {path: '/adminCheckActivity', component: AdminCheckActivity},
-            {path: '/adminCheckSponsor', component: AdminCheckSponsor}
+            {path: '/adminCheckSponsor', component: AdminCheckSponsor},
 
+            {path: '/adminChangePassword', component: ChangePassword}
         ]
     },
 ]

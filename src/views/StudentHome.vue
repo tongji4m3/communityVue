@@ -5,7 +5,10 @@
         <!--        头部区域-->
         <el-header>
             <div>{{username}}</div>
-            <el-button @click="logout">退出</el-button>
+            <el-button @click="changePassword" size="medium">修改密码</el-button>
+            <el-button @click="systemInformation" size="medium">系统消息</el-button>
+            <el-button @click="systemNotice" size="medium">系统公告</el-button>
+            <el-button @click="logout" size="medium">退出</el-button>
         </el-header>
         <!--        页面主体-->
         <el-container>
@@ -42,6 +45,18 @@
                 window.sessionStorage.clear();
                 this.$router.push("/index")
             },
+            changePassword()
+            {
+                this.$router.push("/studentChangePassword")
+            },
+            systemInformation()
+            {
+                this.$router.push("/studentSystemInformation")
+            },
+            systemNotice()
+            {
+                this.$router.push("/studentSystemNotice")
+            }
         }
     };
 </script>

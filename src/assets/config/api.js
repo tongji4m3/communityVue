@@ -95,7 +95,7 @@ module.exports = {
     PrincipalMember组件
     负责人成员管理数据接口
      */
-    //请求参数:query(查询参数 做条件查询时才有),    
+    //请求参数:query(查询参数 做条件查询时才有),
     // pageNumber(当前的页码),pageSize(每页显示条数)
     //响应参数:members
     //studentId,number,name,grade,major,phone
@@ -108,7 +108,7 @@ module.exports = {
     PrincipalChange组件
     负责人换届数据接口
      */
-    PrincipalGetNextMembers:APIRootUrl+'principal/getNextMembers',
+    PrincipalGetNextMembers:APIRootUrl+'principal/getCandidates',
 
     PrincipalChangeManager:APIRootUrl+'principal/changeManager',
 
