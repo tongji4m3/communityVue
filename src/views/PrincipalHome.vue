@@ -5,7 +5,7 @@
         <!--        头部区域-->
         <el-header>
             <div>
-                <img src="../assets/img/tj_logo.png" height=40/>
+                <img src="../assets/img/sys_logo.png" height="60"/>
             </div>
 <!--            <div class="header-name">-->
 <!--                {{username}}-->
@@ -17,9 +17,9 @@
         <!--        页面主体-->
         <el-container>
             <!--            侧边栏-->
-            <el-aside width="200px">
+            <el-aside width="150px">
                 <el-menu router
-                        background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+                         background-color="rgb(239,239,239)" text-color="rgb(43,43,43)" active-text-color="#409EFF">
                     <el-menu-item index="/principalChange">负责人换届</el-menu-item>
                     <el-menu-item index="/principalNotice">公告管理</el-menu-item>
                     <el-menu-item index="/principalActivity">活动管理</el-menu-item>
@@ -61,7 +61,7 @@
     }
 
     .el-header {
-        background-color: rgb(64,158,255);
+        background-color: rgb(43,43,43);
         display: flex;
         justify-content: space-between;
         margin-left: 0;
@@ -71,24 +71,18 @@
 
     .el-aside {
         /*background-color: gray;*/
+        background-color: rgb(239,239,239);
     }
 
     .el-main {
         /*background-color: lightgoldenrodyellow;*/
+        background-color: rgb(255,255,255);
     }
 
     .out-button{
         display: flex;
         justify-content: center;
         align-items: center;
-    }
-
-
-    .header-name{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
     }
 
 </style>
