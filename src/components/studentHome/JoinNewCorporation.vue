@@ -14,13 +14,15 @@
                 center
                 show-icon>
         </el-alert>
+
+        <el-divider></el-divider>
         <!--        卡片-->
         <el-card class="box-card">
             <!--            搜索与添加-->
             <el-row :gutter="20">
                 <el-col :span="7">
                     <!--                    搜索取消时也会刷新搜索页面,搜索确定时,将携带query搜索特定内容的社团-->
-                    <el-steps :active="activeIndex-0" finish-status="success" :space="200" style="margin-left: 12px;">
+                    <el-steps :active="activeIndex-0" finish-status="success" :space="200" style="margin-left: 12px">
                         <el-step title="步骤1" description="确定是这个社团了吗"></el-step>
                         <el-step title="步骤2" description="录入基本信息"></el-step>
                         <el-step title="步骤3" description="我也不知道还要干啥"></el-step>

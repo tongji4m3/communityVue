@@ -3,7 +3,7 @@
         <!--        面包屑-->
         <el-breadcrumb separator-class="el-icon-arrow-right">
             <el-breadcrumb-item :to="{ path: '/welcome' }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item :to="{ path: '/principleWelcome' }">学生首页</el-breadcrumb-item>
+            <el-breadcrumb-item :to="{ path: '/StudentWelcome' }">学生首页</el-breadcrumb-item>
             <el-breadcrumb-item>参加活动</el-breadcrumb-item>
         </el-breadcrumb>
 

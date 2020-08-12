@@ -6,7 +6,7 @@
             <el-breadcrumb-item :to="{ path: '/StudentWelcome' }">学生首页</el-breadcrumb-item>
             <el-breadcrumb-item>已加入社团</el-breadcrumb-item>
         </el-breadcrumb>
-
+        <el-divider></el-divider>
         <!--        卡片-->
         <el-card class="box-card">
             <!--            搜索与添加-->

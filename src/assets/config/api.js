@@ -142,4 +142,9 @@ module.exports = {
     // ,totalCount(总条数),status,msg(错误时)
     StudentCorporationsUrl:APIRootUrl+'Student/getClubInfo',
 
+
+    //获取学生信息
+    //
+    StudentGetNameUrl:APIRootUrl+'Student/getStudentName',
+
 };

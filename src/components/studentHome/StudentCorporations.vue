@@ -14,6 +14,7 @@
                 show-icon>
         </el-alert>
 
+        <el-divider></el-divider>
         <!--        卡片-->
         <el-card class="box-card">
             <!--            搜索与添加-->
