@@ -91,7 +91,7 @@
                 //添加,修改,展示成员对话框的显示与隐藏
                 addDialogVisible: false,
                 editDialogVisible: false,
-                showDialogVisible: false,
+                dialogVisible: false,
 
                 //添加成员表单数据
                 addForm: {},
@@ -155,7 +155,7 @@
             async showHistoryPrincipal()
             {
                 this.dialogVisible = true;
-                let result = await this.$http.post(this.$api.PrincipalGetHistoryPrincipalsUrl,
+                let result = await this.$http.post(this.$api.PrincipalGetManagersUrl,
                     {
                         query: this.query,
                         pageNumber: this.pageNumber,
@@ -164,6 +164,8 @@
                     });
 
                 this.memberList = result.data.data;
+
+                console.log(this.memberList);
             },
             closeDialog()
             {

@@ -7,7 +7,7 @@ const APIRootUrl = 'http://139.9.134.43:5000/communitySystem/';
 /*
 学生界面
  */
-const APIRootUrl_stu='https://139.9.134.43:44383/communitySystem/';
+const APIRootUrl_stu = 'https://139.9.134.43:44383/communitySystem/';
 
 // =======
 // // const APIRootUrl = 'http://139.9.134.43:5000/communitySystem/';
@@ -39,9 +39,19 @@ module.exports = {
 
     //请求参数:prePassword
     //响应参数:newPassword
-    ChangePasswordUrl:APIRootUrl+'user/changePassword',//修改用户密码
+    ChangePasswordUrl: APIRootUrl + 'user/changePassword',//修改用户密码
 
-    PrincipalGetHistoryPrincipalsUrl:APIRootUrl+'user/GetHistoryPrincipal',
+
+    GetAnnouncementsUrl: APIRootUrl + 'user/getAnnouncements',//获得系统公告
+
+    GetOneAnnouncementUrl: APIRootUrl + 'user/getOneAnnouncement',//获得系统公告
+
+
+    GetMessagesUrl: APIRootUrl + 'user/getMessages',//获得系统消息
+
+    GetOneMessagesUrl: APIRootUrl + 'user/getOneMessage',//获得系统消息
+
+    SetMessageReadUrl: APIRootUrl + 'user/setMessageRead',//系统消息已读
 
     /*
     PrincipalHome视图
@@ -83,16 +93,15 @@ module.exports = {
     //请求参数:query(查询参数 做条件查询时才有),
     // pageNumber(当前的页码),pageSize(每页显示条数)
     //响应参数:announcements
-    PrincipalGetAnnouncementsUrl:APIRootUrl+'principal/getAnnouncements',
+    PrincipalGetAnnouncementsUrl: APIRootUrl + 'principal/getAnnouncements',
 
-    PrincipalGetOneAnnouncement:APIRootUrl+'principal/getOneAnnouncement',
+    PrincipalGetOneAnnouncement: APIRootUrl + 'principal/getOneAnnouncement',
 
-    PrincipalAddOneAnnouncement:APIRootUrl+'principal/addOneAnnouncement',
+    PrincipalAddOneAnnouncement: APIRootUrl + 'principal/addOneAnnouncement',
 
-    PrincipalUpdateOneAnnouncement:APIRootUrl+'principal/updateOneAnnouncement',
+    PrincipalUpdateOneAnnouncement: APIRootUrl + 'principal/updateOneAnnouncement',
 
-    PrincipalDeleteOneAnnouncement:APIRootUrl+'principal/deleteOneAnnouncement',
-
+    PrincipalDeleteOneAnnouncement: APIRootUrl + 'principal/deleteOneAnnouncement',
 
 
     /*
@@ -103,21 +112,20 @@ module.exports = {
     // pageNumber(当前的页码),pageSize(每页显示条数)
     //响应参数:members
     //studentId,number,name,grade,major,phone
-    PrincipalGetClubMembers:APIRootUrl+'principal/getClubMembers',
+    PrincipalGetClubMembers: APIRootUrl + 'principal/getClubMembers',
 
-    PrincipalDeleteClubMember:APIRootUrl+'principal/deleteClubMember',
+    PrincipalDeleteClubMember: APIRootUrl + 'principal/deleteClubMember',
 
 
     /*
     PrincipalChange组件
     负责人换届数据接口
      */
-    PrincipalGetNextMembers:APIRootUrl+'principal/getCandidates',
+    PrincipalGetNextMembers: APIRootUrl + 'principal/getCandidates',
 
-    PrincipalChangeManager:APIRootUrl+'principal/changeManager',
+    PrincipalChangeManager: APIRootUrl + 'principal/changeManager',
 
-
-
+    PrincipalGetManagersUrl: APIRootUrl + 'principal/getManagers',//历史负责人
     /*
     studentHome视图
     StudentCorporations组件
@@ -136,7 +144,7 @@ module.exports = {
     //请求参数:社团id,
     // pageNumber(当前的页码),pageSize(每页显示条数)
     //响应参数:社团简介
-    StudentCorporationInformationUrl:APIRootUrl+'Student/getClubDescription',
+    StudentCorporationInformationUrl: APIRootUrl + 'Student/getClubDescription',
 
     //获取所有社团信息
     //请求参数:query(查询参数 做条件查询时才有,例如"上海",则是要查找活动名称中包含上海的),
@@ -144,11 +152,11 @@ module.exports = {
     // (社团列表,每个社团内部:{}
     // （社团名称，成立时间，社团性质,社团人数,社团简介,操作)
     // ,totalCount(总条数),status,msg(错误时)
-    StudentCorporationsUrl:APIRootUrl+'Student/getClubInfo',
+    StudentCorporationsUrl: APIRootUrl + 'Student/getClubInfo',
 
 
     //获取学生信息
     //
-    StudentGetNameUrl:APIRootUrl+'Student/getStudentName',
+    StudentGetNameUrl: APIRootUrl + 'Student/getStudentName',
 
 };
