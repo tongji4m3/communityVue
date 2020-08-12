@@ -11,8 +11,8 @@
 <!--                {{username}}-->
 <!--            </div>-->
             <div class="out-button">
-                <el-button @click="changePassword" size="medium">修改密码</el-button>
-                <el-button @click="systemInformation" size="medium">系统消息</el-button>
+                <el-button @click="changePassword" size="medium" >修改密码</el-button>
+                <el-button @click="systemInformation" icon="el-icon-message" type="text"></el-button>
                 <el-button @click="systemNotice" size="medium">系统公告</el-button>
                 <el-button @click="logout" size="medium">  退出</el-button>
             </div>
@@ -23,13 +23,30 @@
             <el-aside width="150px">
                 <el-menu router
                          background-color="rgb(239,239,239)" text-color="rgb(43,43,43)" active-text-color="#409EFF">
-                    <el-menu-item index="/principalChange">负责人换届</el-menu-item>
-                    <el-menu-item index="/principalNotice">公告管理</el-menu-item>
-                    <el-menu-item index="/principalActivity">活动管理</el-menu-item>
-                    <el-menu-item index="/principalMember">成员管理</el-menu-item>
-                    <el-menu-item index="/principalCheckJoin">入社人员审核</el-menu-item>
-                    <el-menu-item index="/principalCheckActivity">活动人员审核</el-menu-item>
-                    <el-menu-item index="/principalSponsor">赞助申报</el-menu-item>
+                    <el-submenu index="1">
+                        <template slot="title"><i class="el-icon-menu"></i>管理</template>
+                        <el-menu-item-group>
+                            <el-menu-item index="/principalNotice">公告管理</el-menu-item>
+                            <el-menu-item index="/principalActivity">活动管理</el-menu-item>
+                            <el-menu-item index="/principalMember">成员管理</el-menu-item>
+
+                        </el-menu-item-group>
+                    </el-submenu>
+                    <el-submenu index="2">
+                        <template slot="title"><i class="el-icon-s-check"></i>审核</template>
+                        <el-menu-item-group>
+                            <el-menu-item index="/principalCheckJoin">入社人员审核</el-menu-item>
+                            <el-menu-item index="/principalCheckActivity">活动人员审核</el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
+                    <el-menu-item index="/principalChange">
+                        <i class="el-icon-s-custom"></i>
+                        换届
+                    </el-menu-item>
+                    <el-menu-item index="/principalSponsor">
+                        <i class="el-icon-s-shop"></i>
+                        赞助申报
+                    </el-menu-item>
                 </el-menu>
             </el-aside>
             <!--            右侧内容主体-->
