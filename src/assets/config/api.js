@@ -37,8 +37,8 @@ module.exports = {
     //响应参数:name
     getClubNameUrl: APIRootUrl + 'principal/getClubName',//获取社团名称
 
-    //请求参数:无
-    //响应参数:password
+    //请求参数:prePassword
+    //响应参数:newPassword
     ChangePasswordUrl:APIRootUrl+'user/changePassword',//修改用户密码
 
     PrincipalGetHistoryPrincipalsUrl:APIRootUrl+'user/GetHistoryPrincipal',
@@ -145,5 +145,10 @@ module.exports = {
     // （社团名称，成立时间，社团性质,社团人数,社团简介,操作)
     // ,totalCount(总条数),status,msg(错误时)
     StudentCorporationsUrl:APIRootUrl+'Student/getClubInfo',
+
+
+    //获取学生信息
+    //
+    StudentGetNameUrl:APIRootUrl+'Student/getStudentName',
 
 };

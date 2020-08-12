@@ -6,7 +6,7 @@
             <el-breadcrumb-item :to="{ path: '/StudentWelcome' }">学生首页</el-breadcrumb-item>
             <el-breadcrumb-item>已加入社团</el-breadcrumb-item>
         </el-breadcrumb>
-
+        <el-divider></el-divider>
         <!--        卡片-->
         <el-card class="box-card">
             <!--            搜索与添加-->
@@ -24,7 +24,6 @@
             <!--            活动列表 只展示一些活动信息,详细信息可在详情查看-->
             <el-table :data="corporationsList">
                 <el-table-column type="index"></el-table-column>
-                <el-table-column label="社团编号" prop="clubId"></el-table-column>
                 <el-table-column label="社团名称" prop="name"></el-table-column>
                 <el-table-column label="社团性质" prop="type"></el-table-column>
                 <el-table-column label="成立时间" prop="establishmentDate"></el-table-column>
