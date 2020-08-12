@@ -61,10 +61,7 @@
                         }
                     });
 
-                    if (status === 400)
-                    {
-                        this.$message.info(msg);
-                    } else
+                    if (status === 200)
                     {
                         let userType = result.data.userType;
                         let newToken = "bearer " + result.data.token;
@@ -84,6 +81,9 @@
                         }
                         else
                             await this.$router.push({path: '/adminHome'});
+                    } else
+                    {
+                        this.$message.info(msg);
                     }
                 });
 
