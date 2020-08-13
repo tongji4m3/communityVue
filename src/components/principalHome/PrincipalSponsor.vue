@@ -88,10 +88,10 @@
             <!--            展示内容主体区域 -->
             <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="100px">
                 <el-form-item label="赞助方:">
-                    <el-input v-model="addForm.sponsor"></el-input>
+                    <el-input v-model="addForm.sponsor" placeholder="请输入赞助方..."></el-input>
                 </el-form-item>
                 <el-form-item label="赞助金额/￥:">
-                    <el-input v-model="addForm.amount"></el-input>
+                    <el-input v-model="addForm.amount" placeholder="请输入赞助金额..."></el-input>
                 </el-form-item>
                 <el-form-item label="赞助需求:" prop="requirement">
                     <el-input
@@ -116,6 +116,18 @@
 export default {
     data()
     {
+        let checkAmount = (rule, value, cb) =>
+        {
+            const regCost = /^\d{1,8}\.?\d{0,2}$/;
+            if (regCost.test(value))
+            {
+                //合法密码
+                return cb();
+            }
+            cb(new Error("赞助金额必须是数字,且小于一千万!"));
+
+        };
+
         return {
             //获取公告列表参数对象
             query: '',
@@ -143,7 +155,16 @@ export default {
                 status: false,
             },
             //添加赞助申请的校验规则
-            addFormRules: {}
+            addFormRules: {
+                requirement: [
+                    {required: true, message: '请输入赞助需求', trigger: 'blur'},
+                    {min: 2, max: 2000, message: '赞助需求必须在2-2000字符之间', trigger: 'blur'}
+                ],
+                amount: [
+                    {required: true, message: '请输入赞助金额', trigger: 'blur'},
+                    {validator: checkAmount, trigger: "blur"}
+                ],
+            }
         }
     },
     //一开始就显示赞助列表
