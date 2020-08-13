@@ -23,6 +23,10 @@
             <el-aside width="150px">
                 <el-menu router
                          background-color="rgb(239,239,239)" text-color="rgb(43,43,43)" active-text-color="#409EFF">
+                    <el-menu-item index="/principalClubInfo">
+                        <i class="el-icon-s-shop"></i>
+                        社团信息
+                    </el-menu-item>
                     <el-submenu index="1">
                         <template slot="title"><i class="el-icon-menu"></i>管理</template>
                         <el-menu-item-group>

@@ -126,6 +126,47 @@ module.exports = {
     PrincipalChangeManager: APIRootUrl + 'principal/changeManager',
 
     PrincipalGetManagersUrl: APIRootUrl + 'principal/getManagers',//历史负责人
+
+    /*
+    PrincipalSponsorship组件
+    负责人赞助申请数据接口
+     */
+    //请求参数:query(查询参数 做条件查询时才有),
+    // pageNumber(当前的页码),pageSize(每页显示条数)
+    //响应参数:sponsorships
+    PrincipalGetSponsorshipUrl:APIRootUrl+'principal/getSponsorship',
+
+    PrincipalAddOneSponsorshipUrl:APIRootUrl+'principal/addOneSponsorship',
+
+    PrincipalGetOneSponsorship:APIRootUrl+'principal/getOneSponsorship',
+
+    /*
+    PrincipalCheckJoin组件
+    负责人入社人员审核数据接口
+     */
+    //请求参数:query(查询参数 做条件查询时才有),
+    // pageNumber(当前的页码),pageSize(每页显示条数)
+    //响应参数:joinClub
+    PrincipalGetJoinUrl:APIRootUrl+'principal/getJoin',
+
+    PrincipalGetOneJoinUrl:APIRootUrl+'principal/getOneJoin',
+
+    PrincipalJoinResultUrl:APIRootUrl+'principal/joinResult',
+    //
+    // PrincipalRejectJoinUrl:APIRootUrl+'principal/rejectJoin',
+
+    /*
+    PrincipalClubInfo组件
+    负责人社团信息修改数据接口
+     */
+    PrincipalGetClubInfo:APIRootUrl+'principal/getClubInfo',
+
+    PrincipalEditClubInfo:APIRootUrl+'principal/editClubInfo',
+
+
+
+
+
     /*
     studentHome视图
     StudentCorporations组件
