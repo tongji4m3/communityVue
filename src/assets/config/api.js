@@ -134,9 +134,10 @@ module.exports = {
     //请求参数:query(查询参数 做条件查询时才有),
     // pageNumber(当前的页码),pageSize(每页显示条数)
     //响应参数:sponsorships
-    PrincipalGetSponsorshipUrl:APIRootUrl+'principal/getSponsorship',
 
-    PrincipalAddOneSponsorshipUrl:APIRootUrl+'principal/addOneSponsorship',
+    PrincipalGetSponsorshipsUrl:APIRootUrl+'principal/getClubHadSponsorship',
+
+    PrincipalAddOneSponsorship:APIRootUrl+'principal/addOneSponsorship',
 
     PrincipalGetOneSponsorship:APIRootUrl+'principal/getOneSponsorship',
 
