@@ -1,13 +1,21 @@
 <template>
     <div>
-        <h3>PrincipleWelcome组件</h3>
-        <el-card class="box-card" shadow="never">
-            <div class="text item">
+        <el-card class="box-card1" shadow="never">
+            <div class="text1 item1" >
 
-                <img src="../../assets/img/welcome.png" alt="">
+                <img src="../../assets/img/welcome.png" alt="" style="vertical-align: middle">
                 <span> 欢迎回来 {{username}} ！</span>
             </div>
         </el-card>
+        <el-card id="announce">
+            <div id="announce_head">
+                <img src="../../assets/img/icon_announcement.png" alt="" style="vertical-align: middle">
+                <span> <h3>   系统公告</h3></span>
+            </div>
+
+            <el-divider></el-divider>
+        </el-card >
+
     </div>
 </template>
 
@@ -27,21 +35,38 @@
         margin: 0;
         padding: 0;
     }
-    .text {
+    .text1 {
         font-size: 16px;
         /*color: #409EFF;*/
     }
-    .box-card {
+    .box-card1 {
         width: 1050px;
         height:40px;
         padding: 2px;
         margin: 10px;
 
-        position: relative;
+        display: flex;
+        align-items: center;
     }
-    .box-card img{
-        position: relative;
+    .box-card1 img{
+
         height:20px;
+    }
+
+    #announce{
+        width: 1050px;
+        height:300px;
+        padding: 2px;
+        margin: 10px;
+    }
+
+    #announce_head{
+        display: flex;
+    }
+
+    #announce_head img{
+        height: 30px;
+        margin-right: 10px;
     }
     
 </style>
