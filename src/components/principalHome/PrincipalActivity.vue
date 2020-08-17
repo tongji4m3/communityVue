@@ -1,13 +1,13 @@
 <template>
     <div>
         <!--        面包屑-->
-        <el-breadcrumb separator-class="el-icon-arrow-right">
+        <el-breadcrumb separator-class="el-icon-arrow-right" >
             <el-breadcrumb-item :to="{ path: '/welcome' }">首页</el-breadcrumb-item>
             <el-breadcrumb-item :to="{ path: '/principleWelcome' }">负责人首页</el-breadcrumb-item>
             <el-breadcrumb-item>活动管理</el-breadcrumb-item>
         </el-breadcrumb>
 
-        <el-divider></el-divider>
+        <el-divider ></el-divider>
         <!--        卡片-->
         <el-card class="box-card" >
             <!--            搜索与添加-->
@@ -434,10 +434,7 @@
 
 <style scoped>
     .box-card{
-        width: 1050px;
-    }
-    .input {
-        width: 50px;
+        width: 93%;
     }
 
 

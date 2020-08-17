@@ -64,7 +64,7 @@
                 </el-menu>
             </el-aside>
             <!--            右侧内容主体-->
-            <el-main>
+            <el-main style="padding-left: 35px">
                 <router-view></router-view>
             </el-main>
         </el-container>

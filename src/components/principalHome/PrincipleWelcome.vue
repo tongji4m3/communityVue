@@ -40,7 +40,7 @@
         /*color: #409EFF;*/
     }
     .box-card1 {
-        width: 1050px;
+        width: 95%;
         height:40px;
         padding: 2px;
         margin: 10px;
@@ -54,10 +54,12 @@
     }
 
     #announce{
-        width: 1050px;
+        width: 95%;
         height:300px;
         padding: 2px;
-        margin: 10px;
+        margin-left: 10px;
+        margin-top: 30px;
+        margin-right: 20px;
     }
 
     #announce_head{
