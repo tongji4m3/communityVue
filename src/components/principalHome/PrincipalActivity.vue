@@ -60,36 +60,36 @@
 
         <!--        展示活动对话框-->
         <el-dialog title="活动详情" ref="showFormRef" :visible.sync="showDialogVisible"
-                   width="50%" top="60px" center>
+                   width="630px" top="60px" center>
             <!--            展示内容主体区域 -->
-            <el-form :model="addForm" label-width="150px" style="height:600px">
+            <el-form :model="addForm" label-width="150px" style="height:625px">
                 <el-form-item label="活动名称:">
-                    <el-input style="width:360px" v-model="addForm.name" disabled></el-input>
+                    <el-input style="width:360px" v-model="addForm.name" readonly="true"></el-input>
                 </el-form-item>
                 <el-form-item label="活动介绍:">
-                    <el-input style="width:360px" v-model="addForm.description" disabled></el-input>
+                    <el-input style="width:360px" v-model="addForm.description" readonly="true"></el-input>
                 </el-form-item>
                 <el-form-item label="活动开销:">
-                    <el-input style="width:360px" v-model="addForm.cost" disabled></el-input>
+                    <el-input style="width:360px" v-model="addForm.cost" readonly="true"></el-input>
                 </el-form-item>
                 <el-form-item label="活动经费:">
-                    <el-input style="width:360px" v-model="addForm.fund" disabled></el-input>
+                    <el-input style="width:360px" v-model="addForm.fund" readonly="true"></el-input>
                 </el-form-item>
                 <el-form-item label="活动位置:">
-                    <el-input style="width:360px" v-model="addForm.place" disabled></el-input>
+                    <el-input style="width:360px" v-model="addForm.place" readonly="true"></el-input>
                 </el-form-item>
                 <el-form-item label="活动时间:" prop="time">
-                    <el-date-picker style="width:360px" type="date" v-model="addForm.time"  disabled></el-date-picker>
+                    <el-date-picker style="width:360px" type="date" v-model="addForm.time"  readonly="true"></el-date-picker>
                 </el-form-item>
                 <el-form-item label="申请时间:" prop="applyDate">
                     <el-date-picker style="width:360px" type="date" v-model="addForm.applyDate"
-                                    disabled></el-date-picker>
+                                    readonly="true"></el-date-picker>
                 </el-form-item>
                 <el-form-item label="审核状态:" prop="status">
                     <el-switch v-model="addForm.status" disabled></el-switch>
                 </el-form-item>
                 <el-form-item label="审核信息:">
-                    <el-input style="width:360px" v-model="addForm.suggestion" disabled></el-input>
+                    <el-input style="width:360px" v-model="addForm.suggestion" readonly="true"></el-input>
                 </el-form-item>
                 <el-form-item label="是否公开:" prop="isPublic">
                     <el-switch v-model="addForm.isPublic" disabled></el-switch>
@@ -105,7 +105,7 @@
 
         <!--        添加活动对话框-->
         <el-dialog title="添加活动" :visible.sync="addDialogVisible"
-                   width="50%" top="60px" center>
+                   width="630px" top="60px" center>
             <!--            内容主体区域 放置一个表单-->
             <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="150px" style="height:420px" >
                 <el-form-item label="活动名称:" prop="name">
@@ -146,7 +146,7 @@
 
         <!--        修改活动对话框-->
         <el-dialog title="修改活动"   :visible.sync="editDialogVisible"
-                   width="50%"  top="60px" center >
+                   width="630px"  top="60px" center >
             <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="150px" style="height:420px">
                 <el-form-item label="活动名称:" prop="name">
                     <el-input  style="width:360px" v-model="addForm.name"></el-input>
