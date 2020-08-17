@@ -9,7 +9,7 @@
 
         <el-divider></el-divider>
         <!--        卡片-->
-        <el-card class="box-card">
+        <el-card class="box-card" >
             <!--            搜索与添加-->
             <el-row :gutter="20">
                 <el-col :span="7">
@@ -107,7 +107,7 @@
         <el-dialog title="添加活动" :visible.sync="addDialogVisible"
                    width="50%">
             <!--            内容主体区域 放置一个表单-->
-            <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="150px">
+            <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="150px" >
                 <el-form-item label="活动名称:" prop="name">
                     <el-input v-model="addForm.name"></el-input>
                 </el-form-item>
@@ -146,19 +146,19 @@
 
         <!--        修改活动对话框-->
         <el-dialog title="修改活动"   :visible.sync="editDialogVisible"
-                   width="50%">
+                   width="50%"  top="60px" center >
             <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="150px">
                 <el-form-item label="活动名称:" prop="name">
-                    <el-input v-model="addForm.name"></el-input>
+                    <el-input  style="width:360px" v-model="addForm.name"></el-input>
                 </el-form-item>
                 <el-form-item label="活动介绍:" prop="description">
-                    <el-input type="textarea" v-model="addForm.description"></el-input>
+                    <el-input style="width:360px" type="textarea" v-model="addForm.description"></el-input>
                 </el-form-item>
                 <el-form-item label="活动开销:" prop="cost">
-                    <el-input v-model="addForm.cost"></el-input>
+                    <el-input style="width:360px" v-model="addForm.cost"></el-input>
                 </el-form-item>
                 <el-form-item label="活动经费:" prop="fund">
-                    <el-input v-model="addForm.fund"></el-input>
+                    <el-input style="width:360px" v-model="addForm.fund"></el-input>
                 </el-form-item>
                 <el-form-item label="活动位置:" prop="place">
                     <el-select v-model="addForm.place" placeholder="请选择活动区域">
@@ -171,7 +171,8 @@
                 </el-form-item>
 
                 <el-form-item label="活动时间:" prop="time">
-                    <el-date-picker type="date" v-model="addForm.time" style="width: 100%;"></el-date-picker>
+                    <el-date-picker style="width:360px" type="date" v-model="addForm.time" >
+                    </el-date-picker>
                 </el-form-item>
                 <el-form-item label="活动是否公开:" prop="isPublic">
                     <el-switch v-model="addForm.isPublic"></el-switch>
@@ -431,5 +432,18 @@
     }
 </script>
 
-<style scoped></style>
+<style scoped>
+    .box-card{
+        width: 1050px;
+    }
+    .input {
+        width: 50px;
+    }
+
+    /*#dialog1 .el-dialog__body{*/
+    /*    height:50%;*/
+    /*}*/
+
+
+</style>
 
