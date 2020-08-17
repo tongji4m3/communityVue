@@ -62,12 +62,13 @@
         <el-dialog title="活动详情" ref="showFormRef" :visible.sync="showDialogVisible"
                    width="630px" top="60px" center>
             <!--            展示内容主体区域 -->
-            <el-form :model="addForm" label-width="150px" style="height:625px">
+            <el-form :model="addForm" label-width="150px" style="height:650px">
                 <el-form-item label="活动名称:">
                     <el-input style="width:360px" v-model="addForm.name" readonly="true"></el-input>
                 </el-form-item>
                 <el-form-item label="活动介绍:">
-                    <el-input style="width:360px" v-model="addForm.description" readonly="true"></el-input>
+                    <el-input type="textarea"
+                              :autosize="{ minRows: 1, maxRows: 4}" style="width:360px" v-model="addForm.description" readonly="true"></el-input>
                 </el-form-item>
                 <el-form-item label="活动开销:">
                     <el-input style="width:360px" v-model="addForm.cost" readonly="true"></el-input>
