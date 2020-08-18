@@ -12,9 +12,13 @@
         <el-table :data="activityList">
             <el-table-column type="index"></el-table-column>
             <el-table-column label="姓名" prop="name"></el-table-column>
-            <el-table-column label="学号" prop="place"></el-table-column>
-            <el-table-column label="手机号"></el-table-column>
-            <el-table-column label="邮箱"></el-table-column>
+            <el-table-column label="学号" prop="Number"></el-table-column>
+            <el-table-column label="年级" prop="Grade"></el-table-column>
+            <el-table-column label="专业" prop="Major"></el-table-column>
+            <el-table-column label="手机号" prop="Phone"></el-table-column>
+            <el-table-column label="邮箱" prop="Mail"></el-table-column>
+            <el-table-column label="签名" prop="Signature"></el-table-column>
+            <el-table-column label="生日" prop="Birthday"></el-table-column>
 
         </el-table>
 
@@ -29,16 +33,16 @@
                width="50%">
         <!--            内容主体区域 放置一个表单-->
         <el-form :model="addForm"  ref="addFormRef" label-width="150px">
-            <el-form-item label="姓名:" prop="studentID">
+            <el-form-item label="手机号:" prop="studentID">
                 <el-input v-model="addForm.studentid"></el-input>
             </el-form-item>
-            <el-form-item label="学号:" prop="corporationId">
+            <el-form-item label="签名:" prop="corporationId">
                 <el-input v-model="addForm.clubid"></el-input>
             </el-form-item>
-            <el-form-item label="手机号:" prop="corporationName">
+            <el-form-item label="邮箱:" prop="corporationName">
                 <el-input v-model="addForm.name"></el-input>
             </el-form-item>
-            <el-form-item label="邮箱:" prop="reason">
+            <el-form-item label="生日:" prop="reason">
                 <el-input v-model="addForm.summary"></el-input>
             </el-form-item>
         </el-form>
@@ -108,7 +112,7 @@
                 //添加活动的校验规则
                 addFormRules: {
                     studentID: [
-                        {required: true, message: '请输入学号', trigger: 'blur'},
+                        {required: true, message: '请输入修改后的手机号', trigger: 'blur'},
                     ],
                     corporationName: [
                         {required: true, message: '请输入社团名称', trigger: 'blur'}
@@ -132,12 +136,8 @@
         methods: {
             async getCorporationList()
             {
-                let result = await this.$http.post(this.$api.StudentGetJoinedCorporationsUrl,
+                let result = await this.$http.post(this.$api.StudentGetInformation,
                     {
-                        query: this.query,
-                        pageNumber: this.pageNumber,
-                        pageSize: this.pageSize,
-                        status: true
                     });
                 this.corporationsList = result.data.data;
                 console.log(this.corporationsList);

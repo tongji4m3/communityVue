@@ -25,13 +25,11 @@
                     <el-steps :active="activeIndex-0" finish-status="success" :space="200" style="margin-left: 12px">
                         <el-step title="步骤1" description="确定是这个社团了吗"></el-step>
                         <el-step title="步骤2" description="录入基本信息"></el-step>
-                        <el-step title="步骤3" description="我也不知道还要干啥"></el-step>
                     </el-steps>
 
                     <el-tabs v-model="activeIndex" :tab-position="tabPosition" style="height: 200px;" >
-                        <el-tab-pane label="步骤1" name="0">用户管理</el-tab-pane>
-                        <el-tab-pane label="步骤2" name="1">配置管理</el-tab-pane>
-                        <el-tab-pane label="步骤3" name="2">角色管理</el-tab-pane>
+                        <el-tab-pane label="步骤1" name="0">核对社团信息</el-tab-pane>
+                        <el-tab-pane label="步骤2" name="1">上传个人信息</el-tab-pane>
                     </el-tabs>
                 </el-col>
                 <!--                <el-col :span="4">-->

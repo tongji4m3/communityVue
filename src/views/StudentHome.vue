@@ -25,7 +25,7 @@
                         <el-menu-item index="/studentCorporations">社团信息查询</el-menu-item>
                         <el-menu-item index="/joinCorporations">已加入社团</el-menu-item>
 <!--                        <el-menu-item index="/studentActivities">查看活动</el-menu-item>-->
-                        <el-menu-item index="joinActivity">参加活动</el-menu-item>
+                        <el-menu-item index="/joinActivity">参加活动</el-menu-item>
                 </el-menu>
             </el-aside>
             <!--            右侧内容主体-->
