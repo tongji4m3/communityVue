@@ -9,7 +9,8 @@
             <el-menu router
                      class="el-menu-demo" mode="horizontal" background-color="rgb(43,43,43)"
                      text-color="rgb(255,255,255)" active-text-color="#0099FF">
-
+                <el-menu-item index="/Welcome">首页</el-menu-item>
+				<!-- <el-menu-item><a href="#content1">简介</a></el-menu-item> -->
                 <el-menu-item index="/login">登录</el-menu-item>
                 <el-menu-item index="/studentRegister">学生注册</el-menu-item>
             </el-menu>
@@ -18,8 +19,11 @@
         <el-main>
             <!--            路由占位符-->
             <router-view></router-view>
+			
         </el-main>
+		
     </el-container>
+	
 </template>
 
 <script></script>
@@ -45,4 +49,12 @@
 
         padding:0;
     }
+	
+	/* .el-menu-item a{
+		text-decoration: none;
+	} */
+	
+	/* .el-menu-item a:clicked{
+		color: #0099FF;
+	} */
 </style>

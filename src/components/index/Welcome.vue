@@ -2,7 +2,7 @@
     <div>
         <img src="../../assets/img/sanhaowu.jpg" alt="" style="height: 550px;width: 100%;margin:0;">
 
-        <div class="mokuai">
+        <div class="mokuai" id="content1">
             <div id="aboutText">
                 <div class="mokuaiTitle">
                      关于系统
@@ -79,9 +79,40 @@
                     <img src="" alt="">
                     <div class="clubName">魔术社</div>
                 </div>
+				<div class="clubItem">
+				    <img src="" alt="">
+				    <div class="clubName">飞盘社</div>
+				</div>
+				<div class="clubItem">
+				    <img src="" alt="">
+				    <div class="clubName">航模社</div>
+				</div>
             </div>
+        
         </div>
-    </div>
+	
+	    <div class="mokuai">
+	        <div id="aboutNews">
+	            <div class="mokuaiTitle">
+	                  社团活动
+	            </div>
+	            <div class="engTitle">
+	                 Activity
+	            </div>
+	            <p>
+	            起飞页不仅是一个方便快捷的构建网站的自助建站平台，更重要的是，我们为中国用户提供了更多贴心的服务：网站备案、自动备份、快速恢复以及网站代建服务。我们使用了国内和香港最好的网络和云服务器，确保您的网站能够快速完美的呈现在访客面前。
+	            起飞页不仅是一个方便快捷的构建网站的自助建站平台，更重要的是，我们为中国用户提供了更多贴心的服务：网站备案、自动备份、快速恢复以及网站代建服务。我们使用了国内和香港最好的网络和云服务器，确保您的网站能够快速完美的呈现在访客面前。
+	            起飞页不仅是一个方便快捷的构建网站的自助建站平台，更重要的是，我们为中国用户提供了更多贴心的服务：网站备案、自动备份、快速恢复以及网站代建服务。我们使用了国内和香港最好的网络和云服务器，确保您的网站能够快速完美的呈现在访客面前。
+	            起飞页不仅是一个方便快捷的构建网站的自助建站平台，更重要的是，我们为中国用户提供了更多贴心的服务：网站备案、自动备份、快速恢复以及网站代建服务。我们使用了国内和香港最好的网络和云服务器，确保您的网站能够快速完美的呈现在访客面前。
+	
+	            </p>
+	        </div>
+	        <img src="../../assets/img/yinghua.png" alt="">
+	    </div>
+        
+			
+	</div>
+	
 
 <!--    <div class="block">-->
 <!--&lt;!&ndash;        <span class="demonstration">默认 Hover 指示器触发</span>&ndash;&gt;-->
@@ -93,6 +124,7 @@
 <!--            </el-carousel-item>-->
 <!--        </el-carousel>-->
 <!--    </div>-->
+     
 
 </template>
 
@@ -148,6 +180,11 @@
     #aboutText{
         margin:20px;
     }
+	
+	#aboutNews{
+	    margin:20px;
+	}
+	
     #aboutText p{
         margin-top: 50px;
         margin-right: 70px;
@@ -156,6 +193,15 @@
         /*text-indent: 2em;*/
         line-height: 22px;
     }
+	
+	#aboutNews p{
+	    margin-top: 50px;
+	    margin-right: 70px;
+	    font-size: 14px;
+	    color:rgba(52,52,52,0.8);
+	    /*text-indent: 2em;*/
+	    line-height: 22px;
+	}
 
     .el-divider--horizontal{
         border-top:0.1px solid #B0B0B0;
@@ -180,7 +226,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        transition: all .3s;
+        transition: all .5s;
     }
 
     #clubTable .clubItem img{
@@ -195,7 +241,9 @@
     }
 
     #clubTable .clubItem:hover{
-        box-shadow: 0 5px 10px #B0B0;
+        box-shadow: 0 7px 12px rgba(52,52,52,0.7);
+		transform: scale(1.1);
+		
     }
 
 </style>
