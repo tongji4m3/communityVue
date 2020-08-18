@@ -27,7 +27,7 @@
                 <el-table-column label="社团名称" prop="name"></el-table-column>
                 <el-table-column label="社团性质" prop="type"></el-table-column>
                 <el-table-column label="成立时间" prop="establishmentDate"></el-table-column>
-                <el-table-column label="会长"  prop="presidentName"></el-table-column>
+                <el-table-column label="社长"  prop="presidentName"></el-table-column>
                 <el-table-column label="退出社团">
                     <template slot-scope="scope">
                         <el-button type="primary" @click="exitCorporation(scope.row.clubId,scope.row.name)">退出</el-button>

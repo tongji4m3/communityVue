@@ -27,6 +27,7 @@ import PrincipalMember from '../components/principalHome/PrincipalMember'
 import PrincipalCheckJoin from '../components/principalHome/PrincipalCheckJoin'
 import PrincipalCheckActivity from '../components/principalHome/PrincipalCheckActivity'
 import PrincipalSponsor from '../components/principalHome/PrincipalSponsor'
+import principalClubInfo from '../components/principalHome/PrincipalClubInfo'
 
 import AdminHome from '../views/AdminHome'
 import AdminWelcome from '../components/adminHome/AdminWelcome'
@@ -89,6 +90,7 @@ const routes = [
             {path: '/principalCheckJoin', component: PrincipalCheckJoin},
             {path: '/principalCheckActivity', component: PrincipalCheckActivity},
             {path: '/principalSponsor', component: PrincipalSponsor},
+            {path: '/principalClubInfo', component: principalClubInfo},
 
             {path: '/principalChangePassword', component: ChangePassword},
             {path: '/principalSystemInformation', component: SystemInformation},

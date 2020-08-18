@@ -1,15 +1,15 @@
 <template>
     <div>
         <!--        面包屑-->
-        <el-breadcrumb separator-class="el-icon-arrow-right">
+        <el-breadcrumb separator-class="el-icon-arrow-right" >
             <el-breadcrumb-item :to="{ path: '/welcome' }">首页</el-breadcrumb-item>
             <el-breadcrumb-item :to="{ path: '/principleWelcome' }">负责人首页</el-breadcrumb-item>
             <el-breadcrumb-item>活动管理</el-breadcrumb-item>
         </el-breadcrumb>
 
-        <el-divider></el-divider>
+        <el-divider ></el-divider>
         <!--        卡片-->
-        <el-card class="box-card">
+        <el-card class="box-card" >
             <!--            搜索与添加-->
             <el-row :gutter="20">
                 <el-col :span="7">
@@ -60,65 +60,66 @@
 
         <!--        展示活动对话框-->
         <el-dialog title="活动详情" ref="showFormRef" :visible.sync="showDialogVisible"
-                   width="50%">
+                   width="630px" top="60px" center>
             <!--            展示内容主体区域 -->
-            <el-form :model="addForm" label-width="150px">
+            <el-form :model="addForm" label-width="150px" style="height:650px">
                 <el-form-item label="活动名称:">
-                    <el-input v-model="addForm.name" disabled></el-input>
+                    <el-input style="width:360px" v-model="addForm.name" readonly="true"></el-input>
                 </el-form-item>
                 <el-form-item label="活动介绍:">
-                    <el-input v-model="addForm.description" disabled></el-input>
+                    <el-input type="textarea"
+                              :autosize="{ minRows: 1, maxRows: 4}" style="width:360px" v-model="addForm.description" readonly="true"></el-input>
                 </el-form-item>
                 <el-form-item label="活动开销:">
-                    <el-input v-model="addForm.cost" disabled></el-input>
+                    <el-input style="width:360px" v-model="addForm.cost" readonly="true"></el-input>
                 </el-form-item>
                 <el-form-item label="活动经费:">
-                    <el-input v-model="addForm.fund" disabled></el-input>
+                    <el-input style="width:360px" v-model="addForm.fund" readonly="true"></el-input>
                 </el-form-item>
                 <el-form-item label="活动位置:">
-                    <el-input v-model="addForm.place" disabled></el-input>
+                    <el-input style="width:360px" v-model="addForm.place" readonly="true"></el-input>
                 </el-form-item>
                 <el-form-item label="活动时间:" prop="time">
-                    <el-date-picker type="date" v-model="addForm.time" style="width: 100%;" disabled></el-date-picker>
+                    <el-date-picker style="width:360px" type="date" v-model="addForm.time"  readonly="true"></el-date-picker>
                 </el-form-item>
-                <el-form-item label="活动申请时间:" prop="applyDate">
-                    <el-date-picker type="date" v-model="addForm.applyDate" style="width: 100%;"
-                                    disabled></el-date-picker>
+                <el-form-item label="申请时间:" prop="applyDate">
+                    <el-date-picker style="width:360px" type="date" v-model="addForm.applyDate"
+                                    readonly="true"></el-date-picker>
                 </el-form-item>
-                <el-form-item label="活动审核状态:" prop="status">
+                <el-form-item label="审核状态:" prop="status">
                     <el-switch v-model="addForm.status" disabled></el-switch>
                 </el-form-item>
-                <el-form-item label="活动审核信息:">
-                    <el-input v-model="addForm.suggestion" disabled></el-input>
+                <el-form-item label="审核信息:">
+                    <el-input style="width:360px" v-model="addForm.suggestion" readonly="true"></el-input>
                 </el-form-item>
-                <el-form-item label="活动是否公开:" prop="isPublic">
+                <el-form-item label="是否公开:" prop="isPublic">
                     <el-switch v-model="addForm.isPublic" disabled></el-switch>
                 </el-form-item>
 
             </el-form>
             <!--            底部区域-->
-            <span slot="footer" class="dialog-footer">
-    <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
-  </span>
+<!--            <span slot="footer" class="dialog-footer">-->
+<!--    <el-button type="primary" @click="closeDialogVisible">确 定</el-button>-->
+<!--  </span>-->
         </el-dialog>
 
 
         <!--        添加活动对话框-->
         <el-dialog title="添加活动" :visible.sync="addDialogVisible"
-                   width="50%">
+                   width="630px" top="60px" center>
             <!--            内容主体区域 放置一个表单-->
-            <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="150px">
+            <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="150px" style="height:420px" >
                 <el-form-item label="活动名称:" prop="name">
-                    <el-input v-model="addForm.name"></el-input>
+                    <el-input style="width:360px" v-model="addForm.name"></el-input>
                 </el-form-item>
                 <el-form-item label="活动介绍:" prop="description">
-                    <el-input type="textarea" v-model="addForm.description"></el-input>
+                    <el-input style="width:360px" type="textarea" v-model="addForm.description"></el-input>
                 </el-form-item>
                 <el-form-item label="活动开销:" prop="cost">
-                    <el-input v-model="addForm.cost"></el-input>
+                    <el-input style="width:360px" v-model="addForm.cost"></el-input>
                 </el-form-item>
                 <el-form-item label="活动经费:" prop="fund">
-                    <el-input v-model="addForm.fund"></el-input>
+                    <el-input style="width:360px" v-model="addForm.fund"></el-input>
                 </el-form-item>
                 <el-form-item label="活动位置:" prop="place">
                     <el-select v-model="addForm.place" placeholder="请选择活动区域">
@@ -131,34 +132,34 @@
                 </el-form-item>
                 <el-form-item label="活动时间:" prop="time">
                     <el-date-picker type="date" placeholder="选择日期" v-model="addForm.time"
-                                    style="width: 100%;"></el-date-picker>
+                                    style="width: 360px"></el-date-picker>
                 </el-form-item>
-                <el-form-item label="活动是否公开:" prop="isPublic">
+                <el-form-item label="是否公开:" prop="isPublic">
                     <el-switch v-model="addForm.isPublic"></el-switch>
                 </el-form-item>
             </el-form>
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
-    <el-button @click="cancelAdd">取 消</el-button>
-    <el-button type="primary" @click="addActivity">确 定</el-button>
-  </span>
+                <el-button style="margin-right:20px" @click="cancelAdd">取 消</el-button>
+                <el-button style="margin-left:20px" type="primary" @click="addActivity">确 定</el-button>
+            </span>
         </el-dialog>
 
         <!--        修改活动对话框-->
         <el-dialog title="修改活动"   :visible.sync="editDialogVisible"
-                   width="50%">
-            <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="150px">
+                   width="630px"  top="60px" center >
+            <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="150px" style="height:420px">
                 <el-form-item label="活动名称:" prop="name">
-                    <el-input v-model="addForm.name"></el-input>
+                    <el-input  style="width:360px" v-model="addForm.name"></el-input>
                 </el-form-item>
                 <el-form-item label="活动介绍:" prop="description">
-                    <el-input type="textarea" v-model="addForm.description"></el-input>
+                    <el-input style="width:360px" type="textarea" v-model="addForm.description"></el-input>
                 </el-form-item>
                 <el-form-item label="活动开销:" prop="cost">
-                    <el-input v-model="addForm.cost"></el-input>
+                    <el-input style="width:360px" v-model="addForm.cost"></el-input>
                 </el-form-item>
                 <el-form-item label="活动经费:" prop="fund">
-                    <el-input v-model="addForm.fund"></el-input>
+                    <el-input style="width:360px" v-model="addForm.fund"></el-input>
                 </el-form-item>
                 <el-form-item label="活动位置:" prop="place">
                     <el-select v-model="addForm.place" placeholder="请选择活动区域">
@@ -171,16 +172,17 @@
                 </el-form-item>
 
                 <el-form-item label="活动时间:" prop="time">
-                    <el-date-picker type="date" v-model="addForm.time" style="width: 100%;"></el-date-picker>
+                    <el-date-picker style="width:360px" type="date" v-model="addForm.time" >
+                    </el-date-picker>
                 </el-form-item>
-                <el-form-item label="活动是否公开:" prop="isPublic">
+                <el-form-item label="是否公开:" prop="isPublic">
                     <el-switch v-model="addForm.isPublic"></el-switch>
                 </el-form-item>
             </el-form>
 
             <span slot="footer" class="dialog-footer">
-                    <el-button @click="cancelEdit">取 消</el-button>
-                    <el-button type="primary" @click="editActivity">确 定</el-button>
+                    <el-button style="margin-right:20px" @click="cancelEdit">取 消</el-button>
+                    <el-button style="margin-left:20px" type="primary" @click="editActivity">确 定</el-button>
             </span>
         </el-dialog>
     </div>
@@ -431,5 +433,11 @@
     }
 </script>
 
-<style scoped></style>
+<style scoped>
+    .box-card{
+        width: 93%;
+    }
+
+
+</style>
 

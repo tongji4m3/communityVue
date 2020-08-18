@@ -18,7 +18,11 @@
                         <el-button slot="append" icon="el-icon-search" @click="getNextMembers"></el-button>
                     </el-input>
                 </el-col>
+                <el-col :span="4">
+                    <el-button type="primary" @click="showHistoryPrincipal">查看历史负责人</el-button>
+                </el-col>
             </el-row>
+
             <!--            成员列表 详细信息可在详情查看-->
             <el-table :data="memberList">
                 <el-table-column type="index"></el-table-column>
@@ -49,6 +53,22 @@
             </el-pagination>
         </el-card>
 
+        <!--        查看历史负责人对话框-->
+        <el-dialog title="历史负责人" :visible.sync="dialogVisible"
+                   width="50%">
+            <el-table :data="memberList">
+                <el-table-column type="index"></el-table-column>
+                <el-table-column label="学号" prop="number"></el-table-column>
+                <el-table-column label="姓名" prop="name"></el-table-column>
+                <el-table-column label="年级" prop="grade"></el-table-column>
+                <el-table-column label="专业" prop="major"></el-table-column>
+                <el-table-column label="电话" prop="phone"></el-table-column>
+            </el-table>
+
+            <span slot="footer" class="dialog-footer">
+                <el-button type="primary" @click="closeDialog">确 定</el-button>
+            </span>
+        </el-dialog>
     </div>
 </template>
 
@@ -71,11 +91,10 @@
                 //添加,修改,展示成员对话框的显示与隐藏
                 addDialogVisible: false,
                 editDialogVisible: false,
-                showDialogVisible: false,
+                dialogVisible: false,
 
                 //添加成员表单数据
-                addForm: {
-                },
+                addForm: {},
             }
         },
         //一开始就显示成员列表
@@ -130,6 +149,28 @@
                     this.$message.info("换届成功!");
                     await this.getNextMembers();
                 }
+            },
+
+            //查看历史负责人
+            async showHistoryPrincipal()
+            {
+                this.dialogVisible = true;
+                let result = await this.$http.post(this.$api.PrincipalGetManagersUrl,
+                    {
+                        query: this.query,
+                        pageNumber: this.pageNumber,
+                        pageSize: this.pageSize,
+                        status: true
+                    });
+
+                this.memberList = result.data.data;
+
+                console.log(this.memberList);
+            },
+            closeDialog()
+            {
+                this.dialogVisible = false;
+                this.getNextMembers();
             }
         }
     }
