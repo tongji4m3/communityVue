@@ -43,7 +43,6 @@
 
                     </template>
                 </el-table-column>
-
             </el-table>
 
             <!--            分页区域-->
@@ -108,12 +107,13 @@
         <el-dialog title="添加活动" :visible.sync="addDialogVisible"
                    width="630px" top="60px" center>
             <!--            内容主体区域 放置一个表单-->
-            <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="150px" style="height:420px" >
+            <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="150px" style="height:470px" >
                 <el-form-item label="活动名称:" prop="name">
                     <el-input style="width:360px" v-model="addForm.name"></el-input>
                 </el-form-item>
                 <el-form-item label="活动介绍:" prop="description">
-                    <el-input style="width:360px" type="textarea" v-model="addForm.description"></el-input>
+                    <el-input style="width:360px" type="textarea" 
+					:autosize="{ minRows: 1, maxRows: 4}" v-model="addForm.description"></el-input>
                 </el-form-item>
                 <el-form-item label="活动开销:" prop="cost">
                     <el-input style="width:360px" v-model="addForm.cost"></el-input>
@@ -148,12 +148,13 @@
         <!--        修改活动对话框-->
         <el-dialog title="修改活动"   :visible.sync="editDialogVisible"
                    width="630px"  top="60px" center >
-            <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="150px" style="height:420px">
+            <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="150px" style="height:470px">
                 <el-form-item label="活动名称:" prop="name">
                     <el-input  style="width:360px" v-model="addForm.name"></el-input>
                 </el-form-item>
                 <el-form-item label="活动介绍:" prop="description">
-                    <el-input style="width:360px" type="textarea" v-model="addForm.description"></el-input>
+                    <el-input style="width:360px" type="textarea" 
+					          :autosize="{ minRows: 1, maxRows: 4}" v-model="addForm.description"></el-input>
                 </el-form-item>
                 <el-form-item label="活动开销:" prop="cost">
                     <el-input style="width:360px" v-model="addForm.cost"></el-input>

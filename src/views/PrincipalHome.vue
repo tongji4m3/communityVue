@@ -8,10 +8,6 @@
                 <img src="../assets/img/sys_logo.png" height="60"/>
             </div>
             <div class="out-button">
-<!--                <el-button @click="changePassword" size="medium" >修改密码</el-button>-->
-<!--                <el-button @click="systemInformation" icon="el-icon-message" type="text"></el-button>-->
-<!--                <el-button @click="systemNotice" size="medium">系统公告</el-button>-->
-<!--                <el-button @click="logout" size="medium">  退出</el-button>-->
                 <el-dropdown>
                     <span class="el-dropdown-link" style="margin-right: 15px">
                          <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png">
