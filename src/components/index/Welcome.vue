@@ -4,7 +4,7 @@
         
         <el-carousel height="580px" width="100%">
 			<el-carousel-item >
-			  <img src="../../assets/img/tj_pic3.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
+			  <img src="../../assets/img/tj_pic4.png" alt="" style="height: 580px;width: 100%;margin:0;">
 			</el-carousel-item>
               <el-carousel-item >
                 <img src="../../assets/img/sanhaowu.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
@@ -148,23 +148,40 @@
         
 		<!-- 底部	 -->
 		<div id="foot">
-			快来寻找志同道合的伙伴，站上属于自己的舞台吧
+			<!-- <span style="--i:1;">快</span>
+			<span style="--i:2;">来</span>
+			<span style="--i:3;">寻</span>
+			<span style="--i:4;">找</span>
+			<span style="--i:5;">志</span>
+			<span style="--i:6;">同</span>
+			<span style="--i:7;">道</span>
+			<span style="--i:8;">合</span>
+			<span style="--i:9;">的</span>
+			<span style="--i:10;">伙</span>
+			<span style="--i:11;">伴</span>
+			<span style="--i:12;">，</span>
+			<span style="--i:13;">站</span>
+			<span style="--i:14;">上</span>
+			<span style="--i:15;">属</span>
+			<span style="--i:16;">于</span>
+			<span style="--i:17;">自</span>
+			<span style="--i:18;">己</span>
+			<span style="--i:19;">的</span>
+			<span style="--i:20;">舞</span>
+			<span style="--i:21;">台</span>
+			<span style="--i:22;">吧</span> -->
+			<!-- 来
+			寻
+			找
+			志同道合的伙伴，站上属于自己的舞台吧 -->
+			<span id="shineText">快来寻找志同道合的伙伴，站上属于自己的舞台吧</span>
 		</div>
-		<!-- <el-backtop target=".page-component__scroll .el-scrollbar__wrap"><> -->
+		
 	</div>    
 
 </template>
 
 <script>
-    // export default {
-    //     data(){
-    //         return{
-    //             imgList:[
-    //                 {id:0,idView:"../../"}
-    //             ]
-    //         }
-    //     }
-    // }
 </script>
 <style >
 
@@ -292,7 +309,8 @@
 		
     }
 	
-	#foot{
+	/* 普通 */
+	/* #foot{
 		height: 50px;
 		background: rgb(43,43,43);
 		display: flex;
@@ -300,29 +318,81 @@
 		align-items: center;
 		color: rgb(255,255,255);
 		font-size: 15px;
-		/* color: rgba(0,153,255,0.9); */
-	}
-	
-/* 	.banner{
-		height:550px;
-		width: 100%;
-		margin: 0;
 		
-	}
+	} 
+	*/
 	
-	.bannerCenter{
-		width:35%;
-		height:25%;
+	/* 流动 */
+/* 	#foot{
+		height: 40px;
 		display: flex;
+		justify-content: center;
+		align-items:flex-end;
+		position: relative;
+		background: rgb(43,43,43);
+		-webkit-box-reflect: below -15px linear-gradient(transparent,rgba(0,0,0,0.2));
 	}
-	
-	.bannerBottom{
-		height:550px;
-		width: 100%;
-		background:url(../../assets/img/sanhaowu.jpg);
-		background-size: 100% 100%;
-		margin: 0;
-		z-index: -1;
+	#foot span{
+		position: relative;
+		display: inline-block;
+		color: rgb(255,255,255);
+		font-size: 16px;
+		text-transform: uppercase;
+		animation: animate 3s ease-in-out infinite;
+		animation-delay: calc(0.1s * var(--i));
+	}
+	@keyframes animate{
+		0%
+		{
+			transform:translateY(0px);
+			
+		}
+		20%
+		{
+			transform: translateY(-20px);
+		}
+		40%,100%
+		{
+			transform: translateY(0px);
+		}
 	} */
+	
+    /* 聚光灯 */
+	#foot{
+			height: 50px;
+			background: rgb(43,43,43);
+			-webkit-font-smoothing: grayscale;
+			position: relative;
+		}
+	#shineText{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		padding: 30px 68px;
+		color: #fff;
+		background: linear-gradient(to right ,#4d4d4d 0 ,#fff 10%,#4d4d4d 20%);
+		background-position: 0;
+		-webkit-background-clip: text;
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+		animation: shine 5.5s linear infinite;
+		font-weight: 600;
+		font-size: 27px;
+		white-space: nowrap;
+	}
+	@keyframes shine{
+		0%{
+			background-position: 0;
+			
+		}
+		60%{
+			background-position: 658px;
+		}
+		100%{
+			background-position: 658px;
+		}
+	}
+    
 
 </style>
