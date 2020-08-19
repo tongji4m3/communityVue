@@ -8,7 +8,7 @@
             <!--            开启了路由模式-->
             <el-menu router
                      class="el-menu-demo" mode="horizontal" background-color="rgb(43,43,43)"
-                     text-color="rgb(255,255,255)" active-text-color="#0099FF">
+                     text-color="rgb(255,255,255)" active-text-color="#0099FF" default-active="/Welcome">
                 <el-menu-item index="/Welcome">首页</el-menu-item>
 				<!-- <el-menu-item><a href="#content1">简介</a></el-menu-item> -->
                 <el-menu-item index="/login">登录</el-menu-item>
