@@ -1,10 +1,24 @@
 <template>
-    <div>
-        <img src="../../assets/img/sanhaowu.jpg" alt="" style="height: 550px;width: 100%;margin:0;">
-        <!-- <div class="banner">
-			<div class="bannerCenter"></div>
-			<div class="bannerBottom"></div>
-		</div> -->
+    
+	<div>
+        
+        <el-carousel height="580px" width="100%">
+			<el-carousel-item >
+			  <img src="../../assets/img/tj_pic3.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
+			</el-carousel-item>
+              <el-carousel-item >
+                <img src="../../assets/img/sanhaowu.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
+              </el-carousel-item>
+			  <el-carousel-item >
+			    <img src="../../assets/img/hehua.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
+			  </el-carousel-item>
+			  <el-carousel-item >
+			    <img src="../../assets/img/sanhaowu3.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
+			  </el-carousel-item>
+			  <el-carousel-item >
+			    <img src="../../assets/img/tj_pic1.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
+			  </el-carousel-item>
+        </el-carousel>
 
         <!-- 系统介绍模块 -->
         <div class="mokuai" id="content1">
@@ -38,60 +52,63 @@
             <el-divider></el-divider>
             <div id="clubTable">
                 <div class="clubItem">
-                    <img src="../../assets/img/tjlogo_blue.png" alt="">
-                    <div class="clubName">机器人社</div>
+                    <img src="../../assets/img/shudumiti.png" alt="">
+                    <div class="clubName">数独迷题社</div>
                 </div>
                 <div class="clubItem">
-                    <img src="" alt="">
-                    <div class="clubName">吉他社</div>
+                    <img src="../../assets/img/xingkongyanyi.png" alt="">
+                    <div class="clubName">星空演艺社</div>
                 </div>
                 <div class="clubItem">
-                    <img src="" alt="">
-                    <div class="clubName">计算机社</div>
+                    <img src="../../assets/img/OMYUJIA.png" alt="">
+                    <div class="clubName">OM瑜伽社</div>
                 </div>
                 <div class="clubItem">
-                    <img src="" alt="">
-                    <div class="clubName">街舞社</div>
+                    <img src="../../assets/img/jinyindiyi.png" alt="">
+                    <div class="clubName">金音笛艺社</div>
                 </div>
                 <div class="clubItem">
-                    <img src="" alt="">
+                    <img src="../../assets/img/zhuoyoushe.png" alt="">
                     <div class="clubName">桌游社</div>
                 </div>
                 <div class="clubItem">
-                    <img src="" alt="">
-                    <div class="clubName">滑板社</div>
+                    <img src="../../assets/img/daobiyouhua.png" alt="">
+                    <div class="clubName">刀笔油画社</div>
                 </div>
                 <div class="clubItem">
-                    <img src="" alt="">
-                    <div class="clubName">击剑社</div>
+                    <img src="../../assets/img/piyonghanfushe.png" alt="">
+                    <div class="clubName">辟雍汉服社</div>
                 </div>
                 <div class="clubItem">
-                    <img src="" alt="">
-                    <div class="clubName">攀岩社</div>
+                    <img src="../../assets/img/jixianfeipan.png" alt="">
+                    <div class="clubName">极限飞盘协会</div>
                 </div>
+                
                 <div class="clubItem">
-                    <img src="" alt="">
-                    <div class="clubName">棒球社</div>
-                </div>
-                <div class="clubItem">
-                    <img src="" alt="">
-                    <div class="clubName">相声社</div>
-                </div>
-                <div class="clubItem">
-                    <img src="" alt="">
-                    <div class="clubName">汉服社</div>
-                </div>
-                <div class="clubItem">
-                    <img src="" alt="">
-                    <div class="clubName">魔术社</div>
+                    <img src="../../assets/img/tongfeihangmo.png" alt="">
+                    <div class="clubName">同飞航模协会</div>
                 </div>
 				<div class="clubItem">
-				    <img src="" alt="">
-				    <div class="clubName">飞盘社</div>
+				    <img src="../../assets/img/dijiuyishu.png" alt="">
+				    <div class="clubName">第九艺术协会</div>
 				</div>
 				<div class="clubItem">
-				    <img src="" alt="">
-				    <div class="clubName">航模社</div>
+				    <img src="../../assets/img/jianshenxiehui.png" alt="">
+				    <div class="clubName">健身协会</div>
+				</div>
+				<div class="clubItem">
+				    <img src="../../assets/img/jitaxiehui.png" alt="">
+				    <div class="clubName">吉他协会</div>
+				</div>
+                
+                <div class="clubItem">
+                    <img src="../../assets/img/moshuaihaozhe.png" alt="">
+                    <div class="clubName">魔术协会</div>
+                </div>
+				
+				<div class="clubItem">
+				    <img src="../../assets/img/wushuxiehui.png" alt="">
+				    <div class="clubName">武术协会</div>
 				</div>
             </div>
         
@@ -133,20 +150,8 @@
 		<div id="foot">
 			快来寻找志同道合的伙伴，站上属于自己的舞台吧
 		</div>
-	</div>
-	
-
-<!--    <div class="block">-->
-<!--&lt;!&ndash;        <span class="demonstration">默认 Hover 指示器触发</span>&ndash;&gt;-->
-<!--&lt;!&ndash;        <span>111</span>&ndash;&gt;-->
-<!--        <el-carousel  height="80%" width="100%" >-->
-<!--            <el-carousel-item v-for="item in imgList" :key="item.id">-->
-
-<!--                <img :src="item.idView" alt="" class="image" style="height: 80%;width: 100%;">-->
-<!--            </el-carousel-item>-->
-<!--        </el-carousel>-->
-<!--    </div>-->
-     
+		<!-- <el-backtop target=".page-component__scroll .el-scrollbar__wrap"><> -->
+	</div>    
 
 </template>
 
@@ -176,7 +181,7 @@
         align-items: center;
         margin: 0;
         margin-top: 110px;
-        height: 600px;
+        height: 650px;
         width: 100%;
         background-image: url("../../assets/img/blueBG.jpg");
        
@@ -298,11 +303,11 @@
 		/* color: rgba(0,153,255,0.9); */
 	}
 	
-	.banner{
+/* 	.banner{
 		height:550px;
 		width: 100%;
 		margin: 0;
-		display: flex;
+		
 	}
 	
 	.bannerCenter{
@@ -310,5 +315,14 @@
 		height:25%;
 		display: flex;
 	}
+	
+	.bannerBottom{
+		height:550px;
+		width: 100%;
+		background:url(../../assets/img/sanhaowu.jpg);
+		background-size: 100% 100%;
+		margin: 0;
+		z-index: -1;
+	} */
 
 </style>
