@@ -9,7 +9,7 @@
         <el-divider></el-divider>
         <!--            搜索与添加-->
 
-        <el-table :data="activityList">
+        <el-table :data="informationList">
             <el-table-column type="index"></el-table-column>
             <el-table-column label="姓名" prop="name"></el-table-column>
             <el-table-column label="学号" prop="Number"></el-table-column>
@@ -95,7 +95,7 @@
                 pageSize: 2,
 
                 //查询到的当页活动
-                corporationsList: [],
+                informationList: [],
                 //总页码数,用于分页的显示
                 totalCount: 0,
                 //添加,修改,展示活动对话框的显示与隐藏
@@ -139,7 +139,7 @@
                 let result = await this.$http.post(this.$api.StudentGetInformation,
                     {
                     });
-                this.corporationsList = result.data.data;
+                this.informationList = result.data.data;
                 console.log(this.corporationsList);
                 this.totalCount = parseInt(result.data.totalCount);
                 console.log(this.totalCount);
