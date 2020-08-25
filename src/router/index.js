@@ -17,6 +17,7 @@ import StudentWelcome from '../components/studentHome/StudentWelcome'
 import StudentCorporations from '../components/studentHome/StudentCorporations'
 import JoinCorporations from '../components/studentHome/JoinCorporations'
 import JoinActivity from '../components/studentHome/JoinActivity'
+import JoinInclubActivity from '../components/studentHome/JoinInclubActivity'
 
 import PrincipalHome from '../views/PrincipalHome'
 import PrincipleWelcome from '../components/principalHome/PrincipleWelcome'
@@ -70,6 +71,7 @@ const routes = [
             {path: '/studentCorporations', component: StudentCorporations},
             {path: '/joinCorporations', component: JoinCorporations},
             {path: '/joinActivity', component: JoinActivity},
+            {path: '/joinInclubActivity', component: JoinInclubActivity},
             {path: '/joinNewCorporation', component: JoinNewCorporation},
             {path:'/studentActivities',component: StudentActivities},
             {path: '/studentChangePassword', component: ChangePassword},
@@ -133,7 +135,7 @@ router.beforeEach((to, from, next) =>
     {
 //    获取token
         let token = window.sessionStorage.getItem("token");
-        if (!token) return next("/login");
+        if (!token) return next("/welcome");
         else return next();
     }
 });

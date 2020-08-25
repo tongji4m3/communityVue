@@ -25,13 +25,29 @@
                     <el-steps :active="activeIndex-0" finish-status="success" :space="200" style="margin-left: 12px">
                         <el-step title="步骤1" description="确定是这个社团了吗"></el-step>
                         <el-step title="步骤2" description="录入基本信息"></el-step>
-                        <el-step title="步骤3" description="我也不知道还要干啥"></el-step>
                     </el-steps>
 
-                    <el-tabs v-model="activeIndex" :tab-position="tabPosition" style="height: 200px;" >
-                        <el-tab-pane label="步骤1" name="0">用户管理</el-tab-pane>
-                        <el-tab-pane label="步骤2" name="1">配置管理</el-tab-pane>
-                        <el-tab-pane label="步骤3" name="2">角色管理</el-tab-pane>
+                    <el-tabs v-model="activeIndex" :tab-position="tabPosition" style="height: 200px;">
+                            <el-tab-pane label="步骤1" name="0">
+                                <el-table :data="corporationsList" >
+                                    <el-table-column type="index"></el-table-column>
+                                    <el-table-column label="社团信息核对">
+                                        <template slot-scope="scope">
+                                            <el-button type="primary" @click="showCorporationSummary(scope.row.clubId,scope.row.name,scope.row.type,scope.row.establishmentDate,scope.row.presidentName)">核对</el-button>
+                                        </template>
+                                    </el-table-column>
+                                </el-table>
+                            </el-tab-pane>
+                        <el-tab-pane label="步骤2" name="1">
+                            <el-table :data="corporationsList" >
+                                <el-table-column type="index"></el-table-column>
+                                <el-table-column label="确认加入">
+                                    <template slot-scope="scope">
+                                        <el-button type="primary" @click="joinClub(scope.row.clubId)">加入原因</el-button>
+                                    </template>
+                                </el-table-column>
+                            </el-table>
+                        </el-tab-pane>
                     </el-tabs>
                 </el-col>
                 <!--                <el-col :span="4">-->
@@ -46,17 +62,34 @@
 
 
 
-        <!--        社团简介对话框-->
+        <!--        展示活动对话框-->
         <el-dialog title="社团简介" ref="showFormRef" :visible.sync="showDialogVisible"
                    width="50%">
             <!--            展示内容主体区域 -->
             <el-form :model="addForm" label-width="150px">
-                简介
-                <el-input v-model="addForm.summary"></el-input>
+                <el-form-item label="社团编号">
+                    <el-input v-model="addForm.id" disabled></el-input>
+                </el-form-item>
+                <el-form-item label="社团名称">
+                    <el-input v-model="addForm.name" disabled></el-input>
+                </el-form-item>
+                <el-form-item label="社团性质">
+                    <el-input v-model="addForm.type" disabled></el-input>
+                </el-form-item>
+                <el-form-item label="成立时间">
+                    <el-input v-model="addForm.date" disabled></el-input>
+                </el-form-item>
+                <el-form-item label="会长">
+                    <el-input v-model="addForm.president" disabled></el-input>
+                </el-form-item>
+                <el-form-item label="简介">
+                    <el-input v-model="addForm.summary" type="textarea" disabled></el-input>
+                </el-form-item>
+
             </el-form>
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
-              <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
+                 <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
             </span>
         </el-dialog>
 
@@ -66,17 +99,11 @@
                    width="50%">
             <!--            内容主体区域 放置一个表单-->
             <el-form :model="addForm"  ref="addFormRef" label-width="150px">
-                <el-form-item label="学号:" prop="studentID">
-                    <el-input v-model="addForm.studentid"></el-input>
-                </el-form-item>
                 <el-form-item label="社团编号:" prop="corporationId">
-                    <el-input v-model="addForm.clubid"></el-input>
-                </el-form-item>
-                <el-form-item label="社团名称:" prop="corporationName">
-                    <el-input v-model="addForm.name"></el-input>
+                    <el-input v-model="addForm1.id"></el-input>
                 </el-form-item>
                 <el-form-item label="退社理由:" prop="reason">
-                    <el-input type="textarea" v-model="addForm.summary"></el-input>
+                    <el-input type="textarea" v-model="addForm1.reason"></el-input>
                 </el-form-item>
             </el-form>
             <!--            底部区域-->
@@ -136,10 +163,16 @@
                 showDialogVisible: false,
                 //添加活动表单数据
                 addForm: {
-                    studentid:"",
+                    id:"",
                     name:"",
-                    clubid:"",
+                    type:"",
                     summary: "",
+                    date:"",
+                    president:""
+                },
+                addForm1:{
+                  id:"",
+                  reason:"",
                 },
                 //添加活动的校验规则
                 addFormRules: {
@@ -302,20 +335,24 @@
 
 
             //详情页面弹出后,会查询该社团的简介内容并显示
-            async showCorporationSummary(id)
+            async showCorporationSummary(id,name,type,date,president)
             {
                 let result = await this.$http.post(this.$api.StudentCorporationInformationUrl+'/'+id);
-                status = result.data.status;
-                console.log(status)
-                if (!status || status !== "200")
-                {
-                    this.$message.info(result.data.msg);
-                } else
-                {
-                    this.addForm = result.data.data;
-                    this.editDialogVisible = true;
-                }
+                this.addForm.id=id;
+                this.addForm.name=name;
+                this.addForm.type=type;
+                this.addForm.summary= result.data;
+                this.addForm.date=date;
+                this.addForm.president=president;
+                this.showDialogVisible=true;
             },
+
+            async joinClub(id)
+            {
+                this.addForm.id=id;
+                this.addDialogVisiblee=true;
+            },
+
             async editActivity()
             {
                 let result = await this.$http.post(this.$api.PrincipalUpdateOneActivityUrl, this.addForm);

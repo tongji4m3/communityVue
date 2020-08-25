@@ -7,12 +7,12 @@
             <el-breadcrumb-item>参加活动</el-breadcrumb-item>
         </el-breadcrumb>
 
-<!--        <el-alert-->
-<!--                title="已加入的社团为橙色"-->
-<!--                type="info"-->
-<!--                center-->
-<!--                show-icon>-->
-<!--        </el-alert>-->
+        <!--        <el-alert-->
+        <!--                title="已加入的社团为橙色"-->
+        <!--                type="info"-->
+        <!--                center-->
+        <!--                show-icon>-->
+        <!--        </el-alert>-->
 
         <el-divider></el-divider>
         <!--        卡片-->
@@ -49,10 +49,9 @@
 
             </el-table>
 
-
             <el-divider></el-divider>
             <el-row :gutter="20" style="margin-left: 1000px">
-                <el-button type="primary" icon="" @click="toInclubAcitivity">社团活动</el-button>
+                <el-button type="primary" icon="" @click="toAcitivity">公开活动</el-button>
             </el-row>
 
             <!--            分页区域-->
@@ -99,7 +98,6 @@
                  <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
             </span>
         </el-dialog>
-
 
         <!--        参加活动对话框-->
         <el-dialog title="提交申请" :visible.sync="addDialogVisible"
@@ -158,20 +156,18 @@
                 addDialogVisible: false,
                 editDialogVisible: false,
                 showDialogVisible: false,
-                //活动详情表单数据
+                //添加活动表单数据
                 addForm: {
-                    id:"",
+                    studentId:"",
                     name:"",
-                    place:"",
-                    description:"",
-                    eventTime:"",
-                    clubName:"",
-                    adminName:"",
+                    activityId:"",
+                    summary: "",
                 },
                 addForm1:{
                     id:"",
                     reason:"",
                 },
+
                 //添加活动的校验规则
                 addFormRules: {
                     studentID: [
@@ -227,31 +223,6 @@
                 this.totalCount = parseInt(result.data.totalCount);
                 console.log(this.totalCount);
             },
-
-
-            //详情页面弹出后,会查询该活动的简介内容并显示
-            async showActivitySummary(id,name,place,description,eventTime,clubName,adminName)
-            {
-                // let result = await this.$http.post(this.$api.StudentActivitesInformationUrl,{
-                //     query: this.query,
-                //     pageNumber: this.pageNum,
-                //     pageSize: this.pageSize,
-                //     status: true
-                // });
-                this.addForm.id=id;
-                this.addForm.name=name;
-                this.addForm.place=place;
-                this.addForm.description=description;
-                this.addForm.eventTime=eventTime;
-                this.addForm.clubName=clubName;
-                this.addForm.adminName=adminName;
-                this.showDialogVisible = true;
-            },
-            async joinOneActivity(id){
-                this.addForm1.id=id;
-                this.reason="";
-                this.addDialogVisible=true;
-            },
             //监听pageSize改变的事件
             handleSizeChange(newSize)
             {
@@ -264,9 +235,8 @@
                 this.pageNum = newPage;
                 this.getActivityList();
             },
-
-            toInclubAcitivity(){
-                this.$router.push({ path:'/JoinInclubActivity'})
+            toAcitivity(){
+                this.$router.push({ path:'/JoinActivity'})
             },
             //抽取出来,当弹出的页面结束后,会清空内容
             // 因为公有addForm所以必须有这个操作,且点击后都是重新axios请求新信息,所以没有问题
@@ -325,15 +295,28 @@
                 this.$message.info("取消修改活动!");
             },
 
-            //详情页面弹出后,会查询该社团的简介内容并显示
-            async showCorporationSummary(id,date,president)
+            //详情页面弹出后,会查询该活动的简介内容并显示
+            async showActivitySummary(id,name,place,description,eventTime,clubName,adminName)
             {
-                let result = await this.$http.post(this.$api.StudentCorporationInformationUrl+'/'+id);
-                this.addForm.summary= result.data;
-                this.addForm.date=date;
-                this.addForm.president=president;
-                console.log(this.addForm.summary);
+                // let result = await this.$http.post(this.$api.StudentActivitesInformationUrl,{
+                //     query: this.query,
+                //     pageNumber: this.pageNum,
+                //     pageSize: this.pageSize,
+                //     status: true
+                // });
+                this.addForm.id=id;
+                this.addForm.name=name;
+                this.addForm.place=place;
+                this.addForm.description=description;
+                this.addForm.eventTime=eventTime;
+                this.addForm.clubName=clubName;
+                this.addForm.adminName=adminName;
                 this.showDialogVisible = true;
+            },
+            async joinOneActivity(id){
+                this.addForm1.id=id;
+                this.reason="";
+                this.addDialogVisible=true;
             },
             async editActivity()
             {

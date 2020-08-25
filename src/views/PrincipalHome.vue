@@ -7,14 +7,20 @@
             <div>
                 <img src="../assets/img/sys_logo.png" height="60"/>
             </div>
-<!--            <div class="header-name">-->
-<!--                {{username}}-->
-<!--            </div>-->
             <div class="out-button">
-                <el-button @click="changePassword" size="medium" >修改密码</el-button>
-                <el-button @click="systemInformation" icon="el-icon-message" type="text"></el-button>
-                <el-button @click="systemNotice" size="medium">系统公告</el-button>
-                <el-button @click="logout" size="medium">  退出</el-button>
+                <el-dropdown>
+                    <span class="el-dropdown-link" style="margin-right: 15px">
+                         <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png">
+                         </el-avatar>
+                        <i class="el-icon-arrow-down el-icon--right"></i>
+                    </span>
+                    <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item @click.native ="changePassword" >修改密码</el-dropdown-item>
+                        <el-dropdown-item @click.native ="systemInformation">系统消息</el-dropdown-item>
+                        <el-dropdown-item @click.native ="systemNotice">系统公告</el-dropdown-item>
+                        <el-dropdown-item divided @click.native ="logout">退出</el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
             </div>
         </el-header>
         <!--        页面主体-->
@@ -54,7 +60,7 @@
                 </el-menu>
             </el-aside>
             <!--            右侧内容主体-->
-            <el-main>
+            <el-main style="padding-left: 35px">
                 <router-view></router-view>
             </el-main>
         </el-container>
@@ -69,6 +75,8 @@
             }
         },
         methods: {
+
+
             //退出按钮
             logout()
             {
@@ -119,6 +127,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    .el-icon-arrow-down {
+        font-size: 12px;
     }
 
 </style>
