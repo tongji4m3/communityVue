@@ -152,7 +152,7 @@ module.exports = {
 
     PrincipalGetOneJoinUrl:APIRootUrl+'principal/getOneJoin',
 
-    PrincipalJoinResultUrl:APIRootUrl+'principal/joinResult',
+    PrincipalJoinResult:APIRootUrl+'principal/joinResult',
     //
     // PrincipalRejectJoinUrl:APIRootUrl+'principal/rejectJoin',
 

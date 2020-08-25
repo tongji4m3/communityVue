@@ -13,11 +13,12 @@
             <br>
             <br>
             <span> {{addForm.description}}</span>
+
             <div align="right">
                 <el-popconfirm title="确定解散社团吗？" cancelButtonType="danger" icon="el-icon-magic-stick">
                     <el-button slot="reference" type="danger" @click="deleteClub">解散社团</el-button>
                 </el-popconfirm>
-<!--                <el-button type="danger" @click="deleteClub">解散社团</el-button>-->
+                <!--                <el-button type="danger" @click="deleteClub">解散社团</el-button>-->
                 <el-button type="primary" @click="showEditClubInfo">修 改</el-button>
             </div>
         </el-card>
