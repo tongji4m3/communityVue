@@ -8,13 +8,19 @@
         </el-breadcrumb>
         <el-divider></el-divider>
         <!--        卡片-->
-        <el-card class="box-card" v-model="addForm.description">
-        </el-card>
-
-        <!--            底部区域-->
-        <span slot="footer" class="dialog-footer">
+        <el-card class="box-card">
+            <span> {{addForm.name}}的社团负责人您好！</span>
+            <br>
+            <br>
+            <span> {{addForm.description}}</span>
+            <div align="right">
+                <el-popconfirm title="确定解散社团吗？" cancelButtonType="danger" icon="el-icon-magic-stick">
+                    <el-button slot="reference" type="danger" @click="deleteClub">解散社团</el-button>
+                </el-popconfirm>
+<!--                <el-button type="danger" @click="deleteClub">解散社团</el-button>-->
                 <el-button type="primary" @click="showEditClubInfo">修 改</el-button>
-        </span>
+            </div>
+        </el-card>
 
         <!--        修改社团信息对话框-->
         <el-dialog title="修改社团信息" :visible.sync="editDialogVisible"
@@ -102,6 +108,9 @@ export default {
                     this.$message.success("修改社团信息成功!");
                 }
             );
+        },
+        async deleteClub()
+        {
         },
     }
 }
