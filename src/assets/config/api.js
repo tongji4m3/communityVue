@@ -139,7 +139,7 @@ module.exports = {
 
     PrincipalAddOneSponsorship:APIRootUrl+'principal/addOneSponsorship',
 
-    PrincipalGetOneSponsorship:APIRootUrl+'principal/getOneSponsorship',
+    PrincipalGetOneSponsorship:APIRootUrl+'principal/getOneHadSponsorship',
 
     /*
     PrincipalCheckJoin组件

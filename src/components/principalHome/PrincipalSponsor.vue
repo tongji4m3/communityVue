@@ -28,7 +28,7 @@
                 <el-table-column label="赞助方" prop="sponsor"></el-table-column>
                 <el-table-column label="赞助金额/￥" prop="amount"></el-table-column>
                 <el-table-column label="申请时间" prop="time"></el-table-column>
-                <el-table-column label="状态" prop="status"></el-table-column>
+                <el-table-column label="审核状态" prop="status"></el-table-column>
                 <el-table-column label="显示详情">
                     <template slot-scope="scope">
                         <el-button type="success" @click="showDialog(scope.row.sponsorshipId)">查看</el-button>
@@ -108,7 +108,6 @@
                 <el-button type="primary" @click="addSponsorship">确 定</el-button>
             </span>
         </el-dialog>
-
     </div>
 </template>
 
@@ -156,14 +155,7 @@ export default {
             },
             //添加赞助申请的校验规则
             addFormRules: {
-                requirement: [
-                    {required: true, message: '请输入赞助需求', trigger: 'blur'},
-                    {min: 2, max: 2000, message: '赞助需求必须在2-2000字符之间', trigger: 'blur'}
-                ],
-                amount: [
-                    {required: true, message: '请输入赞助金额', trigger: 'blur'},
-                    {validator: checkAmount, trigger: "blur"}
-                ],
+
             }
         }
     },
