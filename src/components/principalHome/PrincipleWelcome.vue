@@ -15,7 +15,6 @@
 
             <el-divider></el-divider>
         </el-card >
-
     </div>
 </template>
 

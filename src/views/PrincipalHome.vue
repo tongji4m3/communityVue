@@ -29,6 +29,10 @@
             <el-aside width="150px">
                 <el-menu router
                          background-color="rgb(239,239,239)" text-color="rgb(43,43,43)" active-text-color="#409EFF">
+                    <el-menu-item index="/principleWelcome">
+                        <i class="el-icon-s-home"></i>
+                        负责人首页
+                    </el-menu-item>
                     <el-menu-item index="/principalClubInfo">
                         <i class="el-icon-s-shop"></i>
                         社团信息
@@ -54,7 +58,7 @@
                         换届
                     </el-menu-item>
                     <el-menu-item index="/principalSponsor">
-                        <i class="el-icon-s-shop"></i>
+                        <i class="el-icon-star-on"></i>
                         赞助申报
                     </el-menu-item>
                 </el-menu>
