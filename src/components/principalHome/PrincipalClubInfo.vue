@@ -112,6 +112,7 @@ export default {
         },
         async deleteClub()
         {
+
         },
     }
 }

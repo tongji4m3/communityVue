@@ -136,7 +136,17 @@ export default {
             pageSize: 2,
 
             //查询到的当页公告
-            SponsorshipList: [],
+            SponsorshipList: [
+                {
+                    sponsorshipId: "",
+                    sponsor:"",
+                    amount:"",
+                    requirement: "",
+                    time: "",
+                    status: false,
+                    // statusContent:"",
+                }
+            ],
             //总条数,用于分页的显示
             totalCount: 0,
             //添加,修改,展示赞助对话框的显示与隐藏
@@ -152,6 +162,7 @@ export default {
                 requirement: "",
                 time: "",
                 status: false,
+                // statusContent:"",
             },
             //添加赞助申请的校验规则
             addFormRules: {
@@ -180,6 +191,10 @@ export default {
                 this.SponsorshipList[i].time=this.SponsorshipList[i].time.substring(0,10)
             }
             this.totalCount = parseInt(result.data.totalCount);
+            // if (result.data.data.status>0)
+            //     addForm.statusContent="已通过";
+            // else
+            //     addForm.statusContent="审核中";
         },
         //监听pageSize改变的事件
         handleSizeChange(newSize)

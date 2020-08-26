@@ -77,10 +77,10 @@
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
                 <!--                        通过按钮-->
-                <el-button type="success" @click="agreeStudent(scope.row.studentId,1)"
+                <el-button type="success" @click="agreeStudent(this.checkForm.studentId,1)"
                        icon="el-icon-check"></el-button>
                 <!--                        不通过按钮-->
-                <el-button type="danger" @click="rejectStudent(scope.row.studentId,0)"
+                <el-button type="danger" @click="rejectStudent(this.checkForm.studentId,0)"
                        icon="el-icon-close"></el-button>
                 <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
             </span>
@@ -101,7 +101,14 @@ export default {
             pageSize: 2,
 
             //查询到的当页学生
-            StudentList: [],
+            StudentList: [
+                {
+                    studentId: "",
+                    applyDate:"",
+                    applyReason:"",
+                    status: false,
+                }
+            ],
             //总条数,用于分页的显示
             totalCount: 0,
             //展示学生对话框的显示与隐藏
@@ -112,9 +119,10 @@ export default {
                 studentId: "",
                 applyDate:"",
                 applyReason:"",
-                checkStatus:"",
                 status: false,
             },
+
+
             //添加学生的校验规则
             checkFormRules: {}
         }
@@ -165,14 +173,17 @@ export default {
         {
             this.showDialogVisible = false;
         },
-        async agreeStudent()
+        async agreeStudent(studentId_in, status_in)
         {
             this.$refs.checkFormRef.validate(
                 async valid =>
                 {
                     if (!valid) return;
                     console.log(this.checkForm);
-                    await this.$http.post(this.$api.PrincipalJoinResult + "/" + this.checkForm.studentId, this.checkForm.checkStatus);
+                    await this.$http.post(this.$api.PrincipalJoinResult, {
+                        studentId:studentId_in,
+                        status:status_in
+                    });
                     //关闭对话框
                     this.editDialogVisible = false;
                     //    刷新数据列表
@@ -183,14 +194,17 @@ export default {
             );
         },
 
-        async rejectStudent()
+        async rejectStudent(studentId_in, status_in)
         {
             this.$refs.checkFormRef.validate(
                 async valid =>
                 {
                     if (!valid) return;
                     console.log(this.checkForm);
-                    await this.$http.post(this.$api.PrincipalJoinResult + "/" + this.checkForm.studentId, this.checkForm.checkStatus);
+                    await this.$http.post(this.$api.PrincipalJoinResult, {
+                        studentId:studentId_in,
+                        status:status_in
+                    });
                     //关闭对话框
                     this.editDialogVisible = false;
                     //    刷新数据列表

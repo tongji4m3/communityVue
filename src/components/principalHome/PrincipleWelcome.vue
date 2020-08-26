@@ -6,8 +6,25 @@
                 <img src="../../assets/img/welcome.png" alt="" style="vertical-align: middle">
                 <span> 欢迎回来 {{username}} ！</span>
             </div>
-            </el-card>
-            <el-card id="announce">
+        </el-card>
+
+        <!--        日历按钮-->
+        <el-button type="success" @click="openCalendar">查看日历</el-button>
+        <!--        日历框-->
+        <el-dialog :visible.sync="showCalendar"
+                   width="50%">
+            <el-calendar v-model="value">
+            </el-calendar>
+        </el-dialog>
+
+        <el-carousel :interval="4000" type="card" height="200px">
+            <el-carousel-item v-for="item in 6" :key="item">
+                <h3 class="medium">{{ item }}</h3>
+            </el-carousel-item>
+        </el-carousel>
+
+        <el-card id="announce">
+
             <div id="announce_head">
                 <img src="../../assets/img/icon_announcement.png" alt="" style="vertical-align: middle">
                 <span> <h3>   系统公告</h3></span>
@@ -33,7 +50,6 @@
                     </template>
                 </el-table-column>
             </el-table>
-
             <!--            分页区域-->
             <el-pagination
                 @size-change="handleSizeChange"
@@ -44,7 +60,6 @@
                 layout="total, sizes, prev, pager, next, jumper"
                 :total="totalCount">
             </el-pagination>
-
         </el-card >
 
         <!--        展示系统公告对话框-->
@@ -87,6 +102,8 @@ export default {
             //总条数,用于分页的显示
             totalCount: 0,
             showDialogVisible: false,
+
+            showCalendar: false,
 
             //添加系统公告表单数据
             addForm: {
@@ -146,11 +163,15 @@ export default {
         {
             this.showDialogVisible = false;
         },
+
+        async openCalendar()
+        {
+            this.showCalendar = true;
+        },
     }
 }
 </script>
 <style>
-
     *{
         margin: 0;
         padding: 0;
@@ -190,5 +211,21 @@ export default {
         height: 30px;
         margin-right: 10px;
     }
-    
+
+    .el-carousel__item h3 {
+        color: #475669;
+        font-size: 14px;
+        opacity: 0.75;
+        line-height: 200px;
+        margin: 0;
+    }
+
+    .el-carousel__item:nth-child(2n) {
+        background-color: #99a9bf;
+    }
+
+    .el-carousel__item:nth-child(2n+1) {
+        background-color: #d3dce6;
+    }
+
 </style>
