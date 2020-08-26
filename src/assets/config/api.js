@@ -209,4 +209,21 @@ module.exports = {
     //修改学生信息
     StudentChangeInformation:APIRootUrl+'Student/changeStudentInfo',
 
+
+    /*
+    AdminNotice组件
+    负责人公告管理数据接口
+     */
+    //请求参数:query(查询参数 做条件查询时才有),
+    // pageNumber(当前的页码),pageSize(每页显示条数)
+    //响应参数:announcements
+    AdminGetAnnouncementsUrl: APIRootUrl + 'admin/getAnnouncements',
+
+    AdminGetOneAnnouncement: APIRootUrl + 'admin/getOneAnnouncement',
+
+    AdminAddOneAnnouncement: APIRootUrl + 'admin/addOneAnnouncement',
+
+    AdminUpdateOneAnnouncement: APIRootUrl + 'admin/updateOneAnnouncement',
+
+    AdminDeleteOneAnnouncement: APIRootUrl + 'admin/deleteOneAnnouncement',
 };

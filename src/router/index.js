@@ -34,6 +34,7 @@ import AdminHome from '../views/AdminHome'
 import AdminWelcome from '../components/adminHome/AdminWelcome'
 import AdminSystem from '../components/adminHome/AdminSystem'
 import AdminStudent from '../components/adminHome/AdminStudent'
+import AdminNotice from '../components/adminHome/AdminNotice'
 import AdminInformation from '../components/adminHome/AdminInformation'
 import AdminCheckActivity from '../components/adminHome/AdminCheckActivity'
 import AdminCheckSponsor from '../components/adminHome/AdminCheckSponsor'
@@ -111,6 +112,7 @@ const routes = [
             {path: '/adminInformation', component: AdminInformation},
             {path: '/adminCheckActivity', component: AdminCheckActivity},
             {path: '/adminCheckSponsor', component: AdminCheckSponsor},
+            {path: '/adminNotice', component: AdminNotice},
 
             {path: '/adminChangePassword', component: ChangePassword}
         ]
