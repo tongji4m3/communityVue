@@ -32,11 +32,11 @@
             <!--            活动列表 只展示一些活动信息,详细信息可在详情查看-->
             <el-table :data="activityList" :row-class-name="tableRowClassName">
                 <el-table-column type="index"></el-table-column>
-                <el-table-column label="活动名称" prop="Name"></el-table-column>
-                <el-table-column label="活动地点" prop="Place"></el-table-column>
+                <el-table-column label="活动名称" prop="name"></el-table-column>
+                <el-table-column label="活动地点" prop="place"></el-table-column>
                 <el-table-column label="查看详情">
                     <template slot-scope="scope">
-                        <el-button type="primary" @click="showActivitySummary(scope.row.ActivityId,scope.row.Name,scope.row.Place,scope.row.Description,scope.row.EventTime,scope.row.ClubName,scope.row.scope.AdminName)">查看</el-button>
+                        <el-button type="primary" @click="showActivitySummary(scope.row.activityId,scope.row.name,scope.row.place,scope.row.description,scope.row.eventTime,scope.row.clubName,'nb')">查看</el-button>
                     </template>
                 </el-table-column>
                 <el-table-column label="参加活动">
@@ -78,7 +78,7 @@
                     <el-input v-model="addForm.name" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="活动地点">
-                    <el-input v-model="addForm.place"disabled></el-input>
+                    <el-input v-model="addForm.place" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="活动简介">
                     <el-input v-model="addForm.description" type="textarea" disabled></el-input>
@@ -158,10 +158,13 @@
                 showDialogVisible: false,
                 //添加活动表单数据
                 addForm: {
-                    studentId:"",
-                    name:"",
-                    activityId:"",
-                    summary: "",
+                    id:'',
+                    name:'',
+                    place:'',
+                    description:'',
+                    eventTime:'',
+                    clubName:'',
+                    adminName:'',
                 },
                 addForm1:{
                     id:"",
@@ -211,12 +214,11 @@
 
             async getActivityList()
             {
-                let result = await this.$http.post(this.$api.StudentActivitesInformationUrl,
+                let result = await this.$http.post(this.$api.StudentInActivitesInformationUrl,
                     {
                         query: this.query,
                         pageNumber: this.pageNum,
                         pageSize: this.pageSize,
-                        status: true
                     });
                 this.activityList = result.data.data;
                 console.log(this.activityList);
@@ -298,12 +300,6 @@
             //详情页面弹出后,会查询该活动的简介内容并显示
             async showActivitySummary(id,name,place,description,eventTime,clubName,adminName)
             {
-                // let result = await this.$http.post(this.$api.StudentActivitesInformationUrl,{
-                //     query: this.query,
-                //     pageNumber: this.pageNum,
-                //     pageSize: this.pageSize,
-                //     status: true
-                // });
                 this.addForm.id=id;
                 this.addForm.name=name;
                 this.addForm.place=place;

@@ -24,7 +24,7 @@
                     <!--                    搜索取消时也会刷新搜索页面,搜索确定时,将携带query搜索特定内容的社团-->
                     <el-steps :active="activeIndex-0" finish-status="success" :space="200" style="margin-left: 12px">
                         <el-step title="步骤1" description="确定是这个社团了吗"></el-step>
-                        <el-step title="步骤2" description="录入基本信息"></el-step>
+                        <el-step title="步骤2" description="为什么想加入这个社团"></el-step>
                     </el-steps>
 
                     <el-tabs v-model="activeIndex" :tab-position="tabPosition" style="height: 200px;">
@@ -59,8 +59,6 @@
 
 
         </el-card>
-
-
 
         <!--        展示活动对话框-->
         <el-dialog title="社团简介" ref="showFormRef" :visible.sync="showDialogVisible"
@@ -100,7 +98,7 @@
             <!--            内容主体区域 放置一个表单-->
             <el-form :model="addForm"  ref="addFormRef" label-width="150px">
                 <el-form-item label="社团编号:" prop="corporationId">
-                    <el-input v-model="addForm1.id"></el-input>
+                    <el-input v-model="addForm1.id" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="退社理由:" prop="reason">
                     <el-input type="textarea" v-model="addForm1.reason"></el-input>
@@ -349,8 +347,8 @@
 
             async joinClub(id)
             {
-                this.addForm.id=id;
-                this.addDialogVisiblee=true;
+                this.addForm1.id=id;
+                this.addDialogVisible=true;
             },
 
             async editActivity()

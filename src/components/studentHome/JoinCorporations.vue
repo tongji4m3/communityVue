@@ -74,10 +74,10 @@
                     <el-input v-model="addForm.studentid"></el-input>
                 </el-form-item>
                 <el-form-item label="社团编号:" prop="corporationId">
-                    <el-input v-model="addForm.clubid"></el-input>
+                    <el-input v-model="addForm.clubid" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="社团名称:" prop="corporationName">
-                    <el-input v-model="addForm.name"></el-input>
+                    <el-input v-model="addForm.name" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="退社理由:" prop="reason">
                     <el-input type="textarea" v-model="addForm.summary"></el-input>

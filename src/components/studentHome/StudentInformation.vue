@@ -12,39 +12,39 @@
         <el-table :data="informationList">
             <el-table-column type="index"></el-table-column>
             <el-table-column label="姓名" prop="name"></el-table-column>
-            <el-table-column label="学号" prop="Number"></el-table-column>
-            <el-table-column label="年级" prop="Grade"></el-table-column>
-            <el-table-column label="专业" prop="Major"></el-table-column>
-            <el-table-column label="手机号" prop="Phone"></el-table-column>
-            <el-table-column label="邮箱" prop="Mail"></el-table-column>
-            <el-table-column label="签名" prop="Signature"></el-table-column>
-            <el-table-column label="生日" prop="Birthday"></el-table-column>
+            <el-table-column label="学号" prop="number"></el-table-column>
+            <el-table-column label="年级" prop="grade"></el-table-column>
+            <el-table-column label="专业" prop="major"></el-table-column>
+            <el-table-column label="手机号" prop="phone"></el-table-column>
+            <el-table-column label="邮箱" prop="mail"></el-table-column>
+            <el-table-column label="签名" prop="signature"></el-table-column>
+<!--            <el-table-column label="生日" prop="birthday"></el-table-column>-->
 
         </el-table>
 
         <el-divider></el-divider>
-        <el-row :gutter="20" style="margin-left: 1200px">
-            <el-button type="primary" icon="el-icon-edit" @click="exitCorporation"></el-button>
+        <el-row :gutter="20" style="margin-left: 1200px" >
+            <el-button type="primary" icon="el-icon-edit" @click="exitCorporation()"></el-button>
         </el-row>
 
 
-    <!--        退出社团对话框-->
+    <!--        修改信息对话框-->
     <el-dialog title="修改信息" :visible.sync="addDialogVisible"
                width="50%">
         <!--            内容主体区域 放置一个表单-->
         <el-form :model="addForm"  ref="addFormRef" label-width="150px">
             <el-form-item label="手机号:" prop="studentID">
-                <el-input v-model="addForm.studentid"></el-input>
+                <el-input v-model="addForm.phone"></el-input>
             </el-form-item>
             <el-form-item label="签名:" prop="corporationId">
-                <el-input v-model="addForm.clubid"></el-input>
+                <el-input v-model="addForm.signature"></el-input>
             </el-form-item>
             <el-form-item label="邮箱:" prop="corporationName">
-                <el-input v-model="addForm.name"></el-input>
+                <el-input v-model="addForm.mail"></el-input>
             </el-form-item>
-            <el-form-item label="生日:" prop="reason">
-                <el-input v-model="addForm.summary"></el-input>
-            </el-form-item>
+<!--            <el-form-item label="生日:" prop="reason">-->
+<!--                <el-input v-model="addForm.Birthday"></el-input>-->
+<!--            </el-form-item>-->
         </el-form>
         <!--            底部区域-->
         <span slot="footer" class="dialog-footer">
@@ -104,10 +104,10 @@
                 showDialogVisible: false,
                 //添加活动表单数据
                 addForm: {
-                    studentid:"",
-                    name:"",
-                    clubid:"",
-                    summary: "",
+                    phone:"",
+                    signature:"",
+                    mail:"",
+                    birthday: "",
                 },
                 //添加活动的校验规则
                 addFormRules: {
@@ -132,15 +132,15 @@
             //this.getCorporationsList();
             this.getCorporationList();
         },
-        //获取已加入社团列表
+        //获取学生信息
         methods: {
             async getCorporationList()
             {
                 let result = await this.$http.post(this.$api.StudentGetInformation,
                     {
                     });
-                this.informationList = result.data.data;
-                console.log(this.corporationsList);
+                this.informationList = result.data;
+                console.log(this.informationList);
                 this.totalCount = parseInt(result.data.totalCount);
                 console.log(this.totalCount);
             },
@@ -165,7 +165,8 @@
             clearAddForm()
             {
                 //清空数据
-                this.addForm.summary='';
+                this.addForm.Phone='';
+
             },
 
             //添加活动框里面的取消添加活动按钮触发的事件
@@ -177,7 +178,7 @@
                 this.clearAddForm();
                 //隐藏添加活动对话框
                 this.addDialogVisible = false;
-                this.$message.info("取消提交申请!");
+                this.$message.info("取消修改信息!");
             },
 
             async showDialog(id)
@@ -212,10 +213,10 @@
                 {
                     this.$refs.addFormRef.resetFields();
                 });
-                this.addForm.studentid="";
-                this.addForm.name="";
-                this.addForm.clubid=""
-                this.addForm.summary="";
+                this.addForm.phone=this.informationList[0].phone;
+                this.addForm.signature=this.informationList[0].signature;
+                this.addForm.mail=this.informationList[0].mail;
+                this.addForm.birthday=this.informationList[0].birthday;
 
             },
 

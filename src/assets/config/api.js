@@ -200,8 +200,11 @@ module.exports = {
     //
     StudentGetNameUrl: APIRootUrl + 'Student/getStudentName',
 
-    //获取可参加活动信息
-    StudentActivitesInformationUrl:APIRootUrl+'Student/getActivityInfo',
+    //获取社团内部参加活动信息
+    StudentInActivitesInformationUrl:APIRootUrl+'Student/getInActivityInfo',
+
+    //获取社团外部参加获得信息
+    StudentOutActivitesInformationUrl:APIRootUrl+'Student/getOutActivityInfo',
 
     //获取学生信息
     StudentGetInformation:APIRootUrl+'Student/getStudentInfo',

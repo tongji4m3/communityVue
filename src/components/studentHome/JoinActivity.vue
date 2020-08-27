@@ -32,18 +32,18 @@
             <!--            活动列表 只展示一些活动信息,详细信息可在详情查看-->
             <el-table :data="activityList" :row-class-name="tableRowClassName">
                 <el-table-column type="index"></el-table-column>
-                <el-table-column label="活动名称" prop="Name"></el-table-column>
-                <el-table-column label="活动地点" prop="Place"></el-table-column>
+                <el-table-column label="活动名称" prop="name"></el-table-column>
+                <el-table-column label="活动地点" prop="place"></el-table-column>
                 <el-table-column label="查看详情">
                     <template slot-scope="scope">
-                        <el-button type="primary" @click="showActivitySummary(scope.row.ActivityId,scope.row.Name,scope.row.Place,scope.row.Description,scope.row.EventTime,scope.row.ClubName,scope.row.scope.AdminName)">查看</el-button>
+                        <el-button type="primary" @click="showActivitySummary(scope.row.activityId,scope.row.name,scope.row.place,scope.row.description,scope.row.eventTime,scope.row.clubName,'nb')">查看</el-button>
                     </template>
                 </el-table-column>
                 <el-table-column label="参加活动">
                     <template slot-scope="scope">
                         <!--                        加入按钮-->
                         <!--<el-button type="primary" @click="showEditDialog(scope.row.id)" >加入</el-button>-->
-                        <el-button type="primary" @click="joinOneActivity(scope.row.ActivityId)">加入</el-button>
+                        <el-button type="primary" @click="joinOneActivity(scope.row.activityId)">加入</el-button>
                     </template>
                 </el-table-column>
 
@@ -107,7 +107,7 @@
             <!--            内容主体区域 放置一个表单-->
             <el-form :model="addForm1"  ref="addFormRef" label-width="150px">
                 <el-form-item label="活动编号:" prop="id">
-                    <el-input v-model="addForm1.id"></el-input>
+                    <el-input v-model="addForm1.id" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="参加理由:" prop="reason">
                     <el-input type="textarea" v-model="addForm.reason"></el-input>
@@ -215,12 +215,11 @@
 
             async getActivityList()
             {
-                let result = await this.$http.post(this.$api.StudentActivitesInformationUrl,
+                let result = await this.$http.post(this.$api.StudentOutActivitesInformationUrl,
                     {
                         query: this.query,
                         pageNumber: this.pageNum,
                         pageSize: this.pageSize,
-                        status: true
                     });
                 this.activityList = result.data.data;
                 console.log(this.activityList);
@@ -249,7 +248,7 @@
             },
             async joinOneActivity(id){
                 this.addForm1.id=id;
-                this.reason="";
+                this.addForm1.reason="";
                 this.addDialogVisible=true;
             },
             //监听pageSize改变的事件
