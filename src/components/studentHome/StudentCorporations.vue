@@ -43,7 +43,7 @@
                     <template slot-scope="scope">
                         <!--                        加入按钮-->
                         <!--<el-button type="primary" @click="showEditDialog(scope.row.id)" >加入</el-button>-->
-                        <el-button type="primary" @click="joinNewClub">加入</el-button>
+                        <el-button type="primary" @click="joinNewClub(scope.row.clubId,scope.row.name,scope.row.type,scope.row.establishmentDate,scope.row.presidentName)">加入</el-button>
                     </template>
                 </el-table-column>
 
@@ -84,19 +84,52 @@
         </el-dialog>
 
 
-
-
-        <!--        修改活动对话框-->
-        <el-dialog title="提交申请" ref="editFormRef" :visible.sync="editDialogVisible"
+        <!--        展示活动对话框-->
+        <el-dialog title="社团简介"  :visible.sync="addDialogVisible"
                    width="50%">
-            <el-form :model="addForm" label-width="150px">
-                上传审核文件：
+            <!--            展示内容主体区域 -->
+            <el-form :model="addForm" ref="addFormRef" label-width="150px">
+                <el-form-item label="社团编号">
+                    <el-input v-model="addForm.id" disabled></el-input>
+                </el-form-item>
+                <el-form-item label="社团名称">
+                    <el-input v-model="addForm.name" disabled></el-input>
+                </el-form-item>
+                <el-form-item label="社团性质">
+                    <el-input v-model="addForm.type" disabled></el-input>
+                </el-form-item>
+                <el-form-item label="成立时间">
+                    <el-input v-model="addForm.date" disabled></el-input>
+                </el-form-item>
+                <el-form-item label="会长">
+                    <el-input v-model="addForm.president" disabled></el-input>
+                </el-form-item>
+                <el-form-item label="简介">
+                    <el-input v-model="addForm.summary" type="textarea" disabled></el-input>
+                </el-form-item>
+                <el-form-item label="加入原因:">
+                    <el-input type="textarea" v-model="addForm.reason"></el-input>
+                </el-form-item>
+
             </el-form>
+            <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
-                    <el-button @click="cancelEdit">取 消</el-button>
-                    <el-button type="primary" @click="editActivity">确 定</el-button>
+                <el-button @click="cancelAdd">取 消</el-button>
+    <el-button type="primary" @click="addApply">确 定</el-button>
             </span>
         </el-dialog>
+
+<!--        &lt;!&ndash;        修改活动对话框&ndash;&gt;-->
+<!--        <el-dialog title="提交申请" ref="editFormRef" :visible.sync="editDialogVisible"-->
+<!--                   width="50%">-->
+<!--            <el-form :model="addForm" label-width="150px">-->
+<!--                上传审核文件：-->
+<!--            </el-form>-->
+<!--            <span slot="footer" class="dialog-footer">-->
+<!--                    <el-button @click="cancelEdit">取 消</el-button>-->
+<!--                    <el-button type="primary" @click="editActivity">确 定</el-button>-->
+<!--            </span>-->
+<!--        </el-dialog>-->
     </div>
 </template>
 
@@ -140,8 +173,27 @@
                 addForm: {
                     summary: "",
                     date:"",
-                    president:""
+                    president:"",
+                    id:"",
+                    name:"",
+                    type:"",
+                    reason:"",
                 },
+                //添加活动的校验规则
+                addFormRules: {
+                    studentID: [
+                        {required: true, message: '请输入修改后的手机号', trigger: 'blur'},
+                    ],
+                    corporationName: [
+                        {required: true, message: '请输入社团名称', trigger: 'blur'}
+                    ],
+                    corporationId: [
+                        {required: true, message: '请输入社团编号', trigger: 'blur'}
+                    ],
+                    reason: [
+                        {required: true, message: '请输入退社理由', trigger: 'blur'},
+                    ],
+                }
             }
         },
         //一开始就显示活动列表
@@ -160,12 +212,6 @@
                 //     return 'success-row';
                 // }
                 return '';
-            },
-
-            joinNewClub(){
-
-                this.$router.push({ path:'/joinNewCorporation'})
-
             },
 
             async getCorporationList()
@@ -200,20 +246,13 @@
             clearAddForm()
             {
                 //清空数据
-                this.addForm.id = "";
-                this.addForm.name = "";
-                this.addForm.description = "";
-                this.addForm.cost = "";
-                this.addForm.fund = "";
-                this.addForm.place = "";
-                this.addForm.time = "";
-                this.addForm.range = "";
-                this.addForm.apply_date = "";
-                this.addForm.status = "";
-                this.addForm.information = "";
-                this.addForm.is_public = "";
+                this.addForm.summary="";
+                this.addForm.president="";
+                this.addForm.id="";
+                this.addForm.name="";
+                this.addForm.type="";
+                this.addForm.reason="";
             },
-
             //添加活动框里面的取消添加活动按钮触发的事件
             cancelAdd()
             {
@@ -223,21 +262,7 @@
                 this.clearAddForm();
                 //隐藏添加活动对话框
                 this.addDialogVisible = false;
-                this.$message.info("取消添加活动!");
-            },
-
-            async showDialog(id)
-            {
-                let result = await this.$http.post(this.$api.PrincipalGetOneActivityUrl, id);
-                status = result.data.status;
-                if (!status || status !== "200")
-                {
-                    this.$message.info(result.data.msg);
-                } else
-                {
-                    this.addForm = result.data.data;
-                    this.showDialogVisible = true;
-                }
+                this.$message.info("取消加入社团!");
             },
 
             closeDialogVisible()
@@ -245,23 +270,58 @@
                 this.clearAddForm();
                 this.showDialogVisible = false;
             },
-            cancelEdit()
-            {
-                this.editDialogVisible = false;
-                this.clearAddForm();
-                this.$message.info("取消修改活动!");
-            },
+
 
             //详情页面弹出后,会查询该社团的简介内容并显示
             async showCorporationSummary(id,date,president)
             {
+                console.log(id);
                 let result = await this.$http.post(this.$api.StudentCorporationInformationUrl+'/'+id);
+
                 this.addForm.summary= result.data;
                 this.addForm.date=date;
                 this.addForm.president=president;
                 console.log(this.addForm.summary);
                 this.showDialogVisible = true;
             },
+            //提交申请
+            addApply()
+            {
+                console.log(this.addForm.id,this.addForm.reason);
+                this.$refs.addFormRef.validate(
+                    async valid =>
+                    {
+                        if (!valid) return;
+                        var clubId=this.addForm.id;
+                        var reason=this.addForm.reason;
+
+                        let result = await this.$http.post(this.$api.StudentJoinClub,
+                            {
+                                clubId,
+                                reason,
+                            });
+
+                        //隐藏添加活动对话框
+                        this.addDialogVisible = false;
+                        console.log(result);
+                        this.$message.info("加入社团成功!");
+                    }
+                );
+
+            },
+
+            async joinNewClub(id,name,type,date,president){
+
+                let result = await this.$http.post(this.$api.StudentCorporationInformationUrl+'/'+id);
+                this.addForm.id=id;
+                this.addForm.name=name;
+                this.addForm.type=type;
+                this.addForm.summary= result.data;
+                this.addForm.date=date;
+                this.addForm.president=president;
+                this.addDialogVisible=true;
+            },
+
             async editActivity()
             {
                 let result = await this.$http.post(this.$api.PrincipalUpdateOneActivityUrl, this.addForm);

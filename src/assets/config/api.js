@@ -212,6 +212,14 @@ module.exports = {
     //修改学生信息
     StudentChangeInformation:APIRootUrl+'Student/changeStudentInfo',
 
+    //加入社团
+    StudentJoinClub:APIRootUrl+'Student/joinClub',
+
+    //退出社团
+    StudentExitClub:APIRootUrl+'Student/quitOneClub',
+
+    //加入活动
+    StudentJoinActivity:APIRootUrl+'Student/joinActivity',
 
     /*
     AdminNotice组件

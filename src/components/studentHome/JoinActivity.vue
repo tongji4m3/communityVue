@@ -375,19 +375,15 @@
                     {
                         if (!valid) return;
 
-                        console.log(this.addForm);
-                        // let result = await this.$http.post(this.$api.PrincipalAddOneActivityUrl,
-                        //     {
-                        //         activityId: 0,
-                        //         name: this.addForm.name,
-                        //         fund: parseFloat(this.addForm.fund),
-                        //         cost: parseFloat(this.addForm.cost),
-                        //         place: this.addForm.place,
-                        //         time: this.addForm.time,
-                        //         description: this.addForm.description,
-                        //         isPublic: this.addForm.isPublic
-                        //     });
-
+                        console.log(this.addForm1);
+                        var activityId=this.addForm1.id;
+                        var reason=this.addForm1.reason;
+                        let result = await this.$http.post(this.$api.StudentJoinActivity,
+                            {
+                               activityId,
+                                reason,
+                            });
+                         console.log(reason);
                         //隐藏添加活动对话框
                         this.addDialogVisible = false;
                         // this.getActivityList();

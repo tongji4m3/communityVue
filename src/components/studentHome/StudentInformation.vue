@@ -42,9 +42,9 @@
             <el-form-item label="邮箱:" prop="corporationName">
                 <el-input v-model="addForm.mail"></el-input>
             </el-form-item>
-<!--            <el-form-item label="生日:" prop="reason">-->
-<!--                <el-input v-model="addForm.Birthday"></el-input>-->
-<!--            </el-form-item>-->
+            <el-form-item label="生日:" prop="reason">
+                <el-input v-model="addForm.birthday"></el-input>
+            </el-form-item>
         </el-form>
         <!--            底部区域-->
         <span slot="footer" class="dialog-footer">
@@ -165,8 +165,10 @@
             clearAddForm()
             {
                 //清空数据
-                this.addForm.Phone='';
-
+                this.addForm.phone='';
+                this.addForm.signature='';
+                this.addForm.mail='';
+                this.addForm.birthday='';
             },
 
             //添加活动框里面的取消添加活动按钮触发的事件
@@ -216,8 +218,8 @@
                 this.addForm.phone=this.informationList[0].phone;
                 this.addForm.signature=this.informationList[0].signature;
                 this.addForm.mail=this.informationList[0].mail;
-                this.addForm.birthday=this.informationList[0].birthday;
-
+                // this.addForm.birthday=this.informationList[0].birthday;
+                this.addForm.birthday="";
             },
 
             closeDialogVisible()
@@ -240,23 +242,27 @@
                     {
                         if (!valid) return;
 
-                        console.log(this.addForm);
-                        // let result = await this.$http.post(this.$api.PrincipalAddOneActivityUrl,
-                        //     {
-                        //         activityId: 0,
-                        //         name: this.addForm.name,
-                        //         fund: parseFloat(this.addForm.fund),
-                        //         cost: parseFloat(this.addForm.cost),
-                        //         place: this.addForm.place,
-                        //         time: this.addForm.time,
-                        //         description: this.addForm.description,
-                        //         isPublic: this.addForm.isPublic
-                        //     });
+                        var phone=this.addForm.phone;
+                        var signature=this.addForm.signature;
+                        var mail=this.addForm.mail;
+                        var birthday=this.addForm.birthday;
+                        let result = await this.$http.post(this.$api.StudentChangeInformation,
+                            {
+                                phone,
+                                signature,
+                                mail,
+                                birthday,
+                            });
 
                         //隐藏添加活动对话框
                         this.addDialogVisible = false;
-                        // this.getActivityList();
-                        this.$message.info("提交申请成功!");
+                        console.log(result);
+                        if(result===true){
+                            this.$message.info("提交申请成功!");
+                        }
+                        else{
+                            this.$message.info("提交申请失败，请重新提交!");
+                        }
                     }
                 );
             },

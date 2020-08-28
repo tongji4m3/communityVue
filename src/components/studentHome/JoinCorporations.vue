@@ -232,13 +232,6 @@
                 }
             },
 
-            //修改活动页面弹出后,会查询要修改的id所对应活动的内容
-            async showEditDialog(activityId)
-            {
-                let result = await this.$http.post(this.$api.PrincipalGetOneActivityUrl + "/" + activityId);
-                this.addForm = result.data;
-                this.editDialogVisible = true;
-            },
 
             //提交申请
             exitCorporation(clubid,name)
@@ -278,17 +271,9 @@
                         if (!valid) return;
 
                         console.log(this.addForm);
-                        // let result = await this.$http.post(this.$api.PrincipalAddOneActivityUrl,
-                        //     {
-                        //         activityId: 0,
-                        //         name: this.addForm.name,
-                        //         fund: parseFloat(this.addForm.fund),
-                        //         cost: parseFloat(this.addForm.cost),
-                        //         place: this.addForm.place,
-                        //         time: this.addForm.time,
-                        //         description: this.addForm.description,
-                        //         isPublic: this.addForm.isPublic
-                        //     });
+                        var clubId=this.addForm.clubid;
+                        console.log(clubId)
+                        let result = await this.$http.post(this.$api.StudentExitClub+'/'+clubId);
 
                         //隐藏添加活动对话框
                         this.addDialogVisible = false;

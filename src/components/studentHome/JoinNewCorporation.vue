@@ -199,13 +199,8 @@
         methods: {
             async getCorporationList()
             {
-                let result = await this.$http.post(this.$api.StudentGetJoinedCorporationsUrl,
-                    {
-                        query: this.query,
-                        pageNumber: this.pageNumber,
-                        pageSize: this.pageSize,
-                        status: true
-                    });
+
+                let result = await this.$http.post(this.$api.StudentCorporationInformationUrl+'/'+ 3);
                 this.corporationsList = result.data.data;
                 console.log(this.corporationsList);
                 this.totalCount = parseInt(result.data.totalCount);
@@ -310,23 +305,21 @@
                     {
                         if (!valid) return;
 
-                        console.log(this.addForm);
-                        // let result = await this.$http.post(this.$api.PrincipalAddOneActivityUrl,
-                        //     {
-                        //         activityId: 0,
-                        //         name: this.addForm.name,
-                        //         fund: parseFloat(this.addForm.fund),
-                        //         cost: parseFloat(this.addForm.cost),
-                        //         place: this.addForm.place,
-                        //         time: this.addForm.time,
-                        //         description: this.addForm.description,
-                        //         isPublic: this.addForm.isPublic
-                        //     });
+                        var clubId=this.corporationsList[0].clubId;
+                        var reason=this.addForm1.reason;
+                        console.log(clubId,reason);
+                        let result = await this.$http.post(this.$api.StudentJoinClub,
+                            {
+                            clubId,
+                            reason,
+
+                    });
 
                         //隐藏添加活动对话框
                         this.addDialogVisible = false;
-                        // this.getActivityList();
+                        console.log(result);
                         this.$message.info("提交申请成功!");
+
                     }
                 );
             },
