@@ -19,6 +19,7 @@ import JoinCorporations from '../components/studentHome/JoinCorporations'
 import JoinActivity from '../components/studentHome/JoinActivity'
 import JoinInclubActivity from '../components/studentHome/JoinInclubActivity'
 
+//principalHome页面和他的组件
 import PrincipalHome from '../views/PrincipalHome'
 import PrincipleWelcome from '../components/principalHome/PrincipleWelcome'
 import PrincipalActivity from '../components/principalHome/PrincipalActivity'
@@ -30,6 +31,7 @@ import PrincipalCheckActivity from '../components/principalHome/PrincipalCheckAc
 import PrincipalSponsor from '../components/principalHome/PrincipalSponsor'
 import principalClubInfo from '../components/principalHome/PrincipalClubInfo'
 
+//adminHome页面和他的组件
 import AdminHome from '../views/AdminHome'
 import AdminWelcome from '../components/adminHome/AdminWelcome'
 import AdminSystem from '../components/adminHome/AdminSystem'
@@ -48,7 +50,9 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: '/',
-        component: Index
+        component: Index,
+        //当访问项目时,自动重定向到welcome页面
+        redirect: '/welcome'
     },
     {
         path: '/index',

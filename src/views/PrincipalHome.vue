@@ -7,19 +7,8 @@
             <div>
                 <img src="../assets/img/sys_logo.png" height="60"/>
             </div>
-            <!--        日历按钮-->
-            <el-button type="text" @click="openCalendar">查看日历</el-button>
             <div class="out-button">
                 <el-dropdown>
-
-
-                    <!--        日历框-->
-                    <el-dialog :visible.sync="showCalendar"
-                               width="50%">
-                        <el-calendar v-model="value">
-                        </el-calendar>
-                    </el-dialog>
-
                     <span class="el-dropdown-link" style="margin-right: 15px">
                          <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png">
                          </el-avatar>
@@ -87,13 +76,9 @@
         data(){
             return{
                 username: window.sessionStorage.getItem('name'),
-
-                showCalendar: false
             }
         },
         methods: {
-
-
             //退出按钮
             logout()
             {
@@ -111,10 +96,6 @@
             systemNotice()
             {
                 this.$router.push("/principalSystemNotice")
-            },
-            async openCalendar()
-            {
-                this.showCalendar = true;
             }
         }
     };

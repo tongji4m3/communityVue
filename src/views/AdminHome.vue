@@ -1,5 +1,4 @@
 <template>
-
     <!--    页面布局-->
     <el-container class="home-container">
         <!--        头部区域-->

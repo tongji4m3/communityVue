@@ -1,10 +1,10 @@
 <template>
-    
+
 	<div>
-        
+
         <el-carousel height="580px" width="100%">
 			<el-carousel-item >
-			  <img src="../../assets/img/tj_pic5.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
+			  <img  src="../../assets/img/tj_pic5.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
 			</el-carousel-item>
 			<el-carousel-item >
 			  <img src="../../assets/img/tj_pic6.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
@@ -86,7 +86,7 @@
                     <img src="../../assets/img/jixianfeipan.png" alt="">
                     <div class="clubName">极限飞盘协会</div>
                 </div>
-                
+
                 <div class="clubItem">
                     <img src="../../assets/img/tongfeihangmo.png" alt="">
                     <div class="clubName">同飞航模协会</div>
@@ -103,20 +103,20 @@
 				    <img src="../../assets/img/jitaxiehui.png" alt="">
 				    <div class="clubName">吉他协会</div>
 				</div>
-                
+
                 <div class="clubItem">
                     <img src="../../assets/img/moshuaihaozhe.png" alt="">
                     <div class="clubName">魔术协会</div>
                 </div>
-				
+
 				<div class="clubItem">
 				    <img src="../../assets/img/wushuxiehui.png" alt="">
 				    <div class="clubName">武术协会</div>
 				</div>
             </div>
-        
+
         </div>
-	
+
 	    <!-- 社团活动模块 -->
 	    <div class="mokuai">
 	        <div id="aboutNews">
@@ -128,7 +128,7 @@
 	            </div>
 	            <ol>
 	            	<li><p>活动标题1</p>
-					<hr  align="left" size="1" />  
+					<hr  align="left" size="1" />
 	            	</li>
 	            	<li><p>活动标题2</p>
 					<hr  align="left" size="1" /> </li>
@@ -148,7 +148,7 @@
 	        </div>
 	        <img src="../../assets/img/yinghua.png" alt="" style="margin-left: 45px;height: 470px;">
 	    </div>
-        
+
 		<!-- 底部	 -->
 		<div id="foot">
 			<!-- <span style="--i:1;">快</span>
@@ -179,8 +179,8 @@
 			志同道合的伙伴，站上属于自己的舞台吧 -->
 			<span id="shineText">快来寻找志同道合的伙伴，站上属于自己的舞台吧</span>
 		</div>
-		
-	</div>    
+
+	</div>
 
 </template>
 
@@ -204,7 +204,7 @@
         height: 650px;
         width: 100%;
         background-image: url("../../assets/img/blueBG.jpg");
-       
+
     }
 
     .mokuaiTitle{
@@ -228,12 +228,12 @@
         margin:20px;
 		margin-right: 30px;
     }
-	
+
 	#aboutNews{
 	    margin:20px;
 		width:55%;
 	}
-	
+
     #aboutText p{
         margin-top: 50px;
         margin-right: 70px;
@@ -242,17 +242,17 @@
         /*text-indent: 2em;*/
         line-height: 22px;
     }
-	
+
 	#aboutNews ol{
 		margin-top: 40px ;
 		margin-left: 15px;
 	}
-	
+
 	#aboutNews ol li p{
 		line-height: 22px;
 		transition: 0.5s;
 	}
-	
+
 	#aboutNews hr{
 		color:#B0B0B0;
 		border-top:dashed;
@@ -260,11 +260,11 @@
 		margin-bottom: 10px;
 		transition: 0.5s;
 	}
-	
+
 	#aboutNews ol li:hover hr{
 		color:#0099FF;
 	}
-	
+
 	#aboutNews ol li:hover p{
 		text-indent: 1em;
 	}
@@ -309,9 +309,9 @@
     #clubTable .clubItem:hover{
         box-shadow: 0 7px 12px rgba(52,52,52,0.7);
 		transform: scale(1.1);
-		
+
     }
-	
+
 	/* 普通 */
 	/* #foot{
 		height: 50px;
@@ -321,10 +321,10 @@
 		align-items: center;
 		color: rgb(255,255,255);
 		font-size: 15px;
-		
-	} 
+
+	}
 	*/
-	
+
 	/* 流动 */
 /* 	#foot{
 		height: 40px;
@@ -348,7 +348,7 @@
 		0%
 		{
 			transform:translateY(0px);
-			
+
 		}
 		20%
 		{
@@ -359,7 +359,7 @@
 			transform: translateY(0px);
 		}
 	} */
-	
+
     /* 聚光灯 */
 	#foot{
 			height: 50px;
@@ -387,7 +387,7 @@
 	@keyframes shine{
 		0%{
 			background-position: 0;
-			
+
 		}
 		60%{
 			background-position: 658px;
@@ -396,6 +396,6 @@
 			background-position: 658px;
 		}
 	}
-    
+
 
 </style>
