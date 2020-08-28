@@ -218,8 +218,16 @@ module.exports = {
     //退出社团
     StudentExitClub:APIRootUrl+'Student/quitOneClub',
 
+    //退出社团接收的信息
+    StudentSendMessage:APIRootUrl+'Student/sendMessage',
+
     //加入活动
     StudentJoinActivity:APIRootUrl+'Student/joinActivity',
+
+    //学生端的系统公告
+    StudentInClubAnnouncements:APIRootUrl+'Student/inClubAnnouncements',
+
+    //学生端的系统消息
 
     /*
     AdminNotice组件

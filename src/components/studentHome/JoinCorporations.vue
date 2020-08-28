@@ -70,9 +70,6 @@
                    width="50%">
             <!--            内容主体区域 放置一个表单-->
             <el-form :model="addForm"  ref="addFormRef" label-width="150px">
-                <el-form-item label="学号:" prop="studentID">
-                    <el-input v-model="addForm.studentid"></el-input>
-                </el-form-item>
                 <el-form-item label="社团编号:" prop="corporationId">
                     <el-input v-model="addForm.clubid" disabled></el-input>
                 </el-form-item>
@@ -80,7 +77,7 @@
                     <el-input v-model="addForm.name" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="退社理由:" prop="reason">
-                    <el-input type="textarea" v-model="addForm.summary"></el-input>
+                    <el-input type="textarea" v-model="addForm.summary" placeholder="请务必写明学号，专业和姓名"></el-input>
                 </el-form-item>
             </el-form>
             <!--            底部区域-->
@@ -154,8 +151,8 @@
                     corporationId: [
                         {required: true, message: '请输入社团编号', trigger: 'blur'}
                     ],
-                    reason: [
-                        {required: true, message: '请输入退社理由', trigger: 'blur'},
+                    summary: [
+                        {required: true, message: '请输入退社理由(请务必注明专业和姓名）', trigger: 'blur'},
                     ],
                 }
             }
@@ -275,6 +272,14 @@
                         console.log(clubId)
                         let result = await this.$http.post(this.$api.StudentExitClub+'/'+clubId);
 
+                        var userid=clubId;
+                        var title="退出社团申请";
+                        var content=this.addForm.summary;
+                        let result1 =await this.$http.post(this.$api.StudentSendMessage,{
+                            userid,
+                            title,
+                            content,
+                        });
                         //隐藏添加活动对话框
                         this.addDialogVisible = false;
                         // this.getActivityList();

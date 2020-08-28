@@ -30,7 +30,7 @@
                 <!--                </el-col>-->
             </el-row>
             <!--            活动列表 只展示一些活动信息,详细信息可在详情查看-->
-            <el-table :data="activityList" :row-class-name="tableRowClassName">
+            <el-table :data="activityList" >
                 <el-table-column type="index"></el-table-column>
                 <el-table-column label="活动名称" prop="name"></el-table-column>
                 <el-table-column label="活动地点" prop="place"></el-table-column>
@@ -110,7 +110,7 @@
                     <el-input v-model="addForm1.id" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="参加理由:" prop="reason">
-                    <el-input type="textarea" v-model="addForm.reason"></el-input>
+                    <el-input type="textarea" v-model="addForm1.reason"></el-input>
                 </el-form-item>
             </el-form>
             <!--            底部区域-->
@@ -377,13 +377,13 @@
 
                         console.log(this.addForm1);
                         var activityId=this.addForm1.id;
-                        var reason=this.addForm1.reason;
+                        var applyReason=this.addForm1.reason;
                         let result = await this.$http.post(this.$api.StudentJoinActivity,
                             {
                                activityId,
-                                reason,
+                                applyReason,
                             });
-                         console.log(reason);
+                         console.log(applyReason);
                         //隐藏添加活动对话框
                         this.addDialogVisible = false;
                         // this.getActivityList();

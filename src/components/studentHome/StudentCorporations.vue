@@ -7,12 +7,12 @@
             <el-breadcrumb-item>社团信息查询</el-breadcrumb-item>
         </el-breadcrumb>
 
-        <el-alert
-                title="已加入的社团为橙色"
-                type="info"
-                center
-                show-icon>
-        </el-alert>
+<!--        <el-alert-->
+<!--                title="已加入的社团为橙色"-->
+<!--                type="info"-->
+<!--                center-->
+<!--                show-icon>-->
+<!--        </el-alert>-->
 
         <el-divider></el-divider>
         <!--        卡片-->
@@ -30,7 +30,7 @@
 <!--                </el-col>-->
             </el-row>
             <!--            活动列表 只展示一些活动信息,详细信息可在详情查看-->
-            <el-table :data="corporationsList" :row-class-name="tableRowClassName">
+            <el-table :data="corporationsList" >
                 <el-table-column type="index"></el-table-column>
                 <el-table-column label="社团名称" prop="name"></el-table-column>
                 <el-table-column label="社团性质" prop="type"></el-table-column>
@@ -293,14 +293,14 @@
                     {
                         if (!valid) return;
                         var clubId=this.addForm.id;
-                        var reason=this.addForm.reason;
+                        var applyReason=this.addForm.reason;
 
                         let result = await this.$http.post(this.$api.StudentJoinClub,
                             {
                                 clubId,
-                                reason,
+                                applyReason,
                             });
-
+                        console.log(clubId,applyReason);
                         //隐藏添加活动对话框
                         this.addDialogVisible = false;
                         console.log(result);
