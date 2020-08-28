@@ -1,17 +1,22 @@
 <template>
-    <div class="login_container">
-        <div class="login_box">
-            <el-form ref="loginFormRef" :model="loginForm" :rules="loginFormRules" label-width="80px">
-                <el-form-item label="用户名:" prop="username">
-                    <el-input v-model="loginForm.username"></el-input>
-                </el-form-item>
-                <el-form-item label="密码:" prop="password">
-                    <el-input type="password" v-model="loginForm.password"></el-input>
-                </el-form-item>
-                <el-button type="primary" @click="login">登录</el-button>
-            </el-form>
-        </div>
-    </div>
+    <body id="poster">
+    <el-form ref="loginFormRef" :model="loginForm" :rules="loginFormRules" class="login-container" label-position="left"
+             label-width="0px">
+        <h3 class="login_title">登录</h3>
+        <el-form-item prop="username">
+            <el-input type="text" v-model="loginForm.username" auto-complete="off" placeholder="账号"></el-input>
+        </el-form-item>
+
+        <el-form-item prop="password">
+            <el-input type="password" v-model="loginForm.password" auto-complete="off" placeholder="密码"></el-input>
+        </el-form-item>
+
+        <el-form-item style="width: 100%">
+            <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="login">登录
+            </el-button>
+        </el-form-item>
+    </el-form>
+    </body>
 </template>
 
 <script>
@@ -40,6 +45,24 @@
                 }
             }
         },
+        //回车登录操作
+        created()
+        {
+            //创建后挂载
+            let _this = this;
+
+            document.onkeydown = function (e)
+            {
+
+                let key = window.event.keyCode;
+
+                if (key === 13)
+                {
+                    _this.login();//登录的方法
+                }
+            }
+
+        },
         methods: {
             //异步操作
             login()
@@ -53,13 +76,13 @@
 
                     let result = await this.$http.post(this.$api.LoginUrl, this.loginForm)
                         .catch(function (error)
-                    {
-                        if (error.response)
                         {
-                            status = error.response.status;
-                            msg = error.response.data.msg;
-                        }
-                    });
+                            if (error.response)
+                            {
+                                status = error.response.status;
+                                msg = error.response.data.msg;
+                            }
+                        });
 
                     if (status === 200)
                     {
@@ -72,14 +95,12 @@
                             let result1 = await this.$http.post(this.$api.getStudentNameUrl);
                             window.sessionStorage.setItem('name', result1.data.name);
                             await this.$router.push({path: '/studentHome'});
-                        }
-                        else if (userType === 1)
+                        } else if (userType === 1)
                         {
                             let result1 = await this.$http.post(this.$api.getClubNameUrl);
                             window.sessionStorage.setItem('name', result1.data.name);
                             await this.$router.push({path: '/principalHome'});
-                        }
-                        else
+                        } else
                             await this.$router.push({path: '/adminHome'});
                     } else
                     {
@@ -92,4 +113,33 @@
         }
     }
 </script>
-<style scoped></style>
+<style scoped>
+    #poster {
+        height: 100%;
+        width: 100%;
+        background-size: cover;
+        position: fixed;
+    }
+
+    body {
+        margin: 0px;
+        padding: 0;
+    }
+
+    .login-container {
+        border-radius: 15px;
+        background-clip: padding-box;
+        margin: 90px auto;
+        width: 350px;
+        padding: 35px 35px 15px 35px;
+        background: #fff;
+        border: 1px solid #eaeaea;
+        box-shadow: 0 0 25px #cac6c6;
+    }
+
+    .login_title {
+        margin: 0px auto 40px auto;
+        text-align: center;
+        color: #505458;
+    }
+</style>
