@@ -19,7 +19,7 @@
                     </el-input>
                 </el-col>
                 <el-col :span="4">
-                    <el-button type="success" @click="showAddAnnouncement">添加公告</el-button>
+                    <el-button type="primary" @click="showAddAnnouncement">添加公告</el-button>
                 </el-col>
             </el-row>
             <!--            公告列表 只展示一些公告信息,详细文本可在详情查看-->
@@ -29,16 +29,16 @@
                 <el-table-column label="公告时间" prop="time"></el-table-column>
                 <el-table-column label="显示详情">
                     <template slot-scope="scope">
-                        <el-button type="success" @click="showDialog(scope.row.announcementId)">查看</el-button>
+                        <el-button type="primary" @click="showDialog(scope.row.announcementId)">查看</el-button>
                     </template>
                 </el-table-column>
                 <el-table-column label="操作">
                     <template slot-scope="scope">
                         <!--                        修改按钮-->
-                        <el-button type="success" @click="showEditDialog(scope.row.announcementId)"
+                        <el-button type="primary" @click="showEditDialog(scope.row.announcementId)"
                                    icon="el-icon-edit"></el-button>
                         <!--                        删除按钮-->
-                        <el-button type="success" @click="removeById(scope.row.announcementId)"
+                        <el-button type="primary" @click="removeById(scope.row.announcementId)"
                                    icon="el-icon-delete"></el-button>
 
                     </template>

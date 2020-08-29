@@ -30,7 +30,7 @@
                 <el-table-column label="删除成员">
                     <template slot-scope="scope">
                         <!--                        删除按钮-->
-                        <el-button type="success" @click="removeById(scope.row.studentId)"
+                        <el-button type="primary" @click="removeById(scope.row.studentId)"
                                    icon="el-icon-delete"></el-button>
 
                     </template>
