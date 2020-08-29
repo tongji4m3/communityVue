@@ -26,7 +26,6 @@ axios.interceptors.request.use(config =>
     return config;
 })
 
-
 Vue.config.productionTip = false
 
 new Vue({

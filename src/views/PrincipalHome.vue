@@ -10,15 +10,16 @@
             <div class="out-button">
                 <el-dropdown>
                     <span class="el-dropdown-link" style="margin-right: 15px">
-                         <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png">
-                         </el-avatar>
+<!--                         <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>-->
+                         <el-avatar></el-avatar>
                         <i class="el-icon-arrow-down el-icon--right"></i>
                     </span>
                     <el-dropdown-menu slot="dropdown">
-                        <el-dropdown-item @click.native ="changePassword" >修改密码</el-dropdown-item>
-                        <el-dropdown-item @click.native ="systemInformation">系统消息</el-dropdown-item>
-                        <el-dropdown-item @click.native ="systemNotice">系统公告</el-dropdown-item>
-                        <el-dropdown-item divided @click.native ="logout">退出</el-dropdown-item>
+                        <el-dropdown-item class="navigation-text" id="username-div">{{username}}</el-dropdown-item>
+                        <el-dropdown-item class="navigation-text" @click.native ="changePassword" >修改密码</el-dropdown-item>
+                        <el-dropdown-item class="navigation-text" @click.native ="systemInformation">系统消息</el-dropdown-item>
+                        <el-dropdown-item class="navigation-text" @click.native ="systemNotice">系统公告</el-dropdown-item>
+                        <el-dropdown-item class="navigation-text" id="exit-div" divided @click.native ="logout">退出</el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
             </div>
@@ -102,6 +103,21 @@
 </script>
 
 <style scoped>
+    .navigation-text{
+
+
+    }
+
+    #username-div{
+        font-size: 20px;
+        font-weight:bold;
+        font-family: 楷体;
+    }
+
+    #exit-div{
+        text-align: center;
+        font-weight:bold;
+    }
     .home-container {
         height: 100%;
     }

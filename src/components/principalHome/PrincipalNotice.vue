@@ -59,20 +59,18 @@
         </el-card>
 
         <!--        展示公告对话框-->
-        <el-dialog title="公告详情" ref="showFormRef" :visible.sync="showDialogVisible"
-                   width="50%">
-            <!--            展示内容主体区域 -->
-            <el-form :model="addForm" label-width="150px">
-                <el-form-item label="公告标题:">
-                    <el-input v-model="addForm.title" disabled></el-input>
-                </el-form-item>
-                <el-form-item label="公告内容:">
-                    <el-input v-model="addForm.content" disabled></el-input>
-                </el-form-item>
-                <el-form-item label="公告时间:" prop="time">
-                    <el-date-picker type="date" v-model="addForm.time" style="width: 100%;" disabled></el-date-picker>
-                </el-form-item>
-            </el-form>
+        <el-dialog ref="showFormRef" :visible.sync="showDialogVisible"
+                   width="630px" top="60px" center>
+            <h3 style="text-align:center; font-size:30px ">{{addForm.title}}</h3>
+            <br>
+            <hr>
+            <br>
+            <p style="font-family: 楷体; font-size:25px">{{addForm.content}}</p>
+            <br>
+            <hr>
+            <br>
+            <p style="text-align: right;font-size:25px">{{addForm.time}}</p>
+
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
     <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
@@ -82,14 +80,17 @@
 
         <!--        添加公告对话框-->
         <el-dialog title="添加公告" :visible.sync="addDialogVisible"
-                   width="50%">
+                   width="630px" top="60px" center>
             <!--            内容主体区域 放置一个表单-->
             <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="150px">
                 <el-form-item label="公告标题:" prop="title">
-                    <el-input v-model="addForm.title"></el-input>
+                    <el-input style="width:360px" v-model="addForm.title"></el-input>
                 </el-form-item>
                 <el-form-item label="公告内容:" prop="content">
-                    <el-input v-model="addForm.content"></el-input>
+                    <el-input type="textarea"
+                              :autosize="{ minRows: 1, maxRows: 4}" style="width:360px"
+                              v-model="addForm.content"
+                              readonly="true"></el-input>
                 </el-form-item>
             </el-form>
             <!--            底部区域-->
@@ -101,14 +102,18 @@
 
         <!--        修改公告对话框-->
         <el-dialog title="修改公告" :visible.sync="editDialogVisible"
-                   width="50%">
+                   width="630px" top="60px" center>
             <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="150px">
                 <el-form-item label="公告标题:" prop="title">
-                    <el-input v-model="addForm.title" ></el-input>
+                    <el-input  style="width:360px" v-model="addForm.title" ></el-input>
                 </el-form-item>
                 <el-form-item label="公告内容:" prop="content">
-                    <el-input v-model="addForm.content"></el-input>
+                    <el-input type="textarea"
+                              :autosize="{ minRows: 1, maxRows: 4}" style="width:360px"
+                              v-model="addForm.content"
+                              readonly="true"></el-input>
                 </el-form-item>
+
             </el-form>
 
             <span slot="footer" class="dialog-footer">
@@ -149,7 +154,15 @@
                     status: false,
                 },
                 //添加公告的校验规则
-                addFormRules: {}
+                addFormRules: {
+                    title: [
+                        {required: true, message: '请输入公告标题', trigger: 'blur'},
+                        {min: 2, max: 10, message: '公告标题必须在2-10字符之间', trigger: 'blur'}
+                    ],
+                    content: [
+                        {required: true, message: '请输入公告内容', trigger: 'blur'},
+                    ],
+                }
             }
         },
         //一开始就显示公告列表
@@ -239,6 +252,7 @@
             {
                 let result = await this.$http.post(this.$api.PrincipalGetOneAnnouncement + "/" + AnnouncementId);
                 this.addForm = result.data;
+                this.addForm.time = this.addForm.time.substring(0, 10);
                 this.showDialogVisible = true;
             },
             //显示公告详情页面按确定后的触发事件

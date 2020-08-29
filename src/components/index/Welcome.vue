@@ -1,7 +1,6 @@
 <template>
 
 	<div>
-
         <el-carousel height="580px" width="100%">
 			<el-carousel-item >
 			  <img  src="../../assets/img/tj_pic5.jpg" alt="" style="height: 580px;width: 100%;margin:0;">

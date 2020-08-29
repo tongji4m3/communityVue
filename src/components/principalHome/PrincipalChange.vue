@@ -55,7 +55,7 @@
 
         <!--        查看历史负责人对话框-->
         <el-dialog title="历史负责人" :visible.sync="dialogVisible"
-                   width="50%">
+                   width="630px" top="60px" center>
             <el-table :data="memberList">
                 <el-table-column type="index"></el-table-column>
                 <el-table-column label="学号" prop="number"></el-table-column>
