@@ -18,7 +18,7 @@
             <el-table-column label="手机号" prop="phone"></el-table-column>
             <el-table-column label="邮箱" prop="mail"></el-table-column>
             <el-table-column label="签名" prop="signature"></el-table-column>
-<!--            <el-table-column label="生日" prop="birthday"></el-table-column>-->
+            <el-table-column label="生日" prop="birthday"></el-table-column>
 
         </el-table>
 
@@ -257,12 +257,9 @@
                         //隐藏添加活动对话框
                         this.addDialogVisible = false;
                         console.log(result);
-                        if(result===true){
-                            this.$message.info("提交申请成功!");
-                        }
-                        else{
-                            this.$message.info("提交申请失败，请重新提交!");
-                        }
+
+                        this.$message.info("提交申请成功!");
+
                     }
                 );
             },
@@ -299,6 +296,7 @@
                 //    提示成功
                 this.$message.success("提交审核成功!");
             },
+
         }
     }
 </script>
