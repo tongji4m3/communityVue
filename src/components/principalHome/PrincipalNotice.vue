@@ -61,15 +61,15 @@
         <!--        展示公告对话框-->
         <el-dialog ref="showFormRef" :visible.sync="showDialogVisible"
                    width="630px" top="60px" center>
-            <h3 style="text-align:center; font-size:30px ">{{addForm.title}}</h3>
+            <h3 style="text-align:center; font-size:25px ">{{addForm.title}}</h3>
             <br>
             <hr>
             <br>
-            <p style="font-family: 楷体; font-size:25px">{{addForm.content}}</p>
+            <p style="font-family: 楷体; font-size:20px">{{addForm.content}}</p>
             <br>
             <hr>
             <br>
-            <p style="text-align: right;font-size:25px">{{addForm.time}}</p>
+            <p style="text-align: right;font-size:20px">{{addForm.time}}</p>
 
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
@@ -153,6 +153,8 @@
                     time: "",
                     status: false,
                 },
+                showForm: {},
+                editForm: {},
                 //添加公告的校验规则
                 addFormRules: {
                     title: [

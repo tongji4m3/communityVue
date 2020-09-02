@@ -33,8 +33,8 @@
                 <el-table-column label="电话" prop="phone"></el-table-column>
                 <el-table-column label="选为负责人">
                     <template slot-scope="scope">
-                        <el-button type="success" @click="changeManager(scope.row.studentId)"
-                                   icon="el-icon-delete"></el-button>
+                        <el-button type="primary" @click="changeManager(scope.row.studentId)"
+                                   icon="el-icon-edit"></el-button>
 
                     </template>
                 </el-table-column>
@@ -55,7 +55,7 @@
 
         <!--        查看历史负责人对话框-->
         <el-dialog title="历史负责人" :visible.sync="dialogVisible"
-                   width="630px" top="60px" center>
+                   width="700px" top="60px" center>
             <el-table :data="memberList">
                 <el-table-column type="index"></el-table-column>
                 <el-table-column label="学号" prop="number"></el-table-column>
