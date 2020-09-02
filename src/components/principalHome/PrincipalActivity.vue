@@ -144,7 +144,7 @@
                         <el-input style="width:360px" type="textarea"
                                   :autosize="{ minRows: 1, maxRows: 4}" v-model="editForm.description"></el-input>
                     </el-form-item>
-                    <el-form-item label="活动经费:" prop="fund">
+                    <el-form-item label="活动经费:" prop="budget">
                         <el-input style="width:360px" v-model="editForm.budget"></el-input>
                     </el-form-item>
                     <el-form-item label="活动位置:" prop="place">

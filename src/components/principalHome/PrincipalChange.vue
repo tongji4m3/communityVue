@@ -114,7 +114,6 @@
                     });
 
                 this.memberList = result.data.data;
-                console.log(this.memberList)
                 this.totalCount = parseInt(result.data.totalCount);
             },
             //监听pageSize改变的事件
@@ -139,7 +138,6 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).catch(err => err);
-                //    如果选择不删除
                 if (confirmResult !== "confirm")
                 {
                     return this.$message.info("已经取消换届");

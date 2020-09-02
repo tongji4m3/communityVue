@@ -61,15 +61,15 @@
         <!--        展示公告对话框-->
         <el-dialog ref="showFormRef" :visible.sync="showDialogVisible"
                    width="630px" top="60px" center>
-            <h3 style="text-align:center; font-size:25px ">{{addForm.title}}</h3>
+            <h3 style="text-align:center; font-size:25px ">{{showForm.title}}</h3>
             <br>
             <hr>
             <br>
-            <p style="font-family: 楷体; font-size:20px">{{addForm.content}}</p>
+            <p style="font-family: 楷体; font-size:20px">{{showForm.content}}</p>
             <br>
             <hr>
             <br>
-            <p style="text-align: right;font-size:20px">{{addForm.time}}</p>
+            <p style="text-align: right;font-size:20px">{{showForm.time}}</p>
 
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
@@ -88,9 +88,9 @@
                 </el-form-item>
                 <el-form-item label="公告内容:" prop="content">
                     <el-input type="textarea"
-                              :autosize="{ minRows: 1, maxRows: 4}" style="width:360px"
+                              :autosize="{ minRows: 3, maxRows: 10}" style="width:360px"
                               v-model="addForm.content"
-                              readonly="true"></el-input>
+                              ></el-input>
                 </el-form-item>
             </el-form>
             <!--            底部区域-->
@@ -103,15 +103,15 @@
         <!--        修改公告对话框-->
         <el-dialog title="修改公告" :visible.sync="editDialogVisible"
                    width="630px" top="60px" center>
-            <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="150px">
+            <el-form :model="editForm" :rules="addFormRules" ref="editFormRef" label-width="150px">
                 <el-form-item label="公告标题:" prop="title">
-                    <el-input  style="width:360px" v-model="addForm.title" ></el-input>
+                    <el-input  style="width:360px" v-model="editForm.title" ></el-input>
                 </el-form-item>
                 <el-form-item label="公告内容:" prop="content">
                     <el-input type="textarea"
-                              :autosize="{ minRows: 1, maxRows: 4}" style="width:360px"
-                              v-model="addForm.content"
-                              readonly="true"></el-input>
+                              :autosize="{ minRows: 3, maxRows: 10}" style="width:360px"
+                              v-model="editForm.content"
+                              ></el-input>
                 </el-form-item>
 
             </el-form>
@@ -253,8 +253,8 @@
             async showDialog(AnnouncementId)
             {
                 let result = await this.$http.post(this.$api.PrincipalGetOneAnnouncement + "/" + AnnouncementId);
-                this.addForm = result.data;
-                this.addForm.time = this.addForm.time.substring(0, 10);
+                this.showForm = result.data;
+                this.showForm.time = this.showForm.time.substring(0, 10);
                 this.showDialogVisible = true;
             },
             //显示公告详情页面按确定后的触发事件
@@ -271,17 +271,17 @@
             async showEditDialog(AnnouncementId)
             {
                 let result = await this.$http.post(this.$api.PrincipalGetOneAnnouncement + "/" + AnnouncementId);
-                this.addForm = result.data;
+                this.editForm = result.data;
                 this.editDialogVisible = true;
             },
             async editAnnouncement()
             {
-                this.$refs.addFormRef.validate(
+                this.$refs.editFormRef.validate(
                     async valid =>
                     {
                         if (!valid) return;
-                        console.log(this.addForm);
-                        await this.$http.post(this.$api.PrincipalUpdateOneAnnouncement + "/" + this.addForm.AnnouncementId, this.addForm);
+                        console.log(this.editForm);
+                        await this.$http.post(this.$api.PrincipalUpdateOneAnnouncement + "/" + this.editForm.AnnouncementId, this.editForm);
                         // this.clearAddForm();
                         // this.$refs.addFormRef.resetFields();
                         //关闭对话框
