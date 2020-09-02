@@ -349,6 +349,7 @@
                 this.addForm.place=place;
                 this.addForm.description=description;
                 this.addForm.eventTime=eventTime;
+                this.addForm.eventTime=this.addForm.eventTime.substring(0,10);
                 this.addForm.clubName=clubName;
                 this.addForm.adminName=adminName;
                 this.showDialogVisible = true;

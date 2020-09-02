@@ -89,9 +89,9 @@
                    width="50%">
             <!--            展示内容主体区域 -->
             <el-form :model="addForm" ref="addFormRef" label-width="150px">
-                <el-form-item label="社团编号">
-                    <el-input v-model="addForm.id" disabled></el-input>
-                </el-form-item>
+<!--                <el-form-item label="社团编号">-->
+<!--                    <el-input v-model="addForm.id" disabled></el-input>-->
+<!--                </el-form-item>-->
                 <el-form-item label="社团名称">
                     <el-input v-model="addForm.name" disabled></el-input>
                 </el-form-item>
@@ -280,6 +280,7 @@
 
                 this.addForm.summary= result.data;
                 this.addForm.date=date;
+                this.addForm.date=this.addForm.date.substring(0,10);
                 this.addForm.president=president;
                 console.log(this.addForm.summary);
                 this.showDialogVisible = true;
@@ -318,6 +319,7 @@
                 this.addForm.type=type;
                 this.addForm.summary= result.data;
                 this.addForm.date=date;
+                this.addForm.date=this.addForm.date.substring(0,10);
                 this.addForm.president=president;
                 this.addDialogVisible=true;
             },

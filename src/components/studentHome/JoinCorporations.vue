@@ -70,9 +70,9 @@
                    width="50%">
             <!--            内容主体区域 放置一个表单-->
             <el-form :model="addForm"  ref="addFormRef" label-width="150px">
-                <el-form-item label="社团编号:" prop="corporationId">
-                    <el-input v-model="addForm.clubid" disabled></el-input>
-                </el-form-item>
+<!--                <el-form-item label="社团编号:" prop="corporationId">-->
+<!--                    <el-input v-model="addForm.clubid" disabled></el-input>-->
+<!--                </el-form-item>-->
                 <el-form-item label="社团名称:" prop="corporationName">
                     <el-input v-model="addForm.name" disabled></el-input>
                 </el-form-item>
@@ -175,6 +175,7 @@
                         status: true
                     });
                 this.corporationsList = result.data.data;
+                // this.corporationsList.establishmentDate=this.corporationsList.establishmentDate.substring(0,10);
                 console.log(this.corporationsList);
                 this.totalCount = parseInt(result.data.totalCount);
                 console.log(this.totalCount);

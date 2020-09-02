@@ -25,6 +25,9 @@
                         <el-button slot="append" icon="el-icon-search" @click="getActivityList"></el-button>
                     </el-input>
                 </el-col>
+                <el-row :gutter="20">
+                    <el-button type="primary" icon="" @click="toInclubAcitivity">社团活动</el-button>
+                </el-row>
                 <!--                <el-col :span="4">-->
                 <!--                    <el-button type="primary" @click="addDialogVisible=true">查询社团</el-button>-->
                 <!--                </el-col>-->
@@ -51,9 +54,6 @@
 
 
             <el-divider></el-divider>
-            <el-row :gutter="20" style="margin-left: 1000px">
-                <el-button type="primary" icon="" @click="toInclubAcitivity">社团活动</el-button>
-            </el-row>
 
             <!--            分页区域-->
             <el-pagination
@@ -79,7 +79,7 @@
                     <el-input v-model="addForm.name" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="活动地点">
-                    <el-input v-model="addForm.place"disabled></el-input>
+                    <el-input v-model="addForm.place" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="活动简介">
                     <el-input v-model="addForm.description" type="textarea" disabled></el-input>
@@ -106,9 +106,9 @@
                    width="50%">
             <!--            内容主体区域 放置一个表单-->
             <el-form :model="addForm1"  ref="addFormRef" label-width="150px">
-                <el-form-item label="活动编号:" prop="id">
-                    <el-input v-model="addForm1.id" disabled></el-input>
-                </el-form-item>
+<!--                <el-form-item label="活动编号:" prop="id">-->
+<!--                    <el-input v-model="addForm1.id" disabled></el-input>-->
+<!--                </el-form-item>-->
                 <el-form-item label="参加理由:" prop="reason">
                     <el-input type="textarea" v-model="addForm1.reason"></el-input>
                 </el-form-item>
@@ -242,6 +242,7 @@
                 this.addForm.place=place;
                 this.addForm.description=description;
                 this.addForm.eventTime=eventTime;
+                this.addForm.eventTime=this.addForm.eventTime.substring(0,10)
                 this.addForm.clubName=clubName;
                 this.addForm.adminName=adminName;
                 this.showDialogVisible = true;

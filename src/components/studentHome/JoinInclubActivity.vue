@@ -7,12 +7,6 @@
             <el-breadcrumb-item>参加活动</el-breadcrumb-item>
         </el-breadcrumb>
 
-        <!--        <el-alert-->
-        <!--                title="已加入的社团为橙色"-->
-        <!--                type="info"-->
-        <!--                center-->
-        <!--                show-icon>-->
-        <!--        </el-alert>-->
 
         <el-divider></el-divider>
         <!--        卡片-->
@@ -25,6 +19,9 @@
                         <el-button slot="append" icon="el-icon-search" @click="getActivityList"></el-button>
                     </el-input>
                 </el-col>
+                <el-row :gutter="20">
+                    <el-button type="primary" icon="" @click="toAcitivity">公开活动</el-button>
+                </el-row>
                 <!--                <el-col :span="4">-->
                 <!--                    <el-button type="primary" @click="addDialogVisible=true">查询社团</el-button>-->
                 <!--                </el-col>-->
@@ -50,9 +47,7 @@
             </el-table>
 
             <el-divider></el-divider>
-            <el-row :gutter="20" style="margin-left: 1000px">
-                <el-button type="primary" icon="" @click="toAcitivity">公开活动</el-button>
-            </el-row>
+
 
             <!--            分页区域-->
             <el-pagination
@@ -197,9 +192,7 @@
         methods: {
 
             tableRowClassName({row, rowIndex}) {
-                if (rowIndex === 0) {
-                    return 'warning-row';
-                }
+
                 // else if (rowIndex === 3) {
                 //     return 'success-row';
                 // }
@@ -355,19 +348,15 @@
                     {
                         if (!valid) return;
 
-                        console.log(this.addForm);
-                        // let result = await this.$http.post(this.$api.PrincipalAddOneActivityUrl,
-                        //     {
-                        //         activityId: 0,
-                        //         name: this.addForm.name,
-                        //         fund: parseFloat(this.addForm.fund),
-                        //         cost: parseFloat(this.addForm.cost),
-                        //         place: this.addForm.place,
-                        //         time: this.addForm.time,
-                        //         description: this.addForm.description,
-                        //         isPublic: this.addForm.isPublic
-                        //     });
-
+                        console.log(this.addForm1);
+                        var activityId=this.addForm1.id;
+                        var applyReason=this.addForm1.reason;
+                        let result = await this.$http.post(this.$api.StudentJoinActivity,
+                            {
+                                activityId,
+                                applyReason,
+                            });
+                        console.log(applyReason);
                         //隐藏添加活动对话框
                         this.addDialogVisible = false;
                         // this.getActivityList();
