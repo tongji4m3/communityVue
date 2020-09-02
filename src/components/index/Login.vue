@@ -28,7 +28,8 @@
                 //登录表单数据绑定
                 loginForm: {
                     username: '',
-                    password: ''
+                    password: '',
+                    imgUrl:''
                 },
                 //表单的验证规则
                 loginFormRules: {
@@ -92,6 +93,7 @@
                         let userType = result.data.userType;
                         let newToken = "bearer " + result.data.token;
                         window.sessionStorage.setItem('token', newToken);
+                        window.sessionStorage.setItem('imgUrl', result.data.imgUrl);
 
                         if (userType === 0)
                         {

@@ -10,8 +10,8 @@
             <div class="out-button">
                 <el-dropdown>
                     <span class="el-dropdown-link" style="margin-right: 15px">
-<!--                         <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>-->
-                         <el-avatar></el-avatar>
+
+                         <el-avatar :src="imgUrl"></el-avatar>
                         <i class="el-icon-arrow-down el-icon--right"></i>
                     </span>
                     <el-dropdown-menu slot="dropdown">
@@ -77,6 +77,9 @@
         data(){
             return{
                 username: window.sessionStorage.getItem('name'),
+                imgUrl: 'https://tongji4m3.oss-cn-beijing.aliyuncs.com/OIP.jpg'
+                // imgUrl: window.sessionStorage.getItem('imgUrl'),
+
             }
         },
         methods: {

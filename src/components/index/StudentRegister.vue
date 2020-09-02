@@ -27,10 +27,10 @@
                 :http-request="uploadHttp"
                 :before-upload="beforeAvatarUpload"
                 :on-remove="handleRemove"
-                >
-            <i class="el-icon-plus avatar-uploader-icon" ></i>
+        >
+            <i class="el-icon-plus avatar-uploader-icon"></i>
             <p id="img-context">上传个人头像</p>
-            <div class="el-upload__tip"  slot="tip">只能上传jpg/jpeg/png文件，且不超过5MB</div>
+            <div class="el-upload__tip" slot="tip">只能上传jpg/jpeg/png文件，且不超过5MB</div>
         </el-upload>
         <el-form-item style="width: 100%">
             <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="register">注册
@@ -95,7 +95,8 @@
                     number: '',
                     username: '',
                     password: '',
-                    confirmPassword: ''
+                    confirmPassword: '',
+                    imgUrl: 'https://tongji4m3.oss-cn-beijing.aliyuncs.com/OIP.jpg'
                 },
                 //表单的验证规则
                 registerFormRules: {
@@ -169,6 +170,7 @@
                     {
                         console.log(`阿里云OSS上传图片成功回调`, res, url, name);
                         console.log(url);
+                        this.registerForm.imgUrl = url;
                     }
                 }).catch((err) =>
                 {
@@ -221,6 +223,7 @@
                             number: this.registerForm.number,
                             username: this.registerForm.username,
                             password: this.$md5(this.registerForm.password),
+                            imgUrl: this.registerForm.imgUrl
 
                         }).catch(function (error)
                     {
@@ -277,12 +280,11 @@
         color: #505458;
     }
 
-    .upload{
+    .upload {
 
     }
 
-    #img-context
-    {
+    #img-context {
         text-align: center;
         font-size: 17px;
         color: #B0B0B0;
