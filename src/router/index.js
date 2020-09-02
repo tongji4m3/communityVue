@@ -42,6 +42,7 @@ import AdminCheckActivity from '../components/adminHome/AdminCheckActivity'
 import AdminCheckSponsor from '../components/adminHome/AdminCheckSponsor'
 import JoinNewCorporation from "../components/studentHome/JoinNewCorporation";
 import StudentActivities from "../components/studentHome/StudentActivities";
+import InActivity from "../components/studentHome/InActivity";
 
 
 
@@ -81,7 +82,8 @@ const routes = [
             {path:'/studentActivities',component: StudentActivities},
             {path: '/studentChangePassword', component: ChangePassword},
             {path: '/studentSystemInformation', component: SystemInformation},
-            {path: '/studentSystemNotice', component: SystemNotice}
+            {path: '/studentSystemNotice', component: SystemNotice},
+            {path:'/InActivity',component:InActivity},
         ]
     },
     {

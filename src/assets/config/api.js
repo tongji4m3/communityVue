@@ -224,6 +224,9 @@ module.exports = {
     //加入活动
     StudentJoinActivity:APIRootUrl+'Student/joinActivity',
 
+    //显示已加入活动
+    StudentInActivity:APIRootUrl+'Student/InActivity',
+
     //学生端的系统公告
     StudentInClubAnnouncements:APIRootUrl+'Student/inClubAnnouncements',
 
