@@ -5,14 +5,23 @@
         <!--        头部区域-->
         <el-header>
             <div>
-                <img src="../assets/img/tj_logo.png" height=40/>
+                <img src="../assets/img/sys_logo.png" height="60"/>
             </div>
-<!--            <div>{{username}}</div>-->
             <div class="out-button">
-                <el-button @click="changePassword" size="medium">修改密码</el-button>
-                <el-button @click="systemInformation" size="medium">系统消息</el-button>
-                <el-button @click="systemNotice" size="medium">系统公告</el-button>
-                <el-button @click="logout" size="medium">退出</el-button>
+                <el-dropdown>
+                    <span class="el-dropdown-link" style="margin-right: 15px">
+<!--                         <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>-->
+                         <el-avatar></el-avatar>
+                        <i class="el-icon-arrow-down el-icon--right"></i>
+                    </span>
+                    <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item class="navigation-text" id="username-div">{{username}}</el-dropdown-item>
+                        <el-dropdown-item class="navigation-text" @click.native ="changePassword" >修改密码</el-dropdown-item>
+                        <el-dropdown-item class="navigation-text" @click.native ="systemInformation">系统消息</el-dropdown-item>
+                        <el-dropdown-item class="navigation-text" @click.native ="systemNotice">系统公告</el-dropdown-item>
+                        <el-dropdown-item class="navigation-text" id="exit-div" divided @click.native ="logout">退出</el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
             </div>
         </el-header>
         <!--        页面主体-->
@@ -20,17 +29,35 @@
             <!--            侧边栏-->
             <el-aside width="200px">
                 <el-menu router
-                         background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
-                        <el-menu-item index="/studentInformation">个人信息管理</el-menu-item>
-                        <el-menu-item index="/studentCorporations">社团信息查询</el-menu-item>
-                        <el-menu-item index="/joinCorporations">已加入社团</el-menu-item>
-                        <el-menu-item index="/joinActivity">参加活动</el-menu-item>
-                        <el-menu-item index="/InActivity">已参加活动</el-menu-item>
+                         background-color="rgb(239,239,239)" text-color="rgb(43,43,43)" active-text-color="#409EFF">
+                        <el-menu-item index="/StudentWelcome">
+                            <i class="el-icon-s-home"></i>
+                            学生首页
+                        </el-menu-item>
+                        <el-menu-item index="/studentInformation">
+                            <i class="el-icon-s-shop"></i>
+                            个人信息管理
+                        </el-menu-item>
+                        <el-menu-item index="/studentCorporations">
+                            <i class="el-icon-menu"></i>
+                            社团信息查询
+                        </el-menu-item>
+                        <el-menu-item index="/joinCorporations">
+                            <i class="el-icon-s-check"></i>
+                            已加入社团
+                        </el-menu-item>
+                        <el-menu-item index="/joinActivity">
+                            <i class="el-icon-s-custom"></i>
+                            参加活动
+                        </el-menu-item>
+                        <el-menu-item index="/InActivity">
+                            <i class="el-icon-star-on"></i>
+                            已参加活动
+                        </el-menu-item>
                 </el-menu>
             </el-aside>
             <!--            右侧内容主体-->
-            <el-main>
-                <!--            路由占位符-->
+            <el-main style="padding-left: 35px">
                 <router-view></router-view>
             </el-main>
         </el-container>
@@ -41,6 +68,7 @@
     export default {
         data(){
             return{
+                // username: window.sessionStorage.getItem('name')
                 username: window.sessionStorage.getItem('name')
             }
         },
@@ -68,12 +96,27 @@
 </script>
 
 <style scoped>
+    .navigation-text{
+
+
+    }
+
+    #username-div{
+        font-size: 20px;
+        font-weight:bold;
+        font-family: 楷体;
+    }
+
+    #exit-div{
+        text-align: center;
+        font-weight:bold;
+    }
     .home-container {
         height: 100%;
     }
 
     .el-header {
-        background-color: rgb(64,158,255);
+        background-color: rgb(43,43,43);
         display: flex;
         justify-content: space-between;
         margin-left: 0;
@@ -83,10 +126,12 @@
 
     .el-aside {
         /*background-color: gray;*/
+        background-color: rgb(239,239,239);
     }
 
     .el-main {
         /*background-color: lightgoldenrodyellow;*/
+        background-color: rgb(255,255,255);
     }
 
     .out-button{
@@ -95,11 +140,8 @@
         align-items: center;
     }
 
-
-    .header-name{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
+    .el-icon-arrow-down {
+        font-size: 12px;
     }
+
 </style>
