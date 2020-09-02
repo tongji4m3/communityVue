@@ -16,6 +16,7 @@
             </el-button>
         </el-form-item>
     </el-form>
+
     </body>
 </template>
 
@@ -27,7 +28,8 @@
                 //登录表单数据绑定
                 loginForm: {
                     username: '',
-                    password: ''
+                    password: '',
+                    imgUrl:''
                 },
                 //表单的验证规则
                 loginFormRules: {
@@ -39,7 +41,7 @@
                     //    验证密码是否合法
                     password: [
                         {required: true, message: "请输入密码", trigger: "blur"},
-                        {min: 6, max: 15, message: "密码必须在6-15个字符之间", trigger: "blur"}
+                        {min: 6, max: 50, message: "密码必须在6-15个字符之间", trigger: "blur"}
                     ],
 
                 }
@@ -74,6 +76,8 @@
                     let msg = "";
                     let status = 200;
 
+                    this.loginForm.password = this.$md5(this.loginForm.password);
+                    console.log(this.loginForm.password);
                     let result = await this.$http.post(this.$api.LoginUrl, this.loginForm)
                         .catch(function (error)
                         {
@@ -89,6 +93,7 @@
                         let userType = result.data.userType;
                         let newToken = "bearer " + result.data.token;
                         window.sessionStorage.setItem('token', newToken);
+                        window.sessionStorage.setItem('imgUrl', result.data.imgUrl);
 
                         if (userType === 0)
                         {

@@ -5,18 +5,33 @@
              class="login-container" label-position="left"
              label-width="0px">
         <h3 class="login_title">注册</h3>
-        <el-form-item  prop="number">
+        <el-form-item prop="number">
             <el-input v-model="registerForm.number" placeholder="学号"></el-input>
         </el-form-item>
-        <el-form-item  prop="username">
+        <el-form-item prop="username">
             <el-input v-model="registerForm.username" placeholder="用户名"></el-input>
         </el-form-item>
-        <el-form-item  prop="password">
+        <el-form-item prop="password">
             <el-input type="password" v-model="registerForm.password" placeholder="密码"></el-input>
         </el-form-item>
-        <el-form-item  prop="confirmPassword">
+        <el-form-item prop="confirmPassword">
             <el-input type="password" v-model="registerForm.confirmPassword" placeholder="确认密码"></el-input>
         </el-form-item>
+
+        <el-upload
+                class="upload"
+                action=""
+                :drag="true"
+                :multiple="true"
+                :file-list="images"
+                :http-request="uploadHttp"
+                :before-upload="beforeAvatarUpload"
+                :on-remove="handleRemove"
+        >
+            <i class="el-icon-plus avatar-uploader-icon"></i>
+            <p id="img-context">上传个人头像</p>
+            <div class="el-upload__tip" slot="tip">只能上传jpg/jpeg/png文件，且不超过5MB</div>
+        </el-upload>
         <el-form-item style="width: 100%">
             <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="register">注册
             </el-button>
@@ -26,12 +41,15 @@
 </template>
 
 <script>
+    import ossClient from '../../assets/config/aliyun.oss.client';
+
     export default {
+        name: 'Upload',
         data()
         {
             let checkPassword = (rule, value, cb) =>
             {
-                const regPassword = /^\w{6,15}$/;
+                const regPassword = /^\w{6,50}$/;
                 if (regPassword.test(value))
                 {
                     //合法密码
@@ -64,12 +82,21 @@
             };
 
             return {
+                //上传图片相关
+                images: [],
+                uploadConf: {
+                    region: null,
+                    accessKeyId: null,
+                    accessKeySecret: null,
+                    bucket: null,
+                },
                 //登录表单数据绑定
                 registerForm: {
                     number: '',
                     username: '',
                     password: '',
-                    confirmPassword: ''
+                    confirmPassword: '',
+                    imgUrl: 'https://tongji4m3.oss-cn-beijing.aliyuncs.com/OIP.jpg'
                 },
                 //表单的验证规则
                 registerFormRules: {
@@ -115,6 +142,71 @@
 
         },
         methods: {
+            /**
+             * 初始化
+             */
+            async init()
+            {
+                //获取阿里云token  这里是后台返回来的数据
+                this.uploadConf.region = 'oss-cn-shanghai';
+                this.uploadConf.accessKeyId = 'LTAI4G6fA6yN4LfpNVr8UsD2';
+                this.uploadConf.accessKeySecret = 'fiq7xeXtzdnt2jL0Zr58OpWd6mCcXd';
+                this.uploadConf.bucket = 'database-community';
+            },
+
+            /**
+             * 阿里云OSS上传
+             */
+            uploadHttp({file})
+            {
+                this.init();
+                const {imgName} = 'ALIOSS_IMG_';
+                const fileName = `${imgName}/${Date.parse(new Date())}`;  //定义唯一的文件名
+                ossClient(this.uploadConf).put(fileName, file, {
+                    'ContentType': 'image/jpeg'
+                }).then(({res, url, name}) =>
+                {
+                    if (res && res.status === 200)
+                    {
+                        console.log(`阿里云OSS上传图片成功回调`, res, url, name);
+                        console.log(url);
+                        this.registerForm.imgUrl = url;
+                    }
+                }).catch((err) =>
+                {
+                    console.log(`阿里云OSS上传图片失败回调`, err);
+                });
+            },
+
+            /**
+             * 图片限制
+             */
+            beforeAvatarUpload(file)
+            {
+                const isJPEG = file.name.split('.')[1] === 'jpeg';
+                const isJPG = file.name.split('.')[1] === 'jpg';
+                const isPNG = file.name.split('.')[1] === 'png';
+                const isLt500K = file.size / 1024 / 1024 / 5 < 2;
+                if (!isJPG && !isJPEG && !isPNG)
+                {
+                    this.$message.error('上传图片只能是 JPEG/JPG/PNG 格式!');
+                }
+                if (!isLt500K)
+                {
+                    this.$message.error('单张图片大小不能超过 5MB!');
+                }
+                return (isJPEG || isJPG || isPNG) && isLt500K;
+            },
+
+            /**
+             * 移除图片
+             */
+            handleRemove(file, fileList)
+            {
+                console.log(`移除图片回调`, fileList);
+            },
+
+
             //异步操作
             //根据status判断是否注册成功,成功跳转页面,失败显示msg在合适的地方
             register()
@@ -130,7 +222,9 @@
                         {
                             number: this.registerForm.number,
                             username: this.registerForm.username,
-                            password: this.registerForm.password,
+                            password: this.$md5(this.registerForm.password),
+                            imgUrl: this.registerForm.imgUrl
+
                         }).catch(function (error)
                     {
                         if (error.response)
@@ -172,7 +266,7 @@
     .login-container {
         border-radius: 15px;
         background-clip: padding-box;
-        margin: 90px auto;
+        margin: 20px auto;
         width: 350px;
         padding: 35px 35px 15px 35px;
         background: #fff;
@@ -184,5 +278,22 @@
         margin: 0px auto 40px auto;
         text-align: center;
         color: #505458;
+    }
+
+    .upload {
+
+    }
+
+    #img-context {
+        text-align: center;
+        font-size: 17px;
+        color: #B0B0B0;
+        margin-top: 50px;
+    }
+
+    .el-upload__tip {
+        text-align: center;
+        font-family: 楷体;
+        font-size: 15px;
     }
 </style>
