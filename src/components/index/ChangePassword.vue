@@ -34,12 +34,12 @@
                     //    验证用户名是否合法
                     prePassword: [
                         {required: true, message: "请输入原来的密码", trigger: "blur"},
-                        {min: 6, max: 15, message: "密码必须在6-15个字符之间", trigger: "blur"}
+                        {min: 6, max: 50, message: "密码必须在6-15个字符之间", trigger: "blur"}
                     ],
                     //    验证密码是否合法
                     newPassword: [
                         {required: true, message: "请输入新密码", trigger: "blur"},
-                        {min: 6, max: 15, message: "密码必须在6-15个字符之间", trigger: "blur"}
+                        {min: 6, max: 50, message: "密码必须在6-15个字符之间", trigger: "blur"}
                     ],
 
                 }
@@ -73,6 +73,9 @@
 
                     let msg = "";
                     let status = 200;
+
+                    this.changeForm.prePassword = this.$md5(this.changeForm.prePassword);
+                    this.changeForm.newPassword = this.$md5(this.changeForm.newPassword);
 
                     let result = await this.$http.post(this.$api.ChangePasswordUrl, this.changeForm)
                         .catch(function (error)

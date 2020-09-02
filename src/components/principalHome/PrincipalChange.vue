@@ -55,9 +55,10 @@
 
         <!--        查看历史负责人对话框-->
         <el-dialog title="历史负责人" :visible.sync="dialogVisible"
-                   width="700px" top="60px" center>
-            <el-table :data="memberList">
+                   width="850px" top="60px" center>
+            <el-table :data="historyMemberList">
                 <el-table-column type="index"></el-table-column>
+                <el-table-column label="任期" prop="term"></el-table-column>
                 <el-table-column label="学号" prop="number"></el-table-column>
                 <el-table-column label="姓名" prop="name"></el-table-column>
                 <el-table-column label="年级" prop="grade"></el-table-column>
@@ -86,6 +87,7 @@
 
                 //查询到的当页成员
                 memberList: [],
+                historyMemberList: [],
                 //总条数,用于分页的显示
                 totalCount: 0,
                 //添加,修改,展示成员对话框的显示与隐藏
@@ -143,7 +145,8 @@
                     return this.$message.info("已经取消换届");
                 } else
                 {
-                    await this.$http.post(this.$api.PrincipalChangeManager + "/" + memberId);
+                    let result=await this.$http.post(this.$api.PrincipalChangeManager + "/" + memberId);
+                    console.log(result.data);
                     this.$message.info("换届成功!");
                     await this.getNextMembers();
                 }
@@ -161,9 +164,8 @@
                         status: true
                     });
 
-                this.memberList = result.data.data;
+                this.historyMemberList = result.data.data;
 
-                console.log(this.memberList);
             },
             closeDialog()
             {
