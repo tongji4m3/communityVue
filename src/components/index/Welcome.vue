@@ -1,9 +1,9 @@
 <template>
 
-	<div>
-        <el-carousel height="580px" width="100%">
+	<div id="zoumadeng">
+        <el-carousel height="100%" width="100%">
 			<el-carousel-item >
-			  <img  src="../../assets/img/tj_pic5.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
+			  <img  src="../../assets/img/tj_pic5.jpg" alt="" style="height: 300;width: 100%;margin:0;">
 			</el-carousel-item>
 			<el-carousel-item >
 			  <img src="../../assets/img/tj_pic6.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
@@ -184,6 +184,21 @@
 </template>
 
 <script>
+	var width = window.innerWidth,height = window.innerHeight;
+	if(typeof width!='number'){
+		if(document.compatMode == 'CSS1Compat'){
+			width=document.documentElement.clientWidth;
+			height=document.documentElement.clientHeight;		
+		}
+		else{
+			width=document.body.clientWidth;
+			height=document.body.clientHeight;
+		}
+	}
+	
+	var ZMD = document.querySelector("#zoumadeng");
+	ZMD.style.height="height";
+	
 </script>
 <style >
 
