@@ -248,4 +248,134 @@ module.exports = {
     AdminUpdateOneAnnouncement: APIRootUrl + 'admin/updateOneAnnouncement',
 
     AdminDeleteOneAnnouncement: APIRootUrl + 'admin/deleteOneAnnouncement',
+
+    /*
+    adminHome视图
+    AdminCheckSponsor组件
+    管理员审核赞助接口
+    */
+
+    //赞助列表的获取
+    //请求参数：Status(查询参数:unaudited, failed, pass, all),
+    //  PageQO:Query(模糊查询字符串)，PageNumber(页号), PageSize(页大小)
+    //响应参数：pageIndex(页码), totalPages(总页数), totolCount(总条数)
+    //  data:sponorshipId(赞助id), clubName(社团名称), applyDate(提交时间)
+    //      sponsor(赞助商), amount(金额), adminName(审核者名字), status(审核状态)
+    AdminGetSponsorListUrl:APIRootUrl+'admin/getsponsorships',
+
+    //赞助详情信息获取
+    //请求参数：sponsorshipId(赞助ID)
+    //响应参数：sponorshipId(赞助id), clubName(社团名称), applyDate(提交时间), 
+    //      sponsor(赞助商), amount(金额), adminName(审核者名字), status(审核状态)，
+    //      suggestion(建议)， requirement(需求)
+    AdminGetSponsorshipDetailsUrl:APIRootUrl+'admin/getsponsorshipdetails',
+
+    //赞助建议信息更新
+    //请求参数：sponsorshipId(赞助ID), suggestion(建议)
+    //响应参数：
+    AdminUpdateSponSuggestionUrl:APIRootUrl+'admin/updatesponsuggestion',
+
+    //赞助审核状态更新
+    //请求参数：sponsorshipId(赞助ID), status(审核状态)
+    //响应参数：
+    AdminUpdateSponStatusUrl:APIRootUrl+'admin/updatesponstatus',
+
+    /*
+    AdminCheckActivity组件
+    管理员审核活动接口
+    */
+
+    //活动列表的获取
+    //请求参数：Status(查询参数:unaudited, failed, pass, all),
+    //  PageQO:Query(模糊查询字符串)，PageNumber(页号), PageSize(页大小)
+    //响应参数：pageIndex(页码), totalPages(总页数), totolCount(总条数)
+    //  data:activityId(活动id), clubName(社团名称), name(活动名称), 
+    //      budget(经费), place(活动地点), eventTime(活动时间), status(审核状态)
+    AdminGetActivityListUrl:APIRootUrl+'admin/getactivities',
+
+    //活动详情信息获取
+    //请求参数：activityId(活动ID)
+    //响应参数：activityId(活动id), clubName(社团名称), name(活动名称), 
+    //      budget(经费)，place(活动地点), eventTime(活动时间), 
+    //      status(审核状态)，applyDate(申请时间)，description(活动描述)，
+    //      isPublic(是否公开)，adminName(管理员姓名)，suggestion(建议)，
+    AdminGetActivityDetailsUrl:APIRootUrl+'admin/getactivitydetails',
+
+    //活动建议信息更新
+    //请求参数：activityId(活动ID), suggestion(建议)
+    //响应参数：
+    AdminUpdateActSuggestionUrl:APIRootUrl+'admin/updateactsuggestion',
+
+    //活动审核状态更新
+    //请求参数：activitytId(活动ID), status(审核状态)
+    //响应参数：
+    AdminUpdateActStatusUrl:APIRootUrl+'admin/updateactstatus',
+
+
+    /*
+    AdminInformation组件
+    管理员审核社团接口
+    */
+    //获取社团列表
+    //请求参数：Status(查询参数:unaudited, dissolved, pass, all),
+    //  PageQO:Query(模糊查询字符串)，PageNumber(页号), PageSize(页大小)
+    //响应参数：pageIndex(页码), totalPages(总页数), totolCount(总条数)
+    //  data:clubId(社团ID), name(社团名称), presidentName(负责人姓名),
+    //      type(社团类型)，establishmentDate(成立时间), managerId(负责人账号ID),
+    //      status(社团状态)
+    AdminGetClubListUrl:APIRootUrl+'admin/getclubs',
+
+    //社团详情信息获取
+    //请求参数：clubId(社团ID), managerId(负责人账号ID)
+    //响应参数：clubId(社团id), Name(社团名称), status(社团状态)
+    //      type(社团类型), description(社团描述), establishmentDate(成立时间),
+    //      presidentName(负责人姓名), managerId(负责人ID), phone(手机号),
+    //      mail(邮箱), number(学号), grade(年级)，major(专业）
+    AdminGetClubDetailsUrl:APIRootUrl+'admin/getclubdetails',
+
+    //消息发送
+    //请求参数：userId(用户ID), content(消息内容), title(标题)
+    //响应参数：
+    AdminSendMessageUrl:APIRootUrl+'admin/sendmessage',
+
+    //社团审核状态更新
+    //请求参数：clubId(社团ID), status(社团状态)
+    //响应参数：
+    AdminUpdateClubStatusUrl:APIRootUrl+'admin/updateclubstatus',
+
+
+    /*
+    AdminStudent组件
+    管理员学生管理接口
+    */
+
+    //获取学生列表
+    //请求参数：Status(查询参数:graduated, atSchool, all),
+    //  PageQO:Query(模糊查询字符串)，PageNumber(页号), PageSize(页大小)
+    //响应参数：pageIndex(页码), totalPages(总页数), totolCount(总条数)
+    //  data:number(学号), name(姓名), major(专业), 
+    //      grade(年级), status(状态)
+    AdminGetStudentMetaListUrl:APIRootUrl+'admin/getstudentmetas',
+    
+    //更新学生信息
+    //请求参数：number(学号), name(姓名), major(专业), 
+    //      grade(年级), status(状态)
+    //响应参数：isSuccess(是否成功)
+    AdminUpdateStudentMetaUrl:APIRootUrl+'admin/updatestudentmeta',
+
+    //更新学生毕业状态
+    //请求参数：number(学号)
+    //响应参数：isSuccess(是否成功)
+    AdminUpdateGraduateUrl:APIRootUrl+'admin/updategraduate',
+
+    //删除学生信息
+    //请求参数：number(学号)
+    //响应参数：isSuccess(是否成功)
+    AdminDeleteStudentMetaUrl:APIRootUrl+'admin/deletestudentmeta',
+
+    //新增学生信息
+    //请求参数：number(学号), name(姓名), major(专业), 
+    //      grade(年级), status(状态)
+    //响应参数：isSuccess(是否成功)
+    AdminInsertStudentMetaUrl:APIRootUrl+'admin/insertstudentmeta',
 };
