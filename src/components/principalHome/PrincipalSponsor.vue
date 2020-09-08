@@ -27,8 +27,8 @@
                 <el-table-column label="编号" prop="sponsorshipId"></el-table-column>
                 <el-table-column label="赞助方" prop="sponsor"></el-table-column>
                 <el-table-column label="赞助金额/￥" prop="amount"></el-table-column>
-                <el-table-column label="申请时间" prop="time"></el-table-column>
-                <el-table-column label="审核状态" prop="status"></el-table-column>
+                <el-table-column label="申请时间" prop="applyDate"></el-table-column>
+                <el-table-column label="审核状态" prop="statusName"></el-table-column>
                 <el-table-column label="显示详情">
                     <template slot-scope="scope">
                         <el-button type="success" @click="showDialog(scope.row.sponsorshipId)">查看</el-button>
@@ -62,7 +62,7 @@
                 <el-form-item label="赞助金额/￥:">
                     <el-input v-model="addForm.amount" disabled></el-input>
                 </el-form-item>
-                <el-form-item label="赞助需求:" prop="requirement">
+                <el-form-item label="赞助需求:">
                     <el-input
                         type="textarea"
                         :rows="7"
@@ -70,10 +70,10 @@
                     </el-input>
                 </el-form-item>
                 <el-form-item label="状态:">
-                    <el-input v-model="addForm.status" disabled></el-input>
+                    <el-input v-model="addForm.statusName" disabled></el-input>
                 </el-form-item>
-                <el-form-item label="申请赞助时间:" prop="time">
-                    <el-date-picker type="date" v-model="addForm.time" style="width: 100%;" disabled></el-date-picker>
+                <el-form-item label="申请赞助时间:">
+                    <el-date-picker type="date" v-model="addForm.applyDate" style="width: 100%;" disabled></el-date-picker>
                 </el-form-item>
             </el-form>
             <!--            底部区域-->
@@ -138,31 +138,30 @@ export default {
             //查询到的当页公告
             SponsorshipList: [
                 {
-                    sponsorshipId: "",
+                    sponsorshipId: 0,
                     sponsor:"",
-                    amount:"",
+                    amount:0,
                     requirement: "",
-                    time: "",
-                    status: false,
-                    // statusContent:"",
+                    applyDate: "",
+                    statusName:"",
+                    status: 0,
                 }
             ],
             //总条数,用于分页的显示
             totalCount: 0,
             //添加,修改,展示赞助对话框的显示与隐藏
             addDialogVisible: false,
-            editDialogVisible: false,
             showDialogVisible: false,
 
             //添加赞助表单数据
             addForm: {
-                sponsorshipId: "",
+                sponsorshipId: 0,
                 sponsor:"",
-                amount:"",
+                amount:0,
                 requirement: "",
-                time: "",
-                status: false,
-                // statusContent:"",
+                applyDate: "",
+                statusName:"",
+                status: 0,
             },
             //添加赞助申请的校验规则
             addFormRules: {
@@ -188,13 +187,18 @@ export default {
             this.SponsorshipList = result.data.data;
             for (let i = 0; i < this.SponsorshipList.length; i++)
             {
-                this.SponsorshipList[i].time=this.SponsorshipList[i].time.substring(0,10)
+                let sponsorItem = {
+                    sponsorshipId: result.data.data[i].sponsorshipId,
+                    sponsor: result.data.data[i].sponsor,
+                    amount: result.data.data[i].amount,
+                    requirement: result.data.data[i].requirement,
+                    applyDate: result.data.data[i].applyDate.slice(0, result.data.data[i].applyDate.indexOf('T')),
+                    statusName: this.statusToStr(result.data.data[i].status),
+                    status: result.data.data[i].status
+                };
+                this.SponsorshipList.push(sponsorItem);
             }
             this.totalCount = parseInt(result.data.totalCount);
-            // if (result.data.data.status>0)
-            //     addForm.statusContent="已通过";
-            // else
-            //     addForm.statusContent="审核中";
         },
         //监听pageSize改变的事件
         handleSizeChange(newSize)
@@ -262,12 +266,26 @@ export default {
         {
             let result = await this.$http.post(this.$api.PrincipalGetOneSponsorship + "/" + SponsorshipId);
             this.addForm = result.data;
+            // this.addForm.time = this.addForm.time.substring(0, 10);
             this.showDialogVisible = true;
         },
         //显示赞助详情页面按确定后的触发事件
         closeDialogVisible()
         {
             this.showDialogVisible = false;
+        },
+        //输出status的文字描述
+        statusToStr(status)
+        {
+            if(status==0){
+                return "未审核"
+            }
+            else if(status==1) {
+                return "未通过"
+            }
+            else {
+                return "已通过"
+            }
         },
     }
 }
