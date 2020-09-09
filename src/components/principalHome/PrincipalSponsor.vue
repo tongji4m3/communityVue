@@ -18,20 +18,20 @@
                     </el-input>
                 </el-col>
                 <el-col :span="4">
-                    <el-button type="success" @click="showAddSponsorship">添加赞助申请</el-button>
+                    <el-button type="primary" @click="showAddSponsorship">添加赞助申请</el-button>
                 </el-col>
             </el-row>
             <!--            公告列表 只展示一些公告信息,详细文本可在详情查看-->
             <el-table :data="SponsorshipList">
                 <el-table-column type="index"></el-table-column>
-                <el-table-column label="编号" prop="sponsorshipId"></el-table-column>
+<!--                <el-table-column label="编号" prop="sponsorshipId"></el-table-column>-->
                 <el-table-column label="赞助方" prop="sponsor"></el-table-column>
                 <el-table-column label="赞助金额/￥" prop="amount"></el-table-column>
                 <el-table-column label="申请时间" prop="applyDate"></el-table-column>
                 <el-table-column label="审核状态" prop="statusName"></el-table-column>
                 <el-table-column label="显示详情">
                     <template slot-scope="scope">
-                        <el-button type="success" @click="showDialog(scope.row.sponsorshipId)">查看</el-button>
+                        <el-button type="primary" @click="showDialog(scope.row.sponsorshipId)">查看详情</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -133,20 +133,21 @@ export default {
             //当前的页码
             pageNumber: 1,
             //每页显示的条数
-            pageSize: 2,
-
+            pageSize: 5,
+            SponsorshipList: [],
             //查询到的当页公告
-            SponsorshipList: [
-                {
-                    sponsorshipId: 0,
-                    sponsor:"",
-                    amount:0,
-                    requirement: "",
-                    applyDate: "",
-                    statusName:"",
-                    status: 0,
-                }
-            ],
+            // SponsorshipList: [
+            //     {
+            //         sponsorshipId: 0,
+            //         sponsor:"",
+            //         amount:0,
+            //         requirement: "",
+            //         applyDate: "",
+            //         status: 0,
+            //     }
+            // ],
+            // statusName:"",
+
             //总条数,用于分页的显示
             totalCount: 0,
             //添加,修改,展示赞助对话框的显示与隐藏
@@ -187,16 +188,9 @@ export default {
             this.SponsorshipList = result.data.data;
             for (let i = 0; i < this.SponsorshipList.length; i++)
             {
-                let sponsorItem = {
-                    sponsorshipId: result.data.data[i].sponsorshipId,
-                    sponsor: result.data.data[i].sponsor,
-                    amount: result.data.data[i].amount,
-                    requirement: result.data.data[i].requirement,
-                    applyDate: result.data.data[i].applyDate.slice(0, result.data.data[i].applyDate.indexOf('T')),
-                    statusName: this.statusToStr(result.data.data[i].status),
-                    status: result.data.data[i].status
-                };
-                this.SponsorshipList.push(sponsorItem);
+                this.SponsorshipList[i].applyDate=this.SponsorshipList[i].applyDate.substring(0,10);
+                this.SponsorshipList[i].statusName=this.statusToStr(this.SponsorshipList[i].status)
+                // console.log(this.SponsorshipList[i].statusName)
             }
             this.totalCount = parseInt(result.data.totalCount);
         },
@@ -228,7 +222,8 @@ export default {
             this.addForm.sponsor = "";
             this.addForm.amount = "";
             this.addForm.requirement = "";
-            this.addForm.time = '';
+            this.addForm.applyDate = '';
+            this.addForm.statusName = "";
         },
 
         //点击确定按钮后,添加申请赞助
@@ -245,7 +240,8 @@ export default {
                             sponsor: this.addForm.sponsor,
                             requirement: this.addForm.requirement,
                             amount:this.addForm.amount,
-                            time: this.addForm.time,
+                            applyDate: this.addForm.applyDate,
+                            statusName: this.addForm.statusName,
                         });
 
                     //隐藏添加赞助申请对话框
@@ -266,7 +262,8 @@ export default {
         {
             let result = await this.$http.post(this.$api.PrincipalGetOneSponsorship + "/" + SponsorshipId);
             this.addForm = result.data;
-            // this.addForm.time = this.addForm.time.substring(0, 10);
+            this.addForm.applyDate = this.addForm.applyDate.substring(0, 10);
+            this.addForm.statusName=this.statusToStr(this.addForm.status)
             this.showDialogVisible = true;
         },
         //显示赞助详情页面按确定后的触发事件
@@ -277,14 +274,15 @@ export default {
         //输出status的文字描述
         statusToStr(status)
         {
-            if(status==0){
-                return "未审核"
-            }
-            else if(status==1) {
-                return "未通过"
-            }
-            else {
-                return "已通过"
+            switch(status) {
+                case 0:
+                    return '待审核';
+                case 1:
+                    return '已通过';
+                case 2:
+                    return '未通过';
+                default:
+                    return '未定义';
             }
         },
     }

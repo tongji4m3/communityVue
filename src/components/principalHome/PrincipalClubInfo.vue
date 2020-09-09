@@ -112,7 +112,7 @@ export default {
         },
         async deleteClub()
         {
-
+            await this.$http.post(this.$api.PrincipalDissolveClub);
         },
     }
 }

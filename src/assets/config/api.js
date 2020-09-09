@@ -42,7 +42,7 @@ module.exports = {
     ChangePasswordUrl: APIRootUrl + 'user/changePassword',//修改用户密码
 
 
-    GetAnnouncementsUrl: APIRootUrl + 'user/getAnnouncements',//获得系统公告
+    GetAnnouncementsUrl: APIRootUrl + 'user/getSysAnnouncements',//获得系统公告
 
     GetOneAnnouncementUrl: APIRootUrl + 'user/getOneAnnouncement',//获得系统公告
 
@@ -163,6 +163,8 @@ module.exports = {
     PrincipalGetClubInfo:APIRootUrl+'principal/getClubInfo',
 
     PrincipalEditClubInfo:APIRootUrl+'principal/editClubInfo',
+
+    PrincipalDissolveClub:APIRootUrl+'principal/dissolveClub',
 
 
 
