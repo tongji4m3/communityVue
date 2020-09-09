@@ -48,10 +48,22 @@
                     </template>
                 </el-table-column>
         </el-table>
-        <el-button type="success" 
-            @click="showEmptyReplyDialog()">
-            新增
-        </el-button>
+        <!-- 卡片 -->
+        <el-card class="box-card">
+            <el-row :gutter="10">
+                <el-col :span="3">
+                    <el-button type="success" 
+                        @click="showEmptyReplyDialog()">
+                        新增
+                    </el-button>
+                </el-col>
+                <el-col :span="3">
+                    <import-excel @getResult="getExcelData" />
+                </el-col>
+                <el-col :span="2">
+                </el-col>
+            </el-row>
+        </el-card>
         <!-- 分页区域 -->
         <el-pagination
                 @size-change="handleSizeChange"
@@ -105,11 +117,36 @@
                 </el-button>
             </span>
         </el-dialog>
+        <!-- 批量操作出错对话框 -->
+        <el-dialog title="批量操作出错" :visible.sync="errorDialogVisible"
+                   width="50%">
+            <!-- 展示内容主体区域 -->
+            <el-form :model="this.errorForm" label-width="150px">
+                <el-form-item label="当前操作:">
+                    <el-input v-model="errorForm.op" readonly></el-input>
+                </el-form-item>
+                <el-form-item label="错误行号:">
+                    <el-input v-model="errorForm.row" readonly></el-input>
+                </el-form-item>
+                <el-form-item label="详情:">
+                    <el-input v-model="errorForm.notice" readonly></el-input>
+                </el-form-item>
+            </el-form>
+            <!-- 底部区域 -->
+            <span slot="footer" class="dialog-footer">
+                <!-- 确认按钮 -->
+                <el-button type="danger" @click="closeErrorDialog()">确 认</el-button>
+            </span>
+        </el-dialog>
     </div>
 </template>
 
 <script>
+import importExcel from "./importExcel.vue"
 export default {
+    components:{
+        importExcel
+    },
     data()
     {
         return {
@@ -135,6 +172,8 @@ export default {
             totalCount: 0,
             //批复对话框显示状态
             replyDialogVisible: false,
+            //批量操作出错对话框显示状态
+            errorDialogVisible: false,
             //分类按钮状态
             buttonUsable: [true, true, true, true],
             //活动审核表单数据
@@ -147,6 +186,12 @@ export default {
                 status_name: "",
                 isNew: false
             },
+            ws: {},
+            errorForm:{
+                op: "",
+                row: 0,
+                notice: "",
+            }
         }
     },
     //创建时显示全部赞助列表
@@ -241,11 +286,14 @@ export default {
         {
             this.replyDialogVisible = false;
         },
+        closeErrorDialog(){
+            this.errorDialogVisible = false;
+        },
         //提交更新并关闭对话框
         async submit()
         {
             this.closeReplyDialog();
-            if (this.replyForm.isNew){ return insertStudentMeta(); }
+            if (this.replyForm.isNew){ return this.insertStudentMeta(); }
             let result = await this.$http.post(this.$api.AdminUpdateStudentMetaUrl, 
                 {
                     number: this.replyForm.number,
@@ -254,7 +302,7 @@ export default {
                     grade: this.replyForm.grade,
                     status: this.replyForm.status
                 });
-            return result.data;
+            return result.data.isSuccess;
         },
         //新增学生信息
         async insertStudentMeta(){
@@ -266,7 +314,7 @@ export default {
                     grade: this.replyForm.grade,
                     status: this.replyForm.status
                 })
-            return result.data;
+            return result.data.isSuccess;
         },
         //标记为已离校
         async updateGraduate(){
@@ -276,7 +324,7 @@ export default {
                 {
                     number: this.replyForm.number
                 })
-            return result.data;
+            return result.data.isSuccess;
         },
         //删除学生信息
         async deleteStudentMeta(){
@@ -284,7 +332,35 @@ export default {
                 {
                     number: this.replyForm.number
                 })
-            return result.data;
+            return result.data.isSuccess;
+        },
+        async getExcelData(data){
+            // console.log(data);
+            this.ws = data;
+            console.log(this.ws);
+            var irow;
+            for(irow = 0; irow < this.ws.length; irow++){
+                let questObject = {
+                    number: this.ws[irow].学号,
+                    name: this.ws[irow].姓名,
+                    major: this.ws[irow].专业,
+                    grade: this.ws[irow].年级,
+                    status: true
+                }
+                let result = await this.$http.post(
+                    this.$api.AdminInsertStudentMetaUrl,
+                    questObject
+                    )
+                console.log(result);
+                if(result.data.isSuccess == false){
+                    this.errorForm.op = "批量新增";
+                    this.errorForm.row = irow;
+                    this.errorForm.notice = "已存在同学号学生，请刷新页面并修改错误学生信息";
+                    this.errorDialogVisible = true;
+                    break;
+                }
+
+            }
         }
     }
 }

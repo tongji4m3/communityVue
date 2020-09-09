@@ -39,7 +39,7 @@
                 <el-table-column label="活动地点" prop="place"></el-table-column>
                 <el-table-column label="查看详情">
                     <template slot-scope="scope">
-                        <el-button type="primary" @click="showActivitySummary(scope.row.activityId,scope.row.name,scope.row.place,scope.row.description,scope.row.eventTime,scope.row.clubName,'nb')">查看</el-button>
+                        <el-button type="primary" @click="showActivitySummary(scope.row.activityId,scope.row.name,scope.row.place,scope.row.description,scope.row.eventTime,scope.row.clubName,scope.row.adminName)">查看</el-button>
                     </template>
                 </el-table-column>
                 <el-table-column label="参加活动">
@@ -110,7 +110,7 @@
 <!--                    <el-input v-model="addForm1.id" disabled></el-input>-->
 <!--                </el-form-item>-->
                 <el-form-item label="参加理由:" prop="reason">
-                    <el-input type="textarea" v-model="addForm1.reason"></el-input>
+                    <el-input type="textarea" v-model="addForm1.reason" placeholder="请务必写明学号、专业和姓名,方便我们审核！"></el-input>
                 </el-form-item>
             </el-form>
             <!--            底部区域-->
