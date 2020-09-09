@@ -69,11 +69,29 @@
         data(){
             return{
                 // username: window.sessionStorage.getItem('name')
+                informationList: [],
                 username: window.sessionStorage.getItem('name')
             }
         },
+        created()
+        {
+            //this.getCorporationsList();
+            this.getCorporationList();
+        },
         methods: {
             //退出按钮
+            async getCorporationList()
+            {
+                let result = await this.$http.post(this.$api.StudentGetInformation,
+                    {
+                    });
+                this.informationList = result.data;
+                console.log(this.informationList);
+                this.totalCount = parseInt(result.data.totalCount);
+                console.log(this.totalCount);
+                this.username=this.informationList[0].name;
+            },
+
             logout()
             {
                 window.sessionStorage.clear();

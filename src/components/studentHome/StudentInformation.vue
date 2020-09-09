@@ -9,28 +9,58 @@
         <el-divider></el-divider>
         <!--            搜索与添加-->
 
-        <el-table :data="informationList">
-            <el-table-column type="index"></el-table-column>
-            <el-table-column label="姓名" prop="name"></el-table-column>
-            <el-table-column label="学号" prop="number"></el-table-column>
-            <el-table-column label="年级" prop="grade"></el-table-column>
-            <el-table-column label="专业" prop="major"></el-table-column>
-            <el-table-column label="手机号" prop="phone"></el-table-column>
-            <el-table-column label="邮箱" prop="mail"></el-table-column>
-            <el-table-column label="签名" prop="signature"></el-table-column>
-            <el-table-column label="生日" prop="birthday"></el-table-column>
+<!--        <el-table :data="informationList">-->
+<!--            <el-table-column type="index"></el-table-column>-->
+<!--            <el-table-column label="姓名" prop="name"></el-table-column>-->
+<!--            <el-table-column label="学号" prop="number"></el-table-column>-->
+<!--            <el-table-column label="年级" prop="grade"></el-table-column>-->
+<!--            <el-table-column label="专业" prop="major"></el-table-column>-->
+<!--            <el-table-column label="手机号" prop="phone"></el-table-column>-->
+<!--            <el-table-column label="邮箱" prop="mail"></el-table-column>-->
+<!--            <el-table-column label="签名" prop="signature"></el-table-column>-->
+<!--            <el-table-column label="生日" prop="birthday"></el-table-column>-->
 
-        </el-table>
+<!--        </el-table>-->
+
+<!--        <el-divider></el-divider>-->
+<!--        <el-row :gutter="20" style="margin-left: 1200px" >-->
+<!--            <el-button type="primary" icon="el-icon-edit" @click="exitCorporation()"></el-button>-->
+<!--        </el-row>-->
+
+
+
+        <el-form :model="informationList[0]" ref="addFormRef" label-width="150px">
+            <el-form-item label="姓名:" prop="name">
+                <el-input v-model="informationList[0].name" disabled></el-input>
+            </el-form-item>
+            <el-form-item label="学号:" prop="number">
+                <el-input v-model="informationList[0].number" disabled></el-input>
+            </el-form-item>
+            <el-form-item label="年级:" prop="grade">
+                <el-input v-model="informationList[0].grade" disabled></el-input>
+            </el-form-item>
+            <el-form-item label="专业" prop="major">
+                <el-input v-model="informationList[0].major" disabled></el-input>
+            </el-form-item>
+            <el-form-item label="手机号:" prop="phone">
+                <el-input v-model="informationList[0].phone" disabled></el-input>
+            </el-form-item>
+            <el-form-item label="签名:" prop="signature">
+                <el-input v-model="informationList[0].signature" disabled></el-input>
+            </el-form-item>
+            <el-form-item label="邮箱:" prop="mail">
+                <el-input v-model="informationList[0].mail" disabled></el-input>
+            </el-form-item>
+            <el-form-item label="生日:" prop="birthday">
+                <el-input v-model="informationList[0].birthday" disabled></el-input>
+            </el-form-item>
+        </el-form>
+
 
         <el-divider></el-divider>
         <el-row :gutter="20" style="margin-left: 1200px" >
             <el-button type="primary" icon="el-icon-edit" @click="exitCorporation()"></el-button>
         </el-row>
-
-
-
-
-
 
     <!--        修改信息对话框-->
     <el-dialog title="修改信息" :visible.sync="addDialogVisible"
@@ -186,6 +216,7 @@
                     {
                     });
                 this.informationList = result.data;
+
                 console.log(this.informationList);
                 this.totalCount = parseInt(result.data.totalCount);
                 console.log(this.totalCount);

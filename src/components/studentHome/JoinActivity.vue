@@ -39,7 +39,7 @@
                 <el-table-column label="活动地点" prop="place"></el-table-column>
                 <el-table-column label="查看详情">
                     <template slot-scope="scope">
-                        <el-button type="primary" @click="showActivitySummary(scope.row.activityId,scope.row.name,scope.row.place,scope.row.description,scope.row.eventTime,scope.row.clubName,'nb')">查看</el-button>
+                        <el-button type="primary" @click="showActivitySummary(scope.row.activityId,scope.row.name,scope.row.place,scope.row.description,scope.row.eventTime,scope.row.clubName,scope.row.adminName)">查看</el-button>
                     </template>
                 </el-table-column>
                 <el-table-column label="参加活动">

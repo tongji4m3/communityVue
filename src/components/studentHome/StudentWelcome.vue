@@ -9,7 +9,7 @@
         </el-card>
 
         <!--        日历按钮-->
-        <el-button type="success" @click="openCalendar">查看日历</el-button>
+<!--        <el-button type="success" @click="openCalendar">查看日历</el-button>-->
         <!--        日历框-->
         <el-dialog :visible.sync="showCalendar"
                    width="50%">
@@ -26,8 +26,9 @@
         <el-card id="announce">
 
             <div id="announce_head">
+
                 <img src="../../assets/img/icon_announcement.png" alt="" style="vertical-align: middle">
-                <span> <h3>   系统公告</h3></span>
+                <span> <h3> 系统公告</h3></span>
             </div>
             <el-divider></el-divider>
             <!--            搜索与添加-->
@@ -113,7 +114,7 @@
                     time: "",
                     status: false,
                 },
-
+                informationList: [],
                 username: window.sessionStorage.getItem('name')
             }
         },
@@ -121,8 +122,22 @@
         created()
         {
             this.getAnnouncementList();
+            this.getCorporationList();
         },
+
         methods: {
+            async getCorporationList()
+            {
+                let result = await this.$http.post(this.$api.StudentGetInformation,
+                    {
+                    });
+                this.informationList = result.data;
+                console.log(this.informationList);
+                this.totalCount = parseInt(result.data.totalCount);
+                console.log(this.totalCount);
+                this.username=this.informationList[0].name;
+            },
+
             async getAnnouncementList()
             {
                 let result = await this.$http.post(this.$api.GetAnnouncementsUrl,
