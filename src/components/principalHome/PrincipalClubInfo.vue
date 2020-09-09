@@ -12,7 +12,8 @@
             <span> {{addForm.name}}的社团负责人您好！</span>
             <br>
             <br>
-            <span> {{addForm.description}}</span>
+            <div v-html="addForm.description">{{addForm.description}}</div>
+<!--            <span> {{addForm.description}}</span>-->
 
             <div align="right">
                 <el-popconfirm title="确定解散社团吗？" cancelButtonType="danger" icon="el-icon-magic-stick">
@@ -30,14 +31,18 @@
                 <el-form-item label="社团名称:">
                     <el-input v-model="addForm.name" placeholder="请输入社团名称..."></el-input>
                 </el-form-item>
-                <el-form-item label="社团介绍:" prop="discription">
-                    <el-input
-                        type="textarea"
-                        :rows="14"
-                        placeholder="请输入社团介绍..."
-                        v-model="addForm.description">
-                    </el-input>
-                </el-form-item>
+
+                <quill-editor v-model="addForm.description" ref="myQuillEditor" style="height: 500px;" :options="editorOption">
+                </quill-editor>
+
+<!--                <el-form-item label="社团介绍:" prop="discription">-->
+<!--                    <el-input-->
+<!--                        type="textarea"-->
+<!--                        :rows="14"-->
+<!--                        placeholder="请输入社团介绍..."-->
+<!--                        v-model="addForm.description">-->
+<!--                    </el-input>-->
+<!--                </el-form-item>-->
             </el-form>
 
             <span slot="footer" class="dialog-footer">
@@ -49,7 +54,17 @@
 </template>
 
 <script>
+import {
+    quillEditor
+} from 'vue-quill-editor'
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
 export default {
+    name: 'FuncFormsEdit',
+    components: {
+        quillEditor
+    },
     data()
     {
 
@@ -62,7 +77,10 @@ export default {
                 status: false,
             },
             //添加赞助申请的校验规则
-            addFormRules: {}
+            addFormRules: {},
+
+            content: null,
+            editorOption: {}
         }
     },
     //一开始就显示赞助列表
@@ -112,7 +130,7 @@ export default {
         },
         async deleteClub()
         {
-
+            await this.$http.post(this.$api.PrincipalDissolveClub);
         },
     }
 }

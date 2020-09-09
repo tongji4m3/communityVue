@@ -224,6 +224,24 @@
                     status: true
                 });
                 this.corporationsList = result.data.data;
+                if(this.corporationsList[0].type===0){
+                    this.corporationsList[0].type="学术科技类"
+                }
+                else if(this.corporationsList[0].type===1){
+                    this.corporationsList[0].type="传统文化与文学类"
+                }
+                else if(this.corporationsList[0].type===2){
+                    this.corporationsList[0].type="公益实践类"
+                }
+                else if(this.corporationsList[0].type===3){
+                    this.corporationsList[0].type="文化艺术类"
+                }
+                else if(this.corporationsList[0].type===4){
+                    this.corporationsList[0].type="体育竞技类"
+                }
+                else{
+                    this.corporationsList[0].type="创新创业类"
+                }
                 console.log(this.corporationsList);
                 this.totalCount = parseInt(result.data.totalCount);
                 console.log(this.totalCount);
@@ -305,7 +323,7 @@
                         //隐藏添加活动对话框
                         this.addDialogVisible = false;
                         console.log(result);
-                        this.$message.info("加入社团成功!");
+                        this.$message.info("申请加入社团成功!");
                     }
                 );
 
