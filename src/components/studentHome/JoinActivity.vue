@@ -110,7 +110,7 @@
 <!--                    <el-input v-model="addForm1.id" disabled></el-input>-->
 <!--                </el-form-item>-->
                 <el-form-item label="参加理由:" prop="reason">
-                    <el-input type="textarea" v-model="addForm1.reason"></el-input>
+                    <el-input type="textarea" v-model="addForm1.reason" placeholder="请务必写明学号、专业和姓名,方便我们审核！"></el-input>
                 </el-form-item>
             </el-form>
             <!--            底部区域-->

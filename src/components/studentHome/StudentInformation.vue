@@ -28,22 +28,38 @@
         </el-row>
 
 
+
+
+
+
     <!--        修改信息对话框-->
     <el-dialog title="修改信息" :visible.sync="addDialogVisible"
                width="50%">
         <!--            内容主体区域 放置一个表单-->
-        <el-form :model="addForm"  ref="addFormRef" label-width="150px">
-            <el-form-item label="手机号:" prop="studentID">
-                <el-input v-model="addForm.phone"></el-input>
+        <el-form :model="addForm" ref="addFormRef" label-width="150px">
+            <el-form-item label="手机号:" prop="phone">
+                <el-input v-model="addForm.phone" auto-complete="off"></el-input>
             </el-form-item>
-            <el-form-item label="签名:" prop="corporationId">
+            <el-form-item label="签名:" prop="signature">
                 <el-input v-model="addForm.signature"></el-input>
             </el-form-item>
-            <el-form-item label="邮箱:" prop="corporationName">
+            <el-form-item label="邮箱:" prop="mail">
                 <el-input v-model="addForm.mail"></el-input>
             </el-form-item>
-            <el-form-item label="生日:" prop="reason">
-                <el-input v-model="addForm.birthday"></el-input>
+            <el-form-item label="生日:" prop="birthday">
+                <!--        日历-->
+                <div class="block">
+                    <span class="demonstration"></span>
+<!--                    <div class="demonstration">值：{{ addForm.birthday}}</div>-->
+                    <el-date-picker
+                            v-model="addForm.birthday"
+                            type="date"
+                            placeholder="选择日期"
+                            format="yyyy 年 MM 月 dd 日"
+                            value-format="yyyy-MM-dd">
+                    </el-date-picker>
+                </div>
+<!--                <el-input v-model="addForm.birthday"></el-input>-->
             </el-form-item>
         </el-form>
         <!--            底部区域-->
@@ -86,6 +102,36 @@
 
             };
             return {
+
+                pickerOptions: {
+                    disabledDate(time) {
+                        return time.getTime() > Date.now();
+                    },
+                    shortcuts: [{
+                        text: '今天',
+                        onClick(picker) {
+                            picker.$emit('pick', new Date());
+                        }
+                    }, {
+                        text: '昨天',
+                        onClick(picker) {
+                            const date = new Date();
+                            date.setTime(date.getTime() - 3600 * 1000 * 24);
+                            picker.$emit('pick', date);
+                        }
+                    }, {
+                        text: '一周前',
+                        onClick(picker) {
+                            const date = new Date();
+                            date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
+                            picker.$emit('pick', date);
+                        }
+                    }]
+                },
+                value1: '',
+                value2: '',
+
+
                 //    获取活动列表参数对象
 
                 query: '',
@@ -111,17 +157,17 @@
                 },
                 //添加活动的校验规则
                 addFormRules: {
-                    studentID: [
+                    phone: [
                         {required: true, message: '请输入修改后的手机号', trigger: 'blur'},
                     ],
-                    corporationName: [
-                        {required: true, message: '请输入社团名称', trigger: 'blur'}
+                    signature: [
+                        {required: true, message: '请输入修改后的签名', trigger: 'blur'}
                     ],
-                    corporationId: [
-                        {required: true, message: '请输入社团编号', trigger: 'blur'}
+                    mail: [
+                        {required: true, message: '请输入修改后的邮箱', trigger: 'blur'}
                     ],
-                    reason: [
-                        {required: true, message: '请输入退社理由', trigger: 'blur'},
+                    birthday: [
+                        {required: true, message: '请输入修改后的生日', trigger: 'blur'},
                     ],
                 }
             }
@@ -219,7 +265,8 @@
                 this.addForm.signature=this.informationList[0].signature;
                 this.addForm.mail=this.informationList[0].mail;
                 // this.addForm.birthday=this.informationList[0].birthday;
-                this.addForm.birthday="";
+                this.addForm.birthday=this.value1
+                console.log(this.addForm.birthday)
             },
 
             closeDialogVisible()
@@ -246,13 +293,23 @@
                         var signature=this.addForm.signature;
                         var mail=this.addForm.mail;
                         var birthday=this.addForm.birthday;
+                        console.log(birthday);
+                        let msg = "";
+                        let status = 200;
                         let result = await this.$http.post(this.$api.StudentChangeInformation,
                             {
                                 phone,
                                 signature,
                                 mail,
                                 birthday,
-                            });
+                            }).catch(function (error)
+                        {
+                            if (error.response)
+                            {
+                                status = error.response.status;
+                                msg = error.response.data.msg;
+                            }
+                        });
 
                         //隐藏添加活动对话框
                         this.addDialogVisible = false;

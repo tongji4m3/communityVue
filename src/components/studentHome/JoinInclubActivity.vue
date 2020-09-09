@@ -99,11 +99,11 @@
                    width="50%">
             <!--            内容主体区域 放置一个表单-->
             <el-form :model="addForm1"  ref="addFormRef" label-width="150px">
-                <el-form-item label="活动编号:" prop="id">
-                    <el-input v-model="addForm1.id"></el-input>
-                </el-form-item>
+<!--                <el-form-item label="活动编号:" prop="id">-->
+<!--                    <el-input v-model="addForm1.id"></el-input>-->
+<!--                </el-form-item>-->
                 <el-form-item label="参加理由:" prop="reason">
-                    <el-input type="textarea" v-model="addForm.reason"></el-input>
+                    <el-input type="textarea" v-model="addForm.reason" placeholder="请务必写明学号和姓名,方便我们审核！"></el-input>
                 </el-form-item>
             </el-form>
             <!--            底部区域-->
