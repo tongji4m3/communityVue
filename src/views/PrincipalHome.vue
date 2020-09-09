@@ -77,8 +77,8 @@
         data(){
             return{
                 username: window.sessionStorage.getItem('name'),
-                imgUrl: 'https://tongji4m3.oss-cn-beijing.aliyuncs.com/OIP.jpg'
-                // imgUrl: window.sessionStorage.getItem('imgUrl'),
+                // imgUrl: 'https://tongji4m3.oss-cn-beijing.aliyuncs.com/f_f_object_156_s512_f_object_156_0.png'
+                imgUrl: window.sessionStorage.getItem('imgUrl'),
 
             }
         },

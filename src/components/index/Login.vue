@@ -76,9 +76,12 @@
                     let msg = "";
                     let status = 200;
 
-                    this.loginForm.password = this.$md5(this.loginForm.password);
-                    console.log(this.loginForm.password);
-                    let result = await this.$http.post(this.$api.LoginUrl, this.loginForm)
+                    let result = await this.$http.post(this.$api.LoginUrl,
+                        {
+                            username: this.loginForm.username,
+                            password: this.$md5(this.loginForm.password),
+                            imgUrl:this.loginForm.imgUrl
+                        })
                         .catch(function (error)
                         {
                             if (error.response)

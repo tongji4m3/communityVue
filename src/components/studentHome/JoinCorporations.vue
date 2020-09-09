@@ -176,6 +176,24 @@
                     });
                 this.corporationsList = result.data.data;
                 this.corporationsList[0].establishmentDate=this.corporationsList[0].establishmentDate.substring(0,10);
+                if(this.corporationsList[0].type===0){
+                      this.corporationsList[0].type="学术科技类"
+                }
+                else if(this.corporationsList[0].type===1){
+                    this.corporationsList[0].type="传统文化与文学类"
+                }
+                else if(this.corporationsList[0].type===2){
+                    this.corporationsList[0].type="公益实践类"
+                }
+                else if(this.corporationsList[0].type===3){
+                    this.corporationsList[0].type="文化艺术类"
+                }
+                else if(this.corporationsList[0].type===4){
+                    this.corporationsList[0].type="体育竞技类"
+                }
+                else{
+                    this.corporationsList[0].type="创新创业类"
+                }
 
                 // this.corporationsList.establishmentDate=this.corporationsList.establishmentDate.substring(0,10);
                 console.log(this.corporationsList);

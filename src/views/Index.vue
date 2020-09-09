@@ -13,6 +13,21 @@
                 <el-menu-item index="/login">登录</el-menu-item>
                 <el-menu-item index="/studentRegister">学生注册</el-menu-item>
             </el-menu>
+            <div class="out-button">
+                <el-dropdown>
+                    <span class="el-dropdown-link" style="margin-right: 15px">
+
+                         <el-avatar :src="imgUrl"></el-avatar>
+                        <i class="el-icon-arrow-down el-icon--right"></i>
+                    </span>
+                    <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item class="navigation-text" id="username-div">{{username}}</el-dropdown-item>
+                        <el-dropdown-item class="navigation-text" @click.native ="changePassword" >登录</el-dropdown-item>
+                        <el-dropdown-item class="navigation-text" @click.native ="systemInformation">注册</el-dropdown-item>
+                        <el-dropdown-item class="navigation-text" @click.native ="systemNotice">个人主页</el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
+            </div>
         </el-header>
         <!--        主体区域-->
         <el-main>

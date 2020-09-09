@@ -74,10 +74,11 @@
                     let msg = "";
                     let status = 200;
 
-                    this.changeForm.prePassword = this.$md5(this.changeForm.prePassword);
-                    this.changeForm.newPassword = this.$md5(this.changeForm.newPassword);
-
-                    let result = await this.$http.post(this.$api.ChangePasswordUrl, this.changeForm)
+                    let result = await this.$http.post(this.$api.ChangePasswordUrl,
+                        {
+                            prePassword:this.$md5(this.changeForm.prePassword),
+                            newPassword:this.$md5(this.changeForm.newPassword)
+                        })
                         .catch(function (error)
                         {
                             if (error.response)
@@ -121,7 +122,8 @@
     .login-container {
         border-radius: 15px;
         background-clip: padding-box;
-        margin: 90px auto;
+        margin-left: 400px;
+        margin-top: 150px;
         width: 350px;
         padding: 35px 35px 15px 35px;
         background: #fff;

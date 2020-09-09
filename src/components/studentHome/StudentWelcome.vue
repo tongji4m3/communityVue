@@ -18,8 +18,23 @@
         </el-dialog>
 
         <el-carousel :interval="4000" type="card" height="200px">
-            <el-carousel-item v-for="item in 6" :key="item">
-                <h3 class="medium">{{ item }}</h3>
+            <el-carousel-item >
+                <img  src="../../assets/img/tj_cp1.jpg" alt="" style="height: 300px;width: 100%;margin:0;">
+            </el-carousel-item>
+            <el-carousel-item >
+                <img src="../../assets/img/tj_cp2.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
+            </el-carousel-item>
+            <el-carousel-item >
+                <img src="../../assets/img/tj_cp3.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
+            </el-carousel-item>
+            <el-carousel-item >
+                <img src="../../assets/img/tj_cp4.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
+            </el-carousel-item>
+            <el-carousel-item >
+                <img src="../../assets/img/sanhaowu3.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
+            </el-carousel-item>
+            <el-carousel-item >
+                <img src="../../assets/img/tj_pic1.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
             </el-carousel-item>
         </el-carousel>
 
@@ -28,7 +43,7 @@
             <div id="announce_head">
 
                 <img src="../../assets/img/icon_announcement.png" alt="" style="vertical-align: middle">
-                <span> <h3> 系统公告</h3></span>
+                <span> <h3> 社团公告</h3></span>
             </div>
             <el-divider></el-divider>
             <!--            搜索与添加-->
