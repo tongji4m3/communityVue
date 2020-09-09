@@ -41,7 +41,7 @@
     export default {
         data(){
             return{
-                username: window.sessionStorage.getItem('username'),
+                username: window.sessionStorage.getItem('name'),
                 imgUrl: window.sessionStorage.getItem('imgUrl'),
             }
         },

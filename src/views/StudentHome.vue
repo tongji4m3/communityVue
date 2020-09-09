@@ -5,7 +5,7 @@
         <!--        头部区域-->
         <el-header>
             <div>
-                <img src="../assets/img/sys_logo.png" @click.native ="this.$router.push('/index');"  height="60"/>
+                <img src="../assets/img/sys_logo.png" @click ="goIndex"  height="60"/>
             </div>
             <div class="out-button">
                 <el-dropdown>
@@ -108,6 +108,10 @@
             systemNotice()
             {
                 this.$router.push("/studentSystemNotice")
+            },
+            goIndex()
+            {
+                this.$router.push("/index")
             }
         }
     };

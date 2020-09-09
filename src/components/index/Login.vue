@@ -97,6 +97,7 @@
                         let newToken = "bearer " + result.data.token;
                         window.sessionStorage.setItem('token', newToken);
                         window.sessionStorage.setItem('imgUrl', result.data.imgUrl);
+                        window.sessionStorage.setItem('userType', userType);
 
                         if (userType === 0)
                         {
