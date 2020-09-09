@@ -1,9 +1,9 @@
 <template>
 
-	<div>
+	<div id="zoumadeng">
         <el-carousel height="580px" width="100%">
 			<el-carousel-item >
-			  <img  src="../../assets/img/tj_pic5.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
+			  <img  src="../../assets/img/tj_pic5.jpg" alt="" style="height: 300px;width: 100%;margin:0;">
 			</el-carousel-item>
 			<el-carousel-item >
 			  <img src="../../assets/img/tj_pic6.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
@@ -184,6 +184,28 @@
 </template>
 
 <script>
+	var width = window.innerWidth,
+	height = window.innerHeight;
+	 
+	// if (typeof width != 'number') {  //如果类型不为number,表示该浏览器不支持innerWidth属性
+	 
+	//  if (document.compatMode == 'CSS1Compat') {   //CSS1Compat：判断是否为标准兼容模式。
+	 
+	//   width = document.documentElement.clientWidth;
+	 
+	//   height = document.docuementElement.clientHeight;
+	 
+	//  } else { //不是标准模式,则有可能是IE6或及其以下版本(早期的浏览器对css进行解析时，并未遵守W3C标准)
+	 
+	//   width = document.body.clientWidth;   //网页可见区域宽
+	 
+	//   height = document.body.clientHeight;   //网页可见区域高
+	// }
+	
+	 // var ZMD = document.querySelector("#zoumadeng");
+	 // ZMD.style.height="height px";
+	
+	
 </script>
 <style >
 
