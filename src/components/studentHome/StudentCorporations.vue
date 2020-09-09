@@ -305,7 +305,7 @@
                         //隐藏添加活动对话框
                         this.addDialogVisible = false;
                         console.log(result);
-                        this.$message.info("加入社团成功!");
+                        this.$message.info("申请加入社团成功!");
                     }
                 );
 

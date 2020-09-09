@@ -6,7 +6,17 @@
             <el-breadcrumb-item :to="{ path: '/StudentWelcome' }">学生首页</el-breadcrumb-item>
             <el-breadcrumb-item>个人信息管理</el-breadcrumb-item>
         </el-breadcrumb>
+
+        <el-alert
+                title="下方按钮可修改信息"
+                type="info"
+                center
+                show-icon>
+        </el-alert>
         <el-divider></el-divider>
+
+
+
         <!--            搜索与添加-->
 
 <!--        <el-table :data="informationList">-->
@@ -31,28 +41,28 @@
 
         <el-form :model="informationList[0]" ref="addFormRef" label-width="150px">
             <el-form-item label="姓名:" prop="name">
-                <el-input v-model="informationList[0].name" disabled></el-input>
+                <el-input v-model="informationList[0].name" disabled size="medium"></el-input>
             </el-form-item>
             <el-form-item label="学号:" prop="number">
-                <el-input v-model="informationList[0].number" disabled></el-input>
+                <el-input v-model="informationList[0].number" disabled size="medium"></el-input>
             </el-form-item>
             <el-form-item label="年级:" prop="grade">
-                <el-input v-model="informationList[0].grade" disabled></el-input>
+                <el-input v-model="informationList[0].grade" disabled size="medium"></el-input>
             </el-form-item>
             <el-form-item label="专业" prop="major">
-                <el-input v-model="informationList[0].major" disabled></el-input>
+                <el-input v-model="informationList[0].major" disabled size="medium"></el-input>
             </el-form-item>
             <el-form-item label="手机号:" prop="phone">
-                <el-input v-model="informationList[0].phone" disabled></el-input>
+                <el-input v-model="informationList[0].phone" disabled size="medium"></el-input>
             </el-form-item>
             <el-form-item label="签名:" prop="signature">
-                <el-input v-model="informationList[0].signature" disabled></el-input>
+                <el-input v-model="informationList[0].signature" disabled size="medium"></el-input>
             </el-form-item>
             <el-form-item label="邮箱:" prop="mail">
-                <el-input v-model="informationList[0].mail" disabled></el-input>
+                <el-input v-model="informationList[0].mail" disabled size="medium"></el-input>
             </el-form-item>
             <el-form-item label="生日:" prop="birthday">
-                <el-input v-model="informationList[0].birthday" disabled></el-input>
+                <el-input v-model="informationList[0].birthday" disabled size="medium"></el-input>
             </el-form-item>
         </el-form>
 
