@@ -224,24 +224,28 @@
                     status: true
                 });
                 this.corporationsList = result.data.data;
-                if(this.corporationsList[0].type===0){
-                    this.corporationsList[0].type="学术科技类"
+                console.log()
+                for(var i=0;i<result.data.totalCount-1;i++){
+                    if(this.corporationsList[i].type===0){
+                        this.corporationsList[i].type="学术科技类";
+                    }
+                    else if(this.corporationsList[i].type===1){
+                        this.corporationsList[i].type="传统文化与文学类";
+                    }
+                    else if(this.corporationsList[i].type===2){
+                        this.corporationsList[i].type="公益实践类";
+                    }
+                    else if(this.corporationsList[i].type===3){
+                        this.corporationsList[i].type="文化艺术类";
+                    }
+                    else if(this.corporationsList[i].type===4){
+                        this.corporationsList[i].type="体育竞技类";
+                    }
+                    else{
+                        this.corporationsList[i].type="创新创业类";
+                    }
                 }
-                else if(this.corporationsList[0].type===1){
-                    this.corporationsList[0].type="传统文化与文学类"
-                }
-                else if(this.corporationsList[0].type===2){
-                    this.corporationsList[0].type="公益实践类"
-                }
-                else if(this.corporationsList[0].type===3){
-                    this.corporationsList[0].type="文化艺术类"
-                }
-                else if(this.corporationsList[0].type===4){
-                    this.corporationsList[0].type="体育竞技类"
-                }
-                else{
-                    this.corporationsList[0].type="创新创业类"
-                }
+
                 console.log(this.corporationsList);
                 this.totalCount = parseInt(result.data.totalCount);
                 console.log(this.totalCount);

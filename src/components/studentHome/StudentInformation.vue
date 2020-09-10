@@ -62,7 +62,7 @@
                 <el-input v-model="informationList[0].mail" disabled size="medium"></el-input>
             </el-form-item>
             <el-form-item label="生日:" prop="birthday">
-                <el-input v-model="informationList[0].birthday" disabled size="medium"></el-input>
+                <el-input v-model="informationList[0].birthday.substring(0,10)" disabled size="medium"></el-input>
             </el-form-item>
         </el-form>
 
