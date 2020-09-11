@@ -19,6 +19,7 @@
                         <el-dropdown-item class="navigation-text" @click.native ="changePassword" >修改密码</el-dropdown-item>
                         <el-dropdown-item class="navigation-text" @click.native ="systemInformation">系统消息</el-dropdown-item>
                         <el-dropdown-item class="navigation-text" @click.native ="systemNotice">系统公告</el-dropdown-item>
+                        <el-dropdown-item class="navigation-text" @click.native ="goIndex">回到首页</el-dropdown-item>
                         <el-dropdown-item class="navigation-text" id="exit-div" divided @click.native ="logout">退出</el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>

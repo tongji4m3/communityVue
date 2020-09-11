@@ -14,19 +14,29 @@
                 <el-menu-item index="/studentRegister">学生注册</el-menu-item>
             </el-menu>
             <div class="out-button" v-if="isLogin">
-                <el-dropdown>
-                    <span class="el-dropdown-link" style="margin-right: 15px">
-                         <el-avatar :src="imgUrl"></el-avatar>
-                        <i class="el-icon-arrow-down el-icon--right"></i>
-                    </span>
-                    <el-dropdown-menu slot="dropdown">
-                        <el-dropdown-item class="navigation-text" id="username-div">{{name}}</el-dropdown-item>
-                        <el-dropdown-item class="navigation-text" @click.native="login()">登录</el-dropdown-item>
-                        <el-dropdown-item class="navigation-text" @click.native="register()">注册
-                        </el-dropdown-item>
-                        <el-dropdown-item class="navigation-text" @click.native="selfHome()">个人主页</el-dropdown-item>
-                    </el-dropdown-menu>
-                </el-dropdown>
+
+
+                <el-menu  router
+                         class="el-menu-demo" mode="horizontal" background-color="rgb(43,43,43)"
+                         text-color="rgb(255,255,255)" active-text-color="#0099FF" default-active="/Welcome">
+                    <el-menu-item @click.native="selfHome()">个人主页</el-menu-item>
+                </el-menu>
+
+
+
+<!--                <el-dropdown>-->
+<!--                    <span class="el-dropdown-link" style="margin-right: 15px">-->
+<!--                         <el-avatar :src="imgUrl"></el-avatar>-->
+<!--                        <i class="el-icon-arrow-down el-icon&#45;&#45;right"></i>-->
+<!--                    </span>-->
+<!--                    <el-dropdown-menu slot="dropdown">-->
+<!--                        <el-dropdown-item class="navigation-text" id="username-div">{{name}}</el-dropdown-item>-->
+<!--                        <el-dropdown-item class="navigation-text" @click.native="login()">登录</el-dropdown-item>-->
+<!--                        <el-dropdown-item class="navigation-text" @click.native="register()">注册-->
+<!--                        </el-dropdown-item>-->
+<!--                        <el-dropdown-item class="navigation-text" @click.native="selfHome()">个人主页</el-dropdown-item>-->
+<!--                    </el-dropdown-menu>-->
+<!--                </el-dropdown>-->
             </div>
         </el-header>
         <!--        主体区域-->
