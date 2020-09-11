@@ -233,7 +233,7 @@
         /*color: #409EFF;*/
     }
     .announce{
-        height: 700px;
+        height: 380px;
     }
     .box-card1 {
         width: 95%;
