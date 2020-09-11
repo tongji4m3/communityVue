@@ -229,7 +229,7 @@ module.exports = {
     //显示已加入活动
     StudentInActivity:APIRootUrl+'Student/InActivity',
 
-    //学生端的系统公告
+    //学生端的社团公告
     StudentInClubAnnouncements:APIRootUrl+'Student/inClubAnnouncements',
 
     //学生端的系统消息

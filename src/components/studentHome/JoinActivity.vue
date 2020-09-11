@@ -72,9 +72,9 @@
                    width="50%">
             <!--            展示内容主体区域 -->
             <el-form :model="addForm" label-width="150px">
-                <el-form-item label="活动编号">
-                    <el-input v-model="addForm.id" disabled></el-input>
-                </el-form-item>
+<!--                <el-form-item label="活动编号">-->
+<!--                    <el-input v-model="addForm.id" disabled></el-input>-->
+<!--                </el-form-item>-->
                 <el-form-item label="活动名称">
                     <el-input v-model="addForm.name" disabled></el-input>
                 </el-form-item>
@@ -90,9 +90,9 @@
                 <el-form-item label="所属社团">
                     <el-input v-model="addForm.clubName" disabled></el-input>
                 </el-form-item>
-                <el-form-item label="负责人">
-                    <el-input v-model="addForm.adminName" disabled></el-input>
-                </el-form-item>
+<!--                <el-form-item label="负责人">-->
+<!--                    <el-input v-model="addForm.adminName" disabled></el-input>-->
+<!--                </el-form-item>-->
             </el-form>
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">

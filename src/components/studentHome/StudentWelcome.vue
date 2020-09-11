@@ -11,35 +11,35 @@
         <!--        日历按钮-->
 <!--        <el-button type="success" @click="openCalendar">查看日历</el-button>-->
         <!--        日历框-->
-        <el-dialog :visible.sync="showCalendar"
-                   width="50%">
-            <el-calendar v-model="value">
-            </el-calendar>
-        </el-dialog>
+<!--        <el-dialog :visible.sync="showCalendar"-->
+<!--                   width="50%">-->
+<!--            <el-calendar v-model="value">-->
+<!--            </el-calendar>-->
+<!--        </el-dialog>-->
 
-        <el-carousel :interval="4000" type="card" height="200px">
+
+        <el-carousel :interval="4000" type="card" height="366px">
             <el-carousel-item >
-                <img  src="../../assets/img/tj_cp1.jpg" alt="" style="height: 300px;width: 100%;margin:0;">
+                <img  src="../../assets/img/tj_cp1.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
             </el-carousel-item>
             <el-carousel-item >
-                <img src="../../assets/img/tj_cp2.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
+                <img src="../../assets/img/tj_cp2.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
             </el-carousel-item>
             <el-carousel-item >
-                <img src="../../assets/img/tj_cp3.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
+                <img src="../../assets/img/tj_pic1.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
             </el-carousel-item>
             <el-carousel-item >
-                <img src="../../assets/img/tj_cp4.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
+                <img src="../../assets/img/tj_cp3.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
             </el-carousel-item>
+<!--            <el-carousel-item >-->
+<!--                <img src="../../assets/img/tj_cp4.jpg" alt="" style="height: 366px;width: 100%;margin:0;">-->
+<!--            </el-carousel-item>-->
             <el-carousel-item >
-                <img src="../../assets/img/sanhaowu3.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
-            </el-carousel-item>
-            <el-carousel-item >
-                <img src="../../assets/img/tj_pic1.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
+                <img src="../../assets/img/tj_cp5.webp" alt="" style="height: 366px;width: 100%;margin:0;">
             </el-carousel-item>
         </el-carousel>
 
-        <el-card id="announce">
-
+        <el-card class="announce" >
             <div id="announce_head">
 
                 <img src="../../assets/img/icon_announcement.png" alt="" style="vertical-align: middle">
@@ -58,11 +58,12 @@
             <!--            系统公告列表 只展示一些系统公告信息,详细文本可在详情查看-->
             <el-table :data="AnnouncementList">
                 <el-table-column type="index"></el-table-column>
+                <el-table-column label="社团" prop="name"></el-table-column>
                 <el-table-column label="标题" prop="title"></el-table-column>
-                <el-table-column label="系统公告时间" prop="time"></el-table-column>
+                <el-table-column label="公告时间" prop="time"></el-table-column>
                 <el-table-column label="显示详情">
                     <template slot-scope="scope">
-                        <el-button type="success" @click="showDialog(scope.row.announcementId)">查看</el-button>
+                        <el-button type="primary" @click="showDialog(scope.row.announcementId)">查看</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -76,22 +77,28 @@
                     layout="total, sizes, prev, pager, next, jumper"
                     :total="totalCount">
             </el-pagination>
-        </el-card >
+        </el-card>
+
+
 
         <!--        展示系统公告对话框-->
-        <el-dialog title="系统公告详情" ref="showFormRef" :visible.sync="showDialogVisible"
+        <el-dialog title="社团公告详情" ref="showFormRef" :visible.sync="showDialogVisible"
                    width="50%">
             <!--            展示内容主体区域 -->
             <el-form :model="addForm" label-width="150px">
-                <el-form-item label="系统公告标题:">
+                <el-form-item label="社团:">
+                    <el-input v-model="addForm.name" disabled></el-input>
+                </el-form-item>
+                <el-form-item label="社团公告标题:">
                     <el-input v-model="addForm.title" disabled></el-input>
                 </el-form-item>
-                <el-form-item label="系统公告内容:">
-                    <el-input v-model="addForm.content" disabled></el-input>
-                </el-form-item>
-                <el-form-item label="系统公告时间:" prop="time">
+                <el-form-item label="社团公告时间:" prop="time">
                     <el-date-picker type="date" v-model="addForm.time" style="width: 100%;" disabled></el-date-picker>
                 </el-form-item>
+                <el-form-item label="社团公告内容:">
+                    <el-input v-model="addForm.content" disabled></el-input>
+                </el-form-item>
+
             </el-form>
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
@@ -102,6 +109,9 @@
 </template>
 
 <script>
+    var width = window.innerWidth,
+        height = window.innerHeight;
+
     export default {
         data()
         {
@@ -127,6 +137,7 @@
                     title:"",
                     content: "",
                     time: "",
+                    name:"",
                     status: false,
                 },
                 informationList: [],
@@ -155,7 +166,7 @@
 
             async getAnnouncementList()
             {
-                let result = await this.$http.post(this.$api.GetAnnouncementsUrl,
+                let result = await this.$http.post(this.$api.StudentInClubAnnouncements,
                     {
                         query: this.query,
                         pageNumber: this.pageNumber,
@@ -167,7 +178,9 @@
                 {
                     this.AnnouncementList[i].time=this.AnnouncementList[i].time.substring(0,10)
                 }
+                console.log(this.AnnouncementList);
                 this.totalCount = parseInt(result.data.totalCount);
+                console.log(this.totalCount);
             },
             //监听pageSize改变的事件
             handleSizeChange(newSize)
@@ -184,8 +197,17 @@
 
             async showDialog(AnnouncementId)
             {
-                let result = await this.$http.post(this.$api.GetOneAnnouncementUrl + "/" + AnnouncementId);
-                this.addForm = result.data;
+                console.log(this.AnnouncementList[0].announcementId);
+                for(var i=0;i<this.totalCount-1;i++){
+                    if(this.AnnouncementList[i].announcementId===AnnouncementId){
+                        this.addForm.name=this.AnnouncementList[i].name;
+                        this.addForm.title = this.AnnouncementList[i].title;
+                        this.addForm.AnnouncementId=AnnouncementId;
+                        this.addForm.time=this.AnnouncementList[i].time;
+                        this.addForm.content=this.AnnouncementList[i].content;
+                        break;
+                    }
+                }
                 this.showDialogVisible = true;
             },
             //显示系统公告详情页面按确定后的触发事件
@@ -210,6 +232,9 @@
         font-size: 16px;
         /*color: #409EFF;*/
     }
+    .announce{
+        height: 380px;
+    }
     .box-card1 {
         width: 95%;
         height:40px;
@@ -226,10 +251,10 @@
 
     #announce{
         width: 95%;
-        height:300px;
+        height:400px;
         padding: 2px;
         margin-left: 10px;
-        margin-top: 30px;
+        margin-top: 0px;
         margin-right: 20px;
     }
 
@@ -238,7 +263,7 @@
     }
 
     #announce_head img{
-        height: 30px;
+        height: 20px;
         margin-right: 10px;
     }
 
@@ -257,5 +282,7 @@
     .el-carousel__item:nth-child(2n+1) {
         background-color: #d3dce6;
     }
+
+
 
 </style>
