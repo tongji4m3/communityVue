@@ -63,7 +63,7 @@
 
         <!--        展示活动对话框-->
         <el-dialog title="社团简介" ref="showFormRef" :visible.sync="showDialogVisible"
-                   width="60%">
+                   width="70%">
             <!--            展示内容主体区域 -->
             <el-form :model="addForm" label-width="150px">
                 <el-form-item label="成立时间">
@@ -305,7 +305,6 @@
                 this.addForm.date=date;
                 this.addForm.date=this.addForm.date.substring(0,10);
                 this.addForm.president=president;
-                console.log(this.addForm.summary);
                 this.showDialogVisible = true;
             },
             //提交申请
