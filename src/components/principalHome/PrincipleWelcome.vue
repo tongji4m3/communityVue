@@ -9,12 +9,18 @@
         </el-card>
 
         <!--        日历按钮-->
-        <el-button type="success" @click="openCalendar">查看日历</el-button>
+        <el-button type="text" @click="openCalendar">查看日历</el-button>
+        <el-button type="text" @click="openSchoolCalendar">查看校历</el-button>
         <!--        日历框-->
         <el-dialog :visible.sync="showCalendar"
                    width="50%">
             <el-calendar v-model="value">
             </el-calendar>
+        </el-dialog>
+
+        <el-dialog :visible.sync="showSchoolCalendar"
+                   width="50%">
+            <img src="../../assets/img/calendar.jpg" alt="" style="width: 100%;margin:0;">
         </el-dialog>
 
         <el-carousel :interval="4000" type="card" height="200px">
@@ -104,6 +110,7 @@ export default {
             showDialogVisible: false,
 
             showCalendar: false,
+            showSchoolCalendar: false,
 
             //添加系统公告表单数据
             addForm: {
@@ -167,6 +174,10 @@ export default {
         async openCalendar()
         {
             this.showCalendar = true;
+        },
+        async openSchoolCalendar()
+        {
+            this.showSchoolCalendar = true;
         },
     }
 }
