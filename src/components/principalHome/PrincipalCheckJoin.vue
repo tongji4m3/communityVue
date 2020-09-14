@@ -23,6 +23,7 @@
             <el-table :data="StudentList">
                 <el-table-column type="index"></el-table-column>
                 <el-table-column label="学生ID" prop="studentId"></el-table-column>
+                <el-table-column label="姓名" prop="studentName"></el-table-column>
                 <el-table-column label="申请入社时间" prop="applyDate"></el-table-column>
                 <el-table-column label="显示详情">
                     <template slot-scope="scope">
@@ -61,6 +62,9 @@
             <el-form :model="checkForm" label-width="130px">
                 <el-form-item label="学生ID:">
                     <el-input v-model="checkForm.studentId" disabled></el-input>
+                </el-form-item>
+                <el-form-item label="姓名:">
+                    <el-input v-model="checkForm.studentName" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="申请入社时间:" prop="time">
                     <el-date-picker type="date" v-model="checkForm.applyDate" style="width: 100%;" disabled></el-date-picker>
@@ -104,6 +108,7 @@ export default {
             StudentList: [
                 {
                     studentId: "",
+                    studentName:"",
                     applyDate:"",
                     applyReason:"",
                     status: false,
