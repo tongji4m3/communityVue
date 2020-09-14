@@ -68,7 +68,7 @@
                     </template>
                 </el-table-column>
             </el-table>
-        </el-card>
+        
 
         <!-- 分页区域 -->
         <el-pagination
@@ -80,6 +80,7 @@
                 layout="total, sizes, prev, pager, next, jumper"
                 :total="totalCount">
         </el-pagination>
+        </el-card>
          <!-- 展示批复对话框 -->
         <el-dialog title="活动详情" :visible.sync="replyDialogVisible"
                    width="50%">

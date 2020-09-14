@@ -30,7 +30,7 @@
                     <el-button type="primary" @click="getStudentList('atSchool', query)">在校生</el-button>
                 </el-col>
             </el-row>
-        </el-card>
+        
         <!-- 活动列表 -->
         <el-table :data="studentList">
                 <el-table-column type="index"></el-table-column>
@@ -48,32 +48,31 @@
                     </template>
                 </el-table-column>
         </el-table>
-        <!-- 卡片 -->
-        <el-card class="box-card">
-            <el-row :gutter="10">
-                <el-col :span="3">
+            <el-row :gutter=20>
+                <el-col :span=15>
+                    <!-- 分页区域 -->
+                    <el-pagination
+                        @size-change="handleSizeChange"
+                        @current-change="handleCurrentChange"
+                        :current-page="pageNumber"
+                        :page-sizes="[1, 2, 5, 10]"
+                        :page-size="pageSize"
+                        layout="total, sizes, prev, pager, next, jumper"
+                        :total="totalCount">
+                    </el-pagination>
+                </el-col>
+                <el-col :span=3>
                     <el-button type="success" 
                         @click="showEmptyReplyDialog()">
                         新增
                     </el-button>
                 </el-col>
-                <el-col :span="3">
+                <el-col :span=2>
                     <import-excel @getResult="getExcelData" />
                 </el-col>
-                <el-col :span="2">
-                </el-col>
             </el-row>
+
         </el-card>
-        <!-- 分页区域 -->
-        <el-pagination
-                @size-change="handleSizeChange"
-                @current-change="handleCurrentChange"
-                :current-page="pageNumber"
-                :page-sizes="[1, 2, 5, 10]"
-                :page-size="pageSize"
-                layout="total, sizes, prev, pager, next, jumper"
-                :total="totalCount">
-        </el-pagination>
         <!-- 详情对话框 -->
         <el-dialog title="学生信息" :visible.sync="replyDialogVisible"
                    width="50%">
@@ -159,14 +158,14 @@ export default {
             pageSize: 5,
             //查询到的当前页活动列表
             studentList: [
-                {
-                    status: true,
-                    number: 0,
-                    name: "",
-                    major: "",
-                    grade: "",
-                    status_name: ""
-                },
+                // {
+                //     status: true,
+                //     number: 0,
+                //     name: "",
+                //     major: "",
+                //     grade: "",
+                //     status_name: ""
+                // },
             ],
             //总条数,用于分页的显示
             totalCount: 0,
