@@ -286,13 +286,13 @@ export default {
         handleSizeChange(newSize)
         {
             this.pageSize = newSize;
-            this.getClubList(this.query);
+            this.getClubList(this.status, this.query);
         },
         //监听pageNum改变的事件
         handleCurrentChange(newPage)
         {
             this.pageNumber = newPage;
-            this.getclubList(this.query);
+            this.getclubList(this.status, this.query);
         },
         //输出status的文字描述
         statusToStr(status_int)

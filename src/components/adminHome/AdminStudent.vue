@@ -48,8 +48,8 @@
                     </template>
                 </el-table-column>
         </el-table>
-            <el-row :gutter=20>
-                <el-col :span=15>
+            <el-row :gutter="20">
+                <el-col :span="15">
                     <!-- 分页区域 -->
                     <el-pagination
                         @size-change="handleSizeChange"
@@ -61,13 +61,13 @@
                         :total="totalCount">
                     </el-pagination>
                 </el-col>
-                <el-col :span=3>
+                <el-col :span='3'>
                     <el-button type="success" 
                         @click="showEmptyReplyDialog()">
                         新增
                     </el-button>
                 </el-col>
-                <el-col :span=2>
+                <el-col :span="2">
                     <import-excel @getResult="getExcelData" />
                 </el-col>
             </el-row>
@@ -205,6 +205,14 @@ export default {
             this.status = status_in;
             this.query = query_in;
             this.pageNumber = pageNumber_in;
+            console.log(                {
+                    status: this.status,
+                    PageQO:{
+                        query: this.query,
+                        pageNumber: this.pageNumber,
+                        pageSize: this.pageSize,
+                    },
+                });
             let result = await this.$http.post(this.$api.AdminGetStudentMetaListUrl,
                 {
                     status: this.status,
@@ -214,6 +222,7 @@ export default {
                         pageSize: this.pageSize,
                     },
                 });
+
             while(this.studentList.length > 0){
                 this.studentList.pop();
             }
@@ -238,13 +247,13 @@ export default {
         handleSizeChange(newSize)
         {
             this.pageSize = newSize;
-            this.getStudentList(this.query);
+            this.getStudentList(this.status, this.query);
         },
         //监听pageNum改变的事件
         handleCurrentChange(newPage)
         {
             this.pageNumber = newPage;
-            this.getStudentList(this.query);
+            this.getStudentList(this.status, this.query);
         },
         //输出status的文字描述
         statusToStr(status_bool)

@@ -229,13 +229,13 @@ export default {
         handleSizeChange(newSize)
         {
             this.pageSize = newSize;
-            this.getActivityList(this.query);
+            this.getActivityList();
         },
         //监听pageNum改变的事件
         handleCurrentChange(newPage)
         {
             this.pageNumber = newPage;
-            this.getActivityList(this.query);
+            this.getActivityList();
         },
         //输出status的文字描述
         statusToStr(status_int)
