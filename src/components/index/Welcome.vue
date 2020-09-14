@@ -1,24 +1,21 @@
 <template>
 
-	<div id="zoumadeng">
-        <el-carousel height="580px" width="100%">
+	<div id="banner">
+        <el-carousel  :height="banH+'px'" width="100%">
 			<el-carousel-item >
-			  <img  src="../../assets/img/tj_pic5.jpg" alt="" style="height: 300px;width: 100%;margin:0;">
+			  <img class="banImg" src="../../assets/img/tj_pic5.jpg" alt=""  :height="banH+'px'" style="width: 100%;margin:0;">
 			</el-carousel-item>
 			<el-carousel-item >
-			  <img src="../../assets/img/tj_pic6.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
+			  <img class="banImg" src="../../assets/img/tj_pic6.jpg" alt="" :height="banH+'px'" style="width: 100%;margin:0;">
 			</el-carousel-item>
               <el-carousel-item >
-                <img src="../../assets/img/sanhaowu.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
+                <img class="banImg" src="../../assets/img/sanhaowu.jpg" alt="" :height="banH+'px'" style="width: 100%;margin:0;">
               </el-carousel-item>
-			  <el-carousel-item >
-			    <img src="../../assets/img/hehua.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
+			  <el-carousel-item>
+			    <img class="banImg" src="../../assets/img/hehua.jpg" alt="" :height="banH+'px'" style="width: 100%;margin:0;">
 			  </el-carousel-item>
 			  <el-carousel-item >
-			    <img src="../../assets/img/sanhaowu3.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
-			  </el-carousel-item>
-			  <el-carousel-item >
-			    <img src="../../assets/img/tj_pic1.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
+			    <img class="banImg" src="../../assets/img/sanhaowu3.jpg" alt="" :height="banH+'px'" style="width: 100%;margin:0;">
 			  </el-carousel-item>
         </el-carousel>
 
@@ -182,29 +179,127 @@
 	</div>
 
 </template>
-
 <script>
-	var width = window.innerWidth,
-	height = window.innerHeight;
-	 
-	// if (typeof width != 'number') {  //如果类型不为number,表示该浏览器不支持innerWidth属性
-	 
-	//  if (document.compatMode == 'CSS1Compat') {   //CSS1Compat：判断是否为标准兼容模式。
-	 
-	//   width = document.documentElement.clientWidth;
-	 
-	//   height = document.docuementElement.clientHeight;
-	 
-	//  } else { //不是标准模式,则有可能是IE6或及其以下版本(早期的浏览器对css进行解析时，并未遵守W3C标准)
-	 
-	//   width = document.body.clientWidth;   //网页可见区域宽
-	 
-	//   height = document.body.clientHeight;   //网页可见区域高
+	// export default{
+	// 	// var width = window.innerWidth,
+	// 	// height = window.innerHeight;
+		 
+	// 	// if (typeof width != 'number') {  //如果类型不为number,表示该浏览器不支持innerWidth属性
+		 
+	// 	//  if (document.compatMode == 'CSS1Compat') {   //CSS1Compat：判断是否为标准兼容模式。
+		 
+	// 	//   width = document.documentElement.clientWidth;
+		 
+	// 	//   height = document.docuementElement.clientHeight;
+		 
+	// 	//  } else { //不是标准模式,则有可能是IE6或及其以下版本(早期的浏览器对css进行解析时，并未遵守W3C标准)
+		 
+	// 	//   width = document.body.clientWidth;   //网页可见区域宽
+		 
+	// 	//   height = document.body.clientHeight;   //网页可见区域高
+	// 	// }
+		
+	// 	// var ZMD = document.querySelector("#zoumadeng");
+	// 	// ZMD.style.height="height px";
 	// }
 	
-	 // var ZMD = document.querySelector("#zoumadeng");
-	 // ZMD.style.height="height px";
 	
+
+	
+	// window.onresize = window.onload = function(){
+	//      var w,h
+	//      if(!!(window.attachEvent && !window.opera))
+	//      {
+	//       h = document.documentElement.clientHeight;
+	//       w = document.documentElement.clientWidth;
+	//      }else{
+	//       h = window.innerHeight;
+	//       w = window.innerWidth;
+	//      }
+	//   //document.getElementById('msg').value  ='窗口大小：' + 'width:' + w + '; height:'+h;
+	//     var bgImg = document.getElementById('zoumadeng');
+	//     //bgImg.width = (w - 5);
+	//    // bgImg.height= (h-5);  
+	//    //bgImg.style.height=400;
+	          
+	//    } 
+	
+	      // computed: {
+	      //   cancard: () => {
+	      //     return ""
+	      //   }
+	      // },
+	      
+	    //   mounted() {
+	    //     let that = this;
+	    //     window.onresize = function windowResize() {
+	    //       // 通过捕获系统的onresize事件触发我们需要执行的事件
+	    //       var w = window.innerWidth
+			  // var h = w*0.459;
+			  // that.hdgd=h+'px';
+			  // console.log(that.hdgd);
+	    //       // var h = 270
+	    //       // if (w > 1180) {
+	    //       //   h = 270
+	    //       // } else {
+	    //       //   h = 0.22 * w
+	    //       // }
+	    //       // that.hdgd = h + 'px'
+	    //       // console.log(that.hdgd)
+	    //     }
+	    //   }
+		
+		
+		export default{
+			// data(){
+			// 	return{
+			// 		banH:550
+			// 	}
+			// },
+			// methods:{
+			// 	setbanH(){
+			// 		this.banH=550
+			// 	}
+			// },
+			// mounted(){
+			// 	this.setbanH()
+			// }
+			
+			data(){
+				return{
+					banH:550,
+					
+				}
+			},
+			methods:{
+				setSize:function(){
+					this.banH=0.43*this.screenWidth;
+					// var banIMG = document.getElementsByClassName("banImg");
+					// banIMG.style.height = this.banH;
+				},
+				// imgLoad(){
+				// 	this.$nextTick(()=>{
+				// 		this.banH=this.$refs.banH[0].height;
+				// 	})
+				// }
+			},
+			mounted(){
+				this.screenWidth=window.innerWidth;
+				this.setSize();
+				window.onresize = () =>{
+					this.screenWidth = window.innerWidth;
+					this.setSize();
+				}
+				// this.imgLoad();
+				// window.addEventListener('resize',()=>{
+				// 	this.banH=this.$refs.banH[0].height
+				// 	this.imgLoad();
+				// },false)
+			},
+		}
+		
+		
+	    
 	
 </script>
 <style >
