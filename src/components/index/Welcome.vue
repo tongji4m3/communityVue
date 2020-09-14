@@ -1,24 +1,21 @@
 <template>
 
-	<div id="zoumadeng">
-        <el-carousel height="580px" width="100%">
+	<div id="banner">
+        <el-carousel  :height="banH+'px'" width="100%">
 			<el-carousel-item >
-			  <img  src="../../assets/img/tj_pic5.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
+			  <img class="banImg" src="../../assets/img/tj_pic5.jpg" alt=""  :height="banH+'px'" style="width: 100%;margin:0;">
 			</el-carousel-item>
 			<el-carousel-item >
-			  <img src="../../assets/img/tj_pic6.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
+			  <img class="banImg" src="../../assets/img/tj_pic6.jpg" alt="" :height="banH+'px'" style="width: 100%;margin:0;">
 			</el-carousel-item>
               <el-carousel-item >
-                <img src="../../assets/img/sanhaowu.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
+                <img class="banImg" src="../../assets/img/sanhaowu.jpg" alt="" :height="banH+'px'" style="width: 100%;margin:0;">
               </el-carousel-item>
-			  <el-carousel-item >
-			    <img src="../../assets/img/hehua.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
+			  <el-carousel-item>
+			    <img class="banImg" src="../../assets/img/hehua.jpg" alt="" :height="banH+'px'" style="width: 100%;margin:0;">
 			  </el-carousel-item>
 			  <el-carousel-item >
-			    <img src="../../assets/img/sanhaowu3.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
-			  </el-carousel-item>
-			  <el-carousel-item >
-			    <img src="../../assets/img/tj_pic1.jpg" alt="" style="height: 580px;width: 100%;margin:0;">
+			    <img class="banImg" src="../../assets/img/sanhaowu3.jpg" alt="" :height="banH+'px'" style="width: 100%;margin:0;">
 			  </el-carousel-item>
         </el-carousel>
 
@@ -32,11 +29,15 @@
                      About
                 </div>
                 <p>
-                    起飞页不仅是一个方便快捷的构建网站的自助建站平台，更重要的是，我们为中国用户提供了更多贴心的服务：网站备案、自动备份、快速恢复以及网站代建服务。我们使用了国内和香港最好的网络和云服务器，确保您的网站能够快速完美的呈现在访客面前。
-                    起飞页不仅是一个方便快捷的构建网站的自助建站平台，更重要的是，我们为中国用户提供了更多贴心的服务：网站备案、自动备份、快速恢复以及网站代建服务。我们使用了国内和香港最好的网络和云服务器，确保您的网站能够快速完美的呈现在访客面前。
-                    起飞页不仅是一个方便快捷的构建网站的自助建站平台，更重要的是，我们为中国用户提供了更多贴心的服务：网站备案、自动备份、快速恢复以及网站代建服务。我们使用了国内和香港最好的网络和云服务器，确保您的网站能够快速完美的呈现在访客面前。
-                    起飞页不仅是一个方便快捷的构建网站的自助建站平台，更重要的是，我们为中国用户提供了更多贴心的服务：网站备案、自动备份、快速恢复以及网站代建服务。我们使用了国内和香港最好的网络和云服务器，确保您的网站能够快速完美的呈现在访客面前。
-
+                    
+                    随着我国对高等教育的体制改革的逐渐深入,学生社团信息系统的应用已经逐渐成为高校中不可缺少的必需品。
+					学生社团,顾名思义是由学生根据爱好兴趣自发组织到一起并且不以盈利为目的社团组织,而且需要依据一定的制度规章组织并开展活动,
+					来丰富学生的课余活动,是大学生第二课堂的一个极其重要的组成部分。随着社会经济的快速发展,学生社团的数量的不断增长,
+					各级学生社团需要处理大量的学生数据信息,从而快捷地管理学生信息,科学地制定工作计划,准确地评价学生工作;
+					学生也需要一个集中的平台来了解学校中社团的各种信息,方便直观地与社团组织进行交互;
+					学校的社团管理人员同样需要一个可以快速管理社团,处理社团事务的途径。
+					如何更加高效便捷地管理学生社团已然成为一个小的研究热点,信息管理系统是一个新兴学科,想要更加高效便捷地管理组织活动等,
+					必须结合相应组织特点建立一个信息化系统。
                 </p>
             </div>
             <img src="../../assets/img/zonghelou.png" alt="">
@@ -126,22 +127,22 @@
 	                 Activity
 	            </div>
 	            <ol>
-	            	<li><p>活动标题1</p>
+	            	<li><p>同济大学第一届狼人杀比赛开始报名啦！</p>
 					<hr  align="left" size="1" />
 	            	</li>
-	            	<li><p>活动标题2</p>
+	            	<li><p>同济国标|开学的第一场舞！</p>
 					<hr  align="left" size="1" /> </li>
-	            	<li><p>活动标题3</p>
+	            	<li><p>C4Family九周年专场公演</p>
 					<hr  align="left" size="1" /> </li>
-	            	<li><p>活动标题4</p>
+	            	<li><p>同声汇雅韵——上海大学生戏曲汇演揭幕在即</p>
 					<hr  align="left" size="1" /> </li>
-	            	<li><p>活动标题5</p>
+	            	<li><p>同一片蓝天|沪上高校社团携手云端开唱</p>
 					<hr  align="left" size="1" /> </li>
-					<li><p>活动标题6</p>
+					<li><p>2020同济吉他协会春季招新</p>
 					<hr  align="left" size="1" /> </li>
-					<li><p>活动标题7</p>
+					<li><p>音乐创作大赛——同济大学站启动啦~</p>
 					<hr  align="left" size="1" /> </li>
-					<li><p>活动标题8</p>
+					<li><p>全国大学生数独挑战赛开赛在即！你准备好了吗？</p>
 					<hr  align="left" size="1" /> </li>
 	            </ol>
 	        </div>
@@ -182,29 +183,127 @@
 	</div>
 
 </template>
-
 <script>
-	var width = window.innerWidth,
-	height = window.innerHeight;
-	 
-	// if (typeof width != 'number') {  //如果类型不为number,表示该浏览器不支持innerWidth属性
-	 
-	//  if (document.compatMode == 'CSS1Compat') {   //CSS1Compat：判断是否为标准兼容模式。
-	 
-	//   width = document.documentElement.clientWidth;
-	 
-	//   height = document.docuementElement.clientHeight;
-	 
-	//  } else { //不是标准模式,则有可能是IE6或及其以下版本(早期的浏览器对css进行解析时，并未遵守W3C标准)
-	 
-	//   width = document.body.clientWidth;   //网页可见区域宽
-	 
-	//   height = document.body.clientHeight;   //网页可见区域高
+	// export default{
+	// 	// var width = window.innerWidth,
+	// 	// height = window.innerHeight;
+		 
+	// 	// if (typeof width != 'number') {  //如果类型不为number,表示该浏览器不支持innerWidth属性
+		 
+	// 	//  if (document.compatMode == 'CSS1Compat') {   //CSS1Compat：判断是否为标准兼容模式。
+		 
+	// 	//   width = document.documentElement.clientWidth;
+		 
+	// 	//   height = document.docuementElement.clientHeight;
+		 
+	// 	//  } else { //不是标准模式,则有可能是IE6或及其以下版本(早期的浏览器对css进行解析时，并未遵守W3C标准)
+		 
+	// 	//   width = document.body.clientWidth;   //网页可见区域宽
+		 
+	// 	//   height = document.body.clientHeight;   //网页可见区域高
+	// 	// }
+		
+	// 	// var ZMD = document.querySelector("#zoumadeng");
+	// 	// ZMD.style.height="height px";
 	// }
 	
-	 // var ZMD = document.querySelector("#zoumadeng");
-	 // ZMD.style.height="height px";
 	
+
+	
+	// window.onresize = window.onload = function(){
+	//      var w,h
+	//      if(!!(window.attachEvent && !window.opera))
+	//      {
+	//       h = document.documentElement.clientHeight;
+	//       w = document.documentElement.clientWidth;
+	//      }else{
+	//       h = window.innerHeight;
+	//       w = window.innerWidth;
+	//      }
+	//   //document.getElementById('msg').value  ='窗口大小：' + 'width:' + w + '; height:'+h;
+	//     var bgImg = document.getElementById('zoumadeng');
+	//     //bgImg.width = (w - 5);
+	//    // bgImg.height= (h-5);  
+	//    //bgImg.style.height=400;
+	          
+	//    } 
+	
+	      // computed: {
+	      //   cancard: () => {
+	      //     return ""
+	      //   }
+	      // },
+	      
+	    //   mounted() {
+	    //     let that = this;
+	    //     window.onresize = function windowResize() {
+	    //       // 通过捕获系统的onresize事件触发我们需要执行的事件
+	    //       var w = window.innerWidth
+			  // var h = w*0.459;
+			  // that.hdgd=h+'px';
+			  // console.log(that.hdgd);
+	    //       // var h = 270
+	    //       // if (w > 1180) {
+	    //       //   h = 270
+	    //       // } else {
+	    //       //   h = 0.22 * w
+	    //       // }
+	    //       // that.hdgd = h + 'px'
+	    //       // console.log(that.hdgd)
+	    //     }
+	    //   }
+		
+		
+		export default{
+			// data(){
+			// 	return{
+			// 		banH:550
+			// 	}
+			// },
+			// methods:{
+			// 	setbanH(){
+			// 		this.banH=550
+			// 	}
+			// },
+			// mounted(){
+			// 	this.setbanH()
+			// }
+			
+			data(){
+				return{
+					banH:550,
+					
+				}
+			},
+			methods:{
+				setSize:function(){
+					this.banH=0.43*this.screenWidth;
+					// var banIMG = document.getElementsByClassName("banImg");
+					// banIMG.style.height = this.banH;
+				},
+				// imgLoad(){
+				// 	this.$nextTick(()=>{
+				// 		this.banH=this.$refs.banH[0].height;
+				// 	})
+				// }
+			},
+			mounted(){
+				this.screenWidth=window.innerWidth;
+				this.setSize();
+				window.onresize = () =>{
+					this.screenWidth = window.innerWidth;
+					this.setSize();
+				}
+				// this.imgLoad();
+				// window.addEventListener('resize',()=>{
+				// 	this.banH=this.$refs.banH[0].height
+				// 	this.imgLoad();
+				// },false)
+			},
+		}
+		
+		
+	    
 	
 </script>
 <style >
@@ -267,11 +366,13 @@
 	#aboutNews ol{
 		margin-top: 40px ;
 		margin-left: 15px;
+		color:rgba(52,52,52,0.9);
 	}
 
 	#aboutNews ol li p{
 		line-height: 22px;
 		transition: 0.5s;
+		color:rgba(52,52,52,0.8);
 	}
 
 	#aboutNews hr{
@@ -288,6 +389,7 @@
 
 	#aboutNews ol li:hover p{
 		text-indent: 1em;
+		color:#0099FF;
 	}
 
     .el-divider--horizontal{
@@ -401,8 +503,8 @@
 		background-clip: text;
 		-webkit-text-fill-color: transparent;
 		animation: shine 5.5s linear infinite;
-		font-weight: 600;
-		font-size: 27px;
+		font-weight: 500;
+		font-size: 25px;
 		white-space: nowrap;
 	}
 	@keyframes shine{
