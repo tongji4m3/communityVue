@@ -66,9 +66,9 @@
                    width="50%">
             <!--            展示内容主体区域 -->
             <el-form :model="addForm" label-width="150px">
-                <el-form-item label="活动编号">
-                    <el-input v-model="addForm.id" disabled></el-input>
-                </el-form-item>
+<!--                <el-form-item label="活动编号">-->
+<!--                    <el-input v-model="addForm.id" disabled></el-input>-->
+<!--                </el-form-item>-->
                 <el-form-item label="活动名称">
                     <el-input v-model="addForm.name" disabled></el-input>
                 </el-form-item>
@@ -84,9 +84,9 @@
                 <el-form-item label="所属社团">
                     <el-input v-model="addForm.clubName" disabled></el-input>
                 </el-form-item>
-                <el-form-item label="负责人">
-                    <el-input v-model="addForm.adminName" disabled></el-input>
-                </el-form-item>
+<!--                <el-form-item label="负责人">-->
+<!--                    <el-input v-model="addForm.adminName" disabled></el-input>-->
+<!--                </el-form-item>-->
             </el-form>
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
@@ -99,11 +99,11 @@
                    width="50%">
             <!--            内容主体区域 放置一个表单-->
             <el-form :model="addForm1"  ref="addFormRef" label-width="150px">
-                <el-form-item label="活动编号:" prop="id">
-                    <el-input v-model="addForm1.id"></el-input>
-                </el-form-item>
+<!--                <el-form-item label="活动编号:" prop="id">-->
+<!--                    <el-input v-model="addForm1.id"></el-input>-->
+<!--                </el-form-item>-->
                 <el-form-item label="参加理由:" prop="reason">
-                    <el-input type="textarea" v-model="addForm.reason"></el-input>
+                    <el-input type="textarea" v-model="addForm.reason" placeholder="请务必写明学号和姓名,方便我们审核！"></el-input>
                 </el-form-item>
             </el-form>
             <!--            底部区域-->
@@ -298,6 +298,7 @@
                 this.addForm.place=place;
                 this.addForm.description=description;
                 this.addForm.eventTime=eventTime;
+                this.addForm.eventTime=this.addForm.eventTime.substring(0,10);
                 this.addForm.clubName=clubName;
                 this.addForm.adminName=adminName;
                 this.showDialogVisible = true;

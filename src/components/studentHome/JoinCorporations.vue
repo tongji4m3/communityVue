@@ -77,7 +77,7 @@
                     <el-input v-model="addForm.name" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="退社理由:" prop="reason">
-                    <el-input type="textarea" v-model="addForm.summary" placeholder="请务必写明学号，专业和姓名"></el-input>
+                    <el-input type="textarea" v-model="addForm.summary" placeholder="请务必写明学号、专业和姓名,方便我们审核！"></el-input>
                 </el-form-item>
             </el-form>
             <!--            底部区域-->
@@ -175,6 +175,30 @@
                         status: true
                     });
                 this.corporationsList = result.data.data;
+                this.corporationsList[0].establishmentDate=this.corporationsList[0].establishmentDate.substring(0,10);
+
+                for(var i=0;i<result.data.totalCount;i++){
+                    if(this.corporationsList[i].type===0){
+                        this.corporationsList[i].type="学术科技类";
+                    }
+                    else if(this.corporationsList[i].type===1){
+                        this.corporationsList[i].type="传统文化与文学类";
+                    }
+                    else if(this.corporationsList[i].type===2){
+                        this.corporationsList[i].type="公益实践类";
+                    }
+                    else if(this.corporationsList[i].type===3){
+                        this.corporationsList[i].type="文化艺术类";
+
+                    }
+                    else if(this.corporationsList[i].type===4){
+                        this.corporationsList[i].type="体育竞技类";
+                    }
+                    else{
+                        this.corporationsList[i].type="创新创业类";
+                    }
+                }
+
                 // this.corporationsList.establishmentDate=this.corporationsList.establishmentDate.substring(0,10);
                 console.log(this.corporationsList);
                 this.totalCount = parseInt(result.data.totalCount);

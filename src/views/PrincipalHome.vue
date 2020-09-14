@@ -5,7 +5,7 @@
         <!--        头部区域-->
         <el-header>
             <div>
-                <img src="../assets/img/sys_logo.png" height="60"/>
+                <img src="../assets/img/sys_logo.png" @click ="goIndex" height="60"/>
             </div>
             <div class="out-button">
                 <el-dropdown>
@@ -19,6 +19,7 @@
                         <el-dropdown-item class="navigation-text" @click.native ="changePassword" >修改密码</el-dropdown-item>
                         <el-dropdown-item class="navigation-text" @click.native ="systemInformation">系统消息</el-dropdown-item>
                         <el-dropdown-item class="navigation-text" @click.native ="systemNotice">系统公告</el-dropdown-item>
+                        <el-dropdown-item class="navigation-text" @click.native ="goIndex">回到首页</el-dropdown-item>
                         <el-dropdown-item class="navigation-text" id="exit-div" divided @click.native ="logout">退出</el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
@@ -77,8 +78,8 @@
         data(){
             return{
                 username: window.sessionStorage.getItem('name'),
-                imgUrl: 'https://tongji4m3.oss-cn-beijing.aliyuncs.com/OIP.jpg'
-                // imgUrl: window.sessionStorage.getItem('imgUrl'),
+                // imgUrl: 'https://tongji4m3.oss-cn-beijing.aliyuncs.com/f_f_object_156_s512_f_object_156_0.png'
+                imgUrl: window.sessionStorage.getItem('imgUrl'),
 
             }
         },
@@ -100,6 +101,10 @@
             systemNotice()
             {
                 this.$router.push("/principalSystemNotice")
+            },
+            goIndex()
+            {
+                this.$router.push("/index")
             }
         }
     };

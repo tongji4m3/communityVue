@@ -33,9 +33,8 @@
                     <el-button type="primary" @click="getSponsorList('failed', query)">未通过</el-button>
                 </el-col>
             </el-row>
-        </el-card>
-        <!-- 赞助列表 -->
-        <el-table :data="sponsorList">
+            <!-- 赞助列表 -->
+            <el-table :data="sponsorList">
                 <el-table-column type="index"></el-table-column>
                 <el-table-column label="社团名称" prop="clubName"></el-table-column>
                 <el-table-column label="赞助商" prop="sponsor"></el-table-column>
@@ -44,8 +43,8 @@
                 <el-table-column label="审核状态" prop="status_name"></el-table-column>
                 <el-table-column label="申请详情">
                     <template slot-scope="scope">
-                        <el-button type="success" 
-                            @click="showReplyDialog(scope.$index)">
+                        <el-button type="success"
+                                   @click="showReplyDialog(scope.$index)">
                             查看详情
                         </el-button>
                     </template>
@@ -53,22 +52,24 @@
                 <el-table-column label="操作">
                     <template slot-scope="scope">
                         <!-- 通过按钮 -->
-                        <el-button 
-                            type="success" 
+                        <el-button
+                            type="success"
                             @click="updateStatusAndRefresh(scope.row.sponsorshipId, 1, 0)"
-                            icon="el-icon-check" 
+                            icon="el-icon-check"
                             circle>
                         </el-button>
                         <!-- 拒绝按钮 -->
-                        <el-button 
-                            type="danger" 
+                        <el-button
+                            type="danger"
                             @click="updateStatusAndRefresh(scope.row.sponsorshipId, 2, 0)"
-                            icon="el-icon-close" 
+                            icon="el-icon-close"
                             circle>
                         </el-button>
                     </template>
                 </el-table-column>
-        </el-table>
+            </el-table>
+        
+
         <!-- 分页区域 -->
         <el-pagination
                 @size-change="handleSizeChange"
@@ -79,6 +80,7 @@
                 layout="total, sizes, prev, pager, next, jumper"
                 :total="totalCount">
         </el-pagination>
+        </el-card>
          <!-- 展示批复对话框 -->
         <el-dialog title="活动详情" :visible.sync="replyDialogVisible"
                    width="50%">

@@ -43,7 +43,7 @@
                     <template slot-scope="scope">
                         <!--                        加入按钮-->
                         <!--<el-button type="primary" @click="showEditDialog(scope.row.id)" >加入</el-button>-->
-                        <el-button type="primary" @click="joinNewClub(scope.row.clubId,scope.row.name,scope.row.type,scope.row.establishmentDate,scope.row.presidentName)">加入</el-button>
+                        <el-button type="primary" @click="joinNewClub(scope.row.clubId,scope.row.name,scope.row.establishmentDate,scope.row.presidentName)">加入</el-button>
                     </template>
                 </el-table-column>
 
@@ -63,7 +63,7 @@
 
         <!--        展示活动对话框-->
         <el-dialog title="社团简介" ref="showFormRef" :visible.sync="showDialogVisible"
-                   width="50%">
+                   width="70%">
             <!--            展示内容主体区域 -->
             <el-form :model="addForm" label-width="150px">
                 <el-form-item label="成立时间">
@@ -73,7 +73,8 @@
                     <el-input v-model="addForm.president" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="简介">
-                    <el-input v-model="addForm.summary" type="textarea" disabled></el-input>
+                    <div v-html="addForm.summary">{{addForm.summary}}</div>
+<!--                    <el-input v-model="addForm.summary" type="textarea" disabled></el-input>-->
                 </el-form-item>
 
             </el-form>
@@ -95,20 +96,20 @@
                 <el-form-item label="社团名称">
                     <el-input v-model="addForm.name" disabled></el-input>
                 </el-form-item>
-                <el-form-item label="社团性质">
-                    <el-input v-model="addForm.type" disabled></el-input>
-                </el-form-item>
+<!--                <el-form-item label="社团性质">-->
+<!--                    <el-input v-model="addForm.type" disabled></el-input>-->
+<!--                </el-form-item>-->
                 <el-form-item label="成立时间">
                     <el-input v-model="addForm.date" disabled></el-input>
                 </el-form-item>
-                <el-form-item label="会长">
-                    <el-input v-model="addForm.president" disabled></el-input>
-                </el-form-item>
-                <el-form-item label="简介">
-                    <el-input v-model="addForm.summary" type="textarea" disabled></el-input>
-                </el-form-item>
+<!--                <el-form-item label="会长">-->
+<!--                    <el-input v-model="addForm.president" disabled></el-input>-->
+<!--                </el-form-item>-->
+<!--                <el-form-item label="简介">-->
+<!--                    <el-input v-model="addForm.summary" type="textarea" disabled></el-input>-->
+<!--                </el-form-item>-->
                 <el-form-item label="加入原因:">
-                    <el-input type="textarea" v-model="addForm.reason"></el-input>
+                    <el-input type="textarea" v-model="addForm.reason" placeholder="请务必写明学号、专业和姓名,方便我们审核！"></el-input>
                 </el-form-item>
 
             </el-form>
@@ -225,6 +226,28 @@
                 });
                 this.corporationsList = result.data.data;
                 console.log(this.corporationsList);
+                for(var i=0;i<result.data.totalCount-1;i++){
+                    if(this.corporationsList[i].type===0){
+                        this.corporationsList[i].type="学术科技类";
+                    }
+                    else if(this.corporationsList[i].type===1){
+                        this.corporationsList[i].type="传统文化与文学类";
+                    }
+                    else if(this.corporationsList[i].type===2){
+                        this.corporationsList[i].type="公益实践类";
+                    }
+                    else if(this.corporationsList[i].type===3){
+                        this.corporationsList[i].type="文化艺术类";
+                    }
+                    else if(this.corporationsList[i].type===4){
+                        this.corporationsList[i].type="体育竞技类";
+                    }
+                    else{
+                        this.corporationsList[i].type="创新创业类";
+                    }
+                }
+
+                console.log(this.corporationsList);
                 this.totalCount = parseInt(result.data.totalCount);
                 console.log(this.totalCount);
             },
@@ -282,7 +305,6 @@
                 this.addForm.date=date;
                 this.addForm.date=this.addForm.date.substring(0,10);
                 this.addForm.president=president;
-                console.log(this.addForm.summary);
                 this.showDialogVisible = true;
             },
             //提交申请
@@ -305,18 +327,17 @@
                         //隐藏添加活动对话框
                         this.addDialogVisible = false;
                         console.log(result);
-                        this.$message.info("加入社团成功!");
+                        this.$message.info("申请加入社团成功!");
                     }
                 );
 
             },
 
-            async joinNewClub(id,name,type,date,president){
+            async joinNewClub(id,name,date,president){
 
                 let result = await this.$http.post(this.$api.StudentCorporationInformationUrl+'/'+id);
                 this.addForm.id=id;
                 this.addForm.name=name;
-                this.addForm.type=type;
                 this.addForm.summary= result.data;
                 this.addForm.date=date;
                 this.addForm.date=this.addForm.date.substring(0,10);

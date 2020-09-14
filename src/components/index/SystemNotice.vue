@@ -45,8 +45,15 @@
                 <el-form-item label="系统公告标题:">
                     <el-input v-model="addForm.title" disabled></el-input>
                 </el-form-item>
-                <el-form-item label="系统公告内容:">
-                    <el-input v-model="addForm.content" disabled></el-input>
+<!--                <el-form-item label="系统公告内容:">-->
+<!--                    <el-input v-model="addForm.content" disabled></el-input>-->
+<!--                </el-form-item>-->
+                <el-form-item label="系统公告内容:" prop="content">
+                    <el-input
+                        type="textarea"
+                        :rows="7"
+                        v-model="addForm.content" disabled>
+                    </el-input>
                 </el-form-item>
                 <el-form-item label="系统公告时间:" prop="time">
                     <el-date-picker type="date" v-model="addForm.time" style="width: 100%;" disabled></el-date-picker>

@@ -84,6 +84,7 @@ const routes = [
             {path: '/studentSystemInformation', component: SystemInformation},
             {path: '/studentSystemNotice', component: SystemNotice},
             {path:'/InActivity',component:InActivity},
+
         ]
     },
     {

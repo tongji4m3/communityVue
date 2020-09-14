@@ -42,7 +42,7 @@ module.exports = {
     ChangePasswordUrl: APIRootUrl + 'user/changePassword',//修改用户密码
 
 
-    GetAnnouncementsUrl: APIRootUrl + 'user/getAnnouncements',//获得系统公告
+    GetAnnouncementsUrl: APIRootUrl + 'user/getSysAnnouncements',//获得系统公告
 
     GetOneAnnouncementUrl: APIRootUrl + 'user/getOneAnnouncement',//获得系统公告
 
@@ -164,6 +164,8 @@ module.exports = {
 
     PrincipalEditClubInfo:APIRootUrl+'principal/editClubInfo',
 
+    PrincipalDissolveClub:APIRootUrl+'principal/dissolveClub',
+
 
 
 
@@ -227,7 +229,7 @@ module.exports = {
     //显示已加入活动
     StudentInActivity:APIRootUrl+'Student/InActivity',
 
-    //学生端的系统公告
+    //学生端的社团公告
     StudentInClubAnnouncements:APIRootUrl+'Student/inClubAnnouncements',
 
     //学生端的系统消息

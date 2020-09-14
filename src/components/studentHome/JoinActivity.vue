@@ -39,7 +39,7 @@
                 <el-table-column label="活动地点" prop="place"></el-table-column>
                 <el-table-column label="查看详情">
                     <template slot-scope="scope">
-                        <el-button type="primary" @click="showActivitySummary(scope.row.activityId,scope.row.name,scope.row.place,scope.row.description,scope.row.eventTime,scope.row.clubName,'nb')">查看</el-button>
+                        <el-button type="primary" @click="showActivitySummary(scope.row.activityId,scope.row.name,scope.row.place,scope.row.description,scope.row.eventTime,scope.row.clubName,scope.row.adminName)">查看</el-button>
                     </template>
                 </el-table-column>
                 <el-table-column label="参加活动">
@@ -72,9 +72,9 @@
                    width="50%">
             <!--            展示内容主体区域 -->
             <el-form :model="addForm" label-width="150px">
-                <el-form-item label="活动编号">
-                    <el-input v-model="addForm.id" disabled></el-input>
-                </el-form-item>
+<!--                <el-form-item label="活动编号">-->
+<!--                    <el-input v-model="addForm.id" disabled></el-input>-->
+<!--                </el-form-item>-->
                 <el-form-item label="活动名称">
                     <el-input v-model="addForm.name" disabled></el-input>
                 </el-form-item>
@@ -90,9 +90,9 @@
                 <el-form-item label="所属社团">
                     <el-input v-model="addForm.clubName" disabled></el-input>
                 </el-form-item>
-                <el-form-item label="负责人">
-                    <el-input v-model="addForm.adminName" disabled></el-input>
-                </el-form-item>
+<!--                <el-form-item label="负责人">-->
+<!--                    <el-input v-model="addForm.adminName" disabled></el-input>-->
+<!--                </el-form-item>-->
             </el-form>
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
@@ -110,7 +110,7 @@
 <!--                    <el-input v-model="addForm1.id" disabled></el-input>-->
 <!--                </el-form-item>-->
                 <el-form-item label="参加理由:" prop="reason">
-                    <el-input type="textarea" v-model="addForm1.reason"></el-input>
+                    <el-input type="textarea" v-model="addForm1.reason" placeholder="请务必写明学号、专业和姓名,方便我们审核！"></el-input>
                 </el-form-item>
             </el-form>
             <!--            底部区域-->

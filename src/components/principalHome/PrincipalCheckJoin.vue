@@ -26,7 +26,7 @@
                 <el-table-column label="申请入社时间" prop="applyDate"></el-table-column>
                 <el-table-column label="显示详情">
                     <template slot-scope="scope">
-                        <el-button type="success" @click="showDialog(scope.row.studentId)">查看</el-button>
+                        <el-button type="primary" @click="showDialog(scope.row.studentId)">查看</el-button>
                     </template>
                 </el-table-column>
                 <el-table-column label="审核">
@@ -145,7 +145,7 @@ export default {
             this.StudentList = result.data.data;
             for (let i = 0; i < this.StudentList.length; i++)
             {
-                this.StudentList[i].time=this.StudentList[i].time.substring(0,10)
+                this.StudentList[i].applyDate=this.StudentList[i].applyDate.substring(0,10)
             }
             this.totalCount = parseInt(result.data.totalCount);
         },
