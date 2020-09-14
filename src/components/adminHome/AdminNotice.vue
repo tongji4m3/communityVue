@@ -66,8 +66,15 @@
                 <el-form-item label="公告标题:">
                     <el-input v-model="addForm.title" disabled></el-input>
                 </el-form-item>
-                <el-form-item label="公告内容:">
-                    <el-input v-model="addForm.content" disabled></el-input>
+<!--                <el-form-item label="公告内容:">-->
+<!--                    <el-input v-model="addForm.content" disabled></el-input>-->
+<!--                </el-form-item>-->
+                <el-form-item label="公告内容:" prop="content">
+                    <el-input
+                        type="textarea"
+                        :rows="7"
+                        v-model="addForm.content" disabled>
+                    </el-input>
                 </el-form-item>
                 <el-form-item label="公告时间:" prop="time">
                     <el-date-picker type="date" v-model="addForm.time" style="width: 100%;" disabled></el-date-picker>
@@ -89,8 +96,15 @@
                     <el-input v-model="addForm.title"></el-input>
                 </el-form-item>
                 <el-form-item label="公告内容:" prop="content">
-                    <el-input v-model="addForm.content"></el-input>
+                    <el-input
+                        type="textarea"
+                        :rows="7"
+                        v-model="addForm.content">
+                    </el-input>
                 </el-form-item>
+<!--                <el-form-item label="公告内容:" prop="content">-->
+<!--                    <el-input v-model="addForm.content"></el-input>-->
+<!--                </el-form-item>-->
             </el-form>
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
@@ -107,8 +121,15 @@
                     <el-input v-model="addForm.title" ></el-input>
                 </el-form-item>
                 <el-form-item label="公告内容:" prop="content">
-                    <el-input v-model="addForm.content"></el-input>
+                    <el-input
+                        type="textarea"
+                        :rows="7"
+                        v-model="addForm.content">
+                    </el-input>
                 </el-form-item>
+<!--                <el-form-item label="公告内容:" prop="content">-->
+<!--                    <el-input v-model="addForm.content"></el-input>-->
+<!--                </el-form-item>-->
             </el-form>
 
             <span slot="footer" class="dialog-footer">
