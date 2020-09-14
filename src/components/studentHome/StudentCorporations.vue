@@ -334,15 +334,31 @@
             },
 
             async joinNewClub(id,name,date,president){
+                let judge= await this.$http.post(this.$api.StudentJudgeJoinClubUrl+'/'+id);
+                judge=judge.data.isSuccess;
+                console.log(judge);
+                if(judge===true){
+                    let result = await this.$http.post(this.$api.StudentCorporationInformationUrl+'/'+id);
+                    this.addForm.id=id;
+                    this.addForm.name=name;
+                    this.addForm.summary= result.data;
+                    this.addForm.date=date;
+                    this.addForm.date=this.addForm.date.substring(0,10);
+                    this.addForm.president=president;
+                    this.addDialogVisible=true;
+                }
+                else{
+                    this.$message.info("你已经加入了这个社团!");
 
-                let result = await this.$http.post(this.$api.StudentCorporationInformationUrl+'/'+id);
-                this.addForm.id=id;
-                this.addForm.name=name;
-                this.addForm.summary= result.data;
-                this.addForm.date=date;
-                this.addForm.date=this.addForm.date.substring(0,10);
-                this.addForm.president=president;
-                this.addDialogVisible=true;
+                }
+                // let result = await this.$http.post(this.$api.StudentCorporationInformationUrl+'/'+id);
+                // this.addForm.id=id;
+                // this.addForm.name=name;
+                // this.addForm.summary= result.data;
+                // this.addForm.date=date;
+                // this.addForm.date=this.addForm.date.substring(0,10);
+                // this.addForm.president=president;
+                // this.addDialogVisible=true;
             },
 
             async editActivity()
