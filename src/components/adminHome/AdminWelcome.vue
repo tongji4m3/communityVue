@@ -29,9 +29,9 @@
             </el-carousel-item>
         </el-carousel>
 
-        <el-card id="announce">
+        <el-card>
 
-            <div id="announce_head">
+            <div>
                 <img src="../../assets/img/icon_announcement.png" alt="" style="vertical-align: middle">
                 <span> <h3>   系统公告</h3></span>
             </div>
@@ -56,7 +56,6 @@
                     </template>
                 </el-table-column>
             </el-table>
-            <!--            分页区域-->
             <el-pagination
                 @size-change="handleSizeChange"
                 @current-change="handleCurrentChange"
@@ -86,7 +85,7 @@
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
                     <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
-                </span>
+            </span>
         </el-dialog>
     </div>
 </template>
