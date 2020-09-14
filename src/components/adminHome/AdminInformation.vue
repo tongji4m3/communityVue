@@ -33,7 +33,7 @@
                     <el-button type="primary" @click="getClubList('dissolved', query)">已解散</el-button>
                 </el-col>
             </el-row>
-        </el-card>
+        
         <!-- 社团列表 -->
         <el-table :data="clubList">
                 <el-table-column type="index"></el-table-column>
@@ -67,6 +67,7 @@
                 layout="total, sizes, prev, pager, next, jumper"
                 :total="totalCount">
         </el-pagination>
+        </el-card>
         <!-- 详细内容对话框 -->
         <el-dialog title="社团详情" :visible.sync="replyDialogVisible"
                    width="50%">

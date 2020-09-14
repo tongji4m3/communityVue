@@ -33,7 +33,7 @@
                     <el-button type="primary" @click="getActivityList('failed', query)">未通过</el-button>
                 </el-col>
             </el-row>
-        </el-card>
+        
         <!-- 活动列表 -->
         <el-table :data="activityList">
                 <el-table-column type="index"></el-table-column>
@@ -62,6 +62,7 @@
                 layout="total, sizes, prev, pager, next, jumper"
                 :total="totalCount">
         </el-pagination>
+        </el-card>
         <!-- 审核对话框 -->
         <el-dialog title="活动详情" :visible.sync="replyDialogVisible"
                    width="50%">
