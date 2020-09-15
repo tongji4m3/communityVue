@@ -62,22 +62,22 @@
         </el-card>
 
         <!--        展示活动对话框-->
-        <el-dialog title="社团简介" ref="showFormRef" :visible.sync="showDialogVisible"
+        <el-dialog ref="showFormRef" :visible.sync="showDialogVisible"
                    width="70%">
-            <!--            展示内容主体区域 -->
-            <el-form :model="addForm" label-width="150px">
-                <el-form-item label="成立时间">
-                    <el-input v-model="addForm.date" disabled></el-input>
-                </el-form-item>
-                <el-form-item label="会长">
-                    <el-input v-model="addForm.president" disabled></el-input>
-                </el-form-item>
-                <el-form-item label="简介">
-                    <div v-html="addForm.summary">{{addForm.summary}}</div>
-<!--                    <el-input v-model="addForm.summary" type="textarea" disabled></el-input>-->
-                </el-form-item>
 
-            </el-form>
+            <!--            展示内容主体区域 -->
+            <h3 style="text-align:center; font-size:25px ">社团简介</h3>
+            <br>
+            <hr>
+            <br>
+            <p style="font-family: 楷体; font-size:20px" v-html="addForm.summary">简介：{{addForm.summary}}</p>
+            <br>
+            <hr>
+            <br>
+            <p style="text-align: right;font-size:20px">会长：{{addForm.president}}</p>
+            <p style="text-align: right;font-size:20px">成立时间：{{addForm.date}}</p>
+
+
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
                  <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
@@ -86,27 +86,30 @@
 
 
         <!--        展示活动对话框-->
-        <el-dialog title="社团简介"  :visible.sync="addDialogVisible"
+        <el-dialog title="加入社团"  :visible.sync="addDialogVisible"
                    width="50%">
-            <!--            展示内容主体区域 -->
+
+
             <el-form :model="addForm" ref="addFormRef" label-width="150px">
 <!--                <el-form-item label="社团编号">-->
-<!--                    <el-input v-model="addForm.id" disabled></el-input>-->
+<!--                    <el-input v-model="addForm.id" readonly="true"></el-input>-->
 <!--                </el-form-item>-->
+
+
                 <el-form-item label="社团名称">
-                    <el-input v-model="addForm.name" disabled></el-input>
+                    <el-input v-model="addForm.name" readonly="true"></el-input>
                 </el-form-item>
 <!--                <el-form-item label="社团性质">-->
-<!--                    <el-input v-model="addForm.type" disabled></el-input>-->
+<!--                    <el-input v-model="addForm.type" readonly="true"></el-input>-->
 <!--                </el-form-item>-->
                 <el-form-item label="成立时间">
-                    <el-input v-model="addForm.date" disabled></el-input>
+                    <el-input v-model="addForm.date" readonly="true"></el-input>
                 </el-form-item>
 <!--                <el-form-item label="会长">-->
-<!--                    <el-input v-model="addForm.president" disabled></el-input>-->
+<!--                    <el-input v-model="addForm.president" readonly="true"></el-input>-->
 <!--                </el-form-item>-->
 <!--                <el-form-item label="简介">-->
-<!--                    <el-input v-model="addForm.summary" type="textarea" disabled></el-input>-->
+<!--                    <el-input v-model="addForm.summary" type="textarea" readonly="true"></el-input>-->
 <!--                </el-form-item>-->
                 <el-form-item label="加入原因:">
                     <el-input type="textarea" v-model="addForm.reason" placeholder="请务必写明学号、专业和姓名,方便我们审核！"></el-input>
@@ -348,7 +351,7 @@
                     this.addDialogVisible=true;
                 }
                 else{
-                    this.$message.info("你已经加入了这个社团!");
+                    this.$message.info("你已经加入了这个社团或正在审核中!");
 
                 }
                 // let result = await this.$http.post(this.$api.StudentCorporationInformationUrl+'/'+id);

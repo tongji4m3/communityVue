@@ -15,6 +15,14 @@
 <!--        </el-alert>-->
 
         <el-divider></el-divider>
+        <el-alert
+                title="欢迎查看公开活动"
+                type="info"
+                center
+                show-icon>
+        </el-alert>
+        <el-divider></el-divider>
+
         <!--        卡片-->
         <el-card class="box-card">
             <!--            搜索与添加-->
@@ -27,7 +35,9 @@
                 </el-col>
                 <el-row :gutter="20">
                     <el-button type="primary" icon="" @click="toInclubAcitivity">社团活动</el-button>
+                    <el-button type="primary" icon="" >公开活动</el-button>
                 </el-row>
+
                 <!--                <el-col :span="4">-->
                 <!--                    <el-button type="primary" @click="addDialogVisible=true">查询社团</el-button>-->
                 <!--                </el-col>-->
@@ -73,25 +83,25 @@
             <!--            展示内容主体区域 -->
             <el-form :model="addForm" label-width="150px">
 <!--                <el-form-item label="活动编号">-->
-<!--                    <el-input v-model="addForm.id" disabled></el-input>-->
+<!--                    <el-input v-model="addForm.id" readonly="true"></el-input>-->
 <!--                </el-form-item>-->
                 <el-form-item label="活动名称">
-                    <el-input v-model="addForm.name" disabled></el-input>
+                    <el-input v-model="addForm.name" readonly="true"></el-input>
                 </el-form-item>
                 <el-form-item label="活动地点">
-                    <el-input v-model="addForm.place" disabled></el-input>
+                    <el-input v-model="addForm.place" readonly="true"></el-input>
                 </el-form-item>
                 <el-form-item label="活动简介">
-                    <el-input v-model="addForm.description" type="textarea" disabled></el-input>
+                    <el-input v-model="addForm.description" type="textarea" readonly="true"></el-input>
                 </el-form-item>
                 <el-form-item label="活动时间">
-                    <el-input v-model="addForm.eventTime" disabled></el-input>
+                    <el-input v-model="addForm.eventTime" readonly="true"></el-input>
                 </el-form-item>
                 <el-form-item label="所属社团">
-                    <el-input v-model="addForm.clubName" disabled></el-input>
+                    <el-input v-model="addForm.clubName" readonly="true"></el-input>
                 </el-form-item>
 <!--                <el-form-item label="负责人">-->
-<!--                    <el-input v-model="addForm.adminName" disabled></el-input>-->
+<!--                    <el-input v-model="addForm.adminName" readonly="true"></el-input>-->
 <!--                </el-form-item>-->
             </el-form>
             <!--            底部区域-->
@@ -107,7 +117,7 @@
             <!--            内容主体区域 放置一个表单-->
             <el-form :model="addForm1"  ref="addFormRef" label-width="150px">
 <!--                <el-form-item label="活动编号:" prop="id">-->
-<!--                    <el-input v-model="addForm1.id" disabled></el-input>-->
+<!--                    <el-input v-model="addForm1.id" readonly="true"></el-input>-->
 <!--                </el-form-item>-->
                 <el-form-item label="参加理由:" prop="reason">
                     <el-input type="textarea" v-model="addForm1.reason" placeholder="请务必写明学号、专业和姓名,方便我们审核！"></el-input>

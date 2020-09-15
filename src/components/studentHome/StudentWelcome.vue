@@ -26,7 +26,7 @@
                 <img src="../../assets/img/tj_cp2.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
             </el-carousel-item>
             <el-carousel-item >
-                <img src="../../assets/img/tj_pic1.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
+                <img src="../../assets/img/tj_cp4.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
             </el-carousel-item>
             <el-carousel-item >
                 <img src="../../assets/img/tj_cp3.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
@@ -35,7 +35,7 @@
 <!--                <img src="../../assets/img/tj_cp4.jpg" alt="" style="height: 366px;width: 100%;margin:0;">-->
 <!--            </el-carousel-item>-->
             <el-carousel-item >
-                <img src="../../assets/img/tj_pic8.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
+                <img src="../../assets/img/tj_cp5.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
             </el-carousel-item>
         </el-carousel>
 
@@ -87,16 +87,16 @@
             <!--            展示内容主体区域 -->
             <el-form :model="addForm" label-width="150px">
                 <el-form-item label="社团:">
-                    <el-input v-model="addForm.name" disabled></el-input>
+                    <el-input v-model="addForm.name" readonly="true"></el-input>
                 </el-form-item>
                 <el-form-item label="社团公告标题:">
-                    <el-input v-model="addForm.title" disabled></el-input>
+                    <el-input v-model="addForm.title" readonly="true"></el-input>
                 </el-form-item>
                 <el-form-item label="社团公告时间:" prop="time">
-                    <el-date-picker type="date" v-model="addForm.time" style="width: 100%;" disabled></el-date-picker>
+                    <el-date-picker type="date" v-model="addForm.time" style="width: 100%;" readonly="true"></el-date-picker>
                 </el-form-item>
                 <el-form-item label="社团公告内容:">
-                    <el-input v-model="addForm.content" disabled></el-input>
+                    <el-input v-model="addForm.content" readonly="true"></el-input>
                 </el-form-item>
 
             </el-form>
@@ -141,7 +141,7 @@
                     status: false,
                 },
                 informationList: [],
-                username: window.sessionStorage.getItem('name')
+                username: "",
             }
         },
         //一开始就显示系统公告列表
@@ -152,6 +152,7 @@
         },
 
         methods: {
+
             async getCorporationList()
             {
                 let result = await this.$http.post(this.$api.StudentGetInformation,
@@ -159,10 +160,10 @@
                     });
                 this.informationList = result.data;
                 console.log(this.informationList);
-                this.totalCount = parseInt(result.data.totalCount);
-                console.log(this.totalCount);
+                console.log(this.informationList[0].name);
                 this.username=this.informationList[0].name;
             },
+
 
             async getAnnouncementList()
             {
@@ -198,7 +199,7 @@
             async showDialog(AnnouncementId)
             {
                 console.log(this.AnnouncementList[0].announcementId);
-                for(var i=0;i<this.totalCount-1;i++){
+                for(var i=0;i<this.totalCount;i++){
                     if(this.AnnouncementList[i].announcementId===AnnouncementId){
                         this.addForm.name=this.AnnouncementList[i].name;
                         this.addForm.title = this.AnnouncementList[i].title;

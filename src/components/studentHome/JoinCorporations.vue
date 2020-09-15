@@ -71,10 +71,10 @@
             <!--            内容主体区域 放置一个表单-->
             <el-form :model="addForm"  ref="addFormRef" label-width="150px">
 <!--                <el-form-item label="社团编号:" prop="corporationId">-->
-<!--                    <el-input v-model="addForm.clubid" disabled></el-input>-->
+<!--                    <el-input v-model="addForm.clubid" readonly="true"></el-input>-->
 <!--                </el-form-item>-->
                 <el-form-item label="社团名称:" prop="corporationName">
-                    <el-input v-model="addForm.name" disabled></el-input>
+                    <el-input v-model="addForm.name" readonly="true"></el-input>
                 </el-form-item>
                 <el-form-item label="退社理由:" prop="reason">
                     <el-input type="textarea" v-model="addForm.summary" placeholder="请务必写明学号、专业和姓名,方便我们审核！"></el-input>
@@ -308,7 +308,7 @@
                         //隐藏添加活动对话框
                         this.addDialogVisible = false;
                         // this.getActivityList();
-                        this.$message.info("提交申请成功!");
+                        this.$message.info("成功退出社团!");
                     }
                 );
             },
