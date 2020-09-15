@@ -21,7 +21,7 @@
                     <p>状态：</p>
                 </el-col>
                 <el-col :span="2">
-                    <el-button type="primary" @click="getActivityList('all', query)">全部</el-button>
+                    <el-button type="primary" @click="getActivityList('all', query)">{{quanbu}}</el-button>
                 </el-col>
                 <el-col :span="2">
                     <el-button type="primary" @click="getActivityList('unaudited', query)">待审核</el-button>
@@ -181,6 +181,7 @@ export default {
                 adminName: "",
                 suggestion: ""
             },
+            quanbu: "全　部",
         }
     },
     //创建时显示全部列表

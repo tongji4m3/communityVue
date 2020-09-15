@@ -14,7 +14,7 @@
         <!--        日历框-->
         <el-dialog :visible.sync="showCalendar"
                    width="50%">
-            <el-calendar v-model="value">
+            <el-calendar>
             </el-calendar>
         </el-dialog>
 
