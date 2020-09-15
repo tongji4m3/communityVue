@@ -246,6 +246,9 @@ module.exports = {
 
     //学生端的系统消息
 
+    //学生端加入社团
+    StudentJudgeJoinClubUrl:APIRootUrl+'Student/judgeClubJoin',
+
     /*
     AdminNotice组件
     负责人公告管理数据接口
