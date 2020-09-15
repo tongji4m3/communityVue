@@ -167,6 +167,18 @@ module.exports = {
     PrincipalDissolveClub:APIRootUrl+'principal/dissolveClub',
 
 
+    /*
+        PrincipalCheckActivity组件
+        负责人参加活动人员审核数据接口
+    */
+    //请求参数:query(查询参数 做条件查询时才有),
+    // pageNumber(当前的页码),pageSize(每页显示条数)
+    //响应参数:participateActivity
+    PrincipalGetActivityMembersUrl:APIRootUrl+'principal/getAllActivityMembers',
+
+    PrincipalGetOneActivityMemberUrl:APIRootUrl+'principal/getOneActivityMember',
+
+    PrincipalParticipateResultUrl:APIRootUrl+'principal/participateResult',
 
 
 
