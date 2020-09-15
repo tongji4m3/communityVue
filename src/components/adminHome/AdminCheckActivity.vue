@@ -17,11 +17,11 @@
                     </el-input>
                 </el-col>
                  <!-- 带状态的模糊搜索 -->
-                <el-col :span="2"  class="center">
-                    <p>状态：</p>
+                <el-col :span="1"  class="center">
+                    <el-button type="text" disabled>状态：</el-button>
                 </el-col>
                 <el-col :span="2">
-                    <el-button type="primary" @click="getActivityList('all', query)">全部</el-button>
+                    <el-button type="primary" @click="getSponsorList('all', query)">{{quanbu}}</el-button>
                 </el-col>
                 <el-col :span="2">
                     <el-button type="primary" @click="getActivityList('unaudited', query)">待审核</el-button>
@@ -45,7 +45,7 @@
                 <el-table-column label="审核状态" prop="status_name"></el-table-column>
                 <el-table-column label="操作">
                     <template slot-scope="scope">
-                        <el-button type="success" 
+                        <el-button type="primary" 
                             @click="showReplyDialog(scope.$index)">
                             审核
                         </el-button>
@@ -181,6 +181,7 @@ export default {
                 adminName: "",
                 suggestion: ""
             },
+            quanbu: "全　部",
         }
     },
     //创建时显示全部列表
@@ -259,7 +260,9 @@ export default {
         async showReplyDialog(pos_in)
         {
             this.replyForm.activityId = this.activityList[pos_in].activityId;
-            // console.log(this.replyForm.activityId);
+            console.log({
+                    activityId: this.replyForm.activityId
+                });
             let result = await this.$http.post(this.$api.AdminGetActivityDetailsUrl, 
                 {
                     activityId: this.replyForm.activityId

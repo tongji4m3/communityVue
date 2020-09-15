@@ -11,6 +11,10 @@
             <el-input type="password" v-model="changeForm.newPassword" auto-complete="off" placeholder="新密码"></el-input>
         </el-form-item>
 
+        <el-form-item prop="checkNewPassword">
+            <el-input type="password" v-model="changeForm.checkNewPassword" auto-complete="off" placeholder="再次输入新密码"></el-input>
+        </el-form-item>
+
         <el-form-item style="width: 100%">
             <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="changePassword">修改
             </el-button>
@@ -23,15 +27,26 @@
     export default {
         data()
         {
+            let checkConfirmPassword = (rule, value, cb) =>
+            {
+                const regPassword = this.changeForm.newPassword;
+                if (regPassword === value)
+                {
+                    //合法密码
+                    return cb();
+                }
+                cb(new Error("前后两次输入的密码必须一致!"));
+
+            };
             return {
                 //登录表单数据绑定
                 changeForm: {
                     prePassword: '',
-                    newPassword: ''
+                    newPassword: '',
+                    checkNewPassword: '',
                 },
                 //表单的验证规则
                 changeFormRules: {
-                    //    验证用户名是否合法
                     prePassword: [
                         {required: true, message: "请输入原来的密码", trigger: "blur"},
                         {min: 6, max: 50, message: "密码必须在6-15个字符之间", trigger: "blur"}
@@ -40,6 +55,10 @@
                     newPassword: [
                         {required: true, message: "请输入新密码", trigger: "blur"},
                         {min: 6, max: 50, message: "密码必须在6-15个字符之间", trigger: "blur"}
+                    ], //    验证再次输入密码是否合法
+                    checkNewPassword: [
+                        {required: true, message: "请再次输入新密码", trigger: "blur"},
+                        {validator: checkConfirmPassword, trigger: "blur"}
                     ],
 
                 }

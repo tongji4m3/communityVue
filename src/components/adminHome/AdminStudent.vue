@@ -17,11 +17,11 @@
                     </el-input>
                 </el-col>
                  <!-- 带状态的模糊搜索 -->
-                <el-col :span="2"  class="center">
-                    <p>状态：</p>
+                <el-col :span="1"  class="center">
+                    <el-button type="text" disabled>状态：</el-button>
                 </el-col>
                 <el-col :span="2">
-                    <el-button type="primary" @click="getStudentList('all', query)">全部</el-button>
+                    <el-button type="primary" @click="getSponsorList('all', query)">{{quanbu}}</el-button>
                 </el-col>
                 <el-col :span="2">
                     <el-button type="primary" @click="getStudentList('graduated', query)">离校生</el-button>
@@ -41,7 +41,7 @@
                 <el-table-column label="状态" prop="status_name"></el-table-column>
                 <el-table-column label="操作">
                     <template slot-scope="scope">
-                        <el-button type="success" 
+                        <el-button type="primary" 
                             @click="showReplyDialog(scope.$index)">
                             修改
                         </el-button>
@@ -49,7 +49,7 @@
                 </el-table-column>
         </el-table>
             <el-row :gutter="20">
-                <el-col :span="15">
+                <el-col :span="10">
                     <!-- 分页区域 -->
                     <el-pagination
                         @size-change="handleSizeChange"
@@ -61,8 +61,8 @@
                         :total="totalCount">
                     </el-pagination>
                 </el-col>
-                <el-col :span='3'>
-                    <el-button type="success" 
+                <el-col :span='2'>
+                    <el-button type="primary" 
                         @click="showEmptyReplyDialog()">
                         新增
                     </el-button>
@@ -156,6 +156,7 @@ export default {
             pageNumber: 1,
             //每页显示的条数
             pageSize: 5,
+            quanbu:"全　部",
             //查询到的当前页活动列表
             studentList: [
                 // {
@@ -205,14 +206,6 @@ export default {
             this.status = status_in;
             this.query = query_in;
             this.pageNumber = pageNumber_in;
-            console.log(                {
-                    status: this.status,
-                    PageQO:{
-                        query: this.query,
-                        pageNumber: this.pageNumber,
-                        pageSize: this.pageSize,
-                    },
-                });
             let result = await this.$http.post(this.$api.AdminGetStudentMetaListUrl,
                 {
                     status: this.status,
@@ -327,7 +320,8 @@ export default {
         //标记为已离校
         async updateGraduate(){
             this.replyForm.status = false;
-            this.replyForm.status_name = "离校"
+            this.replyForm.status_name = "离校";
+            console.log({number:this.replyForm.number});
             let result = await this.$http.post(this.$api.AdminUpdateGraduateUrl,
                 {
                     number: this.replyForm.number
@@ -336,6 +330,9 @@ export default {
         },
         //删除学生信息
         async deleteStudentMeta(){
+            console.log({
+                    number: this.replyForm.number
+                });
             let result = await this.$http.post(this.$api.AdminDeleteStudentMetaUrl,
                 {
                     number: this.replyForm.number

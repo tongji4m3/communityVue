@@ -59,21 +59,21 @@
         </el-card>
 
         <!--        展示申请原因-->
-        <el-dialog title="申请入社详情" ref="showFormRef" :visible.sync="showDialogVisible"
+        <el-dialog title="申请参加活动详情" ref="showFormRef" :visible.sync="showDialogVisible"
                    width="50%">
             <!--            展示内容主体区域 -->
             <el-form :model="checkForm" label-width="130px">
                 <el-form-item label="学生ID:">
                     <el-input v-model="checkForm.studentId" disabled></el-input>
                 </el-form-item>
-                <el-form-item label="申请入社时间:" prop="time">
+                <el-form-item label="申请参加活动时间:" prop="time">
                     <el-date-picker type="date" v-model="checkForm.applyDate" style="width: 100%;" disabled></el-date-picker>
                 </el-form-item>
-                <el-form-item label="申请入社理由:" prop="applyReason">
+                <el-form-item label="申请参加活动理由:" prop="applyReason">
                     <el-input
                         type="textarea"
                         :rows="7"
-                        placeholder="请输入申请入社理由..."
+                        placeholder="请输入申请参加活动理由..."
                         v-model="checkForm.applyReason" disabled>
                     </el-input>
                 </el-form-item>
@@ -81,10 +81,10 @@
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
                 <!--                        通过按钮-->
-                <el-button type="success" @click="agreeStudent(this.checkForm.studentId,1)"
+                <el-button type="success" @click="agreeStudent(this.checkForm.studentId,this.checkForm.activityId,1)"
                            icon="el-icon-check"></el-button>
                 <!--                        不通过按钮-->
-                <el-button type="danger" @click="rejectStudent(this.checkForm.studentId,0)"
+                <el-button type="danger" @click="rejectStudent(this.checkForm.studentId,this.checkForm.activityId,0)"
                            icon="el-icon-close"></el-button>
                 <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
             </span>
@@ -106,12 +106,12 @@ export default {
 
             //查询到的当页学生
             StudentList: [
-                {
-                    studentId: "",
-                    applyDate:"",
-                    applyReason:"",
-                    status: false,
-                }
+                // {
+                //     studentId: "",
+                //     applyDate:"",
+                //     applyReason:"",
+                //     status: false,
+                // }
             ],
             //总条数,用于分页的显示
             totalCount: 0,
@@ -121,6 +121,9 @@ export default {
             //添加学生表单数据
             checkForm: {
                 studentId: "",
+                studentName:"",
+                activityId:"",
+                activityName:"",
                 applyDate:"",
                 applyReason:"",
                 status: false,
@@ -139,7 +142,7 @@ export default {
     methods: {
         async getStudentList()
         {
-            let result = await this.$http.post(this.$api.PrincipalGetJoinUrl,
+            let result = await this.$http.post(this.$api.PrincipalGetActivityMembersUrl,
                 {
                     query: this.query,
                     pageNumber: this.pageNumber,
@@ -168,7 +171,10 @@ export default {
 
         async showDialog(StudentId)
         {
-            let result = await this.$http.post(this.$api.PrincipalGetOneJoinUrl + "/" + StudentId);
+            let result = await this.$http.post(this.$api.PrincipalGetOneActivityMemberUrl, {
+                studentId,
+                activityId,
+            });
             this.checkForm = result.data;
             this.showDialogVisible = true;
         },
@@ -177,15 +183,16 @@ export default {
         {
             this.showDialogVisible = false;
         },
-        async agreeStudent(studentId_in, status_in)
+        async agreeStudent(studentId_in, activity_Id, status_in)
         {
             this.$refs.checkFormRef.validate(
                 async valid =>
                 {
                     if (!valid) return;
                     console.log(this.checkForm);
-                    await this.$http.post(this.$api.PrincipalJoinResult, {
+                    await this.$http.post(this.$api.PrincipalParticipateResultUrl, {
                         studentId:studentId_in,
+                        activityId:activityId_in,
                         status:status_in
                     });
                     //关闭对话框
@@ -198,15 +205,16 @@ export default {
             );
         },
 
-        async rejectStudent(studentId_in, status_in)
+        async rejectStudent(studentId_in, activity_Id, status_in)
         {
             this.$refs.checkFormRef.validate(
                 async valid =>
                 {
                     if (!valid) return;
                     console.log(this.checkForm);
-                    await this.$http.post(this.$api.PrincipalJoinResult, {
+                    await this.$http.post(this.$api.PrincipalParticipateResultUrl, {
                         studentId:studentId_in,
+                        activityId:activityId_in,
                         status:status_in
                     });
                     //关闭对话框
