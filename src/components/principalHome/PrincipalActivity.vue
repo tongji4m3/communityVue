@@ -374,7 +374,7 @@
                         //    刷新数据列表
                         this.getActivityList();
                         //    提示成功
-                        this.$message.success("更新用户成功!");
+                        this.$message.success("更新活动成功!");
                     }
                 );
             },

@@ -8,16 +8,21 @@
                 <img src="../assets/img/sys_logo.png" @click ="goIndex"  height="60"/>
             </div>
             <div class="out-button">
-                <el-dropdown>
+                <el-dropdown @command="handleCommand">
+
                     <span class="el-dropdown-link" style="margin-right: 15px">
-                        <el-avatar :src="imgUrl"></el-avatar>
+                        <el-badge is-dot class="item" :hidden="showDot">
+                            <el-avatar :src="imgUrl"></el-avatar>
+                        </el-badge>
                         <i class="el-icon-arrow-down el-icon--right"></i>
                     </span>
                     <el-dropdown-menu slot="dropdown">
                         <el-dropdown-item class="navigation-text" id="username-div">{{username}}</el-dropdown-item>
                         <el-dropdown-item class="navigation-text" @click.native ="changePassword" >修改密码</el-dropdown-item>
-                        <el-dropdown-item class="navigation-text" @click.native ="systemInformation">系统消息</el-dropdown-item>
-                        <el-dropdown-item class="navigation-text" @click.native ="systemNotice">系统公告</el-dropdown-item>
+                        <el-dropdown-item class="navigation-text" @click.native ="systemInformation">
+                            <el-badge value="new" class="item" :hidden="showDot">系统消息</el-badge></el-dropdown-item>
+                        <el-dropdown-item class="navigation-text" @click.native ="systemNotice">
+                            <el-badge value="new" class="item" :hidden="showDot">系统公告</el-badge></el-dropdown-item>
                         <el-dropdown-item class="navigation-text" @click.native ="goIndex">回到首页</el-dropdown-item>
                         <el-dropdown-item class="navigation-text" id="exit-div" divided @click.native ="logout">退出</el-dropdown-item>
                     </el-dropdown-menu>
@@ -72,6 +77,7 @@
                 informationList: [],
                 username: window.sessionStorage.getItem('name'),
                 imgUrl: window.sessionStorage.getItem('imgUrl'),
+                showDot: false,
             }
         },
         created()
@@ -91,6 +97,10 @@
                 this.totalCount = parseInt(result.data.totalCount);
                 console.log(this.totalCount);
                 this.username=this.informationList[0].name;
+            },
+            handleCommand(command)
+            {
+                this.showDot = true;
             },
 
             logout()
