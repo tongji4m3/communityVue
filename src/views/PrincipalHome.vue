@@ -8,17 +8,19 @@
                 <img src="../assets/img/sys_logo.png" @click ="goIndex" height="60"/>
             </div>
             <div class="out-button">
-                <el-dropdown>
-                    <span class="el-dropdown-link" style="margin-right: 15px">
-
-                         <el-avatar :src="imgUrl"></el-avatar>
+                <el-dropdown @command="handleCommand">
+                    <el-badge is-dot class="item" :hidden="showDot">
+                         <el-avatar :src="imgUrl"><span class="el-dropdown-link" style="margin-right: 15px">
+                         </span></el-avatar>
+                    </el-badge>
                         <i class="el-icon-arrow-down el-icon--right"></i>
-                    </span>
                     <el-dropdown-menu slot="dropdown">
-                        <el-dropdown-item class="navigation-text" id="username-div">{{username}}</el-dropdown-item>
+                            <el-dropdown-item class="navigation-text" id="username-div">{{username}}</el-dropdown-item>
                         <el-dropdown-item class="navigation-text" @click.native ="changePassword" >修改密码</el-dropdown-item>
-                        <el-dropdown-item class="navigation-text" @click.native ="systemInformation">系统消息</el-dropdown-item>
-                        <el-dropdown-item class="navigation-text" @click.native ="systemNotice">系统公告</el-dropdown-item>
+                        <el-dropdown-item class="navigation-text" @click.native ="systemInformation">
+                            <el-badge value="new" class="item" :hidden="showDot">系统消息</el-badge></el-dropdown-item>
+                        <el-dropdown-item class="navigation-text" @click.native ="systemNotice">
+                            <el-badge value="new" class="item" :hidden="showDot">系统公告</el-badge></el-dropdown-item>
                         <el-dropdown-item class="navigation-text" @click.native ="goIndex">回到首页</el-dropdown-item>
                         <el-dropdown-item class="navigation-text" id="exit-div" divided @click.native ="logout">退出</el-dropdown-item>
                     </el-dropdown-menu>
@@ -77,9 +79,11 @@
     export default {
         data(){
             return{
+                showDot: false,
                 username: window.sessionStorage.getItem('name'),
                 // imgUrl: 'https://tongji4m3.oss-cn-beijing.aliyuncs.com/f_f_object_156_s512_f_object_156_0.png'
                 imgUrl: window.sessionStorage.getItem('imgUrl'),
+
 
             }
         },
@@ -105,6 +109,10 @@
             goIndex()
             {
                 this.$router.push("/index")
+            },
+            handleCommand(command)
+            {
+                this.showDot = true;
             }
         }
     };

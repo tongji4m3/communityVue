@@ -21,7 +21,7 @@
                     <el-button type="text" disabled>状态：</el-button>
                 </el-col>
                 <el-col :span="2">
-                    <el-button type="primary" @click="getSponsorList('all', query)">{{quanbu}}</el-button>
+                    <el-button type="primary" @click="getStudentList('all', query)">{{quanbu}}</el-button>
                 </el-col>
                 <el-col :span="2">
                     <el-button type="primary" @click="getStudentList('graduated', query)">离校生</el-button>
@@ -49,7 +49,7 @@
                 </el-table-column>
         </el-table>
             <el-row :gutter="20">
-                <el-col :span="10">
+                <el-col :span="13">
                     <!-- 分页区域 -->
                     <el-pagination
                         @size-change="handleSizeChange"

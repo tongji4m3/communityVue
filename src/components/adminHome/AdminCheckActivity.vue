@@ -21,7 +21,7 @@
                     <el-button type="text" disabled>状态：</el-button>
                 </el-col>
                 <el-col :span="2">
-                    <el-button type="primary" @click="getSponsorList('all', query)">{{quanbu}}</el-button>
+                    <el-button type="primary" @click="getActivityList('all', query)">{{quanbu}}</el-button>
                 </el-col>
                 <el-col :span="2">
                     <el-button type="primary" @click="getActivityList('unaudited', query)">待审核</el-button>
@@ -272,9 +272,9 @@ export default {
             this.replyForm.name = result.data.name;
             this.replyForm.budget = result.data.budget;
             this.replyForm.place = result.data.place;
-            this.replyForm.eventTime = result.data.eventTime.slice(0, result.data.data[i].eventTime.indexOf('T'));
+            this.replyForm.eventTime = result.data.eventTime.slice(0, result.data.eventTime.indexOf('T'));
             this.replyForm.status_name = this.statusToStr(result.data.status);
-            this.replyForm.applyDate = result.data.applyDate.slice(0, result.data.data[i].applyDate.indexOf('T'));
+            this.replyForm.applyDate = result.data.applyDate.slice(0, result.data.applyDate.indexOf('T'));
             this.replyForm.description = result.data.description;
             this.replyForm.isPublic_str = result.data.isPublic?"公开活动":"社内活动";
             this.replyForm.adminName = result.data.adminName;

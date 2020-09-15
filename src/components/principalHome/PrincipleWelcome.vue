@@ -8,20 +8,20 @@
             </div>
         </el-card>
 
-        <!--        日历按钮-->
-        <el-button type="text" @click="openCalendar">查看日历</el-button>
-        <el-button type="text" @click="openSchoolCalendar">查看校历</el-button>
+        <!--       日历按钮-->
+        <!-- <el-button type="text" @click="openCalendar">查看日历</el-button>
+        <el-button type="text" @click="openSchoolCalendar">查看校历</el-button> -->
         <!--        日历框-->
-        <el-dialog :visible.sync="showCalendar"
+        <!-- <el-dialog :visible.sync="showCalendar"
                    width="50%">
             <el-calendar v-model="value">
             </el-calendar>
-        </el-dialog>
+        </el-dialog> -->
 
-        <el-dialog :visible.sync="showSchoolCalendar"
+        <!-- <el-dialog :visible.sync="showSchoolCalendar"
                    width="50%">
             <img src="../../assets/img/calendar.jpg" alt="" style="width: 100%;margin:0;">
-        </el-dialog>
+        </el-dialog> -->
 
         <el-carousel :interval="4000" type="card" height="200px">
             <el-carousel-item v-for="item in 6" :key="item">
@@ -36,7 +36,7 @@
                 <span> <h3>   系统公告</h3></span>
             </div>
             <el-divider></el-divider>
-            <!--            搜索与添加-->
+            <!--            搜索与添加
             <el-row :gutter="20">
                 <el-col :span="7">
                     <!--                    搜索取消时也会刷新搜索页面,搜索确定时,将携带query搜索特点内容的系统公告-->
@@ -52,7 +52,7 @@
                 <el-table-column label="系统公告时间" prop="time"></el-table-column>
                 <el-table-column label="显示详情">
                     <template slot-scope="scope">
-                        <el-button type="success" @click="showDialog(scope.row.announcementId)">查看</el-button>
+                        <el-button type="primary" @click="showDialog(scope.row.announcementId)">查看</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -137,7 +137,8 @@ export default {
                     query: this.query,
                     pageNumber: this.pageNumber,
                     pageSize: this.pageSize,
-                    status: true
+                    status: true,
+                    value: new Date()//日历
                 });
             this.AnnouncementList = result.data.data;
             for (let i = 0; i < this.AnnouncementList.length; i++)

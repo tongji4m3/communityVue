@@ -1,42 +1,42 @@
 <!--有前端验证注册信息是否合理-->
 <template>
     <body id="poster">
-    <el-form ref="registerFormRef" :model="registerForm" :rules="registerFormRules"
-             class="login-container" label-position="left"
-             label-width="0px">
-        <h3 class="login_title">注册</h3>
-        <el-form-item prop="number">
-            <el-input v-model="registerForm.number" placeholder="学号"></el-input>
-        </el-form-item>
-        <el-form-item prop="username">
-            <el-input v-model="registerForm.username" placeholder="用户名"></el-input>
-        </el-form-item>
-        <el-form-item prop="password">
-            <el-input type="password" v-model="registerForm.password" placeholder="密码"></el-input>
-        </el-form-item>
-        <el-form-item prop="confirmPassword">
-            <el-input type="password" v-model="registerForm.confirmPassword" placeholder="确认密码"></el-input>
-        </el-form-item>
+        <el-form ref="registerFormRef" :model="registerForm" :rules="registerFormRules"
+                 class="login-container" label-position="left"
+                 label-width="0px">
+            <h3 class="login_title">注册</h3>
+            <el-form-item prop="number">
+                <el-input v-model="registerForm.number" placeholder="学号"></el-input>
+            </el-form-item>
+            <el-form-item prop="username">
+                <el-input v-model="registerForm.username" placeholder="用户名"></el-input>
+            </el-form-item>
+            <el-form-item prop="password">
+                <el-input type="password" v-model="registerForm.password" placeholder="密码"></el-input>
+            </el-form-item>
+            <el-form-item prop="confirmPassword">
+                <el-input type="password" v-model="registerForm.confirmPassword" placeholder="确认密码"></el-input>
+            </el-form-item>
 
-        <el-upload
-                class="upload"
-                action=""
-                :drag="true"
-                :multiple="true"
-                :file-list="images"
-                :http-request="uploadHttp"
-                :before-upload="beforeAvatarUpload"
-                :on-remove="handleRemove"
-        >
-            <i class="el-icon-plus avatar-uploader-icon"></i>
-            <p id="img-context">上传个人头像</p>
-            <div class="el-upload__tip" slot="tip">只能上传jpg/jpeg/png文件，且不超过5MB</div>
-        </el-upload>
-        <el-form-item style="width: 100%">
-            <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="register">注册
-            </el-button>
-        </el-form-item>
-    </el-form>
+            <el-upload
+                    class="upload"
+                    action=""
+                    :drag="true"
+                    :multiple="true"
+                    :file-list="images"
+                    :http-request="uploadHttp"
+                    :before-upload="beforeAvatarUpload"
+                    :on-remove="handleRemove"
+            >
+                <i class="el-icon-plus avatar-uploader-icon"></i>
+                <p id="img-context">上传个人头像</p>
+                <div class="el-upload__tip" slot="tip">只能上传jpg/jpeg/png文件，且不超过5MB</div>
+            </el-upload>
+            <el-form-item style="width: 100%">
+                <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="register">注册
+                </el-button>
+            </el-form-item>
+        </el-form>
     </body>
 </template>
 
