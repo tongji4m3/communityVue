@@ -70,12 +70,14 @@
             <br>
             <hr>
             <br>
-            <p style="font-family: 楷体; font-size:20px" v-html="addForm.summary">简介：{{addForm.summary}}</p>
+            <p style="font-size:15px" v-html="addForm.summary">简介：{{addForm.summary}}</p>
             <br>
             <hr>
             <br>
-            <p style="text-align: right;font-size:20px">会长：{{addForm.president}}</p>
-            <p style="text-align: right;font-size:20px">成立时间：{{addForm.date}}</p>
+            <p style="text-align: right;font-size:15px;margin-bottom: 7px;">成立时间：{{addForm.date}}</p>
+
+            <p style="text-align: right;font-size:15px">会长：{{addForm.president}}</p>
+
 
 
             <!--            底部区域-->
@@ -229,7 +231,7 @@
                 });
                 this.corporationsList = result.data.data;
                 console.log(this.corporationsList);
-                for(var i=0;i<result.data.totalCount-1;i++){
+                for(var i=0;i<result.data.totalCount;i++){
                     if(this.corporationsList[i].type===0){
                         this.corporationsList[i].type="学术科技类";
                     }

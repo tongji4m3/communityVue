@@ -48,7 +48,7 @@
                         </el-menu-item>
                         <el-menu-item index="/joinActivity">
                             <i class="el-icon-s-custom"></i>
-                            参加活动
+                            活动信息查询
                         </el-menu-item>
                         <el-menu-item index="/InActivity">
                             <i class="el-icon-star-on"></i>
