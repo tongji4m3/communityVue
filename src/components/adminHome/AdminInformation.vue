@@ -146,7 +146,7 @@
                         v-model="messageForm.title"
                         type="textarea"
                         :autosize = "{ minRows: 1, maxRows: 2 }"
-                        readonly>
+                        maxlength="2000">
                     </el-input>
                 </el-form-item>
                 <el-form-item label="内  容:">
@@ -328,13 +328,15 @@ export default {
             this.replyForm.type = result.data.type;
             this.replyForm.description = result.data.description;
             this.replyForm.presidentName = result.data.presidentName;
-            this.replyForm.establishmentDate = result.data.establishmentDate.slice(0, result.data.data[i].establishmentDate.indexOf('T'));
+            this.replyForm.establishmentDate = result.data.establishmentDate.slice(0, result.data.establishmentDate.indexOf('T'));
             this.replyForm.status_name = this.statusToStr(result.data.status);
             this.replyForm.isChecking = this.statusToIsChecking(result.data.status);
             this.replyForm.phone = result.data.phone;
             this.replyForm.mail = result.data.mail;
             this.replyForm.grade = result.data.grade;
             this.replyForm.major = result.data.major;
+
+            this.replyDialogVisible = true;
         },
         //关闭详情对话框
         closeReplyDialog()
@@ -354,6 +356,12 @@ export default {
         async sendMessage()
         {
             this.closeMessageDialog();
+            if(this.messageForm.title == ""){this.messageForm.title = "无标题";}
+            // console.log({
+            //         userId: this.messageForm.userId,
+            //         content: this.messageForm.content,
+            //         title: this.messageForm.title
+            //     });
             let result = await this.$http.post(this.$api.AdminSendMessageUrl, 
                 {
                     userId: this.messageForm.userId,

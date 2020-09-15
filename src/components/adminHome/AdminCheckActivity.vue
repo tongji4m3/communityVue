@@ -259,7 +259,9 @@ export default {
         async showReplyDialog(pos_in)
         {
             this.replyForm.activityId = this.activityList[pos_in].activityId;
-            // console.log(this.replyForm.activityId);
+            console.log({
+                    activityId: this.replyForm.activityId
+                });
             let result = await this.$http.post(this.$api.AdminGetActivityDetailsUrl, 
                 {
                     activityId: this.replyForm.activityId

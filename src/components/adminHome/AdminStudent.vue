@@ -205,14 +205,6 @@ export default {
             this.status = status_in;
             this.query = query_in;
             this.pageNumber = pageNumber_in;
-            console.log(                {
-                    status: this.status,
-                    PageQO:{
-                        query: this.query,
-                        pageNumber: this.pageNumber,
-                        pageSize: this.pageSize,
-                    },
-                });
             let result = await this.$http.post(this.$api.AdminGetStudentMetaListUrl,
                 {
                     status: this.status,
@@ -327,7 +319,8 @@ export default {
         //标记为已离校
         async updateGraduate(){
             this.replyForm.status = false;
-            this.replyForm.status_name = "离校"
+            this.replyForm.status_name = "离校";
+            console.log({number:this.replyForm.number});
             let result = await this.$http.post(this.$api.AdminUpdateGraduateUrl,
                 {
                     number: this.replyForm.number
@@ -336,6 +329,9 @@ export default {
         },
         //删除学生信息
         async deleteStudentMeta(){
+            console.log({
+                    number: this.replyForm.number
+                });
             let result = await this.$http.post(this.$api.AdminDeleteStudentMetaUrl,
                 {
                     number: this.replyForm.number
