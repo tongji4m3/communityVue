@@ -141,8 +141,8 @@
     .login-container {
         border-radius: 15px;
         background-clip: padding-box;
-        margin-left: 400px;
-        margin-top: 150px;
+        margin-left: 28%;
+        margin-top: 10%;
         width: 350px;
         padding: 35px 35px 15px 35px;
         background: #fff;

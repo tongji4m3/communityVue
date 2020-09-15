@@ -137,7 +137,8 @@ export default {
                     query: this.query,
                     pageNumber: this.pageNumber,
                     pageSize: this.pageSize,
-                    status: true
+                    status: true,
+                    value: new Date()//日历
                 });
             this.AnnouncementList = result.data.data;
             for (let i = 0; i < this.AnnouncementList.length; i++)
