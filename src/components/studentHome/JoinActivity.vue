@@ -14,7 +14,7 @@
 <!--                show-icon>-->
 <!--        </el-alert>-->
 
-        <el-divider></el-divider>
+
         <el-alert
                 title="欢迎查看公开活动"
                 type="info"

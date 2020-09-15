@@ -175,7 +175,10 @@
                         status: true
                     });
                 this.corporationsList = result.data.data;
-                this.corporationsList[0].establishmentDate=this.corporationsList[0].establishmentDate.substring(0,10);
+                for(var j=0;j<result.data.totalCount;j++) {
+                    this.corporationsList[j].establishmentDate=this.corporationsList[j].establishmentDate.substring(0,10);
+                }
+
 
                 for(var i=0;i<result.data.totalCount;i++){
                     if(this.corporationsList[i].type===0){

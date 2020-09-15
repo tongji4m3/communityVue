@@ -65,11 +65,11 @@
             <br>
             <hr>
             <br>
-            <p style="font-family: 楷体; font-size:20px">{{showForm.content}}</p>
+            <p style="font-size:20px">{{showForm.content}}</p>
             <br>
             <hr>
             <br>
-            <p style="text-align: right;font-size:20px">{{showForm.time}}</p>
+            <p style="text-align: right;font-size:15px">{{showForm.time}}</p>
 
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
