@@ -21,7 +21,7 @@
                     <el-button type="text" disabled>状态：</el-button>
                 </el-col>
                 <el-col :span="2">
-                    <el-button type="primary" @click="getSponsorList('all', query)">{{quanbu}}</el-button>
+                    <el-button type="primary" @click="getClubList('all', query)">{{quanbu}}</el-button>
                 </el-col>
                 <el-col :span="2">
                     <el-button type="primary" @click="getClubList('unaudited', query)">待审核</el-button>
@@ -86,12 +86,7 @@
                     <el-date-picker type="date" v-model="this.replyForm.establishmentDate" style="width: 100%;" readonly></el-date-picker>
                 </el-form-item>
                 <el-form-item label="社团描述:">
-                    <el-input 
-                        v-model="replyForm.description"
-                        type="textarea"
-                        :autosize = "{ minRows: 3, maxRows: 8 }"
-                        readonly>
-                    </el-input>
+                    <div v-html="this.replyForm.description">{{this.replyForm.description}}</div>
                 </el-form-item>
                 <el-form-item label="负责人姓名:">
                     <el-input v-model="this.replyForm.presidentName" readonly></el-input>
