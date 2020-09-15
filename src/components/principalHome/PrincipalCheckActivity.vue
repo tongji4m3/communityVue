@@ -24,23 +24,23 @@
                 <el-table-column type="index"></el-table-column>
 
                 <el-table-column label="学生ID" prop="studentId"></el-table-column>
-                <el-table-column label="学生姓名" prop="studentId"></el-table-column>
-                <el-table-column label="活动名称" prop="studentId"></el-table-column>
+                <el-table-column label="学生姓名" prop="studentName"></el-table-column>
+                <el-table-column label="活动名称" prop="activityName"></el-table-column>
                 <el-table-column label="申请时间" prop="applyDate"></el-table-column>
 
                 <el-table-column label="显示详情">
                     <template slot-scope="scope">
-                        <el-button type="primary" @click="showDialog(scope.row.studentId)">查看</el-button>
+                        <el-button type="primary" @click="showDialog(scope.row.studentId,scope.row.activityId)">查看</el-button>
                     </template>
                 </el-table-column>
                 <el-table-column label="审核">
                     <template slot-scope="scope">
                         <!--                        通过按钮-->
-                        <el-button type="success" @click="agreeStudent(scope.row.studentId,1)"
-                                   icon="el-icon-check"></el-button>
+                        <el-button type="success" @click="agreeStudent(scope.row.studentId,scope.row.activityId,1)"
+                                   icon="el-icon-check" circle></el-button>
                         <!--                        不通过按钮-->
-                        <el-button type="danger" @click="rejectStudent(scope.row.studentId,0)"
-                                   icon="el-icon-close"></el-button>
+                        <el-button type="danger" @click="rejectStudent(scope.row.studentId,scope.row.activityId,0)"
+                                   icon="el-icon-close" circle></el-button>
                     </template>
                 </el-table-column>
 
@@ -63,17 +63,16 @@
                    width="50%">
             <!--            展示内容主体区域 -->
             <el-form :model="checkForm" label-width="130px">
-                <el-form-item label="学生ID:">
+                <el-form-item label="学生ID:" prop="studentId">
                     <el-input v-model="checkForm.studentId" disabled></el-input>
                 </el-form-item>
-                <el-form-item label="申请参加活动时间:" prop="time">
+                <el-form-item label="申请参加活动时间:" prop="applyDate">
                     <el-date-picker type="date" v-model="checkForm.applyDate" style="width: 100%;" disabled></el-date-picker>
                 </el-form-item>
                 <el-form-item label="申请参加活动理由:" prop="applyReason">
                     <el-input
                         type="textarea"
                         :rows="7"
-                        placeholder="请输入申请参加活动理由..."
                         v-model="checkForm.applyReason" disabled>
                     </el-input>
                 </el-form-item>
@@ -82,10 +81,10 @@
             <span slot="footer" class="dialog-footer">
                 <!--                        通过按钮-->
                 <el-button type="success" @click="agreeStudent(this.checkForm.studentId,this.checkForm.activityId,1)"
-                           icon="el-icon-check"></el-button>
+                           icon="el-icon-check" circle></el-button>
                 <!--                        不通过按钮-->
                 <el-button type="danger" @click="rejectStudent(this.checkForm.studentId,this.checkForm.activityId,0)"
-                           icon="el-icon-close"></el-button>
+                           icon="el-icon-close" circle></el-button>
                 <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
             </span>
         </el-dialog>
@@ -169,13 +168,17 @@ export default {
             this.getStudentList();
         },
 
-        async showDialog(StudentId)
+        async showDialog(StudentId_in,ActivityId_in)
         {
+            console.log(StudentId_in,ActivityId_in);
             let result = await this.$http.post(this.$api.PrincipalGetOneActivityMemberUrl, {
-                studentId,
-                activityId,
+                StudentId_in,
+                ActivityId_in,
             });
+            // this.checkForm.studentId = result.data.studentId;
             this.checkForm = result.data;
+            console.log(result.data.StudentId);
+            // console.log(result.data);
             this.showDialogVisible = true;
         },
         //显示学生申请详情页面按确定后的触发事件
@@ -185,46 +188,32 @@ export default {
         },
         async agreeStudent(studentId_in, activity_Id, status_in)
         {
-            this.$refs.checkFormRef.validate(
-                async valid =>
-                {
-                    if (!valid) return;
-                    console.log(this.checkForm);
-                    await this.$http.post(this.$api.PrincipalParticipateResultUrl, {
-                        studentId:studentId_in,
-                        activityId:activityId_in,
-                        status:status_in
-                    });
-                    //关闭对话框
-                    this.editDialogVisible = false;
-                    //    刷新数据列表
-                    await this.getStudentList();
-                    //    提示成功
-                    this.$message.success("申请审核已通过!");
-                }
-            );
+            await this.$http.post(this.$api.PrincipalParticipateResultUrl, {
+              studentId:studentId_in,
+              activityId:activityId_in,
+              status:status_in
+            });
+            //关闭对话框
+            this.editDialogVisible = false;
+            //    刷新数据列表
+            await this.getStudentList();
+            //    提示成功
+            this.$message.success("申请审核已通过!");
         },
 
         async rejectStudent(studentId_in, activity_Id, status_in)
         {
-            this.$refs.checkFormRef.validate(
-                async valid =>
-                {
-                    if (!valid) return;
-                    console.log(this.checkForm);
-                    await this.$http.post(this.$api.PrincipalParticipateResultUrl, {
-                        studentId:studentId_in,
-                        activityId:activityId_in,
-                        status:status_in
-                    });
-                    //关闭对话框
-                    this.editDialogVisible = false;
-                    //    刷新数据列表
-                    await this.getStudentList();
-                    //    提示成功
-                    this.$message.success("申请审核未通过!");
-                }
-            );
+          await this.$http.post(this.$api.PrincipalParticipateResultUrl, {
+            studentId:studentId_in,
+            activityId:activityId_in,
+            status:status_in
+          });
+          //关闭对话框
+          this.editDialogVisible = false;
+          //    刷新数据列表
+          await this.getStudentList();
+          //    提示成功
+          this.$message.success("申请审核未通过!");
         },
 
     }

@@ -35,10 +35,10 @@
                 <el-table-column label="操作">
                     <template slot-scope="scope">
                         <!--                        修改按钮-->
-                        <el-button type="success" @click="showEditDialog(scope.row.announcementId)"
+                        <el-button type="primary" @click="showEditDialog(scope.row.announcementId)"
                                    icon="el-icon-edit"></el-button>
                         <!--                        删除按钮-->
-                        <el-button type="success" @click="removeById(scope.row.announcementId)"
+                        <el-button type="primary" @click="removeById(scope.row.announcementId)"
                                    icon="el-icon-delete"></el-button>
 
                     </template>
@@ -294,7 +294,7 @@ export default {
                     //    刷新数据列表
                     await this.getAnnouncementList();
                     //    提示成功
-                    this.$message.success("更新用户成功!");
+                    this.$message.primary("更新用户成功!");
                 }
             );
         },

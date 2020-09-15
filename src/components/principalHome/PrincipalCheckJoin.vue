@@ -34,10 +34,10 @@
                     <template slot-scope="scope">
                         <!--                        通过按钮-->
                         <el-button type="success" @click="agreeStudent(scope.row.studentId,1)"
-                                   icon="el-icon-check"></el-button>
+                                   icon="el-icon-check" circle></el-button>
                         <!--                        不通过按钮-->
                         <el-button type="danger" @click="rejectStudent(scope.row.studentId,0)"
-                                   icon="el-icon-close"></el-button>
+                                   icon="el-icon-close" circle></el-button>
                     </template>
                 </el-table-column>
 
@@ -66,7 +66,7 @@
                 <el-form-item label="姓名:">
                     <el-input v-model="checkForm.studentName" disabled></el-input>
                 </el-form-item>
-                <el-form-item label="申请入社时间:" prop="time">
+                <el-form-item label="申请入社时间:">
                     <el-date-picker type="date" v-model="checkForm.applyDate" style="width: 100%;" disabled></el-date-picker>
                 </el-form-item>
                 <el-form-item label="申请入社理由:" prop="applyReason">
@@ -82,10 +82,10 @@
             <span slot="footer" class="dialog-footer">
                 <!--                        通过按钮-->
                 <el-button type="success" @click="agreeStudent(this.checkForm.studentId,1)"
-                       icon="el-icon-check"></el-button>
+                       icon="el-icon-check" circle></el-button>
                 <!--                        不通过按钮-->
                 <el-button type="danger" @click="rejectStudent(this.checkForm.studentId,0)"
-                       icon="el-icon-close"></el-button>
+                       icon="el-icon-close " circle></el-button>
                 <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
             </span>
         </el-dialog>
@@ -122,6 +122,7 @@ export default {
             //添加学生表单数据
             checkForm: {
                 studentId: "",
+                studentName:"",
                 applyDate:"",
                 applyReason:"",
                 status: false,
@@ -170,7 +171,9 @@ export default {
         async showDialog(StudentId)
         {
             let result = await this.$http.post(this.$api.PrincipalGetOneJoinUrl + "/" + StudentId);
+
             this.checkForm = result.data;
+
             this.showDialogVisible = true;
         },
         //显示学生申请详情页面按确定后的触发事件
@@ -180,44 +183,32 @@ export default {
         },
         async agreeStudent(studentId_in, status_in)
         {
-            this.$refs.checkFormRef.validate(
-                async valid =>
-                {
-                    if (!valid) return;
-                    console.log(this.checkForm);
-                    await this.$http.post(this.$api.PrincipalJoinResult, {
-                        studentId:studentId_in,
-                        status:status_in
-                    });
-                    //关闭对话框
-                    this.editDialogVisible = false;
-                    //    刷新数据列表
-                    await this.getStudentList();
-                    //    提示成功
-                    this.$message.success("申请审核已通过!");
-                }
-            );
+            await this.$http.post(this.$api.PrincipalJoinResult, {
+              studentId:studentId_in,
+              status:status_in
+            });
+            //关闭对话框
+            this.editDialogVisible = false;
+            //    刷新数据列表
+            await this.getStudentList();
+            this.showDialogVisible = false;
+            //    提示成功
+            this.$message.success("申请审核已通过!");
         },
 
         async rejectStudent(studentId_in, status_in)
         {
-            this.$refs.checkFormRef.validate(
-                async valid =>
-                {
-                    if (!valid) return;
-                    console.log(this.checkForm);
-                    await this.$http.post(this.$api.PrincipalJoinResult, {
-                        studentId:studentId_in,
-                        status:status_in
-                    });
-                    //关闭对话框
-                    this.editDialogVisible = false;
-                    //    刷新数据列表
-                    await this.getStudentList();
-                    //    提示成功
-                    this.$message.success("申请审核未通过!");
-                }
-            );
+          await this.$http.post(this.$api.PrincipalJoinResult, {
+            studentId:studentId_in,
+            status:status_in
+          });
+          //关闭对话框
+          this.editDialogVisible = false;
+          //    刷新数据列表
+          await this.getStudentList();
+          this.showDialogVisible = false;
+          //    提示成功
+          this.$message.success("申请审核未通过!");
         },
 
     }

@@ -20,7 +20,7 @@
                 <el-table-column label="系统公告时间" prop="time"></el-table-column>
                 <el-table-column label="显示详情">
                     <template slot-scope="scope">
-                        <el-button type="success" @click="showDialog(scope.row.announcementId)">查看</el-button>
+                        <el-button type="primary" @click="showDialog(scope.row.announcementId)">查看</el-button>
                     </template>
                 </el-table-column>
             </el-table>

@@ -118,7 +118,7 @@
                 <!-- 通过按钮 -->
                 <el-button 
                     v-if="replyForm.isChecking"
-                    type="success" 
+                    type="success"
                     @click="updateStatusAndRefresh(replyForm.clubId, 1, 1)"
                     icon="el-icon-check" 
                     circle>
