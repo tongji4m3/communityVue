@@ -21,7 +21,7 @@
                     <p>状态：</p>
                 </el-col>
                 <el-col :span="2">
-                    <el-button type="primary" @click="getActivityList('all', query)">全部</el-button>
+                    <el-button type="primary" @click="getActivityList('all', query)">{{quanbu}}</el-button>
                 </el-col>
                 <el-col :span="2">
                     <el-button type="primary" @click="getActivityList('unaudited', query)">待审核</el-button>
@@ -181,6 +181,7 @@ export default {
                 adminName: "",
                 suggestion: ""
             },
+            quanbu: "全　部",
         }
     },
     //创建时显示全部列表
@@ -229,13 +230,13 @@ export default {
         handleSizeChange(newSize)
         {
             this.pageSize = newSize;
-            this.getActivityList(this.query);
+            this.getActivityList();
         },
         //监听pageNum改变的事件
         handleCurrentChange(newPage)
         {
             this.pageNumber = newPage;
-            this.getActivityList(this.query);
+            this.getActivityList();
         },
         //输出status的文字描述
         statusToStr(status_int)
@@ -259,7 +260,9 @@ export default {
         async showReplyDialog(pos_in)
         {
             this.replyForm.activityId = this.activityList[pos_in].activityId;
-            // console.log(this.replyForm.activityId);
+            console.log({
+                    activityId: this.replyForm.activityId
+                });
             let result = await this.$http.post(this.$api.AdminGetActivityDetailsUrl, 
                 {
                     activityId: this.replyForm.activityId

@@ -262,25 +262,20 @@ export default {
         async showReplyDialog(pos_in)
         {
             this.replyForm.sponsorshipId = this.sponsorList[pos_in].sponsorshipId;
-            // console.log(this.replyForm.sponsorshipId);
-            // let result = await this.$http.post(this.$api.AdminGetSponsorshipDetailsUrl, 
-            //     {
-            //         sponsorshipId: this.replyForm.sponsorshipId
-            //     });
-            // this.replyForm.suggestion = result.data.suggestion;
-            // this.replyForm.requirement = result.data.requirement;
-            // this.replyForm.clubName = result.data.clubName
-            // this.replyForm.applyDate = result.data.applyDate;
-            // this.replyForm.sponsor = result.data.sponsor;
-            // this.replyForm.amount = result.data.amount;
-            // this.replyForm.status_name = statusToStr(result.data.status);
-            this.replyForm.clubName = this.sponsorList[pos_in].clubName
-            this.replyForm.applyDate = this.sponsorList[pos_in].applyDate;
-            this.replyForm.sponsor = this.sponsorList[pos_in].sponsor;
-            this.replyForm.amount = this.sponsorList[pos_in].amount;
-            this.replyForm.status_name = this.sponsorList[pos_in].status_name;
-            this.replyForm.suggestion = ""
-            this.replyForm.requirement = "无"
+            console.log({
+                    sponsorshipId: this.replyForm.sponsorshipId
+                });
+            let result = await this.$http.post(this.$api.AdminGetSponsorshipDetailsUrl, 
+                {
+                    sponsorshipId: this.replyForm.sponsorshipId
+                });
+            this.replyForm.suggestion = result.data.suggestion;
+            this.replyForm.requirement = result.data.requirement;
+            this.replyForm.clubName = result.data.clubName
+            this.replyForm.applyDate = result.data.applyDate;
+            this.replyForm.sponsor = result.data.sponsor;
+            this.replyForm.amount = result.data.amount;
+            this.replyForm.status_name = statusToStr(result.data.status);
             this.replyDialogVisible = true;
         },
         //关闭详情对话框
@@ -292,6 +287,9 @@ export default {
         async submitSuggestion()
         {
             this.closeReplyDialog();
+            console.log({
+                    suggestion: this.replyForm.suggestion
+                });
             let result = await this.$http.post(this.$api.AdminUpdateSponSuggestionUrl, 
                 {
                     suggestion: this.replyForm.suggestion
