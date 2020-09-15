@@ -275,7 +275,7 @@ export default {
         statusToIsChecking(status){
             switch(status) {
                 case 2:
-                    return trte;
+                    return true;
                     break;
                 default:
                     return false;
