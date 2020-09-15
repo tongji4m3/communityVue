@@ -17,11 +17,11 @@
                     </el-input>
                 </el-col>
                  <!-- 带状态的模糊搜索 -->
-                <el-col :span="2"  class="center">
-                    <p>状态：</p>
+                <el-col :span="1"  class="center">
+                    <el-button type="text" disabled>状态：</el-button>
                 </el-col>
                 <el-col :span="2">
-                    <el-button type="primary" @click="getSponsorList('all', query)">全部</el-button>
+                    <el-button type="primary" @click="getSponsorList('all', query)">{{quanbu}}</el-button>
                 </el-col>
                 <el-col :span="2">
                     <el-button type="primary" @click="getSponsorList('unaudited', query)">待审核</el-button>
@@ -43,8 +43,8 @@
                 <el-table-column label="审核状态" prop="status_name"></el-table-column>
                 <el-table-column label="申请详情">
                     <template slot-scope="scope">
-                        <el-button type="success"
-                                   @click="showReplyDialog(scope.$index)">
+                        <el-button type="primary"
+                            @click="showReplyDialog(scope.$index)">
                             查看详情
                         </el-button>
                     </template>
@@ -158,6 +158,7 @@ export default {
             pageNumber: 1,
             //每页显示的条数
             pageSize: 5,
+            quanbu:"全　部",
             //查询到的当前页赞助列表
             sponsorList: [
                 {

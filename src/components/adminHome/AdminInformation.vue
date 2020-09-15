@@ -17,11 +17,11 @@
                     </el-input>
                 </el-col>
                  <!-- 带状态的模糊搜索 -->
-                <el-col :span="2"  class="center">
-                    <p>状态：</p>
+                <el-col :span="1"  class="center">
+                    <el-button type="text" disabled>状态：</el-button>
                 </el-col>
                 <el-col :span="2">
-                    <el-button type="primary" @click="getClubList('all', query)">全部</el-button>
+                    <el-button type="primary" @click="getSponsorList('all', query)">{{quanbu}}</el-button>
                 </el-col>
                 <el-col :span="2">
                     <el-button type="primary" @click="getClubList('unaudited', query)">待审核</el-button>
@@ -45,12 +45,12 @@
                 <el-table-column label="操作">
                     <template slot-scope="scope">
                         <el-button v-if="clubList[scope.$index].isChecking" 
-                            type="success" 
+                            type="primary" 
                             @click="showReplyDialog(scope.$index)">
                             审核
                         </el-button>
                         <el-button v-else 
-                            type="success" 
+                            type="primary" 
                             @click="showReplyDialog(scope.$index)">
                             详情
                         </el-button>
@@ -119,7 +119,7 @@
                 <el-button 
                     v-if="replyForm.isChecking"
                     type="success" 
-                    @click="updateStatusAndRefresh(this.replyForm.clubId, 1, 1)"
+                    @click="updateStatusAndRefresh(replyForm.clubId, 1, 1)"
                     icon="el-icon-check" 
                     circle>
                 </el-button>
@@ -183,6 +183,7 @@ export default {
             pageNumber: 1,
             //每页显示的条数
             pageSize: 5,
+            quanbu:"全　部",
             //查询到的当前页社团列表
             clubList: [
                 {
@@ -330,7 +331,8 @@ export default {
             this.replyForm.presidentName = result.data.presidentName;
             this.replyForm.establishmentDate = result.data.establishmentDate.slice(0, result.data.establishmentDate.indexOf('T'));
             this.replyForm.status_name = this.statusToStr(result.data.status);
-            this.replyForm.isChecking = this.statusToIsChecking(result.data.status);
+            // this.replyForm.isChecking = this.statusToIsChecking(result.data.status);
+            this.replyForm.isChecking = true;
             this.replyForm.phone = result.data.phone;
             this.replyForm.mail = result.data.mail;
             this.replyForm.grade = result.data.grade;
@@ -377,13 +379,17 @@ export default {
                     clubId: clubId_in,
                     status: status_in
                 });
+            this.messageForm.userId = this.replyForm.managerId;
+            this.messageForm.title = "社团申请通过";
+            this.messageForm.content = "恭喜您的新社团申请已通过审核，社团负责人账号已启用，默认用户名为社团名，默认密码为xxxx。请注意修改密码";
+            this.sendMessage();
             switch(dialog)
             {
                 case 0://列表界面
                     this.getClubList();
                     break;
                 case 1://详情界面
-                    this.replyForm.status_name = statusToStr(status_in);
+                    this.replyForm.status_name = this.statusToStr(status_in);
                     break;
                 default:
                     console.log("出现未定义界面编号");
