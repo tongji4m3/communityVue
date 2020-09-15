@@ -6,7 +6,7 @@
 			  <img class="banImg" src="../../assets/img/tj_pic5.jpg" alt=""  :height="banH+'px'" style="width: 100%;margin:0;">
 			</el-carousel-item>
 			<el-carousel-item >
-			  <img class="banImg" src="../../assets/img/tj_pic6.jpg" alt="" :height="banH+'px'" style="width: 100%;margin:0;">
+			  <img class="banImg" src="../../assets/img/tj_pic7.jpg" alt="" :height="banH+'px'" style="width: 100%;margin:0;">
 			</el-carousel-item>
               <el-carousel-item >
                 <img class="banImg" src="../../assets/img/sanhaowu.jpg" alt="" :height="banH+'px'" style="width: 100%;margin:0;">
@@ -28,17 +28,19 @@
                 <div class="engTitle">
                      About
                 </div>
-                <p>
-                    
-                    随着我国对高等教育的体制改革的逐渐深入,学生社团信息系统的应用已经逐渐成为高校中不可缺少的必需品。
-					学生社团,顾名思义是由学生根据爱好兴趣自发组织到一起并且不以盈利为目的社团组织,而且需要依据一定的制度规章组织并开展活动,
-					来丰富学生的课余活动,是大学生第二课堂的一个极其重要的组成部分。随着社会经济的快速发展,学生社团的数量的不断增长,
-					各级学生社团需要处理大量的学生数据信息,从而快捷地管理学生信息,科学地制定工作计划,准确地评价学生工作;
-					学生也需要一个集中的平台来了解学校中社团的各种信息,方便直观地与社团组织进行交互;
-					学校的社团管理人员同样需要一个可以快速管理社团,处理社团事务的途径。
-					如何更加高效便捷地管理学生社团已然成为一个小的研究热点,信息管理系统是一个新兴学科,想要更加高效便捷地管理组织活动等,
-					必须结合相应组织特点建立一个信息化系统。
+                <p id="firstP">
+					学生社团，顾名思义是由学生根据爱好兴趣自发组织到一起并且不以盈利为目的社团组织，而且需要依据一定的制度规章组织并开展活动，
+					来丰富学生的课余活动,是大学生第二课堂的一个极其重要的组成部分。当今,学生社团的数量的不断增长，
+					社团负责人需要处理大量的学生数据信息，从而快捷地管理学生信息，科学地制定工作计划，准确地评价学生工作；
+					学生也需要一个集中的平台来了解学校中社团的各种信息，方便直观地与社团组织进行交互；
+					学校的社团管理员同样需要一个可以快速管理社团，处理社团事务的途径。
+					
                 </p>
+				<p>
+					我们的社团管理系统就主要面向这三种人群，为学生提供查看各种社团信息、加入或退出社团、加入社团活动、查看系统通知等功能；
+					为社团负责人提供一系列便于管理社团的功能，如编辑社团信息、管理社团公告、审核入社人员、管理社团活动、赞助申报等等；
+					为管理员提供管理学生和社团信息、编辑系统公告、审核社团工作等功能。此外，游客也可以通过主页的信息来了解同济大学社团的风采！
+				</p>
             </div>
             <img src="../../assets/img/zonghelou.png" alt="">
         </div>
@@ -130,13 +132,13 @@
 	            	<li><p>同济大学第一届狼人杀比赛开始报名啦！</p>
 					<hr  align="left" size="1" />
 	            	</li>
-	            	<li><p>同济国标|开学的第一场舞！</p>
+	            	<li><p>同济国标 | 开学的第一场舞！</p>
 					<hr  align="left" size="1" /> </li>
 	            	<li><p>C4Family九周年专场公演</p>
 					<hr  align="left" size="1" /> </li>
 	            	<li><p>同声汇雅韵——上海大学生戏曲汇演揭幕在即</p>
 					<hr  align="left" size="1" /> </li>
-	            	<li><p>同一片蓝天|沪上高校社团携手云端开唱</p>
+	            	<li><p>同一片蓝天 | 沪上高校社团携手云端开唱</p>
 					<hr  align="left" size="1" /> </li>
 					<li><p>2020同济吉他协会春季招新</p>
 					<hr  align="left" size="1" /> </li>
@@ -355,13 +357,24 @@
 	}
 
     #aboutText p{
-        margin-top: 50px;
+        
         margin-right: 70px;
         font-size: 14px;
         color:rgba(52,52,52,0.8);
-        /*text-indent: 2em;*/
+        text-indent: 2em;
         line-height: 22px;
+		letter-spacing: 0.4px;
     }
+	
+	#firstP{
+		margin-top: 50px;
+		margin-right: 70px;
+		font-size: 14px;
+		color:rgba(52,52,52,0.8);
+		text-indent: 2em;
+		line-height: 22px;
+		letter-spacing: 0.4px;
+	}
 
 	#aboutNews ol{
 		margin-top: 40px ;
@@ -495,7 +508,7 @@
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%,-50%);
-		padding: 30px 68px;
+		padding: 30px 78px;
 		color: #fff;
 		background: linear-gradient(to right ,#4d4d4d 0 ,#fff 10%,#4d4d4d 20%);
 		background-position: 0;
@@ -504,7 +517,7 @@
 		-webkit-text-fill-color: transparent;
 		animation: shine 5.5s linear infinite;
 		font-weight: 500;
-		font-size: 25px;
+		font-size: 26px;
 		white-space: nowrap;
 	}
 	@keyframes shine{
