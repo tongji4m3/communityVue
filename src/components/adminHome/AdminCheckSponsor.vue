@@ -272,6 +272,7 @@ export default {
                 });
             this.replyForm.suggestion = result.data.suggestion;
             this.replyForm.requirement = result.data.requirement;
+            console.log(result.data.cclubName);
             this.replyForm.clubName = result.data.clubName
             this.replyForm.applyDate = result.data.applyDate;
             this.replyForm.sponsor = result.data.sponsor;
