@@ -8,7 +8,7 @@
                 <img src="../assets/img/sys_logo.png" @click ="goIndex"  height="60"/>
             </div>
             <div class="out-button">
-                <el-dropdown @command="handleCommand">
+                <el-dropdown>
 
                     <span class="el-dropdown-link" style="margin-right: 15px">
                         <el-badge is-dot class="item" :hidden="showDot">
@@ -114,10 +114,12 @@
             },
             systemInformation()
             {
+                this.showDot = true;
                 this.$router.push("/studentSystemInformation")
             },
             systemNotice()
             {
+                this.showDot = true;
                 this.$router.push("/studentSystemNotice")
             },
             goIndex()
