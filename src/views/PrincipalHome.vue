@@ -8,7 +8,7 @@
                 <img src="../assets/img/sys_logo.png" @click="goIndex" height="60"/>
             </div>
             <div class="out-button">
-                <el-dropdown @command="handleCommand">
+                <el-dropdown>
                     <el-badge is-dot class="item" :hidden="showDot">
                         <el-avatar :src="imgUrl"><span class="el-dropdown-link" style="margin-right: 15px">
                          </span></el-avatar>
@@ -101,8 +101,6 @@
             CurentTime()
             {
                 let loginTime = window.sessionStorage.getItem('loginTime');
-                console.log("时间:")
-                console.log(new Date().getTime() - loginTime);
                 if (loginTime!=null && new Date().getTime() - loginTime > 7200000)//2*60*60*1000 两小时
                 {
                     this.$message.success("太久未登录,强制退出!");
@@ -121,10 +119,12 @@
             },
             systemInformation()
             {
+                this.showDot = true;
                 this.$router.push("/principalSystemInformation")
             },
             systemNotice()
             {
+                this.showDot = true;
                 this.$router.push("/principalSystemNotice")
             },
             goIndex()

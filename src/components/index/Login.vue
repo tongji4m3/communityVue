@@ -109,8 +109,6 @@ export default {
           window.sessionStorage.setItem("userType", userType);
 
           window.sessionStorage.setItem("loginTime", new Date().getTime());
-
-
           if (userType === 0) {
             let result1 = await this.$http.post(this.$api.getStudentNameUrl);
             window.sessionStorage.setItem("name", result1.data.name);
@@ -119,7 +117,11 @@ export default {
             let result1 = await this.$http.post(this.$api.getClubNameUrl);
             window.sessionStorage.setItem("name", result1.data.name);
             await this.$router.push({ path: "/principalHome" });
-          } else await this.$router.push({ path: "/adminHome" });
+          } else
+          {
+            window.sessionStorage.setItem("name", this.loginForm.username);
+            await this.$router.push({ path: "/adminHome" });
+          }
         } else {
           this.$message.info(msg);
         }
