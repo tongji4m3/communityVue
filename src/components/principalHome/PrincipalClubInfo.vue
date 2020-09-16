@@ -12,9 +12,9 @@
             <span> {{addForm.name}}的社团负责人您好！</span>
             <br>
             <br>
-<!--            <div v-html="addForm.logo">{{addForm.logo}}</div>-->
-<!--            <div v-html="addForm.description">{{addForm.description}}</div>-->
-            <span> {{addForm.description}}</span>
+            <div v-html="addForm.logo">{{addForm.logo}}</div>
+            <div v-html="addForm.description">{{addForm.description}}</div>
+<!--            <span> {{addForm.description}}</span>-->
 
             <div align="right">
                 <el-popconfirm title="确定解散社团吗？" cancelButtonType="danger" icon="el-icon-magic-stick">
