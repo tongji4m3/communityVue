@@ -7,6 +7,7 @@
                 <img src="../../assets/img/welcome.png" alt="" style="vertical-align: middle">
                 <span> 欢迎回来 {{username}} ！</span>
             </div>
+
         </el-card>
 
         <!--       日历按钮-->
@@ -23,6 +24,12 @@
                    width="50%">
             <img src="../../assets/img/calendar.jpg" alt="" style="width: 100%;margin:0;">
         </el-dialog> -->
+
+        <el-row :gutter="20">
+            <el-col :span="12"><div id="gradeChart" style="width: 600px;height:400px;"></div></el-col>
+            <el-col :span="12"><div id="genderChart" style="width: 600px;height:400px;"></div></el-col>
+        </el-row>
+
 
         <el-carousel :interval="4000" type="card" height="200px">
             <el-carousel-item v-for="item in 6" :key="item">
@@ -138,7 +145,49 @@ export default {
     {
         this.getAnnouncementList();
     },
+    mounted()
+    {
+        this.drawPeople();
+    },
     methods: {
+        drawPeople(){
+            //年级分布图
+            // 基于准备好的dom，初始化echarts实例
+            let gradeChart = this.$echarts.init(document.getElementById('gradeChart'),'light')
+            // 绘制图表
+            gradeChart.setOption({
+                title: { text: '社团成员分布' },
+                tooltip: {},
+                xAxis: {
+                    data: ["16级","17级","18级","19级","20级"]
+                },
+                yAxis: {},
+                series: [{
+                    name: '人数',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10]
+                }]
+            });
+
+            //性别分布饼状图
+            let genderChart = this.$echarts.init(document.getElementById('genderChart'), 'light');
+            genderChart.setOption({
+                title: { text: '社团性别分布' },
+                series : [
+                    {
+
+                        name: '访问来源',
+                        type: 'pie',    // 设置图表类型为饼图
+                        radius: '55%',  // 饼图的半径，外半径为可视区尺寸（容器高宽中较小一项）的 55% 长度。
+                        data:[          // 数据数组，name 为数据项名称，value 为数据项值
+                            {value:235, name:'男生'},
+                            {value:400, name:'女生'}
+                        ]
+                    }
+                ]
+            })
+
+        },
         async getAnnouncementList()
         {
             let result = await this.$http.post(this.$api.GetAnnouncementsUrl,

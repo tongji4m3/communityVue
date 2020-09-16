@@ -11,6 +11,7 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.5.2",
     "core-js": "^3.6.4",
+    "echarts": "^4.9.0",
     "element-ui": "^2.13.2",
     "file-saver": "^2.0.2",
     "jquery": "^3.5.1",
