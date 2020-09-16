@@ -14,7 +14,7 @@
                 center
                 show-icon>
         </el-alert>
-
+        <br>
 
 
         <!--            搜索与添加-->
@@ -41,36 +41,62 @@
 
         <el-form :model="informationList[0]" ref="addFormRef" label-width="150px">
             <el-form-item label="姓名:" prop="name">
-                <el-input v-model="informationList[0].name" readonly="true" size="medium"></el-input>
+                <el-input v-model="informationList[0].name" readonly="true" :disabled="IsChange" size="medium"></el-input>
             </el-form-item>
             <el-form-item label="学号:" prop="number">
-                <el-input v-model="informationList[0].number" readonly="true" size="medium"></el-input>
+                <el-input v-model="informationList[0].number" readonly="true" :disabled="IsChange" size="medium"></el-input>
             </el-form-item>
             <el-form-item label="年级:" prop="grade">
-                <el-input v-model="informationList[0].grade" readonly="true" size="medium"></el-input>
+                <el-input v-model="informationList[0].grade" readonly="true"  :disabled="IsChange" size="medium"></el-input>
             </el-form-item>
             <el-form-item label="专业" prop="major">
-                <el-input v-model="informationList[0].major" readonly="true" size="medium"></el-input>
+                <el-input v-model="informationList[0].major" readonly="true"  :disabled="IsChange" size="medium"></el-input>
             </el-form-item>
             <el-form-item label="手机号:" prop="phone">
-                <el-input v-model="informationList[0].phone" readonly="true" size="medium"></el-input>
+                <el-input v-model="informationList[0].phone" :readonly="IsRead" size="medium"></el-input>
             </el-form-item>
             <el-form-item label="签名:" prop="signature">
-                <el-input v-model="informationList[0].signature" readonly="true" size="medium"></el-input>
+                <el-input v-model="informationList[0].signature" :readonly="IsRead" size="medium"></el-input>
             </el-form-item>
             <el-form-item label="邮箱:" prop="mail">
-                <el-input v-model="informationList[0].mail" readonly="true" size="medium"></el-input>
+                <el-input v-model="informationList[0].mail" :readonly="IsRead" size="medium"></el-input>
             </el-form-item>
-            <el-form-item label="生日:" prop="birthday">
-                <el-input v-model="informationList[0].birthday.substring(0,10)" readonly="true" size="medium"></el-input>
-            </el-form-item>
+            <div v-if="isShow1">
+                <el-form-item label="生日:" prop="birthday">
+                    <el-input v-model="informationList[0].birthday.substring(0,10)" :readonly="IsRead" size="medium"></el-input>
+                </el-form-item>
+            </div>
+            <div v-if="isShow2">
+                <el-form-item label="生日:" prop="birthday">
+                    <!--        日历-->
+                    <div class="block">
+                        <span class="demonstration"></span>
+                        <!--                    <div class="demonstration">值：{{ addForm.birthday}}</div>-->
+                        <el-date-picker
+                                v-model="informationList[0].birthday"
+                                type="date"
+                                placeholder="选择日期"
+                                format="yyyy 年 MM 月 dd 日"
+                                value-format="yyyy-MM-dd">
+                        </el-date-picker>
+                    </div>
+                    <!--                <el-input v-model="addForm.birthday"></el-input>-->
+                </el-form-item>
+            </div>
         </el-form>
 
 
         <el-divider></el-divider>
-        <el-row :gutter="20" style="margin-left: 1200px" >
-            <el-button type="primary" icon="el-icon-edit" @click="exitCorporation()"></el-button>
+        <el-row :gutter="20" style="margin-left: 1100px" >
+            <div v-if="isShow1">
+               <el-button type="primary" icon="el-icon-edit" @click="exitCorporation()">编辑</el-button>
+            </div>
+            <div v-if="isShow2">
+                <el-button @click="cancelAdd">取 消</el-button>
+                <el-button type="primary" @click="addApply">确 定</el-button>
+            </div>
         </el-row>
+
 
     <!--        修改信息对话框-->
     <el-dialog title="修改信息" :visible.sync="addDialogVisible"
@@ -188,12 +214,19 @@
                 addDialogVisible: false,
                 editDialogVisible: false,
                 showDialogVisible: false,
+
+                IsRead:true,
+                IsChange:false,
+
+                ButtonName:"编辑",
+                isShow1:true,
+                isShow2:false,
                 //添加活动表单数据
                 addForm: {
-                    phone:"",
-                    signature:"",
-                    mail:"",
-                    birthday: "",
+                    // phone:"",
+                    // signature:"",
+                    // mail:"",
+                    // birthday: "",
                 },
                 //添加活动的校验规则
                 addFormRules: {
@@ -262,6 +295,10 @@
             cancelAdd()
             {
                 //清空表单的校验项
+                this.isShow1=true;
+                this.isShow2=false;
+                this.IsRead=true;
+                this.IsChange=false;
                 this.$refs.addFormRef.resetFields();
                 //防止非必填项没清理掉
                 this.clearAddForm();
@@ -296,12 +333,17 @@
             exitCorporation()
             {
 
-                this.addDialogVisible = true;
+                // this.addDialogVisible = true;
                 //清空表单的校验项
+                this.IsRead=false;
+                this.IsChange=true;
+                this.isShow1=false;
+                this.isShow2=true;
                 this.$nextTick(() =>
                 {
                     this.$refs.addFormRef.resetFields();
                 });
+
                 this.addForm.phone=this.informationList[0].phone;
                 this.addForm.signature=this.informationList[0].signature;
                 this.addForm.mail=this.informationList[0].mail;
@@ -325,15 +367,20 @@
             //提交申请
             addApply()
             {
+                this.IsRead=true;
+                this.IsChange=false;
+                this.isShow1=true;
+                this.isShow2=false;
                 this.$refs.addFormRef.validate(
+
                     async valid =>
                     {
                         if (!valid) return;
 
-                        var phone=this.addForm.phone;
-                        var signature=this.addForm.signature;
-                        var mail=this.addForm.mail;
-                        var birthday=this.addForm.birthday;
+                        var phone=this.informationList[0].phone;
+                        var signature=this.informationList[0].signature;
+                        var mail=this.informationList[0].mail;
+                        var birthday=this.informationList[0].birthday;
                         console.log(birthday);
                         let msg = "";
                         let status = 200;
@@ -356,8 +403,8 @@
                         this.addDialogVisible = false;
                         console.log(result);
 
-                        this.$message.info("提交申请成功!");
-
+                        this.$message.info("修改信息成功!");
+                        location.reload();
                     }
                 );
             },

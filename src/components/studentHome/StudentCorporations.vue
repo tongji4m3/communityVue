@@ -15,51 +15,76 @@
 <!--        </el-alert>-->
 
         <el-divider></el-divider>
+
+
+
+        <el-row>
+            <el-col :span="8" v-for="corporation in corporationsList">
+                <el-card class="myCard" :body-style="{ padding: '20px'}" shadow="hover">
+                    <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
+<!--                    <p v-html="corporation.logo">{{corporation.logo}}</p>-->
+                    <div style="padding: 10px;">
+                        <span>{{corporation.name}}</span>
+<!--                        <span>{{corporation.type}}</span>-->
+                        <div class="bottom">
+                            <time>{{corporation.type}}</time>
+                        </div>
+                        <div class="button">
+                            <el-button type="text" @click="showCorporationSummary(corporation.clubId,corporation.establishmentDate,corporation.presidentName,corporation.name)">查看</el-button>
+                        </div>
+                    </div>
+                </el-card>
+            </el-col>
+        </el-row>
+
+
         <!--        卡片-->
-        <el-card class="box-card">
-            <!--            搜索与添加-->
-            <el-row :gutter="20">
-                <el-col :span="7">
-                    <!--                    搜索取消时也会刷新搜索页面,搜索确定时,将携带query搜索特定内容的社团-->
-                    <el-input clearable @clear="getCorporationList" placeholder="请根据社团名搜索社团" v-model="query">
-                        <el-button slot="append" icon="el-icon-search" @click="getCorporationList"></el-button>
-                    </el-input>
-                </el-col>
+<!--        <el-card class="box-card">-->
+<!--            &lt;!&ndash;            搜索与添加&ndash;&gt;-->
+<!--            <el-row :gutter="20">-->
+<!--                <el-col :span="7">-->
+<!--                    &lt;!&ndash;                    搜索取消时也会刷新搜索页面,搜索确定时,将携带query搜索特定内容的社团&ndash;&gt;-->
+<!--                    <el-input clearable @clear="getCorporationList" placeholder="请根据社团名搜索社团" v-model="query">-->
+<!--                        <el-button slot="append" icon="el-icon-search" @click="getCorporationList"></el-button>-->
+<!--                    </el-input>-->
+<!--                </el-col>-->
 <!--                <el-col :span="4">-->
 <!--                    <el-button type="primary" @click="addDialogVisible=true">查询社团</el-button>-->
 <!--                </el-col>-->
-            </el-row>
+<!--            </el-row>-->
             <!--            活动列表 只展示一些活动信息,详细信息可在详情查看-->
-            <el-table :data="corporationsList" >
-                <el-table-column type="index"></el-table-column>
-                <el-table-column label="社团名称" prop="name"></el-table-column>
-                <el-table-column label="社团性质" prop="type"></el-table-column>
-                <el-table-column label="社团简介">
-                    <template slot-scope="scope">
-                        <el-button type="primary" @click="showCorporationSummary(scope.row.clubId,scope.row.establishmentDate,scope.row.presidentName)">查看</el-button>
-                    </template>
-                </el-table-column>
-                <el-table-column label="加入社团">
-                    <template slot-scope="scope">
-                        <!--                        加入按钮-->
-                        <!--<el-button type="primary" @click="showEditDialog(scope.row.id)" >加入</el-button>-->
-                        <el-button type="primary" @click="joinNewClub(scope.row.clubId,scope.row.name,scope.row.establishmentDate,scope.row.presidentName)">加入</el-button>
-                    </template>
-                </el-table-column>
+<!--            <el-table :data="corporationsList" >-->
+<!--                <el-table-column type="index"></el-table-column>-->
+<!--                <el-table-column label="社团名称" prop="name"></el-table-column>-->
+<!--                <el-table-column label="社团性质" prop="type"></el-table-column>-->
+<!--                <el-table-column label="社团简介">-->
+<!--                    <template slot-scope="scope">-->
+<!--                        <el-button type="primary" @click="showCorporationSummary(scope.row.clubId,scope.row.establishmentDate,scope.row.presidentName)">查看</el-button>-->
+<!--                    </template>-->
+<!--                </el-table-column>-->
+<!--                <el-table-column label="加入社团">-->
+<!--                    <template slot-scope="scope">-->
+<!--                        &lt;!&ndash;                        加入按钮&ndash;&gt;-->
+<!--                        &lt;!&ndash;<el-button type="primary" @click="showEditDialog(scope.row.id)" >加入</el-button>&ndash;&gt;-->
+<!--                        <el-button type="primary" @click="joinNewClub(scope.row.clubId,scope.row.name,scope.row.establishmentDate,scope.row.presidentName)">加入</el-button>-->
+<!--                    </template>-->
+<!--                </el-table-column>-->
 
-            </el-table>
+<!--            </el-table>-->
 
-            <!--            分页区域-->
-            <el-pagination
-                    @size-change="handleSizeChange"
-                    @current-change="handleCurrentChange"
-                    :current-page="pageNum"
-                    :page-sizes="[1, 2, 5, 10]"
-                    :page-size="pageSize"
-                    layout="total, sizes, prev, pager, next, jumper"
-                    :total="totalCount">
-            </el-pagination>
-        </el-card>
+<!--            <el-divider></el-divider>-->
+
+<!--            &lt;!&ndash;            分页区域&ndash;&gt;-->
+<!--            <el-pagination-->
+<!--                    @size-change="handleSizeChange"-->
+<!--                    @current-change="handleCurrentChange"-->
+<!--                    :current-page="pageNum"-->
+<!--                    :page-sizes="[1, 2, 5, 10]"-->
+<!--                    :page-size="pageSize"-->
+<!--                    layout="total, sizes, prev, pager, next, jumper"-->
+<!--                    :total="totalCount">-->
+<!--            </el-pagination>-->
+<!--        </el-card>-->
 
         <!--        展示活动对话框-->
         <el-dialog ref="showFormRef" :visible.sync="showDialogVisible"
@@ -82,7 +107,8 @@
 
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
-                 <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
+                <el-button type="primary" @click="joinNewClub(addForm.id,addForm.name,addForm.date,addForm.president)">加入</el-button>
+<!--                 <el-button type="primary" @click="closeDialogVisible">确 定</el-button>-->
             </span>
         </el-dialog>
 
@@ -222,16 +248,12 @@
 
             async getCorporationList()
             {
-                let result = await this.$http.post(this.$api.StudentCorporationsUrl,
-                    {
-                    query: this.query,
-                    pageNumber: this.pageNum,
-                    pageSize: this.pageSize,
-                    status: true
-                });
+                let result = await this.$http.post(this.$api.StudentCorporationsUrl);
                 this.corporationsList = result.data.data;
                 console.log(this.corporationsList);
-                for(var i=0;i<result.data.totalCount;i++){
+                this.totalCount = parseInt(this.corporationsList.length);
+                console.log(this.totalCount);
+                for(var i=0;i<this.totalCount;i++){
                     if(this.corporationsList[i].type===0){
                         this.corporationsList[i].type="学术科技类";
                     }
@@ -252,9 +274,7 @@
                     }
                 }
 
-                console.log(this.corporationsList);
-                this.totalCount = parseInt(result.data.totalCount);
-                console.log(this.totalCount);
+
             },
             //监听pageSize改变的事件
             handleSizeChange(newSize)
@@ -301,12 +321,14 @@
 
 
             //详情页面弹出后,会查询该社团的简介内容并显示
-            async showCorporationSummary(id,date,president)
+            async showCorporationSummary(id,date,president,name)
             {
                 console.log(id);
                 let result = await this.$http.post(this.$api.StudentCorporationInformationUrl+'/'+id);
 
+                this.addForm.id=id;
                 this.addForm.summary= result.data;
+                this.addForm.name=name;
                 this.addForm.date=date;
                 this.addForm.date=this.addForm.date.substring(0,10);
                 this.addForm.president=president;
@@ -339,6 +361,7 @@
             },
 
             async joinNewClub(id,name,date,president){
+                this.showDialogVisible=false;
                 let judge= await this.$http.post(this.$api.StudentJudgeJoinClubUrl+'/'+id);
                 judge=judge.data.isSuccess;
                 console.log(judge);
@@ -385,4 +408,42 @@
         }
     }
 </script>
-<style scoped></style>
+<style scoped>
+    .time {
+        font-size: 13px;
+        color: #999;
+    }
+
+    .bottom {
+        margin-top: 13px;
+        line-height: 12px;
+    }
+    .button{
+        margin-right: 5px;
+        font-size: 20px;
+    }
+
+    .button {
+        padding: 0;
+        float: right;
+    }
+
+    .image {
+        width: 100%;
+        display: block;
+    }
+
+    .clearfix:before,
+    .clearfix:after {
+        display: table;
+        content: "";
+    }
+
+    .clearfix:after {
+        clear: both
+    }
+    .myCard{
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+</style>

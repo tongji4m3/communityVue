@@ -15,7 +15,8 @@
                 center
                 show-icon>
         </el-alert>
-        <el-divider></el-divider>
+        <br>
+
         <!--        卡片-->
         <el-card class="box-card">
             <!--            搜索与添加-->
@@ -312,9 +313,16 @@
                 this.showDialogVisible = true;
             },
             async joinOneActivity(id){
-                this.addForm1.id=id;
-                this.reason="";
-                this.addDialogVisible=true;
+                let judge= await this.$http.post(this.$api.StudentJudgeJoinActivityUrl+'/'+id);
+                judge=judge.data.isSuccess;
+                if(judge===true){
+                    this.addForm1.id=id;
+                    this.addForm1.reason="";
+                    this.addDialogVisible=true;
+                }
+                else{
+                    this.$message.info("你已经加入了这个活动或正在审核中!");
+                }
             },
             async editActivity()
             {

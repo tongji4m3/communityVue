@@ -248,8 +248,11 @@ module.exports = {
 
     //学生端的系统消息
 
-    //学生端加入社团
+    //学生端加入社团判断
     StudentJudgeJoinClubUrl:APIRootUrl+'Student/judgeClubJoin',
+
+    //学生端加入社团判断
+    StudentJudgeJoinActivityUrl:APIRootUrl+'Student/judgeActivityJoin',
 
     /*
     AdminNotice组件
