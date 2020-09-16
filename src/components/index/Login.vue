@@ -108,6 +108,9 @@ export default {
           window.sessionStorage.setItem("imgUrl", result.data.imgUrl);
           window.sessionStorage.setItem("userType", userType);
 
+          window.sessionStorage.setItem("loginTime", new Date().getTime());
+
+
           if (userType === 0) {
             let result1 = await this.$http.post(this.$api.getStudentNameUrl);
             window.sessionStorage.setItem("name", result1.data.name);
