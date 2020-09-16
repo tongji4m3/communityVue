@@ -177,8 +177,9 @@ export default {
             });
             // this.checkForm.studentId = result.data.studentId;
             this.checkForm = result.data;
+            // console.log('aaa');
             console.log(result.data.StudentId);
-            // console.log(result.data);
+            console.log(result.data);
             this.showDialogVisible = true;
         },
         //显示学生申请详情页面按确定后的触发事件
@@ -186,7 +187,7 @@ export default {
         {
             this.showDialogVisible = false;
         },
-        async agreeStudent(studentId_in, activity_Id, status_in)
+        async agreeStudent(studentId_in, activityId_in, status_in)
         {
             await this.$http.post(this.$api.PrincipalParticipateResultUrl, {
               studentId:studentId_in,
@@ -201,7 +202,7 @@ export default {
             this.$message.success("申请审核已通过!");
         },
 
-        async rejectStudent(studentId_in, activity_Id, status_in)
+        async rejectStudent(studentId_in, activityId_in, status_in)
         {
           await this.$http.post(this.$api.PrincipalParticipateResultUrl, {
             studentId:studentId_in,

@@ -81,10 +81,10 @@
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
                 <!--                        通过按钮-->
-                <el-button type="success" @click="agreeStudent(this.checkForm.studentId,1)"
+                <el-button type="success" @click="agreeStudent(checkForm.studentId,1)"
                        icon="el-icon-check" circle></el-button>
                 <!--                        不通过按钮-->
-                <el-button type="danger" @click="rejectStudent(this.checkForm.studentId,0)"
+                <el-button type="danger" @click="rejectStudent(checkForm.studentId,0)"
                        icon="el-icon-close " circle></el-button>
                 <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
             </span>
@@ -187,11 +187,11 @@ export default {
               studentId:studentId_in,
               status:status_in
             });
+            console.log(studentId_in, status_in);
             //关闭对话框
-            this.editDialogVisible = false;
+            this.showDialogVisible = false;
             //    刷新数据列表
             await this.getStudentList();
-            this.showDialogVisible = false;
             //    提示成功
             this.$message.success("申请审核已通过!");
         },
@@ -202,15 +202,24 @@ export default {
             studentId:studentId_in,
             status:status_in
           });
+          await this.sendMessage(studentId_in);
+          console.log(studentId_in, status_in);
           //关闭对话框
-          this.editDialogVisible = false;
+          this.showDialogVisible = false;
           //    刷新数据列表
           await this.getStudentList();
-          this.showDialogVisible = false;
           //    提示成功
           this.$message.success("申请审核未通过!");
         },
 
+        async sendMessage(studentId_in)
+        {
+            await this.$http.post(this.$api.PrincipalRejectSendMessage, {
+                studentId:studentId_in,
+                title:'抱歉',
+                content:'您被拒绝加入社团',
+            });
+        },
     }
 }
 </script>
