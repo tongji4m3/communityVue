@@ -34,6 +34,7 @@
 
             </el-table>
 
+            <el-divider></el-divider>
             <!--            分页区域-->
             <el-pagination
                     @size-change="handleSizeChange"
@@ -47,18 +48,22 @@
         </el-card>
 
         <!--        展示活动对话框-->
-        <el-dialog title="活动详情" ref="showFormRef" :visible.sync="showDialogVisible"
+        <el-dialog  ref="showFormRef" :visible.sync="showDialogVisible"
                    width="50%">
             <!--            展示内容主体区域 -->
             <el-form :model="addForm" label-width="150px">
 <!--                <el-form-item label="活动编号">-->
 <!--                    <el-input v-model="addForm.id" readonly="true"></el-input>-->
 <!--                </el-form-item>-->
+                <h3 style="text-align:center; font-size:20px ">活动详情</h3>
+                <br>
+                <br>
+
                 <el-form-item label="活动名称">
                     <el-input v-model="addForm.name" readonly="true"></el-input>
                 </el-form-item>
                 <el-form-item label="活动地点">
-                    <el-input v-model="addForm.place"readonly="true"></el-input>
+                    <el-input v-model="addForm.place" readonly="true"></el-input>
                 </el-form-item>
                 <el-form-item label="活动简介">
                     <el-input v-model="addForm.description" type="textarea" readonly="true"></el-input>

@@ -36,6 +36,7 @@
 
             </el-table>
 
+            <el-divider></el-divider>
             <!--            分页区域-->
             <el-pagination
                     @size-change="handleSizeChange"
@@ -301,7 +302,7 @@
                         let result = await this.$http.post(this.$api.StudentExitClub+'/'+clubId);
 
                         var userid=clubId;
-                        var title="退出社团申请";
+                        var title="退出社团";
                         var content=this.addForm.summary;
                         let result1 =await this.$http.post(this.$api.StudentSendMessage,{
                             userid,
@@ -312,6 +313,7 @@
                         this.addDialogVisible = false;
                         // this.getActivityList();
                         this.$message.info("成功退出社团!");
+                        location.reload();
                     }
                 );
             },

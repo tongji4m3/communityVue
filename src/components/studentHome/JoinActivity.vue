@@ -14,14 +14,14 @@
 <!--                show-icon>-->
 <!--        </el-alert>-->
 
-
+        <el-divider></el-divider>
         <el-alert
                 title="欢迎查看公开活动"
                 type="info"
                 center
                 show-icon>
         </el-alert>
-        <el-divider></el-divider>
+        <br>
 
         <!--        卡片-->
         <el-card class="box-card">
@@ -78,13 +78,26 @@
         </el-card>
 
         <!--        展示活动对话框-->
-        <el-dialog title="活动详情" ref="showFormRef" :visible.sync="showDialogVisible"
+        <el-dialog  ref="showFormRef" :visible.sync="showDialogVisible"
                    width="50%">
             <!--            展示内容主体区域 -->
             <el-form :model="addForm" label-width="150px">
 <!--                <el-form-item label="活动编号">-->
 <!--                    <el-input v-model="addForm.id" readonly="true"></el-input>-->
 <!--                </el-form-item>-->
+                <h3 style="text-align:center; font-size:20px ">活动详情</h3>
+                <br>
+                <br>
+<!--                <hr>-->
+<!--                <br>-->
+<!--                <p style="font-size:15px" v-html="addForm.summary">简介：{{addForm.summary}}</p>-->
+<!--                <br>-->
+<!--                <hr>-->
+<!--                <br>-->
+<!--                <p style="text-align: right;font-size:15px;margin-bottom: 7px;">成立时间：{{addForm.date}}</p>-->
+
+<!--                <p style="text-align: right;font-size:15px">会长：{{addForm.president}}</p>-->
+<!--                <p style="text-align:center;font-size:15px" v-html="addForm.name" >{{addForm.name}}</p>-->
                 <el-form-item label="活动名称">
                     <el-input v-model="addForm.name" readonly="true"></el-input>
                 </el-form-item>
@@ -258,9 +271,17 @@
                 this.showDialogVisible = true;
             },
             async joinOneActivity(id){
-                this.addForm1.id=id;
-                this.addForm1.reason="";
-                this.addDialogVisible=true;
+                let judge= await this.$http.post(this.$api.StudentJudgeJoinActivityUrl+'/'+id);
+                judge=judge.data.isSuccess;
+                if(judge===true){
+                    this.addForm1.id=id;
+                    this.addForm1.reason="";
+                    this.addDialogVisible=true;
+                }
+                else{
+                    this.$message.info("你已经加入了这个活动或正在审核中!");
+                }
+
             },
             //监听pageSize改变的事件
             handleSizeChange(newSize)
