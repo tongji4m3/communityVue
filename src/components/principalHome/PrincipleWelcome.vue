@@ -119,6 +119,17 @@ export default {
             //每页显示的条数
             pageSize: 10,
 
+            //社团成员年级分布图表数据
+            gradeGraphDescription:["16级","17级","18级","19级","20级","21级"],
+            gradeGraphData:[5, 20, 36, 10, 10,20],
+
+            //社团成员专业分布图表数据
+            majorGraphData:[
+                {value:235, name:'软件工程'},
+                {value:400, name:'土木工程'},
+                {value:400, name:'车辆工程'},
+            ],
+
             //查询到的当页系统公告
             AnnouncementList: [],
             //总条数,用于分页的显示
@@ -159,30 +170,27 @@ export default {
                 title: { text: '社团成员分布' },
                 tooltip: {},
                 xAxis: {
-                    data: ["16级","17级","18级","19级","20级"]
+                    data: this.gradeGraphDescription
                 },
                 yAxis: {},
                 series: [{
                     name: '人数',
                     type: 'bar',
-                    data: [5, 20, 36, 10, 10]
+                    data: this.gradeGraphData
                 }]
             });
 
             //性别分布饼状图
             let genderChart = this.$echarts.init(document.getElementById('genderChart'), 'light');
             genderChart.setOption({
-                title: { text: '社团性别分布' },
+                title: { text: '社团人员专业分布' },
                 series : [
                     {
 
                         name: '访问来源',
                         type: 'pie',    // 设置图表类型为饼图
                         radius: '55%',  // 饼图的半径，外半径为可视区尺寸（容器高宽中较小一项）的 55% 长度。
-                        data:[          // 数据数组，name 为数据项名称，value 为数据项值
-                            {value:235, name:'男生'},
-                            {value:400, name:'女生'}
-                        ]
+                        data: this.majorGraphData
                     }
                 ]
             })
