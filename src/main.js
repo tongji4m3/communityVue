@@ -3,6 +3,10 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+//md5加密
+import md5 from 'js-md5'
+Vue.prototype.$md5 = md5
+
 //导入ElementUI相关内容
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
@@ -25,7 +29,6 @@ axios.interceptors.request.use(config =>
     config.headers.authorization = window.sessionStorage.getItem('token');
     return config;
 })
-
 
 Vue.config.productionTip = false
 

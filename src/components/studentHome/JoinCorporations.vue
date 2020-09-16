@@ -6,7 +6,7 @@
             <el-breadcrumb-item :to="{ path: '/StudentWelcome' }">学生首页</el-breadcrumb-item>
             <el-breadcrumb-item>已加入社团</el-breadcrumb-item>
         </el-breadcrumb>
-
+        <el-divider></el-divider>
         <!--        卡片-->
         <el-card class="box-card">
             <!--            搜索与添加-->
@@ -24,11 +24,10 @@
             <!--            活动列表 只展示一些活动信息,详细信息可在详情查看-->
             <el-table :data="corporationsList">
                 <el-table-column type="index"></el-table-column>
-                <el-table-column label="社团编号" prop="clubId"></el-table-column>
                 <el-table-column label="社团名称" prop="name"></el-table-column>
                 <el-table-column label="社团性质" prop="type"></el-table-column>
                 <el-table-column label="成立时间" prop="establishmentDate"></el-table-column>
-                <el-table-column label="会长"  prop="presidentName"></el-table-column>
+                <el-table-column label="社长"  prop="presidentName"></el-table-column>
                 <el-table-column label="退出社团">
                     <template slot-scope="scope">
                         <el-button type="primary" @click="exitCorporation(scope.row.clubId,scope.row.name)">退出</el-button>
@@ -71,17 +70,14 @@
                    width="50%">
             <!--            内容主体区域 放置一个表单-->
             <el-form :model="addForm"  ref="addFormRef" label-width="150px">
-                <el-form-item label="学号:" prop="studentID">
-                    <el-input v-model="addForm.studentid"></el-input>
-                </el-form-item>
-                <el-form-item label="社团编号:" prop="corporationId">
-                    <el-input v-model="addForm.clubid"></el-input>
-                </el-form-item>
+<!--                <el-form-item label="社团编号:" prop="corporationId">-->
+<!--                    <el-input v-model="addForm.clubid" readonly="true"></el-input>-->
+<!--                </el-form-item>-->
                 <el-form-item label="社团名称:" prop="corporationName">
-                    <el-input v-model="addForm.name"></el-input>
+                    <el-input v-model="addForm.name" readonly="true"></el-input>
                 </el-form-item>
                 <el-form-item label="退社理由:" prop="reason">
-                    <el-input type="textarea" v-model="addForm.summary"></el-input>
+                    <el-input type="textarea" v-model="addForm.summary" placeholder="请务必写明学号、专业和姓名,方便我们审核！"></el-input>
                 </el-form-item>
             </el-form>
             <!--            底部区域-->
@@ -127,7 +123,7 @@
                 //当前的页码
                 pageNumber: 1,
                 //每页显示的条数
-                pageSize: 2,
+                pageSize: 5,
 
                 //查询到的当页活动
                 corporationsList: [],
@@ -155,8 +151,8 @@
                     corporationId: [
                         {required: true, message: '请输入社团编号', trigger: 'blur'}
                     ],
-                    reason: [
-                        {required: true, message: '请输入退社理由', trigger: 'blur'},
+                    summary: [
+                        {required: true, message: '请输入退社理由(请务必注明专业和姓名）', trigger: 'blur'},
                     ],
                 }
             }
@@ -179,6 +175,34 @@
                         status: true
                     });
                 this.corporationsList = result.data.data;
+                for(var j=0;j<result.data.totalCount;j++) {
+                    this.corporationsList[j].establishmentDate=this.corporationsList[j].establishmentDate.substring(0,10);
+                }
+
+
+                for(var i=0;i<result.data.totalCount;i++){
+                    if(this.corporationsList[i].type===0){
+                        this.corporationsList[i].type="学术科技类";
+                    }
+                    else if(this.corporationsList[i].type===1){
+                        this.corporationsList[i].type="传统文化与文学类";
+                    }
+                    else if(this.corporationsList[i].type===2){
+                        this.corporationsList[i].type="公益实践类";
+                    }
+                    else if(this.corporationsList[i].type===3){
+                        this.corporationsList[i].type="文化艺术类";
+
+                    }
+                    else if(this.corporationsList[i].type===4){
+                        this.corporationsList[i].type="体育竞技类";
+                    }
+                    else{
+                        this.corporationsList[i].type="创新创业类";
+                    }
+                }
+
+                // this.corporationsList.establishmentDate=this.corporationsList.establishmentDate.substring(0,10);
                 console.log(this.corporationsList);
                 this.totalCount = parseInt(result.data.totalCount);
                 console.log(this.totalCount);
@@ -233,13 +257,6 @@
                 }
             },
 
-            //修改活动页面弹出后,会查询要修改的id所对应活动的内容
-            async showEditDialog(activityId)
-            {
-                let result = await this.$http.post(this.$api.PrincipalGetOneActivityUrl + "/" + activityId);
-                this.addForm = result.data;
-                this.editDialogVisible = true;
-            },
 
             //提交申请
             exitCorporation(clubid,name)
@@ -279,22 +296,22 @@
                         if (!valid) return;
 
                         console.log(this.addForm);
-                        // let result = await this.$http.post(this.$api.PrincipalAddOneActivityUrl,
-                        //     {
-                        //         activityId: 0,
-                        //         name: this.addForm.name,
-                        //         fund: parseFloat(this.addForm.fund),
-                        //         cost: parseFloat(this.addForm.cost),
-                        //         place: this.addForm.place,
-                        //         time: this.addForm.time,
-                        //         description: this.addForm.description,
-                        //         isPublic: this.addForm.isPublic
-                        //     });
+                        var clubId=this.addForm.clubid;
+                        console.log(clubId)
+                        let result = await this.$http.post(this.$api.StudentExitClub+'/'+clubId);
 
+                        var userid=clubId;
+                        var title="退出社团申请";
+                        var content=this.addForm.summary;
+                        let result1 =await this.$http.post(this.$api.StudentSendMessage,{
+                            userid,
+                            title,
+                            content,
+                        });
                         //隐藏添加活动对话框
                         this.addDialogVisible = false;
                         // this.getActivityList();
-                        this.$message.info("提交申请成功!");
+                        this.$message.info("成功退出社团!");
                     }
                 );
             },

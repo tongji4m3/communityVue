@@ -6,6 +6,9 @@ import Index from '../views/Index'
 import Welcome from '../components/index/Welcome'
 import Login from '../components/index/Login'
 import StudentRegister from '../components/index/StudentRegister'
+import ChangePassword from '../components/index/ChangePassword'
+import SystemInformation from '../components/index/SystemInformation'
+import SystemNotice from '../components/index/SystemNotice'
 
 //studentHome页面和他的组件
 import StudentHome from '../views/StudentHome'
@@ -14,7 +17,9 @@ import StudentWelcome from '../components/studentHome/StudentWelcome'
 import StudentCorporations from '../components/studentHome/StudentCorporations'
 import JoinCorporations from '../components/studentHome/JoinCorporations'
 import JoinActivity from '../components/studentHome/JoinActivity'
+import JoinInclubActivity from '../components/studentHome/JoinInclubActivity'
 
+//principalHome页面和他的组件
 import PrincipalHome from '../views/PrincipalHome'
 import PrincipleWelcome from '../components/principalHome/PrincipleWelcome'
 import PrincipalActivity from '../components/principalHome/PrincipalActivity'
@@ -24,15 +29,20 @@ import PrincipalMember from '../components/principalHome/PrincipalMember'
 import PrincipalCheckJoin from '../components/principalHome/PrincipalCheckJoin'
 import PrincipalCheckActivity from '../components/principalHome/PrincipalCheckActivity'
 import PrincipalSponsor from '../components/principalHome/PrincipalSponsor'
+import principalClubInfo from '../components/principalHome/PrincipalClubInfo'
 
+//adminHome页面和他的组件
 import AdminHome from '../views/AdminHome'
 import AdminWelcome from '../components/adminHome/AdminWelcome'
 import AdminSystem from '../components/adminHome/AdminSystem'
 import AdminStudent from '../components/adminHome/AdminStudent'
+import AdminNotice from '../components/adminHome/AdminNotice'
 import AdminInformation from '../components/adminHome/AdminInformation'
 import AdminCheckActivity from '../components/adminHome/AdminCheckActivity'
 import AdminCheckSponsor from '../components/adminHome/AdminCheckSponsor'
 import JoinNewCorporation from "../components/studentHome/JoinNewCorporation";
+import StudentActivities from "../components/studentHome/StudentActivities";
+import InActivity from "../components/studentHome/InActivity";
 
 
 
@@ -41,7 +51,9 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: '/',
-        component: Index
+        component: Index,
+        //当访问项目时,自动重定向到welcome页面
+        redirect: '/welcome'
     },
     {
         path: '/index',
@@ -52,7 +64,7 @@ const routes = [
         children: [
             {path: '/welcome', component: Welcome},
             {path: '/login', component: Login},
-            {path: '/studentRegister', component: StudentRegister},
+            {path: '/studentRegister', component: StudentRegister}
             ]
     },
     {
@@ -65,7 +77,14 @@ const routes = [
             {path: '/studentCorporations', component: StudentCorporations},
             {path: '/joinCorporations', component: JoinCorporations},
             {path: '/joinActivity', component: JoinActivity},
-            {path: '/joinNewCorporation', component: JoinNewCorporation}
+            {path: '/joinInclubActivity', component: JoinInclubActivity},
+            {path: '/joinNewCorporation', component: JoinNewCorporation},
+            {path:'/studentActivities',component: StudentActivities},
+            {path: '/studentChangePassword', component: ChangePassword},
+            {path: '/studentSystemInformation', component: SystemInformation},
+            {path: '/studentSystemNotice', component: SystemNotice},
+            {path:'/InActivity',component:InActivity},
+
         ]
     },
     {
@@ -80,7 +99,12 @@ const routes = [
             {path: '/principalMember', component: PrincipalMember},
             {path: '/principalCheckJoin', component: PrincipalCheckJoin},
             {path: '/principalCheckActivity', component: PrincipalCheckActivity},
-            {path: '/principalSponsor', component: PrincipalSponsor}
+            {path: '/principalSponsor', component: PrincipalSponsor},
+            {path: '/principalClubInfo', component: principalClubInfo},
+
+            {path: '/principalChangePassword', component: ChangePassword},
+            {path: '/principalSystemInformation', component: SystemInformation},
+            {path: '/principalSystemNotice', component: SystemNotice}
         ]
 
     },
@@ -94,8 +118,10 @@ const routes = [
             {path: '/adminStudent', component: AdminStudent},
             {path: '/adminInformation', component: AdminInformation},
             {path: '/adminCheckActivity', component: AdminCheckActivity},
-            {path: '/adminCheckSponsor', component: AdminCheckSponsor}
+            {path: '/adminCheckSponsor', component: AdminCheckSponsor},
+            {path: '/adminNotice', component: AdminNotice},
 
+            {path: '/adminChangePassword', component: ChangePassword}
         ]
     },
 ]
@@ -118,7 +144,7 @@ router.beforeEach((to, from, next) =>
     {
 //    获取token
         let token = window.sessionStorage.getItem("token");
-        if (!token) return next("/login");
+        if (!token) return next("/welcome");
         else return next();
     }
 });

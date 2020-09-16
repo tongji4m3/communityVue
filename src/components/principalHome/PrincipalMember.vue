@@ -30,7 +30,7 @@
                 <el-table-column label="删除成员">
                     <template slot-scope="scope">
                         <!--                        删除按钮-->
-                        <el-button type="success" @click="removeById(scope.row.studentId)"
+                        <el-button type="primary" @click="removeById(scope.row.studentId)"
                                    icon="el-icon-delete"></el-button>
 
                     </template>
@@ -63,7 +63,7 @@
                 //当前的页码
                 pageNumber: 1,
                 //每页显示的条数
-                pageSize: 2,
+                pageSize: 5,
 
                 //查询到的当页成员
                 memberList: [],
@@ -135,3 +135,7 @@
         }
     }
 </script>
+
+<style scoped>
+
+</style>

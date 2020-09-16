@@ -13,7 +13,7 @@
             <!--            搜索与添加-->
             <el-row :gutter="20">
                 <el-col :span="7">
-                    <!--                    搜索取消时也会刷新搜索页面,搜索确定时,将携带query搜索特点内容的活动-->
+                    <!--                    搜索取消时也会刷新搜索页面,搜索确定时,将携带query搜索特定内容的活动-->
                     <el-input clearable @clear="getActivityList" placeholder="请输入内容" v-model="query">
                         <el-button slot="append" icon="el-icon-search" @click="getActivityList"></el-button>
                     </el-input>
@@ -43,9 +43,134 @@
 
                     </template>
                 </el-table-column>
-
             </el-table>
 
+            <!--        添加活动对话框-->
+            <el-dialog title="添加活动" :visible.sync="addDialogVisible"
+                       width="630px" top="60px" center>
+                <!--            内容主体区域 放置一个表单-->
+                <!--绑定到addForm中，绑定验证规则对象addFormRules 表单校验项的引用为addFormRef-->
+                <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="150px"
+                         style="height:470px">
+                    <!-- prop属性指定验证规则-->
+                    <el-form-item label="活动名称:" prop="name">
+                        <!--v-model双向绑定-->
+                        <el-input style="width:360px" v-model="addForm.name"></el-input>
+                    </el-form-item>
+                    <el-form-item label="活动介绍:" prop="description">
+                        <el-input style="width:360px" type="textarea"
+                                  :autosize="{ minRows: 1, maxRows: 4}" v-model="addForm.description"></el-input>
+                    </el-form-item>
+                    <el-form-item label="活动经费:" prop="budget">
+                        <el-input style="width:360px" v-model="addForm.budget"></el-input>
+                    </el-form-item>
+                    <el-form-item label="活动位置:" prop="place">
+                        <el-select v-model="addForm.place" placeholder="请选择活动区域" style="width: 360px">
+                            <el-option label="本部南楼" value="本部南楼"></el-option>
+                            <el-option label="本部北楼" value="本部北楼"></el-option>
+                            <el-option label="本部西南七楼" value="本部西南七楼"></el-option>
+                            <el-option label="嘉定图书馆" value="嘉定图书馆"></el-option>
+                            <el-option label="嘉定友园19号楼" value="嘉定友园19号楼"></el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="活动时间:" prop="eventTime">
+                        <el-date-picker type="date" placeholder="选择日期" v-model="addForm.eventTime"
+                                        style="width: 360px"></el-date-picker>
+                    </el-form-item>
+                    <el-form-item label="是否公开:" prop="isPublic">
+                        <el-switch v-model="addForm.isPublic"></el-switch>
+                    </el-form-item>
+                </el-form>
+                <!--            底部区域-->
+                <span slot="footer" class="dialog-footer">
+                <el-button style="margin-right:20px" @click="cancelAdd">取 消</el-button>
+                <el-button style="margin-left:20px" type="primary" @click="addActivity">确 定</el-button>
+            </span>
+            </el-dialog>
+
+            <!--        展示活动对话框-->
+            <el-dialog title="活动详情" :visible.sync="showDialogVisible"
+                       width="630px" top="60px" center>
+                <!--            展示内容主体区域 -->
+                <el-form :model="showForm" label-width="150px" style="height:650px">
+                    <el-form-item label="活动名称:">
+                        <el-input style="width:360px" v-model="showForm.name" readonly="true"></el-input>
+                    </el-form-item>
+                    <el-form-item label="活动介绍:">
+                        <el-input type="textarea"
+                                  :autosize="{ minRows: 1, maxRows: 4}" style="width:360px"
+                                  v-model="showForm.description"
+                                  readonly="true"></el-input>
+                    </el-form-item>
+                    <el-form-item label="活动经费:">
+                        <el-input style="width:360px" v-model="showForm.budget" readonly="true"></el-input>
+                    </el-form-item>
+                    <el-form-item label="活动位置:">
+                        <el-input style="width:360px" v-model="showForm.place" readonly="true"></el-input>
+                    </el-form-item>
+                    <el-form-item label="活动时间:">
+                        <el-date-picker style="width:360px" type="date" v-model="showForm.eventTime"
+                                        readonly="true"></el-date-picker>
+                    </el-form-item>
+                    <el-form-item label="申请时间:">
+                        <el-date-picker style="width:360px" type="date" v-model="showForm.applyDate"
+                                        readonly="true"></el-date-picker>
+                    </el-form-item>
+                    <el-form-item label="审核状态:">
+                        <el-switch v-model="showForm.status" disabled></el-switch>
+                    </el-form-item>
+                    <el-form-item label="审核信息:">
+                        <el-input style="width:360px" v-model="showForm.suggestion" readonly="true"></el-input>
+                    </el-form-item>
+                    <el-form-item label="是否公开:" >
+                        <el-switch v-model="showForm.isPublic" disabled></el-switch>
+                    </el-form-item>
+
+                </el-form>
+                <!--                底部区域-->
+                <span slot="footer" class="dialog-footer">
+                <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
+            </span>
+            </el-dialog>
+
+            <!--        修改活动对话框-->
+            <el-dialog title="修改活动" :visible.sync="editDialogVisible"
+                       width="630px" top="60px" center>
+                <el-form :model="editForm" :rules="addFormRules" ref="editFormRef" label-width="150px" style="height:470px">
+                    <el-form-item label="活动名称:" prop="name">
+                        <el-input style="width:360px" v-model="editForm.name"></el-input>
+                    </el-form-item>
+                    <el-form-item label="活动介绍:" prop="description">
+                        <el-input style="width:360px" type="textarea"
+                                  :autosize="{ minRows: 1, maxRows: 4}" v-model="editForm.description"></el-input>
+                    </el-form-item>
+                    <el-form-item label="活动经费:" prop="budget">
+                        <el-input style="width:360px" v-model="editForm.budget"></el-input>
+                    </el-form-item>
+                    <el-form-item label="活动位置:" prop="place">
+                        <el-select v-model="editForm.place" placeholder="请选择活动区域" style="width:360px">
+                            <el-option label="本部南楼" value="本部南楼"></el-option>
+                            <el-option label="本部北楼" value="本部北楼"></el-option>
+                            <el-option label="本部西南七楼" value="本部西南七楼"></el-option>
+                            <el-option label="嘉定图书馆" value="嘉定图书馆"></el-option>
+                            <el-option label="嘉定友园19号楼" value="嘉定友园19号楼"></el-option>
+                        </el-select>
+                    </el-form-item>
+
+                    <el-form-item label="活动时间:" prop="eventTime">
+                        <el-date-picker style="width:360px" type="date" v-model="editForm.eventTime">
+                        </el-date-picker>
+                    </el-form-item>
+                    <el-form-item label="是否公开:" prop="isPublic">
+                        <el-switch v-model="editForm.isPublic"></el-switch>
+                    </el-form-item>
+                </el-form>
+
+                <span slot="footer" class="dialog-footer">
+                    <el-button style="margin-right:20px" @click="cancelEdit">取 消</el-button>
+                    <el-button style="margin-left:20px" type="primary" @click="editActivity">确 定</el-button>
+            </span>
+            </el-dialog>
             <!--            分页区域-->
             <el-pagination
                     @size-change="handleSizeChange"
@@ -57,132 +182,6 @@
                     :total="totalCount">
             </el-pagination>
         </el-card>
-
-        <!--        展示活动对话框-->
-        <el-dialog title="活动详情" ref="showFormRef" :visible.sync="showDialogVisible"
-                   width="50%">
-            <!--            展示内容主体区域 -->
-            <el-form :model="addForm" label-width="150px">
-                <el-form-item label="活动名称:">
-                    <el-input v-model="addForm.name" disabled></el-input>
-                </el-form-item>
-                <el-form-item label="活动介绍:">
-                    <el-input v-model="addForm.description" disabled></el-input>
-                </el-form-item>
-                <el-form-item label="活动开销:">
-                    <el-input v-model="addForm.cost" disabled></el-input>
-                </el-form-item>
-                <el-form-item label="活动经费:">
-                    <el-input v-model="addForm.fund" disabled></el-input>
-                </el-form-item>
-                <el-form-item label="活动位置:">
-                    <el-input v-model="addForm.place" disabled></el-input>
-                </el-form-item>
-                <el-form-item label="活动时间:" prop="time">
-                    <el-date-picker type="date" v-model="addForm.time" style="width: 100%;" disabled></el-date-picker>
-                </el-form-item>
-                <el-form-item label="活动申请时间:" prop="applyDate">
-                    <el-date-picker type="date" v-model="addForm.applyDate" style="width: 100%;"
-                                    disabled></el-date-picker>
-                </el-form-item>
-                <el-form-item label="活动审核状态:" prop="status">
-                    <el-switch v-model="addForm.status" disabled></el-switch>
-                </el-form-item>
-                <el-form-item label="活动审核信息:">
-                    <el-input v-model="addForm.suggestion" disabled></el-input>
-                </el-form-item>
-                <el-form-item label="活动是否公开:" prop="isPublic">
-                    <el-switch v-model="addForm.isPublic" disabled></el-switch>
-                </el-form-item>
-
-            </el-form>
-            <!--            底部区域-->
-            <span slot="footer" class="dialog-footer">
-    <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
-  </span>
-        </el-dialog>
-
-
-        <!--        添加活动对话框-->
-        <el-dialog title="添加活动" :visible.sync="addDialogVisible"
-                   width="50%">
-            <!--            内容主体区域 放置一个表单-->
-            <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="150px">
-                <el-form-item label="活动名称:" prop="name">
-                    <el-input v-model="addForm.name"></el-input>
-                </el-form-item>
-                <el-form-item label="活动介绍:" prop="description">
-                    <el-input type="textarea" v-model="addForm.description"></el-input>
-                </el-form-item>
-                <el-form-item label="活动开销:" prop="cost">
-                    <el-input v-model="addForm.cost"></el-input>
-                </el-form-item>
-                <el-form-item label="活动经费:" prop="fund">
-                    <el-input v-model="addForm.fund"></el-input>
-                </el-form-item>
-                <el-form-item label="活动位置:" prop="place">
-                    <el-select v-model="addForm.place" placeholder="请选择活动区域">
-                        <el-option label="本部南楼" value="本部南楼"></el-option>
-                        <el-option label="本部北楼" value="本部北楼"></el-option>
-                        <el-option label="本部西南七楼" value="本部西南七楼"></el-option>
-                        <el-option label="嘉定图书馆" value="嘉定图书馆"></el-option>
-                        <el-option label="嘉定友园19号楼" value="嘉定友园19号楼"></el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="活动时间:" prop="time">
-                    <el-date-picker type="date" placeholder="选择日期" v-model="addForm.time"
-                                    style="width: 100%;"></el-date-picker>
-                </el-form-item>
-                <el-form-item label="活动是否公开:" prop="isPublic">
-                    <el-switch v-model="addForm.isPublic"></el-switch>
-                </el-form-item>
-            </el-form>
-            <!--            底部区域-->
-            <span slot="footer" class="dialog-footer">
-    <el-button @click="cancelAdd">取 消</el-button>
-    <el-button type="primary" @click="addActivity">确 定</el-button>
-  </span>
-        </el-dialog>
-
-        <!--        修改活动对话框-->
-        <el-dialog title="修改活动"   :visible.sync="editDialogVisible"
-                   width="50%">
-            <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="150px">
-                <el-form-item label="活动名称:" prop="name">
-                    <el-input v-model="addForm.name"></el-input>
-                </el-form-item>
-                <el-form-item label="活动介绍:" prop="description">
-                    <el-input type="textarea" v-model="addForm.description"></el-input>
-                </el-form-item>
-                <el-form-item label="活动开销:" prop="cost">
-                    <el-input v-model="addForm.cost"></el-input>
-                </el-form-item>
-                <el-form-item label="活动经费:" prop="fund">
-                    <el-input v-model="addForm.fund"></el-input>
-                </el-form-item>
-                <el-form-item label="活动位置:" prop="place">
-                    <el-select v-model="addForm.place" placeholder="请选择活动区域">
-                        <el-option label="本部南楼" value="本部南楼"></el-option>
-                        <el-option label="本部北楼" value="本部北楼"></el-option>
-                        <el-option label="本部西南七楼" value="本部西南七楼"></el-option>
-                        <el-option label="嘉定图书馆" value="嘉定图书馆"></el-option>
-                        <el-option label="嘉定友园19号楼" value="嘉定友园19号楼"></el-option>
-                    </el-select>
-                </el-form-item>
-
-                <el-form-item label="活动时间:" prop="time">
-                    <el-date-picker type="date" v-model="addForm.time" style="width: 100%;"></el-date-picker>
-                </el-form-item>
-                <el-form-item label="活动是否公开:" prop="isPublic">
-                    <el-switch v-model="addForm.isPublic"></el-switch>
-                </el-form-item>
-            </el-form>
-
-            <span slot="footer" class="dialog-footer">
-                    <el-button @click="cancelEdit">取 消</el-button>
-                    <el-button type="primary" @click="editActivity">确 定</el-button>
-            </span>
-        </el-dialog>
     </div>
 </template>
 
@@ -190,41 +189,30 @@
     export default {
         data()
         {
-            let checkCost = (rule, value, cb) =>
+            let checkBudget = (rule, value, cb) =>
             {
-                const regCost = /^\d{1,8}\.?\d{0,2}$/;
-                if (regCost.test(value))
+                const regBudget = /^\d{1,8}\.?\d{0,2}$/;
+                if (regBudget.test(value))
                 {
-                    //合法密码
-                    return cb();
-                }
-                cb(new Error("活动开销必须是数字,且小于一千万!"));
-
-            };
-            let checkFund = (rule, value, cb) =>
-            {
-                const regFund = /^\d{1,8}\.?\d{0,2}$/;
-                if (regFund.test(value))
-                {
-                    //合法密码
+                    //合法开销
                     return cb();
                 }
                 cb(new Error("活动经费必须是数字,且小于一千万!"));
 
             };
-
             return {
-                //    获取活动列表参数对象
+                //获取活动列表参数对象
+                //查询到的当页活动
+                activityList: [],
+
                 query: '',
                 //当前的页码
                 pageNumber: 1,
                 //每页显示的条数
-                pageSize: 2,
-
-                //查询到的当页活动
-                activityList: [],
+                pageSize: 5,
                 //总条数,用于分页的显示
                 totalCount: 0,
+
                 //添加,修改,展示活动对话框的显示与隐藏
                 addDialogVisible: false,
                 editDialogVisible: false,
@@ -232,18 +220,15 @@
 
                 //添加活动表单数据
                 addForm: {
-                    // activityId: "",
-                    // name: "",
-                    // description: "",
-                    // cost: "",
-                    // fund: "",
-                    // place: "",
-                    // time: "",
-                    // applyDate: "",
-                    // isPublic: true,
-                    // status: false,
-                    // suggestion: "",
+                    name: "",
+                    description: "",
+                    budget: "",
+                    place: "",
+                    eventTime: "",
+                    isPublic: true
                 },
+                showForm: {},
+                editForm: {},
                 //添加活动的校验规则
                 addFormRules: {
                     name: [
@@ -253,22 +238,18 @@
                     description: [
                         {required: true, message: '请输入活动描述', trigger: 'blur'}
                     ],
-                    cost: [
+                    budget: [
                         {required: true, message: '请输入活动开销', trigger: 'blur'},
-                        {validator: checkCost, trigger: "blur"}
-                    ],
-                    fund: [
-                        {required: true, message: '请输入活动经费', trigger: 'blur'},
-                        {validator: checkFund, trigger: "blur"}
+                        {validator: checkBudget, trigger: "blur"}
                     ],
                     place: [
                         {required: true, message: '请输入活动地点', trigger: 'blur'},
                     ],
-                    time: [
+                    eventTime: [
                         {required: true, message: '请输入活动时间', trigger: 'blur'},
                     ]
                 }
-            }
+            };
         },
         //一开始就显示活动列表
         created()
@@ -276,6 +257,7 @@
             this.getActivityList();
         },
         methods: {
+            //获取活动列表
             async getActivityList()
             {
                 let result = await this.$http.post(this.$api.PrincipalGetActivitiesUrl,
@@ -287,9 +269,7 @@
                     });
 
                 this.activityList = result.data.data;
-                console.log(this.activityList);
                 this.totalCount = parseInt(result.data.totalCount);
-                console.log(this.totalCount);
             },
             //监听pageSize改变的事件
             handleSizeChange(newSize)
@@ -303,11 +283,9 @@
                 this.pageNumber = newPage;
                 this.getActivityList();
             },
-
             //添加活动
             showAddActivity()
             {
-
                 this.addDialogVisible = true;
                 //清空表单的校验项
                 this.$nextTick(() =>
@@ -315,19 +293,13 @@
                     this.$refs.addFormRef.resetFields();
                 });
 
-                this.addForm.activityId = "";
                 this.addForm.name = "";
                 this.addForm.description = "";
-                this.addForm.cost = "";
-                this.addForm.fund = "";
+                this.addForm.budget = "";
                 this.addForm.place = "";
-                this.addForm.time = '';
-                this.addForm.applyDate = "";
-                this.addForm.status = false;
-                this.addForm.suggestion = "";
+                this.addForm.eventTime = '';
                 this.addForm.isPublic = true;
             },
-
             //点击确定按钮后,添加活动
             addActivity()
             {
@@ -335,16 +307,13 @@
                     async valid =>
                     {
                         if (!valid) return;
-                        this.addForm.activityId = 0;
-                        console.log(this.addForm);
                         let result = await this.$http.post(this.$api.PrincipalAddOneActivityUrl,
                             {
                                 activityId: 0,
                                 name: this.addForm.name,
-                                fund: parseFloat(this.addForm.fund),
-                                cost: parseFloat(this.addForm.cost),
+                                eventTime: this.addForm.eventTime,
+                                budget: parseFloat(this.addForm.budget),
                                 place: this.addForm.place,
-                                time: this.addForm.time,
                                 description: this.addForm.description,
                                 isPublic: this.addForm.isPublic
                             });
@@ -364,11 +333,11 @@
                 this.$message.info("取消添加活动!");
             },
 
+            //根据活动ID,展示活动具体信息
             async showDialog(activityId)
             {
                 let result = await this.$http.post(this.$api.PrincipalGetOneActivityUrl + "/" + activityId);
-                this.addForm = result.data;
-                console.log(this.addForm);
+                this.showForm = result.data;
                 this.showDialogVisible = true;
             },
             //显示活动详情页面按确定后的触发事件
@@ -376,6 +345,7 @@
             {
                 this.showDialogVisible = false;
             },
+            //取消修改活动
             cancelEdit()
             {
                 this.editDialogVisible = false;
@@ -385,17 +355,18 @@
             async showEditDialog(activityId)
             {
                 let result = await this.$http.post(this.$api.PrincipalGetOneActivityUrl + "/" + activityId);
-                this.addForm = result.data;
+                this.editForm = result.data;
                 this.editDialogVisible = true;
             },
+            //实现具体的修改活动操作
             async editActivity()
             {
-                this.$refs.addFormRef.validate(
+                this.$refs.editFormRef.validate(
                     async valid =>
                     {
                         if (!valid) return;
-                        console.log(this.addForm);
-                        await this.$http.post(this.$api.PrincipalUpdateOneActivityUrl + "/" + this.addForm.activityId, this.addForm);
+                        console.log(this.editForm);
+                        await this.$http.post(this.$api.PrincipalUpdateOneActivityUrl + "/" + this.editForm.activityId, this.editForm);
                         // this.clearAddForm();
                         // this.$refs.addFormRef.resetFields();
                         //关闭对话框
@@ -403,7 +374,7 @@
                         //    刷新数据列表
                         this.getActivityList();
                         //    提示成功
-                        this.$message.success("更新用户成功!");
+                        this.$message.success("更新活动成功!");
                     }
                 );
             },
@@ -431,5 +402,6 @@
     }
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>
 
