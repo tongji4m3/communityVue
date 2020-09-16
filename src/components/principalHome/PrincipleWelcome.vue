@@ -1,5 +1,6 @@
 <template>
     <div>
+
         <el-card class="box-card1" shadow="never">
             <div class="text1 item1" >
 
@@ -29,44 +30,52 @@
             </el-carousel-item>
         </el-carousel>
 
-        <el-card id="announce">
-
-            <div id="announce_head">
-                <img src="../../assets/img/icon_announcement.png" alt="" style="vertical-align: middle">
-                <span> <h3>   系统公告</h3></span>
-            </div>
-            <el-divider></el-divider>
-            <!--            搜索与添加
-            <el-row :gutter="20">
-                <el-col :span="7">
-                    <!--                    搜索取消时也会刷新搜索页面,搜索确定时,将携带query搜索特点内容的系统公告-->
-                    <el-input clearable @clear="getAnnouncementList" placeholder="请输入内容" v-model="query">
-                        <el-button slot="append" icon="el-icon-search" @click="getAnnouncementList"></el-button>
-                    </el-input>
-                </el-col>
-            </el-row>
-            <!--            系统公告列表 只展示一些系统公告信息,详细文本可在详情查看-->
-            <el-table :data="AnnouncementList">
-                <el-table-column type="index"></el-table-column>
-                <el-table-column label="标题" prop="title"></el-table-column>
-                <el-table-column label="系统公告时间" prop="time"></el-table-column>
-                <el-table-column label="显示详情">
-                    <template slot-scope="scope">
-                        <el-button type="primary" @click="showDialog(scope.row.announcementId)">查看</el-button>
-                    </template>
-                </el-table-column>
-            </el-table>
-            <!--            分页区域-->
-            <el-pagination
-                @size-change="handleSizeChange"
-                @current-change="handleCurrentChange"
-                :current-page="pageNumber"
-                :page-sizes="[1, 2, 5, 10]"
-                :page-size="pageSize"
-                layout="total, sizes, prev, pager, next, jumper"
-                :total="totalCount">
-            </el-pagination>
-        </el-card >
+        <div id="announce_head">
+            <img src="../../assets/img/icon_announcement.png" alt="" style="vertical-align: middle">
+            <span> <h3>   系统公告</h3></span>
+        </div>
+        <el-divider></el-divider>
+<!--            &lt;!&ndash;            搜索与添加-->
+<!--            <el-row :gutter="20">-->
+<!--                <el-col :span="7">-->
+<!--                    &lt;!&ndash;                    搜索取消时也会刷新搜索页面,搜索确定时,将携带query搜索特点内容的系统公告&ndash;&gt;-->
+<!--                    <el-input clearable @clear="getAnnouncementList" placeholder="请输入内容" v-model="query">-->
+<!--                        <el-button slot="append" icon="el-icon-search" @click="getAnnouncementList"></el-button>-->
+<!--                    </el-input>-->
+<!--                </el-col>-->
+<!--            </el-row>-->
+        <!--            系统公告列表 只展示一些系统公告信息,详细文本可在详情查看-->
+<!--            <el-table :data="AnnouncementList">-->
+<!--                <el-table-column type="index"></el-table-column>-->
+<!--                <el-table-column label="标题" prop="title"></el-table-column>-->
+<!--                <el-table-column label="系统公告时间" prop="time"></el-table-column>-->
+<!--                <el-table-column label="显示详情">-->
+<!--                    <template slot-scope="scope">-->
+<!--                        <el-button type="primary" @click="showDialog(scope.row.announcementId)">查看</el-button>-->
+<!--                    </template>-->
+<!--                </el-table-column>-->
+<!--            </el-table>-->
+        <!--            分页区域-->
+<!--            <el-pagination-->
+<!--                @size-change="handleSizeChange"-->
+<!--                @current-change="handleCurrentChange"-->
+<!--                :current-page="pageNumber"-->
+<!--                :page-sizes="[1, 2, 5, 10]"-->
+<!--                :page-size="pageSize"-->
+<!--                layout="total, sizes, prev, pager, next, jumper"-->
+<!--                :total="totalCount">-->
+<!--            </el-pagination>-->
+        <!--        <div v-for="n in evenNumbers">-->
+        <div v-for="announcement in AnnouncementList">
+            <el-card id="myCard">
+                <div id="announcementContent">{{ announcement.content }}</div>
+                <br>
+                <div id="announcementTime">{{ announcement.time }}</div>
+                <br>
+                <el-button id="checkButton" type="text" @click="showDialog(announcement.announcementId)">查看</el-button>
+            </el-card>
+            <br>
+        </div>
 
         <!--        展示系统公告对话框-->
         <el-dialog title="系统公告详情" ref="showFormRef" :visible.sync="showDialogVisible"
@@ -101,7 +110,7 @@ export default {
             //当前的页码
             pageNumber: 1,
             //每页显示的条数
-            pageSize: 2,
+            pageSize: 10,
 
             //查询到的当页系统公告
             AnnouncementList: [],
@@ -240,4 +249,17 @@ export default {
         background-color: #d3dce6;
     }
 
+    #announcementContent{
+        float: left;
+    }
+    #announcementTime{
+        float: right;
+    }
+    #announcementId{
+        float: right;
+    }
+    #checkButton {
+        float: right;
+        /*margin-top: 10px;*/
+    }
 </style>

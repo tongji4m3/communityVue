@@ -102,7 +102,7 @@ export default {
             //当前的页码
             pageNumber: 1,
             //每页显示的条数
-            pageSize: 2,
+            pageSize: 5,
 
             //查询到的当页学生
             StudentList: [

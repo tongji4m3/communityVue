@@ -1,10 +1,13 @@
 <template>
     <div>
-
+        <div id="announce_head">
+            <img src="../../assets/img/icon_announcement.png" alt="" style="vertical-align: middle">
+            <span> <h3>   系统公告</h3></span>
+        </div>
         <el-divider></el-divider>
         <!--        <div v-for="n in evenNumbers">-->
         <div v-for="announcement in AnnouncementList">
-            <el-card>
+            <el-card id="myCard">
                 <div id="announcementContent">{{ announcement.content }}</div>
                 <br>
                 <div id="announcementTime">{{ announcement.time }}</div>
@@ -143,4 +146,8 @@ export default {
     float: right;
     /*margin-top: 10px;*/
 }
+/*#myCard {*/
+/*    float: right;*/
+/*    !*margin-top: 10px;*!*/
+/*}*/
 </style>
