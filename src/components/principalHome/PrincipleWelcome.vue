@@ -323,8 +323,6 @@
 
 <template>
     <div>
-
-<<<<<<< Updated upstream
         <!--        <el-row  class="el-row" :gutter="0">-->
         <!--            <el-col :span="4">-->
         <!--                <el-card class="card1" :body-style="{ padding: '20px'}">-->
@@ -662,12 +660,8 @@ export default {
             //当前的页码
             pageNumber: 1,
             //每页显示的条数
-<<<<<<< Updated upstream
-            pageSize: 2,
-=======
             pageSize: 5,
 
->>>>>>> Stashed changes
             //查询到的当页系统公告
             AnnouncementList: [],
             //总条数,用于分页的显示

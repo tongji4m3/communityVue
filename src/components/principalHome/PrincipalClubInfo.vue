@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 <template>
     <div>
         <!--        面包屑-->
@@ -94,38 +93,20 @@ export default {
     },
     data()
     {
-=======
-<!--<template>-->
-<!--    <div>-->
-<!--        <el-card class="box-card"></el-card>-->
-<!--    </div>-->
-<!--</template>-->
-<!--<style>-->
-<!--.box-card {-->
-<!--    width:400px;-->
-<!--}-->
-<!--</style>-->
-<el-card class="box-card">
-<div slot="header" class="clearfix">
-    <span>卡片名称</span>
-    <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
-</div>
-<div v-for="o in 4" :key="o" class="text item">
-    {{'列表内容 ' + o }}
-</div>
-</el-card>
 
-<style>
-.text {
-    font-size: 14px;
-}
->>>>>>> Stashed changes
+        return {
+            editDialogVisible: false,
+            editDialogVisible2: false,
+            //添加赞助表单数据
+            addForm: {
+                name: "",
+                description:"",
+                logo:"",
+                status: false,
+            },
+            //添加赞助申请的校验规则
+            addFormRules: {},
 
-.item {
-    margin-bottom: 18px;
-}
-
-<<<<<<< Updated upstream
             content: null,
             editorOption: {}
         }
@@ -144,7 +125,7 @@ export default {
                     logo:this.logo,
                 });
             this.addForm = result.data;
-            // console.log(this.addForm.description);
+            console.log(this.addForm.description);
         },
         cancelEdit()
         {
@@ -170,7 +151,7 @@ export default {
                 async valid =>
                 {
                     if (!valid) return;
-                    // console.log(this.addForm);
+                    console.log(this.addForm);
                     await this.$http.post(this.$api.PrincipalEditClubInfo, this.addForm);
                     // this.clearAddForm();
                     // this.$refs.addFormRef.resetFields();
@@ -189,7 +170,7 @@ export default {
                 async valid =>
                 {
                     if (!valid) return;
-                    // console.log(this.addForm);
+                    console.log(this.addForm);
                     await this.$http.post(this.$api.PrincipalEditClubInfo, this.addForm);
                     // this.clearAddForm();
                     // this.$refs.addFormRef.resetFields();
@@ -208,18 +189,7 @@ export default {
 
         },
     }
-=======
-.clearfix:before,
-.clearfix:after {
-    display: table;
-    content: "";
-}
-.clearfix:after {
-    clear: both
->>>>>>> Stashed changes
 }
 
-.box-card {
-    width: 480px;
-}
-</style>
+</script>
+<style scoped></style>
