@@ -8,6 +8,7 @@
                         <img width="140" height="140" src="../../assets/img/jitaxiehui.png">
                     </div>
                     <br>
+					<br>
                     <div class="image">{{clubForm.name}}负责人</div>
                     <br>
                     <div class="image">1851632 李鸿飞</div>
