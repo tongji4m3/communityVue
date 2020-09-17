@@ -64,16 +64,16 @@
             <!--            展示内容主体区域 -->
             <el-form :model="checkForm" label-width="130px">
                 <el-form-item label="学生ID:" prop="studentId">
-                    <el-input v-model="checkForm.studentId" disabled></el-input>
+                    <el-input v-model="checkForm.studentId" readonly></el-input>
                 </el-form-item>
                 <el-form-item label="申请参加活动时间:" prop="applyDate">
-                    <el-date-picker type="date" v-model="checkForm.applyDate" style="width: 100%;" disabled></el-date-picker>
+                    <el-date-picker type="date" v-model="checkForm.applyDate" style="width: 100%;" readonly></el-date-picker>
                 </el-form-item>
                 <el-form-item label="申请参加活动理由:" prop="applyReason">
                     <el-input
                         type="textarea"
                         :rows="7"
-                        v-model="checkForm.applyReason" disabled>
+                        v-model="checkForm.applyReason" readonly>
                     </el-input>
                 </el-form-item>
             </el-form>
