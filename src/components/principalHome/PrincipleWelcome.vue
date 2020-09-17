@@ -533,14 +533,6 @@
                 </el-card>
             </el-col>
         </el-row>
-=======
-        <el-card class="box-card1" shadow="never">
-            <div class="text1 item1" >
-
-                <img src="../../assets/img/welcome.png" alt="" style="vertical-align: middle">
-                <span> 欢迎回来 {{username}} ！</span>
-            </div>
-        </el-card>
 
         <!--       日历按钮-->
         <!-- <el-button type="text" @click="openCalendar">查看日历</el-button>
@@ -558,17 +550,6 @@
             <img src="../../assets/img/calendar.jpg" alt="" style="width: 100%;margin:0;">
         </el-dialog> -->
 
-        <el-carousel :interval="4000" type="card" height="200px">
-            <el-carousel-item v-for="item in 6" :key="item">
-                <h3 class="medium">{{ item }}</h3>
-            </el-carousel-item>
-        </el-carousel>
-
-        <div id="announce_head">
-            <img src="../../assets/img/icon_announcement.png" alt="" style="vertical-align: middle">
-            <span> <h3>   系统公告</h3></span>
-        </div>
-        <el-divider></el-divider>
 <!--            &lt;!&ndash;            搜索与添加-->
 <!--            <el-row :gutter="20">-->
 <!--                <el-col :span="7">-->
@@ -602,39 +583,7 @@
 <!--                layout="total, sizes, prev, pager, next, jumper"-->
 <!--                :total="totalCount">-->
 <!--            </el-pagination>-->
-        <!--        <div v-for="n in evenNumbers">-->
-        <div v-for="announcement in AnnouncementList">
-            <el-card id="myCard">
-                <div id="announcementContent">{{ announcement.content }}</div>
-                <br>
-                <div id="announcementTime">{{ announcement.time }}</div>
-                <br>
-                <el-button id="checkButton" type="text" @click="showDialog(announcement.announcementId)">查看</el-button>
-            </el-card>
-            <br>
-        </div>
 
-        <!--        展示系统公告对话框-->
-        <el-dialog title="系统公告详情" ref="showFormRef" :visible.sync="showDialogVisible"
-                   width="50%">
-            <!--            展示内容主体区域 -->
-            <el-form :model="addForm" label-width="150px">
-                <el-form-item label="系统公告标题:">
-                    <el-input v-model="addForm.title" disabled></el-input>
-                </el-form-item>
-                <el-form-item label="系统公告内容:">
-                    <el-input v-model="addForm.content" disabled></el-input>
-                </el-form-item>
-                <el-form-item label="系统公告时间:" prop="time">
-                    <el-date-picker type="date" v-model="addForm.time" style="width: 100%;" disabled></el-date-picker>
-                </el-form-item>
-            </el-form>
-            <!--            底部区域-->
-            <span slot="footer" class="dialog-footer">
-                    <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
-                </span>
-        </el-dialog>
->>>>>>> Stashed changes
     </div>
 
 </template>
