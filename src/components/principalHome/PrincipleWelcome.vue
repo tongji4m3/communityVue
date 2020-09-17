@@ -439,7 +439,7 @@
 
                     <el-table :data="AnnouncementList" height="300" :cell-style="{padding:'5px 0'}">
                         <el-table-column type="index"></el-table-column>
-                        <el-table-column label="标题" prop="title" width="300"></el-table-column>
+                        <el-table-column label="标题" prop="title" width="320"></el-table-column>
                         <el-table-column label="系统公告时间" prop="time"></el-table-column>
                         <el-table-column label="显示详情">
                             <template slot-scope="scope">
