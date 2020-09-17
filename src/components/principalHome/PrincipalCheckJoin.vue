@@ -61,20 +61,20 @@
             <!--            展示内容主体区域 -->
             <el-form :model="checkForm" label-width="130px">
                 <el-form-item label="学生ID:">
-                    <el-input v-model="checkForm.studentId" disabled></el-input>
+                    <el-input v-model="checkForm.studentId" readonly></el-input>
                 </el-form-item>
                 <el-form-item label="姓名:">
-                    <el-input v-model="checkForm.studentName" disabled></el-input>
+                    <el-input v-model="checkForm.studentName" readonly></el-input>
                 </el-form-item>
                 <el-form-item label="申请入社时间:">
-                    <el-date-picker type="date" v-model="checkForm.applyDate" style="width: 100%;" disabled></el-date-picker>
+                    <el-date-picker type="date" v-model="checkForm.applyDate" style="width: 100%;" readonly></el-date-picker>
                 </el-form-item>
                 <el-form-item label="申请入社理由:" prop="applyReason">
                     <el-input
                         type="textarea"
                         :rows="7"
                         placeholder="请输入申请入社理由..."
-                        v-model="checkForm.applyReason" disabled>
+                        v-model="checkForm.applyReason" readonly>
                     </el-input>
                 </el-form-item>
             </el-form>
@@ -212,10 +212,10 @@ export default {
           this.$message.success("申请审核未通过!");
         },
 
-        async sendMessage(studentId_in)
+        async sendMessage(userId_in)
         {
             await this.$http.post(this.$api.PrincipalRejectSendMessage, {
-                studentId:studentId_in,
+                userId:userId_in,
                 title:'抱歉',
                 content:'您被拒绝加入社团',
             });

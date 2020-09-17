@@ -54,26 +54,26 @@
             <!--            展示内容主体区域 -->
             <el-form :model="addForm" label-width="150px">
                 <el-form-item label="编号:">
-                    <el-input v-model="addForm.sponsorshipId" disabled></el-input>
+                    <el-input v-model="addForm.sponsorshipId" readonly></el-input>
                 </el-form-item>
                 <el-form-item label="赞助方:">
-                    <el-input v-model="addForm.sponsor" disabled></el-input>
+                    <el-input v-model="addForm.sponsor" readonly></el-input>
                 </el-form-item>
                 <el-form-item label="赞助金额/￥:">
-                    <el-input v-model="addForm.amount" disabled></el-input>
+                    <el-input v-model="addForm.amount" readonly></el-input>
                 </el-form-item>
                 <el-form-item label="赞助需求:">
                     <el-input
                         type="textarea"
                         :rows="7"
-                        v-model="addForm.requirement" disabled>
+                        v-model="addForm.requirement" readonly>
                     </el-input>
                 </el-form-item>
                 <el-form-item label="状态:">
-                    <el-input v-model="addForm.statusName" disabled></el-input>
+                    <el-input v-model="addForm.statusName" readonly></el-input>
                 </el-form-item>
                 <el-form-item label="申请赞助时间:">
-                    <el-date-picker type="date" v-model="addForm.applyDate" style="width: 100%;" disabled></el-date-picker>
+                    <el-date-picker type="date" v-model="addForm.applyDate" style="width: 100%;" readonly></el-date-picker>
                 </el-form-item>
             </el-form>
             <!--            底部区域-->
@@ -134,7 +134,7 @@ export default {
             //当前的页码
             pageNumber: 1,
             //每页显示的条数
-            pageSize: 10,
+            pageSize: 5,
             SponsorshipList: [],
             //查询到的当页公告
             // SponsorshipList: [

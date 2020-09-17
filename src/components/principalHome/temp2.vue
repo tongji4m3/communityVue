@@ -1,4 +1,18 @@
 <template>
+<<<<<<< Updated upstream
+
+</template>
+
+<script>
+export default {
+    name: "temp2"
+}
+</script>
+
+<style scoped>
+
+</style>
+=======
     <div>
         <!--        面包屑-->
         <el-breadcrumb separator-class="el-icon-arrow-right">
@@ -17,12 +31,12 @@
             <!--            <span> {{addForm.description}}</span>-->
 
             <div align="right">
-                <el-popconfirm title="确定解散社团吗？" cancelButtonType="danger" icon="el-icon-magic-stick">
-                    <el-button slot="reference" type="danger" @click="deleteClub">解散社团</el-button>
+                <el-popconfirm title="确定解散社团吗？" cancelButtonType="danger" icon="el-icon-magic-stick"  @onConfirm="deleteClub">
+                    <el-button slot="reference" type="danger">解散社团</el-button>
                 </el-popconfirm>
                 <!--                <el-button type="danger" @click="deleteClub">解散社团</el-button>-->
-                <el-button type="primary" @click="showEditClubInfo">修 改</el-button>
-                <el-button type="primary" @click="showEditClubLogo">修改Logo</el-button>
+                <el-button type="primary" @click="showEditClubInfo">编 辑</el-button>
+                <el-button type="primary" @click="showEditClubLogo">编辑Logo</el-button>
             </div>
         </el-card>
 
@@ -77,6 +91,10 @@
                 </span>
         </el-dialog>
     </div>
+    <!--    <div>-->
+    <!--&lt;!&ndash;        Scroll down to see the bottom-right button.&ndash;&gt;-->
+    <!--        <el-backtop target=".page-component__scroll .el-scrollbar__wrap"></el-backtop>-->
+    <!--    </div>-->
 </template>
 
 <script>
@@ -186,10 +204,12 @@ export default {
         async deleteClub()
         {
             await this.$http.post(this.$api.PrincipalDissolveClub);
-
+            window.sessionStorage.clear();
+            await this.$router.push('./welcome');
         },
     }
 }
 
 </script>
 <style scoped></style>
+>>>>>>> Stashed changes

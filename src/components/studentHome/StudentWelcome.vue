@@ -19,15 +19,16 @@
 
 
         <el-carousel :interval="4000" type="card" height="366px">
-            <el-carousel-item >
-                <img  src="../../assets/img/tj_cp1.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
-            </el-carousel-item>
+            
             <el-carousel-item >
                 <img src="../../assets/img/tj_cp2.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
             </el-carousel-item>
             <el-carousel-item >
                 <img src="../../assets/img/tj_cp4.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
             </el-carousel-item>
+			<el-carousel-item >
+			    <img  src="../../assets/img/tj_cp1.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
+			</el-carousel-item>
             <el-carousel-item >
                 <img src="../../assets/img/tj_cp3.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
             </el-carousel-item>
@@ -39,47 +40,59 @@
             </el-carousel-item>
         </el-carousel>
 
-        <el-card class="announce" >
-            <div id="announce_head">
 
-                <img src="../../assets/img/icon_announcement.png" alt="" style="vertical-align: middle">
-                <span> <h3> 社团公告</h3></span>
-            </div>
-            <el-divider></el-divider>
+        <div id="announce_head">
+
+            <img src="../../assets/img/icon_announcement.png" alt="" style="vertical-align: middle">
+            <span> <h3> 社团公告</h3></span>
+        </div>
+        <el-divider></el-divider>
             <!--            搜索与添加-->
-            <el-row :gutter="20">
-                <el-col :span="7">
-                    <!--                    搜索取消时也会刷新搜索页面,搜索确定时,将携带query搜索特点内容的系统公告-->
-                    <el-input clearable @clear="getAnnouncementList" placeholder="请输入内容" v-model="query">
-                        <el-button slot="append" icon="el-icon-search" @click="getAnnouncementList"></el-button>
-                    </el-input>
-                </el-col>
-            </el-row>
+<!--            <el-row :gutter="20">-->
+<!--                <el-col :span="7">-->
+<!--                    &lt;!&ndash;                    搜索取消时也会刷新搜索页面,搜索确定时,将携带query搜索特点内容的系统公告&ndash;&gt;-->
+<!--                    <el-input clearable @clear="getAnnouncementList" placeholder="请输入内容" v-model="query">-->
+<!--                        <el-button slot="append" icon="el-icon-search" @click="getAnnouncementList"></el-button>-->
+<!--                    </el-input>-->
+<!--                </el-col>-->
+<!--            </el-row>-->
             <!--            系统公告列表 只展示一些系统公告信息,详细文本可在详情查看-->
-            <el-table :data="AnnouncementList">
-                <el-table-column type="index"></el-table-column>
-                <el-table-column label="社团" prop="name"></el-table-column>
-                <el-table-column label="标题" prop="title"></el-table-column>
-                <el-table-column label="公告时间" prop="time"></el-table-column>
-                <el-table-column label="显示详情">
-                    <template slot-scope="scope">
-                        <el-button type="primary" @click="showDialog(scope.row.announcementId)">查看</el-button>
-                    </template>
-                </el-table-column>
-            </el-table>
 
-            <el-divider></el-divider>
-            <!--            分页区域-->
-            <el-pagination
-                    @size-change="handleSizeChange"
-                    @current-change="handleCurrentChange"
-                    :current-page="pageNumber"
-                    :page-sizes="[1, 2, 5, 10]"
-                    :page-size="pageSize"
-                    layout="total, sizes, prev, pager, next, jumper"
-                    :total="totalCount">
-            </el-pagination>
-        </el-card>
+
+        <div v-for="announcement in AnnouncementList">
+            <el-card id="myCard">
+                <div id="announcementContent">{{ announcement.title }}</div>
+                <br>
+                <div id="announcementTime">{{ announcement.time }}</div>
+                <br>
+                <el-button id="checkButton" type="text" @click="showDialog(announcement.announcementId)">查看</el-button>
+            </el-card>
+            <br>
+        </div>
+<!--            <el-table :data="AnnouncementList">-->
+<!--                <el-table-column type="index"></el-table-column>-->
+<!--                <el-table-column label="社团" prop="name"></el-table-column>-->
+<!--                <el-table-column label="标题" prop="title"></el-table-column>-->
+<!--                <el-table-column label="公告时间" prop="time"></el-table-column>-->
+<!--                <el-table-column label="显示详情">-->
+<!--                    <template slot-scope="scope">-->
+<!--                        <el-button type="primary" @click="showDialog(scope.row.announcementId)">查看</el-button>-->
+<!--                    </template>-->
+<!--                </el-table-column>-->
+<!--            </el-table>-->
+
+<!--            <el-divider></el-divider>-->
+<!--            &lt;!&ndash;            分页区域&ndash;&gt;-->
+<!--            <el-pagination-->
+<!--                    @size-change="handleSizeChange"-->
+<!--                    @current-change="handleCurrentChange"-->
+<!--                    :current-page="pageNumber"-->
+<!--                    :page-sizes="[1, 2, 5, 10]"-->
+<!--                    :page-size="pageSize"-->
+<!--                    layout="total, sizes, prev, pager, next, jumper"-->
+<!--                    :total="totalCount">-->
+<!--            </el-pagination>-->
+
 
 
 
@@ -266,7 +279,7 @@
     }
 
     #announce_head img{
-        height: 20px;
+        height: 30px;
         margin-right: 10px;
     }
 
@@ -286,6 +299,22 @@
         background-color: #d3dce6;
     }
 
+    #announcementContent{
+        float: left;
+    }
+    #announcementTime{
+        float: right;
+    }
+    #announcementId{
+        float: right;
+    }
+    #checkButton {
+        float: right;
 
+    }
+    /*#myCard {*/
+    /*    float: right;*/
+    /*    !*margin-top: 10px;*!*/
+    /*}*/
 
 </style>
