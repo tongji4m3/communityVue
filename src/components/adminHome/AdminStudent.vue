@@ -48,8 +48,8 @@
                     </template>
                 </el-table-column>
         </el-table>
-            <el-row :gutter="20">
-                <el-col :span="12">
+            <el-row :gutter="22">
+                <el-col :span="14">
                     <!-- 分页区域 -->
                     <el-pagination
                         @size-change="handleSizeChange"
