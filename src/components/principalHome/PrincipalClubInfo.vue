@@ -14,7 +14,7 @@
             <br>
             <div v-html="addForm.logo">{{addForm.logo}}</div>
             <div v-html="addForm.description">{{addForm.description}}</div>
-<!--            <span> {{addForm.description}}</span>-->
+            <!--            <span> {{addForm.description}}</span>-->
 
             <div align="right">
                 <el-popconfirm title="确定解散社团吗？" cancelButtonType="danger" icon="el-icon-magic-stick">
@@ -22,7 +22,7 @@
                 </el-popconfirm>
                 <!--                <el-button type="danger" @click="deleteClub">解散社团</el-button>-->
                 <el-button type="primary" @click="showEditClubInfo">修 改</el-button>
-              <el-button type="primary" @click="showEditClubLogo">修改Logo</el-button>
+                <el-button type="primary" @click="showEditClubLogo">修改Logo</el-button>
             </div>
         </el-card>
 
@@ -37,14 +37,14 @@
                 <quill-editor v-model="addForm.description" ref="myQuillEditor" style="height: 500px;" :options="editorOption">
                 </quill-editor>
 
-<!--                <el-form-item label="社团介绍:" prop="discription">-->
-<!--                    <el-input-->
-<!--                        type="textarea"-->
-<!--                        :rows="14"-->
-<!--                        placeholder="请输入社团介绍..."-->
-<!--                        v-model="addForm.description">-->
-<!--                    </el-input>-->
-<!--                </el-form-item>-->
+                <!--                <el-form-item label="社团介绍:" prop="discription">-->
+                <!--                    <el-input-->
+                <!--                        type="textarea"-->
+                <!--                        :rows="14"-->
+                <!--                        placeholder="请输入社团介绍..."-->
+                <!--                        v-model="addForm.description">-->
+                <!--                    </el-input>-->
+                <!--                </el-form-item>-->
             </el-form>
 
             <span slot="footer" class="dialog-footer">
@@ -57,7 +57,7 @@
                    width="80%">
             <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="100px">
                 <el-form-item label="社团名称:">
-                   <el-input v-model="addForm.name" placeholder="请输入社团名称..."></el-input>
+                    <el-input v-model="addForm.name" placeholder="请输入社团名称..."></el-input>
                 </el-form-item>
                 <quill-editor v-model="addForm.logo" ref="myQuillEditor" style="height: 500px;" :options="editorOption">
                 </quill-editor>
@@ -69,9 +69,9 @@
                 <!--                        v-model="addForm.description">-->
                 <!--                    </el-input>-->
                 <!--                </el-form-item>-->
-                </el-form>
+            </el-form>
 
-                <span slot="footer" class="dialog-footer">
+            <span slot="footer" class="dialog-footer">
                           <el-button @click="cancelEdit">取 消</el-button>
                           <el-button type="primary" @click="editClubLogo">确 定</el-button>
                 </span>
@@ -125,7 +125,7 @@ export default {
                     logo:this.logo,
                 });
             this.addForm = result.data;
-            console.log(this.addForm.description);
+            // console.log(this.addForm.description);
         },
         cancelEdit()
         {
@@ -140,9 +140,9 @@ export default {
         },
         async showEditClubLogo()
         {
-          let result = await this.$http.post(this.$api.PrincipalGetClubInfo);
-          this.addForm = result.data;
-          this.editDialogVisible2 = true;
+            let result = await this.$http.post(this.$api.PrincipalGetClubInfo);
+            this.addForm = result.data;
+            this.editDialogVisible2 = true;
         },
         //点击确定按钮后,修改社团信息
         async editClubInfo()
@@ -151,7 +151,7 @@ export default {
                 async valid =>
                 {
                     if (!valid) return;
-                    console.log(this.addForm);
+                    // console.log(this.addForm);
                     await this.$http.post(this.$api.PrincipalEditClubInfo, this.addForm);
                     // this.clearAddForm();
                     // this.$refs.addFormRef.resetFields();
@@ -169,23 +169,24 @@ export default {
             this.$refs.addFormRef.validate(
                 async valid =>
                 {
-                  if (!valid) return;
-                  console.log(this.addForm);
-                  await this.$http.post(this.$api.PrincipalEditClubInfo, this.addForm);
-                  // this.clearAddForm();
-                  // this.$refs.addFormRef.resetFields();
-                  //关闭对话框
-                  this.editDialogVisible2 = false;
-                  //    刷新数据列表
-                  await this.getClubInfo();
-                  //    提示成功
-                  this.$message.success("修改社团Logo成功!");
+                    if (!valid) return;
+                    // console.log(this.addForm);
+                    await this.$http.post(this.$api.PrincipalEditClubInfo, this.addForm);
+                    // this.clearAddForm();
+                    // this.$refs.addFormRef.resetFields();
+                    //关闭对话框
+                    this.editDialogVisible2 = false;
+                    //    刷新数据列表
+                    await this.getClubInfo();
+                    //    提示成功
+                    this.$message.success("修改社团Logo成功!");
                 }
             );
         },
         async deleteClub()
         {
             await this.$http.post(this.$api.PrincipalDissolveClub);
+
         },
     }
 }
