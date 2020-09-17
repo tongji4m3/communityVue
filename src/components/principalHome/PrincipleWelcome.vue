@@ -26,7 +26,7 @@
 
                     <el-table :data="AnnouncementList" height="300" :cell-style="{padding:'5px 0'}">
                         <el-table-column type="index" width="20"></el-table-column>
-                        <el-table-column label="标题" prop="title" width="350"></el-table-column>
+                        <el-table-column label="标题" prop="title" width="430"></el-table-column>
                         <el-table-column label="系统公告时间" prop="time"></el-table-column>
                         <el-table-column label="显示详情">
                             <template slot-scope="scope">
@@ -263,7 +263,7 @@ export default {
             let gradeChart = this.$echarts.init(document.getElementById('gradeChart'),'light')
             // 绘制图表
             gradeChart.setOption({
-                title: { text: '社团成员分布' },
+                title: { text: '社团成员分布',left:'center'},
                 tooltip: {},
                 xAxis: {
                     data: this.gradeGraphDescription
@@ -279,7 +279,7 @@ export default {
             //性别分布饼状图
             let genderChart = this.$echarts.init(document.getElementById('genderChart'), 'light');
             genderChart.setOption({
-                title: { text: '社团人员专业分布' },
+                title: { text: '社团人员专业分布',left:'center' },
                 series : [
                     {
 
@@ -425,9 +425,11 @@ export default {
 </script>
 
 <style scoped>
+
+
 .el-row {
     margin-bottom: 20px;
-    height: 400px;
+    height: 380px;
     display: flex;
     flex-wrap: wrap;
 }
