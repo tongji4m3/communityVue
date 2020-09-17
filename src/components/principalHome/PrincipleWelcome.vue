@@ -8,7 +8,7 @@
                         <img width="140" height="140" src="../../assets/img/jitaxiehui.png">
                     </div>
                     <br>
-                    <div class="image">吉他社负责人</div>
+                    <div class="image">{{clubForm.name}}负责人</div>
                     <br>
                     <div class="image">1851632 李鸿飞</div>
 
@@ -122,57 +122,33 @@
                 </el-card>
             </el-col>
         </el-row>
-
-        <!--       日历按钮-->
-        <!-- <el-button type="text" @click="openCalendar">查看日历</el-button>
-        <el-button type="text" @click="openSchoolCalendar">查看校历</el-button> -->
-        <!--        日历框-->
-        <!-- <el-dialog :visible.sync="showCalendar"
+        <!--        展示系统公告对话框-->
+        <el-dialog title="系统公告详情" ref="showFormRef" :visible.sync="showDialogVisible"
                    width="50%">
-            <el-calendar v-model="value">
-            </el-calendar>
-        </el-dialog> -->
-
-<!--        校历-->
-        <!-- <el-dialog :visible.sync="showSchoolCalendar"
-                   width="50%">
-            <img src="../../assets/img/calendar.jpg" alt="" style="width: 100%;margin:0;">
-        </el-dialog> -->
-
-<!--            &lt;!&ndash;            搜索与添加-->
-<!--            <el-row :gutter="20">-->
-<!--                <el-col :span="7">-->
-<!--                    &lt;!&ndash;                    搜索取消时也会刷新搜索页面,搜索确定时,将携带query搜索特点内容的系统公告&ndash;&gt;-->
-<!--                    <el-input clearable @clear="getAnnouncementList" placeholder="请输入内容" v-model="query">-->
-<!--                        <el-button slot="append" icon="el-icon-search" @click="getAnnouncementList"></el-button>-->
-<!--                    </el-input>-->
-<!--                </el-col>-->
-<!--            </el-row>-->
-<!--                    系统公告列表 只展示一些系统公告信息,详细文本可在详情查看-->
-<!--        <el-row>-->
-<!--            <el-table :data="AnnouncementList">-->
-<!--                <el-table-column type="index"></el-table-column>-->
-<!--                <el-table-column label="标题" prop="title"></el-table-column>-->
-<!--                <el-table-column label="系统公告时间" prop="time"></el-table-column>-->
-<!--                <el-table-column label="显示详情">-->
-<!--                    <template slot-scope="scope">-->
-<!--                        <el-button type="primary" @click="showDialog(scope.row.announcementId)">查看</el-button>-->
-<!--                    </template>-->
-<!--                </el-table-column>-->
-<!--            </el-table>-->
-<!--        </el-row>-->
-
-        <!--            分页区域-->
-<!--            <el-pagination-->
-<!--                @size-change="handleSizeChange"-->
-<!--                @current-change="handleCurrentChange"-->
-<!--                :current-page="pageNumber"-->
-<!--                :page-sizes="[1, 2, 5, 10]"-->
-<!--                :page-size="pageSize"-->
-<!--                layout="total, sizes, prev, pager, next, jumper"-->
-<!--                :total="totalCount">-->
-<!--            </el-pagination>-->
-
+            <!--            展示内容主体区域 -->
+            <el-form :model="addForm" label-width="150px">
+                <el-form-item label="系统公告标题:">
+                    <el-input v-model="addForm.title" readonly></el-input>
+                </el-form-item>
+                <!--                <el-form-item label="系统公告内容:">-->
+                <!--                    <el-input v-model="addForm.content" disabled></el-input>-->
+                <!--                </el-form-item>-->
+                <el-form-item label="系统公告内容:" prop="content">
+                    <el-input
+                        type="textarea"
+                        :rows="7"
+                        v-model="addForm.content" readonly>
+                    </el-input>
+                </el-form-item>
+                <el-form-item label="系统公告时间:" prop="time">
+                    <el-date-picker type="date" v-model="addForm.time" style="width: 100%;" readonly></el-date-picker>
+                </el-form-item>
+            </el-form>
+            <!--            底部区域-->
+            <span slot="footer" class="dialog-footer">
+    <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
+  </span>
+        </el-dialog>
     </div>
 
 </template>
