@@ -41,6 +41,8 @@ module.exports = {
     //响应参数:newPassword
     ChangePasswordUrl: APIRootUrl + 'user/changePassword',//修改用户密码
 
+    UpdateAvatar:APIRootUrl+"user/updateAvatar",//修改用户logo
+
 
     GetAnnouncementsUrl: APIRootUrl + 'user/getSysAnnouncements',//获得系统公告
 
@@ -287,7 +289,7 @@ module.exports = {
 
     //赞助详情信息获取
     //请求参数：sponsorshipId(赞助ID)
-    //响应参数：sponorshipId(赞助id), clubName(社团名称), applyDate(提交时间), 
+    //响应参数：sponorshipId(赞助id), clubName(社团名称), applyDate(提交时间),
     //      sponsor(赞助商), amount(金额), adminName(审核者名字), status(审核状态)，
     //      suggestion(建议)， requirement(需求)
     AdminGetSponsorshipDetailsUrl:APIRootUrl+'admin/getsponsorshipdetails',
@@ -311,14 +313,14 @@ module.exports = {
     //请求参数：Status(查询参数:unaudited, failed, pass, all),
     //  PageQO:Query(模糊查询字符串)，PageNumber(页号), PageSize(页大小)
     //响应参数：pageIndex(页码), totalPages(总页数), totolCount(总条数)
-    //  data:activityId(活动id), clubName(社团名称), name(活动名称), 
+    //  data:activityId(活动id), clubName(社团名称), name(活动名称),
     //      budget(经费), place(活动地点), eventTime(活动时间), status(审核状态)
     AdminGetActivityListUrl:APIRootUrl+'admin/getactivities',
 
     //活动详情信息获取
     //请求参数：activityId(活动ID)
-    //响应参数：activityId(活动id), clubName(社团名称), name(活动名称), 
-    //      budget(经费)，place(活动地点), eventTime(活动时间), 
+    //响应参数：activityId(活动id), clubName(社团名称), name(活动名称),
+    //      budget(经费)，place(活动地点), eventTime(活动时间),
     //      status(审核状态)，applyDate(申请时间)，description(活动描述)，
     //      isPublic(是否公开)，adminName(管理员姓名)，suggestion(建议)，
     AdminGetActivityDetailsUrl:APIRootUrl+'admin/getactivitydetails',
@@ -375,12 +377,12 @@ module.exports = {
     //请求参数：Status(查询参数:graduated, atSchool, all),
     //  PageQO:Query(模糊查询字符串)，PageNumber(页号), PageSize(页大小)
     //响应参数：pageIndex(页码), totalPages(总页数), totolCount(总条数)
-    //  data:number(学号), name(姓名), major(专业), 
+    //  data:number(学号), name(姓名), major(专业),
     //      grade(年级), status(状态)
     AdminGetStudentMetaListUrl:APIRootUrl+'admin/getstudentmetas',
-    
+
     //更新学生信息
-    //请求参数：number(学号), name(姓名), major(专业), 
+    //请求参数：number(学号), name(姓名), major(专业),
     //      grade(年级), status(状态)
     //响应参数：isSuccess(是否成功)
     AdminUpdateStudentMetaUrl:APIRootUrl+'admin/updatestudentmeta',
@@ -396,7 +398,7 @@ module.exports = {
     AdminDeleteStudentMetaUrl:APIRootUrl+'admin/deletestudentmeta',
 
     //新增学生信息
-    //请求参数：number(学号), name(姓名), major(专业), 
+    //请求参数：number(学号), name(姓名), major(专业),
     //      grade(年级), status(状态)
     //响应参数：isSuccess(是否成功)
     AdminInsertStudentMetaUrl:APIRootUrl+'admin/insertstudentmeta',
