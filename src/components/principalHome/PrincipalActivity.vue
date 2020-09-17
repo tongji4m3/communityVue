@@ -27,6 +27,7 @@
                 <el-table-column type="index"></el-table-column>
                 <el-table-column label="活动名称" prop="name"></el-table-column>
                 <el-table-column label="活动位置" prop="place"></el-table-column>
+                <el-table-column label="审核状态" prop="status"></el-table-column>
                 <el-table-column label="显示详情">
                     <template slot-scope="scope">
                         <el-button type="primary" @click="showDialog(scope.row.activityId)">查看</el-button>
@@ -117,7 +118,7 @@
                                         readonly="true"></el-date-picker>
                     </el-form-item>
                     <el-form-item label="审核状态:">
-                        <el-switch v-model="showForm.status" disabled></el-switch>
+                        <el-input style="width:360px" v-model="showForm.status" readonly="true"></el-input>
                     </el-form-item>
                     <el-form-item label="审核信息:">
                         <el-input style="width:360px" v-model="showForm.suggestion" readonly="true"></el-input>
@@ -154,6 +155,8 @@
                             <el-option label="本部西南七楼" value="本部西南七楼"></el-option>
                             <el-option label="嘉定图书馆" value="嘉定图书馆"></el-option>
                             <el-option label="嘉定友园19号楼" value="嘉定友园19号楼"></el-option>
+                            <el-option label="嘉定仰望星空" value="嘉定仰望星空"></el-option>
+                            <el-option label="嘉定体育馆" value="嘉定体育馆"></el-option>
                         </el-select>
                     </el-form-item>
 
@@ -269,6 +272,16 @@
                     });
 
                 this.activityList = result.data.data;
+
+                for (let i = 0; i < this.activityList.length; i++)
+                {
+                    if(this.activityList[i].status===1)
+                        this.activityList[i].status = "已审核";
+                    else
+                        this.activityList[i].status = "未审核";
+                }
+
+                console.log(this.activityList);
                 this.totalCount = parseInt(result.data.totalCount);
             },
             //监听pageSize改变的事件
@@ -339,6 +352,14 @@
                 let result = await this.$http.post(this.$api.PrincipalGetOneActivityUrl + "/" + activityId);
                 this.showForm = result.data;
                 this.showDialogVisible = true;
+
+                if(this.showForm.status===1)
+                    this.showForm.status = "已审核";
+                else
+                    this.showForm.status = "未审核";
+
+                if(this.showForm.suggestion==null)
+                    this.showForm.suggestion = "暂无审核信息";
             },
             //显示活动详情页面按确定后的触发事件
             closeDialogVisible()

@@ -61,7 +61,7 @@
         <!--        展示公告对话框-->
         <el-dialog ref="showFormRef" :visible.sync="showDialogVisible"
                    width="630px" top="60px" center>
-            <h3 style="text-align:center; font-size:25px ">{{showForm.title}}</h3>
+            <h3 style="text-align:center; font-size:25px ;white-space: pre-wrap">{{showForm.title}}</h3>
             <br>
             <hr>
             <br>
