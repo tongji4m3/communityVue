@@ -31,7 +31,7 @@
 
         <el-card>
 
-            <div>
+            <div id="announce_head">
                 <img src="../../assets/img/icon_announcement.png" alt="" style="vertical-align: middle">
                 <span> <h3>   系统公告</h3></span>
             </div>
@@ -131,7 +131,7 @@ export default {
     methods: {
         async getAnnouncementList()
         {
-            let result = await this.$http.post(this.$api.GetAnnouncementsUrl,
+            let result = await this.$http.post(this.$api.AdminGetAnnouncementsUrl,
                 {
                     query: this.query,
                     pageNumber: this.pageNumber,

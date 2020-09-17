@@ -326,8 +326,8 @@ export default {
             this.replyForm.presidentName = result.data.presidentName;
             this.replyForm.establishmentDate = result.data.establishmentDate.slice(0, result.data.establishmentDate.indexOf('T'));
             this.replyForm.status_name = this.statusToStr(result.data.status);
-            // this.replyForm.isChecking = this.statusToIsChecking(result.data.status);
-            this.replyForm.isChecking = true;
+            this.replyForm.isChecking = this.statusToIsChecking(result.data.status);
+            // this.replyForm.isChecking = true;
             this.replyForm.phone = result.data.phone;
             this.replyForm.mail = result.data.mail;
             this.replyForm.grade = result.data.grade;
