@@ -19,15 +19,16 @@
 
 
         <el-carousel :interval="4000" type="card" height="366px">
-            <el-carousel-item >
-                <img  src="../../assets/img/tj_cp1.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
-            </el-carousel-item>
+            
             <el-carousel-item >
                 <img src="../../assets/img/tj_cp2.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
             </el-carousel-item>
             <el-carousel-item >
                 <img src="../../assets/img/tj_cp4.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
             </el-carousel-item>
+			<el-carousel-item >
+			    <img  src="../../assets/img/tj_cp1.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
+			</el-carousel-item>
             <el-carousel-item >
                 <img src="../../assets/img/tj_cp3.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
             </el-carousel-item>

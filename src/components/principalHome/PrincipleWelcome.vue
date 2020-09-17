@@ -1,8 +1,8 @@
 <template>
     <div>
         <el-row :gutter="0" class="el-row">
-            <el-col :span="4">
-                <el-card class="card1" :body-style="{ padding: '20px'}">
+            <el-col :span="6">
+                <el-card class="card0" :body-style="{ padding: '20px'}">
                     <br>
                     <div class="image" >
                         <img width="140" height="140" src="../../assets/img/jitaxiehui.png">
@@ -14,7 +14,7 @@
 
                 </el-card>
             </el-col>
-            <el-col :span="12">
+            <el-col :span="18">
                 <el-card class="card1" :body-style="{ padding: '20px'}">
                     <!--                    系统公告列表 只展示一些系统公告信息,详细文本可在详情查看-->
                     <div id="announce_head">
@@ -36,7 +36,7 @@
                     </el-table>
                 </el-card>
             </el-col>
-            <el-col :span="8">
+            <!-- <el-col :span="8">
                 <el-card>
                     <el-row class="el-row2">
                         <el-col :span="8">
@@ -108,9 +108,10 @@
                         </el-col>
                     </el-row>
                 </el-card>
-            </el-col>
+            </el-col> -->
         </el-row>
         <!--        <br>-->
+		<!-- 图表 -->
         <el-row :gutter="0" class="el-row">
             <el-col :span="24">
                 <el-card>
@@ -428,7 +429,7 @@ export default {
     margin-bottom: 20px;
     height: 400px;
     display: flex;
-    flex-wrap: wrap
+    flex-wrap: wrap;
 }
 
 .el-row2 {
@@ -444,11 +445,19 @@ export default {
     display: flex;
     flex-wrap: wrap
 }
+.card0 {
+    /*min-width: 100%;*/
+    height: 100%;
+    margin-right: 20px;
+	
+    /*transition: all .5s;*/
+}
 
 .card1 {
     /*min-width: 100%;*/
     height: 100%;
     margin-right: 20px;
+	width: 100%;
     /*transition: all .5s;*/
 }
 .image{
