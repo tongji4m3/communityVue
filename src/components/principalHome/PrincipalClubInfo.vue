@@ -125,7 +125,7 @@ export default {
                     logo:this.logo,
                 });
             this.addForm = result.data;
-            console.log(this.addForm.description);
+            // console.log(this.addForm.description);
         },
         cancelEdit()
         {
@@ -151,7 +151,7 @@ export default {
                 async valid =>
                 {
                     if (!valid) return;
-                    console.log(this.addForm);
+                    // console.log(this.addForm);
                     await this.$http.post(this.$api.PrincipalEditClubInfo, this.addForm);
                     // this.clearAddForm();
                     // this.$refs.addFormRef.resetFields();
@@ -170,7 +170,7 @@ export default {
                 async valid =>
                 {
                     if (!valid) return;
-                    console.log(this.addForm);
+                    // console.log(this.addForm);
                     await this.$http.post(this.$api.PrincipalEditClubInfo, this.addForm);
                     // this.clearAddForm();
                     // this.$refs.addFormRef.resetFields();

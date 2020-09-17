@@ -212,10 +212,10 @@ export default {
           this.$message.success("申请审核未通过!");
         },
 
-        async sendMessage(studentId_in)
+        async sendMessage(userId_in)
         {
             await this.$http.post(this.$api.PrincipalRejectSendMessage, {
-                studentId:studentId_in,
+                userId:userId_in,
                 title:'抱歉',
                 content:'您被拒绝加入社团',
             });
