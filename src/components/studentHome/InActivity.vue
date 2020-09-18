@@ -47,6 +47,10 @@
             </el-pagination>
         </el-card>
 
+
+
+
+
         <!--        展示活动对话框-->
         <el-dialog  ref="showFormRef" :visible.sync="showDialogVisible"
                    width="50%">
@@ -178,6 +182,9 @@
                 }
             }
         },
+        mounted() {
+            this.genChart();
+        },
         //一开始就显示活动列表
         created()
         {
@@ -186,6 +193,39 @@
         },
         //获取已加入社团列表
         methods: {
+
+            genChart(){
+                let chart = this.$echarts.init(document.getElementById('chart'),'light')
+                // 绘制图表
+                chart.setOption({
+                    title: {
+                        text: ''
+                    },
+                    tooltip: {},
+                    legend: {
+                        data:['待处理数量']
+                    },
+                    xAxis: {
+
+                    },
+                    yAxis: {
+                        data: ["社团","赞助","活动"],
+                        nameTextStyle: {
+                            fontSize: 15
+                        },
+                        axisLabel: {
+                            fontSize: 15
+                        }
+                    },
+                    series: [{
+                        name: '待处理数量',
+                        type: 'bar',
+                        data: [5, 20, 36],
+                        barWidth: '30%'
+                    }],
+                });
+            },
+
             async getCorporationList()
             {
                 let result = await this.$http.post(this.$api.StudentInActivity,

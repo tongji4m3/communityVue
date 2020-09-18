@@ -16,7 +16,32 @@
                 show-icon>
         </el-alert>
         <br>
+        <el-carousel :interval="4000" type="card" height="366px">
 
+<!--            <el-carousel-item >-->
+<!--                <img src="../../assets/img/tj_typlt.jpg" alt="" style="height: 366px;width: 100%;margin:0;">-->
+<!--            </el-carousel-item>-->
+<!--            <el-carousel-item >-->
+<!--                <img  src="../../assets/img/tj_cp1.jpg" alt="" style="height: 366px;width: 100%;margin:0;">-->
+<!--            </el-carousel-item>-->
+<!--            <el-carousel-item >-->
+<!--                <img src="../../assets/img/tj_cp4.jpg" alt="" style="height: 366px;width: 100%;margin:0;">-->
+<!--            </el-carousel-item>-->
+            <el-carousel-item >
+                <img src="../../assets/img/tj_cp2.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
+            </el-carousel-item>
+
+            <el-carousel-item >
+                <img src="../../assets/img/tj_cp3.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
+            </el-carousel-item>
+            <!--            <el-carousel-item >-->
+            <!--                <img src="../../assets/img/tj_cp4.jpg" alt="" style="height: 366px;width: 100%;margin:0;">-->
+            <!--            </el-carousel-item>-->
+            <el-carousel-item >
+                <img src="../../assets/img/tj_cp5.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
+            </el-carousel-item>
+        </el-carousel>
+        <el-divider></el-divider>
         <!--        卡片-->
         <el-card class="box-card">
             <!--            搜索与添加-->
@@ -35,6 +60,9 @@
                 <!--                    <el-button type="primary" @click="addDialogVisible=true">查询社团</el-button>-->
                 <!--                </el-col>-->
             </el-row>
+
+
+
             <!--            活动列表 只展示一些活动信息,详细信息可在详情查看-->
             <el-table :data="activityList" :row-class-name="tableRowClassName">
                 <el-table-column type="index"></el-table-column>

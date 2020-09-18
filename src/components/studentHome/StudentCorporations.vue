@@ -19,7 +19,7 @@
 
 
         <el-row>
-            <el-col :span="8" v-for="corporation in corporationsList">
+            <el-col :span="6" v-for="corporation in corporationsList">
                 <el-card class="myCard" :body-style="{ padding: '20px'}" shadow="hover">
                     <img :src="corporation.logo" class="image">
 <!--                    <p v-html="corporation.logo">{{corporation.logo}}</p>-->
@@ -444,7 +444,9 @@
         clear: both
     }
     .myCard{
-        margin-left: 50px;
-        margin-right: 50px;
+        height: 350px;
+        margin-top:30px;
+        margin-left: 30px;
+        margin-right: 30px;
     }
 </style>
