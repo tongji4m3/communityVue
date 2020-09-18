@@ -18,7 +18,7 @@
 <!--        </el-dialog>-->
 
         <br>
-        <el-carousel :interval="4000" type="card" height="366px">
+        <el-carousel :interval="4000"  height="366px" width="80%">
             
             <el-carousel-item >
                 <img src="../../assets/img/tj_typlt.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
