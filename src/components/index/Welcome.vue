@@ -1,191 +1,191 @@
 <template>
-    <div id="banner">
-        <el-backtop target="#banner">
-            <div>UP</div>
-        </el-backtop>
-        <el-carousel :height="banH+'px'" width="100%">
-            <el-carousel-item>
-                <img
-                    class="banImg"
-                    src="../../assets/img/tj_pic5.jpg"
-                    alt
-                    :height="banH+'px'"
-                    style="width: 100%;margin:0;"
-                />
-            </el-carousel-item>
-            <el-carousel-item>
-                <img
-                    class="banImg"
-                    src="../../assets/img/tj_pic7.jpg"
-                    alt
-                    :height="banH+'px'"
-                    style="width: 100%;margin:0;"
-                />
-            </el-carousel-item>
-            <el-carousel-item>
-                <img
-                    class="banImg"
-                    src="../../assets/img/sanhaowu.jpg"
-                    alt
-                    :height="banH+'px'"
-                    style="width: 100%;margin:0;"
-                />
-            </el-carousel-item>
-            <el-carousel-item>
-                <img
-                    class="banImg"
-                    src="../../assets/img/hehua.jpg"
-                    alt
-                    :height="banH+'px'"
-                    style="width: 100%;margin:0;"
-                />
-            </el-carousel-item>
-            <el-carousel-item>
-                <img
-                    class="banImg"
-                    src="../../assets/img/sanhaowu3.jpg"
-                    alt
-                    :height="banH+'px'"
-                    style="width: 100%;margin:0;"
-                />
-            </el-carousel-item>
-        </el-carousel>
+  <div id="banner">
+    <el-backtop target="#banner">
+      <div>up</div>
+    </el-backtop>
+    <el-carousel :height="banH+'px'" width="100%">
+      <el-carousel-item>
+        <img
+          class="banImg"
+          src="../../assets/img/tj_pic5.jpg"
+          alt
+          :height="banH+'px'"
+          style="width: 100%;margin:0;"
+        />
+      </el-carousel-item>
+      <el-carousel-item>
+        <img
+          class="banImg"
+          src="../../assets/img/tj_pic7.jpg"
+          alt
+          :height="banH+'px'"
+          style="width: 100%;margin:0;"
+        />
+      </el-carousel-item>
+      <el-carousel-item>
+        <img
+          class="banImg"
+          src="../../assets/img/sanhaowu.jpg"
+          alt
+          :height="banH+'px'"
+          style="width: 100%;margin:0;"
+        />
+      </el-carousel-item>
+      <el-carousel-item>
+        <img
+          class="banImg"
+          src="../../assets/img/hehua.jpg"
+          alt
+          :height="banH+'px'"
+          style="width: 100%;margin:0;"
+        />
+      </el-carousel-item>
+      <el-carousel-item>
+        <img
+          class="banImg"
+          src="../../assets/img/sanhaowu3.jpg"
+          alt
+          :height="banH+'px'"
+          style="width: 100%;margin:0;"
+        />
+      </el-carousel-item>
+    </el-carousel>
 
-        <!-- 系统介绍模块 -->
-        <div class="mokuai" id="content1">
-            <div id="aboutText">
-                <div class="mokuaiTitle">关于系统</div>
-                <div class="engTitle">About</div>
-                <p id="firstP">
-                    学生社团，顾名思义是由学生根据爱好兴趣自发组织到一起并且不以盈利为目的社团组织，而且需要依据一定的制度规章组织并开展活动，
-                    来丰富学生的课余活动,是大学生第二课堂的一个极其重要的组成部分。当今,学生社团的数量的不断增长，
-                    社团负责人需要处理大量的学生数据信息，从而快捷地管理学生信息，科学地制定工作计划，准确地评价学生工作；
-                    学生也需要一个集中的平台来了解学校中社团的各种信息，方便直观地与社团组织进行交互；
-                    学校的社团管理员同样需要一个可以快速管理社团，处理社团事务的途径。
-                </p>
-                <p>
-                    我们的社团管理系统就主要面向这三种人群，为学生提供查看各种社团信息、加入或退出社团、加入社团活动、查看系统通知等功能；
-                    为社团负责人提供一系列便于管理社团的功能，如编辑社团信息、管理社团公告、审核入社人员、管理社团活动、赞助申报等等；
-                    为管理员提供管理学生和社团信息、编辑系统公告、审核社团工作等功能。此外，游客也可以通过主页的信息来了解同济大学社团的风采！
-                </p>
-            </div>
-            <img src="../../assets/img/zonghelou.png" alt />
+    <!-- 系统介绍模块 -->
+    <div class="mokuai" id="content1">
+      <div id="aboutText">
+        <div class="mokuaiTitle">关于系统</div>
+        <div class="engTitle">About</div>
+        <p id="firstP">
+          学生社团，顾名思义是由学生根据爱好兴趣自发组织到一起并且不以盈利为目的社团组织，而且需要依据一定的制度规章组织并开展活动，
+          来丰富学生的课余活动,是大学生第二课堂的一个极其重要的组成部分。当今,学生社团的数量的不断增长，
+          社团负责人需要处理大量的学生数据信息，从而快捷地管理学生信息，科学地制定工作计划，准确地评价学生工作；
+          学生也需要一个集中的平台来了解学校中社团的各种信息，方便直观地与社团组织进行交互；
+          学校的社团管理员同样需要一个可以快速管理社团，处理社团事务的途径。
+        </p>
+        <p>
+          我们的社团管理系统就主要面向这三种人群，为学生提供查看各种社团信息、加入或退出社团、加入社团活动、查看系统通知等功能；
+          为社团负责人提供一系列便于管理社团的功能，如编辑社团信息、管理社团公告、审核入社人员、管理社团活动、赞助申报等等；
+          为管理员提供管理学生和社团信息、编辑系统公告、审核社团工作等功能。此外，游客也可以通过主页的信息来了解同济大学社团的风采！
+        </p>
+      </div>
+      <img src="../../assets/img/zonghelou.png" alt />
+    </div>
+
+    <!-- 社团列表模块 -->
+    <div id="shetuan">
+      <div id="shetuanTitle">百团大战</div>
+      <div class="engTitle">Club Table</div>
+      <el-divider></el-divider>
+      <div id="clubTable">
+        <div class="clubItem">
+          <img src="../../assets/img/shudumiti.png" alt />
+          <div class="clubName">数独迷题社</div>
+        </div>
+        <div class="clubItem">
+          <img src="../../assets/img/xingkongyanyi.png" alt />
+          <div class="clubName">星空演艺社</div>
+        </div>
+        <div class="clubItem">
+          <img src="../../assets/img/OMYUJIA.png" alt />
+          <div class="clubName">OM瑜伽社</div>
+        </div>
+        <div class="clubItem">
+          <img src="../../assets/img/jinyindiyi.png" alt />
+          <div class="clubName">金音笛艺社</div>
+        </div>
+        <div class="clubItem">
+          <img src="../../assets/img/zhuoyoushe.png" alt />
+          <div class="clubName">桌游社</div>
+        </div>
+        <div class="clubItem">
+          <img src="../../assets/img/daobiyouhua.png" alt />
+          <div class="clubName">刀笔油画社</div>
+        </div>
+        <div class="clubItem">
+          <img src="../../assets/img/piyonghanfushe.png" alt />
+          <div class="clubName">辟雍汉服社</div>
+        </div>
+        <div class="clubItem">
+          <img src="../../assets/img/jixianfeipan.png" alt />
+          <div class="clubName">极限飞盘协会</div>
         </div>
 
-        <!-- 社团列表模块 -->
-        <div id="shetuan">
-            <div id="shetuanTitle">百团大战</div>
-            <div class="engTitle">Club Table</div>
-            <el-divider></el-divider>
-            <div id="clubTable">
-                <div class="clubItem">
-                    <img src="../../assets/img/shudumiti.png" alt />
-                    <div class="clubName">数独迷题社</div>
-                </div>
-                <div class="clubItem">
-                    <img src="../../assets/img/xingkongyanyi.png" alt />
-                    <div class="clubName">星空演艺社</div>
-                </div>
-                <div class="clubItem">
-                    <img src="../../assets/img/OMYUJIA.png" alt />
-                    <div class="clubName">OM瑜伽社</div>
-                </div>
-                <div class="clubItem">
-                    <img src="../../assets/img/jinyindiyi.png" alt />
-                    <div class="clubName">金音笛艺社</div>
-                </div>
-                <div class="clubItem">
-                    <img src="../../assets/img/zhuoyoushe.png" alt />
-                    <div class="clubName">桌游社</div>
-                </div>
-                <div class="clubItem">
-                    <img src="../../assets/img/daobiyouhua.png" alt />
-                    <div class="clubName">刀笔油画社</div>
-                </div>
-                <div class="clubItem">
-                    <img src="../../assets/img/piyonghanfushe.png" alt />
-                    <div class="clubName">辟雍汉服社</div>
-                </div>
-                <div class="clubItem">
-                    <img src="../../assets/img/jixianfeipan.png" alt />
-                    <div class="clubName">极限飞盘协会</div>
-                </div>
-
-                <div class="clubItem">
-                    <img src="../../assets/img/tongfeihangmo.png" alt />
-                    <div class="clubName">同飞航模协会</div>
-                </div>
-                <div class="clubItem">
-                    <img src="../../assets/img/dijiuyishu.png" alt />
-                    <div class="clubName">第九艺术协会</div>
-                </div>
-                <div class="clubItem">
-                    <img src="../../assets/img/jianshenxiehui.png" alt />
-                    <div class="clubName">健身协会</div>
-                </div>
-                <div class="clubItem">
-                    <img src="../../assets/img/jitaxiehui.png" alt />
-                    <div class="clubName">吉他协会</div>
-                </div>
-
-                <div class="clubItem">
-                    <img src="../../assets/img/moshuaihaozhe.png" alt />
-                    <div class="clubName">魔术协会</div>
-                </div>
-
-                <div class="clubItem">
-                    <img src="../../assets/img/wushuxiehui.png" alt />
-                    <div class="clubName">武术协会</div>
-                </div>
-            </div>
+        <div class="clubItem">
+          <img src="../../assets/img/tongfeihangmo.png" alt />
+          <div class="clubName">同飞航模协会</div>
+        </div>
+        <div class="clubItem">
+          <img src="../../assets/img/dijiuyishu.png" alt />
+          <div class="clubName">第九艺术协会</div>
+        </div>
+        <div class="clubItem">
+          <img src="../../assets/img/jianshenxiehui.png" alt />
+          <div class="clubName">健身协会</div>
+        </div>
+        <div class="clubItem">
+          <img src="../../assets/img/jitaxiehui.png" alt />
+          <div class="clubName">吉他协会</div>
         </div>
 
-        <!-- 社团活动模块 -->
-        <div class="mokuai">
-            <div id="aboutNews">
-                <div class="mokuaiTitle">社团活动</div>
-                <div class="engTitle">Activity</div>
-                <ol>
-                    <li>
-                        <p>同济大学第一届狼人杀比赛开始报名啦！</p>
-                        <hr align="left" size="1" />
-                    </li>
-                    <li>
-                        <p>同济国标 | 开学的第一场舞！</p>
-                        <hr align="left" size="1" />
-                    </li>
-                    <li>
-                        <p>C4Family九周年专场公演</p>
-                        <hr align="left" size="1" />
-                    </li>
-                    <li>
-                        <p>同声汇雅韵——上海大学生戏曲汇演揭幕在即</p>
-                        <hr align="left" size="1" />
-                    </li>
-                    <li>
-                        <p>同一片蓝天 | 沪上高校社团携手云端开唱</p>
-                        <hr align="left" size="1" />
-                    </li>
-                    <li>
-                        <p>2020同济吉他协会春季招新</p>
-                        <hr align="left" size="1" />
-                    </li>
-                    <li>
-                        <p>音乐创作大赛——同济大学站启动啦~</p>
-                        <hr align="left" size="1" />
-                    </li>
-                    <li>
-                        <p>全国大学生数独挑战赛开赛在即！你准备好了吗？</p>
-                        <hr align="left" size="1" />
-                    </li>
-                </ol>
-            </div>
-            <img src="../../assets/img/yinghua.png" alt style="margin-left: 45px;height: 470px;" />
+        <div class="clubItem">
+          <img src="../../assets/img/moshuaihaozhe.png" alt />
+          <div class="clubName">魔术协会</div>
         </div>
 
-        <!-- 底部	 -->
-        <div id="foot">
-            <!-- <span style="--i:1;">快</span>
+        <div class="clubItem">
+          <img src="../../assets/img/wushuxiehui.png" alt />
+          <div class="clubName">武术协会</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 社团活动模块 -->
+    <div class="mokuai">
+      <div id="aboutNews">
+        <div class="mokuaiTitle">社团活动</div>
+        <div class="engTitle">Activity</div>
+        <ol>
+          <li>
+            <p>同济大学第一届狼人杀比赛开始报名啦！</p>
+            <hr align="left" size="1" />
+          </li>
+          <li>
+            <p>同济国标 | 开学的第一场舞！</p>
+            <hr align="left" size="1" />
+          </li>
+          <li>
+            <p>C4Family九周年专场公演</p>
+            <hr align="left" size="1" />
+          </li>
+          <li>
+            <p>同声汇雅韵——上海大学生戏曲汇演揭幕在即</p>
+            <hr align="left" size="1" />
+          </li>
+          <li>
+            <p>同一片蓝天 | 沪上高校社团携手云端开唱</p>
+            <hr align="left" size="1" />
+          </li>
+          <li>
+            <p>2020同济吉他协会春季招新</p>
+            <hr align="left" size="1" />
+          </li>
+          <li>
+            <p>音乐创作大赛——同济大学站启动啦~</p>
+            <hr align="left" size="1" />
+          </li>
+          <li>
+            <p>全国大学生数独挑战赛开赛在即！你准备好了吗？</p>
+            <hr align="left" size="1" />
+          </li>
+        </ol>
+      </div>
+      <img src="../../assets/img/yinghua.png" alt style="margin-left: 45px;height: 470px;" />
+    </div>
+
+    <!-- 底部	 -->
+    <div id="foot">
+      <!-- <span style="--i:1;">快</span>
                   <span style="--i:2;">来</span>
                   <span style="--i:3;">寻</span>
                   <span style="--i:4;">找</span>
@@ -206,14 +206,14 @@
                   <span style="--i:19;">的</span>
                   <span style="--i:20;">舞</span>
                   <span style="--i:21;">台</span>
-            <span style="--i:22;">吧</span>-->
-            <!-- 来
+      <span style="--i:22;">吧</span>-->
+      <!-- 来
                   寻
                   找
-            志同道合的伙伴，站上属于自己的舞台吧-->
-            <span id="shineText">快来寻找志同道合的伙伴，站上属于自己的舞台吧</span>
-        </div>
+      志同道合的伙伴，站上属于自己的舞台吧-->
+      <span id="shineText">快来寻找志同道合的伙伴，站上属于自己的舞台吧</span>
     </div>
+  </div>
 </template>
 <script>
 // export default{
@@ -270,64 +270,64 @@
 //     }
 //   }
 export default {
-    // data(){
-    // 	return{
-    // 		banH:550
-    // 	}
-    // },
-    // methods:{
-    // 	setbanH(){
-    // 		this.banH=550
-    // 	}
-    // },
-    // mounted(){
-    // 	this.setbanH()
+  // data(){
+  // 	return{
+  // 		banH:550
+  // 	}
+  // },
+  // methods:{
+  // 	setbanH(){
+  // 		this.banH=550
+  // 	}
+  // },
+  // mounted(){
+  // 	this.setbanH()
+  // }
+  data() {
+    return {
+      banH: 550,
+    };
+  },
+  methods: {
+    setSize: function () {
+      this.banH = 0.43 * this.screenWidth;
+      // var banIMG = document.getElementsByClassName("banImg");
+      // banIMG.style.height = this.banH;
+    },
+    // imgLoad(){
+    // 	this.$nextTick(()=>{
+    // 		this.banH=this.$refs.banH[0].height;
+    // 	})
     // }
-    data() {
-        return {
-            banH: 550,
-        };
-    },
-    methods: {
-        setSize: function () {
-            this.banH = 0.43 * this.screenWidth;
-            // var banIMG = document.getElementsByClassName("banImg");
-            // banIMG.style.height = this.banH;
-        },
-        // imgLoad(){
-        // 	this.$nextTick(()=>{
-        // 		this.banH=this.$refs.banH[0].height;
-        // 	})
-        // }
-    },
-    mounted() {
-        this.screenWidth = window.innerWidth;
-        this.setSize();
-        window.onresize = () => {
-            this.screenWidth = window.innerWidth;
-            this.setSize();
-        };
-        // this.imgLoad();
-        // window.addEventListener('resize',()=>{
-        // 	this.banH=this.$refs.banH[0].height
-        // 	this.imgLoad();
-        // },false)
-    },
+  },
+  mounted() {
+    this.screenWidth = window.innerWidth;
+    this.setSize();
+    window.onresize = () => {
+      this.screenWidth = window.innerWidth;
+      this.setSize();
+    };
+    // this.imgLoad();
+    // window.addEventListener('resize',()=>{
+    // 	this.banH=this.$refs.banH[0].height
+    // 	this.imgLoad();
+    // },false)
+  },
 };
 </script>
 <style >
 #banner {
-    font-family: "Avenir", Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    width: 100%;
-    height: 100%;
-    overflow-y: scroll;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
 }
 .mokuai {
-    display: flex;
-    margin: 150px;
-    margin-top: 110px;
+  display: flex;
+  margin: 150px;
+  margin-top: 110px;
 }
 /* #shetuan {
   display: flex;
@@ -340,118 +340,118 @@ export default {
   background-image: url("../../assets/img/blueBG.jpg");
 } */
 #shetuan {
-    color: rgba(255, 255, 255, 0.65);
-    background-color: rgb(0, 129, 215);
-    background-image: url(../../assets/img/star-bg.svg),
+  color: rgba(255, 255, 255, 0.65);
+  background-color: rgb(0, 129, 215);
+  background-image: url(../../assets/img/star-bg.svg),
     linear-gradient(rgb(22, 128, 199), rgb(22, 128, 199) 15%);
-    /* linear-gradient(#191c20, #24292e 15%) */
-    background-repeat: repeat-x;
-    background-position: center 0, 0 0, 0 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0;
-    margin-top: 110px;
-    height: 650px;
-    width: 100%;
+  /* linear-gradient(#191c20, #24292e 15%) */
+  background-repeat: repeat-x;
+  background-position: center 0, 0 0, 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  margin-top: 110px;
+  height: 650px;
+  width: 100%;
 }
 .mokuaiTitle {
-    color: #0099ff;
-    font-size: 20px;
-    line-height: 40px;
+  color: #0099ff;
+  font-size: 20px;
+  line-height: 40px;
 }
 #shetuanTitle {
-    color: rgb(255, 255, 255);
-    font-size: 20px;
-    line-height: 40px;
-    margin-top: 50px;
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  line-height: 40px;
+  margin-top: 50px;
 }
 .engTitle {
-    color: #b0b0b0;
-    font-size: 13px;
+  color: #b0b0b0;
+  font-size: 13px;
 }
 #aboutText {
-    margin: 20px;
-    margin-right: 30px;
+  margin: 20px;
+  margin-right: 30px;
 }
 #aboutNews {
-    margin: 20px;
-    width: 55%;
+  margin: 20px;
+  width: 55%;
 }
 #aboutText p {
-    margin-right: 70px;
-    font-size: 14px;
-    color: rgba(52, 52, 52, 0.8);
-    text-indent: 2em;
-    line-height: 22px;
-    letter-spacing: 0.4px;
+  margin-right: 70px;
+  font-size: 14px;
+  color: rgba(52, 52, 52, 0.8);
+  text-indent: 2em;
+  line-height: 22px;
+  letter-spacing: 0.4px;
 }
 #firstP {
-    margin-top: 50px;
-    margin-right: 70px;
-    font-size: 14px;
-    color: rgba(52, 52, 52, 0.8);
-    text-indent: 2em;
-    line-height: 22px;
-    letter-spacing: 0.4px;
+  margin-top: 50px;
+  margin-right: 70px;
+  font-size: 14px;
+  color: rgba(52, 52, 52, 0.8);
+  text-indent: 2em;
+  line-height: 22px;
+  letter-spacing: 0.4px;
 }
 #aboutNews ol {
-    margin-top: 40px;
-    margin-left: 15px;
-    color: rgba(52, 52, 52, 0.9);
+  margin-top: 40px;
+  margin-left: 15px;
+  color: rgba(52, 52, 52, 0.9);
 }
 #aboutNews ol li p {
-    line-height: 22px;
-    transition: 0.5s;
-    color: rgba(52, 52, 52, 0.8);
+  line-height: 22px;
+  transition: 0.5s;
+  color: rgba(52, 52, 52, 0.8);
 }
 #aboutNews hr {
-    color: #b0b0b0;
-    border-top: dashed;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    transition: 0.5s;
+  color: #b0b0b0;
+  border-top: dashed;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  transition: 0.5s;
 }
 #aboutNews ol li:hover hr {
-    color: #0099ff;
+  color: #0099ff;
 }
 #aboutNews ol li:hover p {
-    text-indent: 1em;
-    color: #0099ff;
+  text-indent: 1em;
+  color: #0099ff;
 }
 .el-divider--horizontal {
-    border-top: 0.1px solid #b0b0b0;
+  border-top: 0.1px solid #b0b0b0;
 }
 #clubTable {
-    width: 80%;
-    height: 400px;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    align-content: space-around;
-    margin: 20px;
+  width: 80%;
+  height: 400px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-content: space-around;
+  margin: 20px;
 }
 #clubTable .clubItem {
-    width: 13%;
-    height: 150px;
-    /*background: rgb(243,242,240);*/
-    background: rgb(255, 255, 255);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: all 0.5s;
+  width: 13%;
+  height: 150px;
+  /*background: rgb(243,242,240);*/
+  background: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.5s;
 }
 #clubTable .clubItem img {
-    height: 90px;
-    margin: 15px;
+  height: 90px;
+  margin: 15px;
 }
 #clubTable .clubItem .clubName {
-    font-size: 13px;
-    color: rgba(52, 52, 52, 0.7);
+  font-size: 13px;
+  color: rgba(52, 52, 52, 0.7);
 }
 #clubTable .clubItem:hover {
-    box-shadow: 0 7px 12px rgba(52, 52, 52, 0.7);
-    transform: scale(1.1);
+  box-shadow: 0 7px 12px rgba(52, 52, 52, 0.7);
+  transform: scale(1.1);
 }
 /* 普通 */
 /* #foot{
@@ -499,37 +499,37 @@ export default {
 	} */
 /* 聚光灯 */
 #foot {
-    height: 50px;
-    background: rgb(43, 43, 43);
-    -webkit-font-smoothing: grayscale;
-    position: relative;
+  height: 50px;
+  background: rgb(43, 43, 43);
+  -webkit-font-smoothing: grayscale;
+  position: relative;
 }
 #shineText {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 30px 78px;
-    color: #fff;
-    background: linear-gradient(to right, #4d4d4d 0, #fff 10%, #4d4d4d 20%);
-    background-position: 0;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: shine 5.5s linear infinite;
-    font-weight: 500;
-    font-size: 26px;
-    white-space: nowrap;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px 78px;
+  color: #fff;
+  background: linear-gradient(to right, #4d4d4d 0, #fff 10%, #4d4d4d 20%);
+  background-position: 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 5.5s linear infinite;
+  font-weight: 500;
+  font-size: 26px;
+  white-space: nowrap;
 }
 @keyframes shine {
-    0% {
-        background-position: 0;
-    }
-    60% {
-        background-position: 658px;
-    }
-    100% {
-        background-position: 658px;
-    }
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 658px;
+  }
+  100% {
+    background-position: 658px;
+  }
 }
 </style>
