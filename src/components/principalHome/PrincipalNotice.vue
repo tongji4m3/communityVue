@@ -60,12 +60,13 @@
 
         <!--        展示公告对话框-->
         <el-dialog ref="showFormRef" :visible.sync="showDialogVisible"
-                   width="630px" top="60px" center>
-            <h3 style="text-align:center; font-size:25px ;white-space: pre-wrap">{{showForm.title}}</h3>
+                   width="630px" top="120px" center>
+            <p style="text-align:center; font-size:20px ;white-space: pre-wrap">{{showForm.title}}</p>
             <br>
             <hr>
             <br>
-            <p style="font-size:20px">{{showForm.content}}</p>
+            <p style="font-size:16px;text-indent: 2em;line-height: 22px;
+  letter-spacing: 0.4px;">{{showForm.content}}</p>
             <br>
             <hr>
             <br>
@@ -80,7 +81,7 @@
 
         <!--        添加公告对话框-->
         <el-dialog title="添加公告" :visible.sync="addDialogVisible"
-                   width="630px" top="60px" center>
+                   width="630px" top="120px" center>
             <!--            内容主体区域 放置一个表单-->
             <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="150px">
                 <el-form-item label="公告标题:" prop="title">
@@ -95,14 +96,14 @@
             </el-form>
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
-    <el-button @click="cancelAdd">取 消</el-button>
+    <el-button @click="cancelAdd" style="margin-right: 20px;">取 消</el-button>
     <el-button type="primary" @click="addAnnouncement">确 定</el-button>
   </span>
         </el-dialog>
 
         <!--        修改公告对话框-->
         <el-dialog title="修改公告" :visible.sync="editDialogVisible"
-                   width="630px" top="60px" center>
+                   width="630px" top="120px" center>
             <el-form :model="editForm" :rules="addFormRules" ref="editFormRef" label-width="150px">
                 <el-form-item label="公告标题:" prop="title">
                     <el-input  style="width:360px" v-model="editForm.title" ></el-input>
@@ -117,7 +118,7 @@
             </el-form>
 
             <span slot="footer" class="dialog-footer">
-                    <el-button @click="cancelEdit">取 消</el-button>
+                    <el-button @click="cancelEdit" style="margin-right: 20px;">取 消</el-button>
                     <el-button type="primary" @click="editAnnouncement">确 定</el-button>
             </span>
         </el-dialog>

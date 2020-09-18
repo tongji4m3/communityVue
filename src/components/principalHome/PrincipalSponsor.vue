@@ -50,7 +50,7 @@
 
         <!--        展示赞助申请的对话框-->
         <el-dialog title="公告详情" ref="showFormRef" :visible.sync="showDialogVisible"
-                   width="50%">
+                   width="50%" center>
             <!--            展示内容主体区域 -->
             <el-form :model="addForm" label-width="150px">
                 <el-form-item label="编号:">
@@ -84,7 +84,7 @@
 
         <!--        添加赞助申请的对话框-->
         <el-dialog title="公告详情" ref="showFormRef" :visible.sync="addDialogVisible"
-                   width="50%">
+                   width="50%" center>
             <!--            展示内容主体区域 -->
             <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="100px">
                 <el-form-item label="赞助方:">
@@ -104,7 +104,7 @@
             </el-form>
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
-                <el-button @click="cancelAdd">取 消</el-button>
+                <el-button @click="cancelAdd" style="margin-right: 20px;">取 消</el-button>
                 <el-button type="primary" @click="addSponsorship">确 定</el-button>
             </span>
         </el-dialog>

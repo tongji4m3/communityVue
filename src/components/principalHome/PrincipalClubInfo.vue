@@ -40,7 +40,7 @@
         </div>
         <!--        修改社团信息对话框-->
         <el-dialog title="修改社团信息" :visible.sync="editDialogVisible"
-                   width="80%">
+                   width="80%" center>
             <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="100px">
                 <el-form-item label="社团名称:">
                     <el-input v-model="addForm.name" placeholder="请输入社团名称..."></el-input>
@@ -60,13 +60,13 @@
             </el-form>
 
             <span slot="footer" class="dialog-footer">
-                    <el-button @click="cancelEdit">取 消</el-button>
+                    <el-button @click="cancelEdit" style="margin-right: 20px;">取 消</el-button>
                     <el-button type="primary" @click="editClubInfo">确 定</el-button>
             </span>
         </el-dialog>
         <!--        修改社团信息对话框-->
         <el-dialog title="修改社团信息" :visible.sync="editDialogVisible2"
-                   width="80%">
+                   width="80%" center>
             <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="100px">
                 <el-form-item label="社团名称:">
                     <el-input v-model="addForm.name" placeholder="请输入社团名称..."></el-input>
@@ -84,7 +84,7 @@
             </el-form>
 
             <span slot="footer" class="dialog-footer">
-                          <el-button @click="cancelEdit">取 消</el-button>
+                          <el-button @click="cancelEdit" style="margin-right: 20px;">取 消</el-button>
                           <el-button type="primary" @click="editClubLogo">确 定</el-button>
                 </span>
         </el-dialog>
