@@ -128,7 +128,7 @@
         <el-dialog title="提交申请" :visible.sync="addDialogVisible"
                    width="50%">
             <!--            内容主体区域 放置一个表单-->
-            <el-form :model="addForm1"  ref="addFormRef" label-width="150px">
+            <el-form :model="addForm1"  ref="addFormRef" :rules="addFormRules" label-width="150px">
 <!--                <el-form-item label="活动编号:" prop="id">-->
 <!--                    <el-input v-model="addForm1.id" readonly="true"></el-input>-->
 <!--                </el-form-item>-->
@@ -408,14 +408,14 @@
                         if (!valid) return;
 
                         console.log(this.addForm1);
-                        var activityId=this.addForm1.id;
-                        var applyReason=this.addForm1.reason;
+                        // var activityId=this.addForm1.id;
+                        // var applyReason=this.addForm1.reason;
                         let result = await this.$http.post(this.$api.StudentJoinActivity,
                             {
-                               activityId,
-                                applyReason,
+                               activityId:this.addForm1.id,
+                                applyReason:this.addForm1.reason,
                             });
-                         console.log(applyReason);
+
                         //隐藏添加活动对话框
                         this.addDialogVisible = false;
                         // this.getActivityList();

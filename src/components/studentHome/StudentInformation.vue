@@ -39,7 +39,7 @@
 
 
 
-        <el-form :model="informationList[0]" ref="addFormRef" label-width="150px">
+        <el-form :model="informationList[0]" ref="addFormRef" :rules="addFormRules" label-width="150px">
             <el-form-item label="姓名:" prop="name">
                 <el-input v-model="informationList[0].name" readonly="true" :disabled="IsChange" size="medium"></el-input>
             </el-form-item>
@@ -87,7 +87,7 @@
 
 
         <el-divider></el-divider>
-        <el-row :gutter="20" style="margin-left: 1100px" >
+        <el-row :gutter="20" style="text-align: center">
             <div v-if="isShow1">
                <el-button type="primary" icon="el-icon-edit" @click="exitCorporation()">编辑</el-button>
             </div>
@@ -223,15 +223,16 @@
                 isShow2:false,
                 //添加活动表单数据
                 addForm: {
-                    // phone:"",
-                    // signature:"",
-                    // mail:"",
-                    // birthday: "",
+                    phone:"",
+                    signature:"",
+                    mail:"",
+                    birthday: "",
                 },
                 //添加活动的校验规则
                 addFormRules: {
                     phone: [
                         {required: true, message: '请输入修改后的手机号', trigger: 'blur'},
+                        {max: 11, message: '请输入正确的手机号', trigger: 'blur'}
                     ],
                     signature: [
                         {required: true, message: '请输入修改后的签名', trigger: 'blur'}
@@ -377,27 +378,18 @@
                     {
                         if (!valid) return;
 
-                        var phone=this.informationList[0].phone;
-                        var signature=this.informationList[0].signature;
-                        var mail=this.informationList[0].mail;
-                        var birthday=this.informationList[0].birthday;
-                        console.log(birthday);
+
+                        console.log(this.informationList[0].phone);
+
                         let msg = "";
                         let status = 200;
                         let result = await this.$http.post(this.$api.StudentChangeInformation,
                             {
-                                phone,
-                                signature,
-                                mail,
-                                birthday,
-                            }).catch(function (error)
-                        {
-                            if (error.response)
-                            {
-                                status = error.response.status;
-                                msg = error.response.data.msg;
-                            }
-                        });
+                                phone:this.informationList[0].phone,
+                                signature:this.informationList[0].signature,
+                                mail:this.informationList[0].mail,
+                                birthday:this.informationList[0].birthday,
+                            })
 
                         //隐藏添加活动对话框
                         this.addDialogVisible = false;
