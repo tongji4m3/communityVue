@@ -23,7 +23,7 @@
             <el-table :data="StudentList">
                 <el-table-column type="index"></el-table-column>
 
-                <el-table-column label="学生ID" prop="number"></el-table-column>
+                <el-table-column label="学号" prop="number"></el-table-column>
                 <el-table-column label="学生姓名" prop="studentName"></el-table-column>
                 <el-table-column label="活动名称" prop="activityName"></el-table-column>
                 <el-table-column label="申请时间" prop="applyDate"></el-table-column>
@@ -64,7 +64,10 @@
                    width="50%" center>
             <!--            展示内容主体区域 -->
             <el-form :model="checkForm" label-width="130px">
-                <el-form-item label="学生ID:" prop="studentId">
+                <el-form-item label="学号:" prop="studentId">
+                    <el-input v-model="checkForm.number" readonly style="width:82%;"></el-input>
+                </el-form-item>
+                <el-form-item label="姓名:" prop="name">
                     <el-input v-model="checkForm.number" readonly style="width:82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="参加时间:" prop="applyDate">
@@ -174,16 +177,13 @@ export default {
 
         async showDialog(StudentId_in,ActivityId_in)
         {
-            console.log(StudentId_in,ActivityId_in);
+            // console.log(StudentId_in,ActivityId_in);
             let result = await this.$http.post(this.$api.PrincipalGetOneActivityMemberUrl, {
                 studentId:StudentId_in,
                 activityId:ActivityId_in,
             });
             // this.checkForm.studentId = result.data.studentId;
             this.checkForm = result.data;
-            // console.log('aaa');
-            console.log(result.data.StudentId);
-            console.log(result.data);
             this.showDialogVisible = true;
         },
         //显示学生申请详情页面按确定后的触发事件
@@ -223,10 +223,12 @@ export default {
         statusToStr(status)
         {
             switch(status) {
-                case 0:
-                    return '待审核';
-                default:
+                case true:
                     return '已通过';
+                case false:
+                    return '未审核'
+                default:
+                    return '未定义';
             }
         },
     }
