@@ -58,7 +58,7 @@
                 <br>
                 <div id="announcementTime">{{ information.time }}</div>
                 <br>
-                <el-button id="checkButton" type="text" @click="showDialog(information.MessageId)">查看</el-button>
+                <el-button id="checkButton" type="text" @click="showDialog(information.messageId)">查看</el-button>
             </el-card>
             <br>
         </div>
@@ -156,6 +156,7 @@
 
             async showDialog(MessageId)
             {
+                console.log(MessageId);
                 let result = await this.$http.post(this.$api.GetOneMessagesUrl + '/' + MessageId);
                 this.addForm = result.data;
                 this.showDialogVisible = true;

@@ -216,8 +216,8 @@ export default {
         {
             await this.$http.post(this.$api.PrincipalRejectSendMessage, {
                 userId:userId_in,
-                title:'抱歉',
-                content:'您被拒绝加入社团',
+                title:'拒绝入社消息',
+                content:'很抱歉地通知您，您被拒绝加入社团',
             });
         },
     }

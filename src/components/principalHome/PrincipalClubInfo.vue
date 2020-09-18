@@ -7,25 +7,37 @@
             <el-breadcrumb-item>社团信息</el-breadcrumb-item>
         </el-breadcrumb>
         <el-divider></el-divider>
+        <span> {{addForm.name}}的社团负责人您好！</span>
+        <br><br>
         <!--        卡片-->
-        <el-card class="box-card">
-            <!-- <span> {{addForm.name}}的社团负责人您好！</span> -->
-            <!-- <br>
-            <br> -->
+        <el-card  :body-style="{ padding: '10px'}">
             <div v-html="addForm.logo">{{addForm.logo}}</div>
             <div v-html="addForm.description" style="margin: 20px;">{{addForm.description}}</div>
-            <!--            <span> {{addForm.description}}</span>-->
-
-            <div align="center">
-                <el-popconfirm title="确定解散社团吗？" @onConfirm="deleteClub" cancelButtonType="danger" icon="el-icon-magic-stick" style="margin: 15px;">
-                    <el-button slot="reference" type="danger">解散社团</el-button>
-                </el-popconfirm>
-                <!--                <el-button type="danger" @click="deleteClub">解散社团</el-button>-->
-                <el-button type="primary" @click="showEditClubInfo" style="margin: 20px;">修 改</el-button>
-                <el-button type="primary" @click="showEditClubLogo">修改Logo</el-button>
-            </div>
         </el-card>
 
+
+
+
+
+<!--        &lt;!&ndash;        卡片&ndash;&gt;-->
+<!--        <el-card class="box-card" :body-style="{ padding: '10px'}">-->
+<!--&lt;!&ndash;             <span> {{addForm.name}}的社团负责人您好！</span>&ndash;&gt;-->
+<!--            &lt;!&ndash; <br>-->
+<!--            <br> &ndash;&gt;-->
+<!--            <div v-html="addForm.logo">{{addForm.logo}}</div>-->
+<!--            <div v-html="addForm.description" style="margin: 20px;">{{addForm.description}}</div>-->
+<!--            &lt;!&ndash;            <span> {{addForm.description}}</span>&ndash;&gt;-->
+
+
+<!--        </el-card>-->
+        <div align="center">
+            <el-popconfirm title="确定解散社团吗？" @onConfirm="deleteClub" cancelButtonType="danger" icon="el-icon-magic-stick" style="margin: 15px;">
+                <el-button slot="reference" type="danger">解散社团</el-button>
+            </el-popconfirm>
+            <!--                <el-button type="danger" @click="deleteClub">解散社团</el-button>-->
+            <el-button type="primary" @click="showEditClubInfo" style="margin: 20px;">修 改</el-button>
+            <el-button type="primary" @click="showEditClubLogo">修改Logo</el-button>
+        </div>
         <!--        修改社团信息对话框-->
         <el-dialog title="修改社团信息" :visible.sync="editDialogVisible"
                    width="80%">
