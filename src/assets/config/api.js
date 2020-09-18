@@ -68,6 +68,11 @@ module.exports = {
     // ,totalCount(总条数),status,msg(错误时)
     PrincipalGetActivitiesUrl: APIRootUrl + 'principal/getActivities',
 
+
+    PrincipalGetCommunityGraph: APIRootUrl + 'principal/getCommunityGraph',
+
+
+
     // 请求参数:activity+is_public
     // 响应参数:status,msg(错误时)
     PrincipalAddOneActivityUrl: APIRootUrl + 'principal/addOneActivity',

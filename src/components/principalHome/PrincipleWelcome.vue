@@ -257,6 +257,27 @@ export default {
     },
     methods: {
 
+        async getCommunityGraph()
+        {
+
+
+            let result = await this.$http.post(this.$api.PrincipalGetCommunityGraph);
+            this.gradeGraphDescription = result.data.gradeGraphDescription;
+            this.gradeGraphData = result.data.gradeGraphData;
+            this.majorGraphData = result.data.majorGraphData;
+
+            /*
+            //社团成员年级分布图表数据
+            gradeGraphDescription:["16级","17级","18级","19级","20级","21级"],
+                gradeGraphData:[5, 20, 36, 10, 10,20],
+
+            //社团成员专业分布图表数据
+            majorGraphData:[
+            {value:235, name:'软件工程'},
+            {value:400, name:'土木工程'},
+            {value:400, name:'车辆工程'},
+            */
+        },
         drawPeople(){
             //年级分布图
             // 基于准备好的dom，初始化echarts实例
@@ -451,7 +472,7 @@ export default {
     /*min-width: 100%;*/
     height: 100%;
     margin-right: 20px;
-	
+
     /*transition: all .5s;*/
 }
 
