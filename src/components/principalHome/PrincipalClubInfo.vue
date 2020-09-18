@@ -7,8 +7,8 @@
             <el-breadcrumb-item>社团信息</el-breadcrumb-item>
         </el-breadcrumb>
         <el-divider></el-divider>
-        <span> {{addForm.name}}的社团负责人您好！</span>
-        <br><br>
+        <!-- <span> {{addForm.name}}的社团负责人您好！</span> -->
+        <!-- <br> --><!-- <br> -->
         <!--        卡片-->
         <el-card  :body-style="{ padding: '10px'}">
             <div v-html="addForm.logo">{{addForm.logo}}</div>
