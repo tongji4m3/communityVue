@@ -23,11 +23,22 @@
             <img src="../../assets/img/calendar.jpg" alt="" style="width: 100%;margin:0;">
         </el-dialog>
 
+
         <el-carousel :interval="4000" type="card" height="200px">
-            <el-carousel-item v-for="item in 6" :key="item">
-                <h3 class="medium">{{ item }}</h3>
+            <el-carousel-item>
+                
             </el-carousel-item>
         </el-carousel>
+
+        <!-- 待办事项 -->
+        <el-card class="chart-card">
+            <div id="announce_head">
+                <img src="../../assets/img/mention.png" alt="" style="vertical-align: middle">
+                <span> <h3>   待办事项</h3></span>
+            </div>
+            <el-divider></el-divider>
+            <div id="chart" style="width: 100%;height:300px;"/>
+        </el-card>
 
         <el-card>
 
@@ -123,12 +134,47 @@ export default {
             username: window.sessionStorage.getItem('name')
         }
     },
-    //一开始就显示系统公告列表
+    //一开始就显示系统公告列表，待办事项
     created()
     {
         this.getAnnouncementList();
     },
+    mounted()
+    {
+        this.genChart();
+    },
     methods: {
+        genChart(){
+            let chart = this.$echarts.init(document.getElementById('chart'),'light')
+            // 绘制图表
+            chart.setOption({
+                title: {
+                    text: ''
+                },
+                tooltip: {},
+                legend: {
+                    data:['待处理数量']
+                },
+                xAxis: {
+                    
+                },
+                yAxis: {
+                    data: ["社团","赞助","活动"],
+                    nameTextStyle: {
+                        fontSize: 15
+                    },
+                    axisLabel: {
+                        fontSize: 15
+                    }
+                },
+                series: [{
+                    name: '待处理数量',
+                    type: 'bar',
+                    data: [5, 20, 36],
+                    barWidth: '30%'
+                }],
+            });
+        },
         async getAnnouncementList()
         {
             let result = await this.$http.post(this.$api.AdminGetAnnouncementsUrl,
@@ -202,6 +248,12 @@ export default {
     .box-card1 img{
 
         height:20px;
+    }
+    .chart-card {
+        width: 100%;
+
+        margin-bottom: 20px;
+        align-items: center;
     }
 
     #announce{

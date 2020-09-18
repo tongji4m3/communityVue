@@ -225,6 +225,8 @@ export default {
                     amount: result.data.data[i].amount,
                     status_name: this.statusToStr(result.data.data[i].status)
                 };
+                console.log(sponsorItem);
+                console.log(result.data);
                 this.sponsorList.push(sponsorItem);
             }
             this.totalCount = parseInt(result.data.totalCount);
