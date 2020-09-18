@@ -5,37 +5,55 @@
                 <el-card class="card0" :body-style="{ padding: '20px'}">
                     <br>
                     <div class="image" >
-                        <img width="140" height="140" :src="imgUrl">
+                        <img width="260" height="260" :src="imgUrl">
                     </div>
                     <br>
                     <div class="image">1851632 李鸿飞</div>
 
                 </el-card>
             </el-col>
-            <el-col :span="18">
-                <el-card class="card1" :body-style="{ padding: '20px'}">
-                    <!--                    系统公告列表 只展示一些系统公告信息,详细文本可在详情查看-->
-                    <div id="announce_head">
-                        <img src="../../assets/img/icon_announcement.png" alt="" style="vertical-align: middle">
-                        <span> <h3> 社团公告</h3></span>
-                        <!--                        <span @click="SystemNotice" class="more"> <h3>更多</h3></span>-->
-                    </div>
-                    <!--                    <div @click="SystemNotice">系统公告：</div>-->
 
-                    <el-table :data="AnnouncementList" height="177" :cell-style="{padding:'5px 0'}">
-                        <el-table-column type="index" width="40"></el-table-column>
-                        <el-table-column label="标题" prop="title" width="490%"></el-table-column>
-                        <el-table-column label="公告时间" prop="time"></el-table-column>
-                        <el-table-column label="详情">
-                            <template slot-scope="scope">
-                                <el-button type="text" @click="showDialog(scope.row.announcementId)">查看</el-button>
-                            </template>
-                        </el-table-column>
-                    </el-table>
-                </el-card>
-            </el-col>
+            <el-carousel :interval="4000"  height="366px" width="80%">
+
+                <el-carousel-item >
+                    <img src="../../assets/img/tj_typlt.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
+                </el-carousel-item>
+                <el-carousel-item >
+                    <img  src="../../assets/img/tj_cp1.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
+                </el-carousel-item>
+                <el-carousel-item >
+                    <img src="../../assets/img/tj_cp4.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
+                </el-carousel-item>
+                <el-carousel-item >
+                    <img src="../../assets/img/tj_cp2.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
+                </el-carousel-item>
+
+                <el-carousel-item >
+                    <img src="../../assets/img/tj_cp3.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
+                </el-carousel-item>
+                <!--            <el-carousel-item >-->
+                <!--                <img src="../../assets/img/tj_cp4.jpg" alt="" style="height: 366px;width: 100%;margin:0;">-->
+                <!--            </el-carousel-item>-->
+                <el-carousel-item >
+                    <img src="../../assets/img/tj_cp5.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
+                </el-carousel-item>
+            </el-carousel>
+
         </el-row>
+        <br>
 
+
+        <!-- 图表 -->
+<!--        <el-row :gutter="0" class="el-row">-->
+<!--            <el-col :span="24">-->
+<!--                <el-card>-->
+<!--                    <el-row :gutter="20">-->
+<!--                        <el-col :span="12"><div id="gradeChart" style="width: 600px;height:400px;"></div></el-col>-->
+<!--                        <el-col :span="12"><div id="genderChart" style="width: 600px;height:400px;"></div></el-col>-->
+<!--                    </el-row>-->
+<!--                </el-card>-->
+<!--            </el-col>-->
+<!--        </el-row>-->
         <!--        日历按钮-->
 <!--        <el-button type="success" @click="openCalendar">查看日历</el-button>-->
         <!--        日历框-->
@@ -45,47 +63,61 @@
 <!--            </el-calendar>-->
 <!--        </el-dialog>-->
 
-        <br>
 
 
 
+            <el-card class="card1" >
+                <!--                    系统公告列表 只展示一些系统公告信息,详细文本可在详情查看-->
 
+                <div id="announce_head">
+                    <img src="../../assets/img/icon_announcement.png" alt="" style="vertical-align: middle">
+                    <span> <h3> 社团公告</h3></span>
+                    <!--                        <span @click="SystemNotice" class="more"> <h3>更多</h3></span>-->
+                </div>
+                <el-divider></el-divider>
+                <el-row :gutter="20">
+                    <el-col :span="7">
+                        <!--                    搜索取消时也会刷新搜索页面,搜索确定时,将携带query搜索特点内容的系统公告-->
+                        <el-input clearable @clear="getAnnouncementList" placeholder="请输入内容" v-model="query">
+                            <el-button slot="append" icon="el-icon-search" @click="getAnnouncementList"></el-button>
+                        </el-input>
+                    </el-col>
+                </el-row>
+                <el-table :data="AnnouncementList">
+                    <el-table-column type="index"></el-table-column>
+                    <el-table-column label="社团" prop="name"></el-table-column>
+                    <el-table-column label="标题" prop="title"></el-table-column>
+                    <el-table-column label="公告时间" prop="time"></el-table-column>
+                    <el-table-column label="显示详情">
+                        <template slot-scope="scope">
+                            <el-button type="primary" @click="showDialog(scope.row.announcementId)">查看</el-button>
+                        </template>
+                    </el-table-column>
+                </el-table>
+            </el-card>
 
-
-
-        <el-carousel :interval="4000"  height="366px" width="100%">
-            
-            <el-carousel-item >
-                <img src="../../assets/img/tj_typlt.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
-            </el-carousel-item>
-			<el-carousel-item >
-			    <img  src="../../assets/img/tj_cp1.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
-			</el-carousel-item>
-            <el-carousel-item >
-                <img src="../../assets/img/tj_cp4.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
-            </el-carousel-item>
-			<el-carousel-item >
-			    <img src="../../assets/img/tj_cp2.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
-			</el-carousel-item>
-			
-            <el-carousel-item >
-                <img src="../../assets/img/tj_cp3.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
-            </el-carousel-item>
-<!--            <el-carousel-item >-->
-<!--                <img src="../../assets/img/tj_cp4.jpg" alt="" style="height: 366px;width: 100%;margin:0;">-->
-<!--            </el-carousel-item>-->
-            <el-carousel-item >
-                <img src="../../assets/img/tj_cp5.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
-            </el-carousel-item>
-        </el-carousel>
-        <br>
+<!--        <div id="announce_head">-->
+<!--            <img src="../../assets/img/icon_announcement.png" alt="" style="vertical-align: middle">-->
+<!--            <span> <h3> 社团公告</h3></span>-->
+<!--            &lt;!&ndash;                        <span @click="SystemNotice" class="more"> <h3>更多</h3></span>&ndash;&gt;-->
+<!--        </div>-->
+<!--        <el-divider></el-divider>-->
+<!--        <div v-for="announcement in AnnouncementList">-->
+<!--            <el-card id="myCard">-->
+<!--                <div id="announcementContent">{{ announcement.title }}</div>-->
+<!--                <br>-->
+<!--                <div id="announcementTime">{{ announcement.time }}</div>-->
+<!--                <br>-->
+<!--                <el-button id="checkButton" type="text" @click="showDialog(announcement.announcementId)">查看</el-button>-->
+<!--            </el-card>-->
+<!--            <br>-->
+<!--        </div>-->
 
 <!--        <div id="announce_head">-->
 
 <!--            <img src="../../assets/img/icon_announcement.png" alt="" style="vertical-align: middle">-->
 <!--            <span> <h3> 社团公告</h3></span>-->
 <!--        </div>-->
-        <el-divider></el-divider>
             <!--            搜索与添加-->
 <!--            <el-row :gutter="20">-->
 <!--                <el-col :span="7">-->
@@ -98,30 +130,11 @@
             <!--            系统公告列表 只展示一些系统公告信息,详细文本可在详情查看-->
 
 
-        <div v-for="announcement in AnnouncementList">
-            <el-card id="myCard">
-                <div id="announcementContent">{{ announcement.title }}</div>
-                <br>
-                <div id="announcementTime">{{ announcement.time }}</div>
-                <br>
-                <el-button id="checkButton" type="text" @click="showDialog(announcement.announcementId)">查看</el-button>
-            </el-card>
-            <br>
-        </div>
-<!--            <el-table :data="AnnouncementList">-->
-<!--                <el-table-column type="index"></el-table-column>-->
-<!--                <el-table-column label="社团" prop="name"></el-table-column>-->
-<!--                <el-table-column label="标题" prop="title"></el-table-column>-->
-<!--                <el-table-column label="公告时间" prop="time"></el-table-column>-->
-<!--                <el-table-column label="显示详情">-->
-<!--                    <template slot-scope="scope">-->
-<!--                        <el-button type="primary" @click="showDialog(scope.row.announcementId)">查看</el-button>-->
-<!--                    </template>-->
-<!--                </el-table-column>-->
-<!--            </el-table>-->
 
-<!--            <el-divider></el-divider>-->
-<!--            &lt;!&ndash;            分页区域&ndash;&gt;-->
+
+
+
+            <!--            分页区域-->
 <!--            <el-pagination-->
 <!--                    @size-change="handleSizeChange"-->
 <!--                    @current-change="handleCurrentChange"-->
@@ -199,6 +212,9 @@
                 imgUrl: window.sessionStorage.getItem('imgUrl'),
             }
         },
+        mounted() {
+          this.drawPeople()
+        },
         //一开始就显示系统公告列表
         created()
         {
@@ -206,7 +222,44 @@
             this.getCorporationList();
         },
 
+
         methods: {
+
+            drawPeople(){
+                //年级分布图
+                // 基于准备好的dom，初始化echarts实例
+                let gradeChart = this.$echarts.init(document.getElementById('gradeChart'),'light')
+                // 绘制图表
+                gradeChart.setOption({
+                    title: { text: '已加入社团数',left:'center'},
+                    tooltip: {},
+                    xAxis: {
+                        data: this.gradeGraphDescription
+                    },
+                    yAxis: {},
+                    series: [{
+                        name: '人数',
+                        type: 'bar',
+                        data: this.gradeGraphData
+                    }]
+                });
+
+                //性别分布饼状图
+                let genderChart = this.$echarts.init(document.getElementById('genderChart'), 'light');
+                genderChart.setOption({
+                    title: { text: '社团人员专业分布',left:'center' },
+                    series : [
+                        {
+
+                            name: '访问来源',
+                            type: 'pie',    // 设置图表类型为饼图
+                            radius: '55%',  // 饼图的半径，外半径为可视区尺寸（容器高宽中较小一项）的 55% 长度。
+                            data: this.majorGraphData
+                        }
+                    ]
+                })
+
+            },
 
             async getCorporationList()
             {
