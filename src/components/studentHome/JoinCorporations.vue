@@ -36,7 +36,7 @@
 
             </el-table>
 
-            <el-divider></el-divider>
+            <br>
             <!--            分页区域-->
             <el-pagination
                     @size-change="handleSizeChange"

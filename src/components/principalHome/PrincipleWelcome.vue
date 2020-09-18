@@ -25,10 +25,10 @@
                     <!--                    <div @click="SystemNotice">系统公告：</div>-->
 
                     <el-table :data="AnnouncementList" height="300" :cell-style="{padding:'5px 0'}">
-                        <el-table-column type="index" width="20"></el-table-column>
-                        <el-table-column label="标题" prop="title" width="430"></el-table-column>
+                        <el-table-column type="index" width="40"></el-table-column>
+                        <el-table-column label="标题" prop="title" width="490%"></el-table-column>
                         <el-table-column label="系统公告时间" prop="time"></el-table-column>
-                        <el-table-column label="显示详情">
+                        <el-table-column label="详情">
                             <template slot-scope="scope">
                                 <el-button type="text" @click="showDialog(scope.row.announcementId)">查看</el-button>
                             </template>
@@ -124,24 +124,24 @@
         </el-row>
         <!--        展示系统公告对话框-->
         <el-dialog title="系统公告详情" ref="showFormRef" :visible.sync="showDialogVisible"
-                   width="50%">
+                   width="50%" center>
             <!--            展示内容主体区域 -->
             <el-form :model="addForm" label-width="150px">
-                <el-form-item label="系统公告标题:">
-                    <el-input v-model="addForm.title" readonly></el-input>
+                <el-form-item label="公告标题:">
+                    <el-input v-model="addForm.title" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <!--                <el-form-item label="系统公告内容:">-->
                 <!--                    <el-input v-model="addForm.content" disabled></el-input>-->
                 <!--                </el-form-item>-->
-                <el-form-item label="系统公告内容:" prop="content">
+                <el-form-item label="公告内容:" prop="content">
                     <el-input
                         type="textarea"
                         :rows="7"
-                        v-model="addForm.content" readonly>
+                        v-model="addForm.content" readonly style="width: 82%;">
                     </el-input>
                 </el-form-item>
-                <el-form-item label="系统公告时间:" prop="time">
-                    <el-date-picker type="date" v-model="addForm.time" style="width: 100%;" readonly></el-date-picker>
+                <el-form-item label="公告时间:" prop="time">
+                    <el-date-picker type="date" v-model="addForm.time" style="width: 82%;" readonly></el-date-picker>
                 </el-form-item>
             </el-form>
             <!--            底部区域-->
@@ -149,6 +149,8 @@
     <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
   </span>
         </el-dialog>
+
+
     </div>
 
 </template>
@@ -230,9 +232,27 @@ export default {
     {
         this.getAnnouncementList();
         this.getClubInfo();
+        this.getCommunityGraph();
     },
     methods: {
-
+        async getCommunityGraph()
+        {
+            let result = await this.$http.post(this.$api.PrincipalGetCommunityGraph);
+            this.gradeGraphDescription = result.data.gradeGraphDescription;
+            this.gradeGraphData = result.data.gradeGraphData;
+            this.majorGraphData = result.data.majorGraphData;
+            console.log(result.data);
+            /*
+            //社团成员年级分布图表数据
+            gradeGraphDescription:["16级","17级","18级","19级","20级","21级"],
+                gradeGraphData:[5, 20, 36, 10, 10,20],
+            //社团成员专业分布图表数据
+            majorGraphData:[
+            {value:235, name:'软件工程'},
+            {value:400, name:'土木工程'},
+            {value:400, name:'车辆工程'},
+            */
+        },
         drawPeople(){
             //年级分布图
             // 基于准备好的dom，初始化echarts实例
@@ -427,7 +447,7 @@ export default {
     /*min-width: 100%;*/
     height: 100%;
     margin-right: 20px;
-	
+
     /*transition: all .5s;*/
 }
 

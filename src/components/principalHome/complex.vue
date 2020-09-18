@@ -35,7 +35,7 @@
                     </template>
                 </el-table-column>
             </el-table>
-
+            <br>
             <!--            分页区域-->
             <el-pagination
                 @size-change="handleSizeChange"
@@ -50,30 +50,30 @@
 
         <!--        展示赞助申请的对话框-->
         <el-dialog title="公告详情" ref="showFormRef" :visible.sync="showDialogVisible"
-                   width="50%">
+                   width="50%" center>
             <!--            展示内容主体区域 -->
             <el-form :model="addForm" label-width="150px">
                 <el-form-item label="编号:">
-                    <el-input v-model="addForm.sponsorshipId" disabled></el-input>
+                    <el-input v-model="addForm.sponsorshipId" disabled style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="赞助方:">
-                    <el-input v-model="addForm.sponsor" disabled></el-input>
+                    <el-input v-model="addForm.sponsor" disabled style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="赞助金额/￥:">
-                    <el-input v-model="addForm.amount" disabled></el-input>
+                    <el-input v-model="addForm.amount" disabled style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="赞助需求:">
                     <el-input
                         type="textarea"
                         :rows="7"
-                        v-model="addForm.requirement" disabled>
+                        v-model="addForm.requirement" disabled style="width: 82%;">
                     </el-input>
                 </el-form-item>
                 <el-form-item label="状态:">
-                    <el-input v-model="addForm.statusName" disabled></el-input>
+                    <el-input v-model="addForm.statusName" disabled style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="申请赞助时间:">
-                    <el-date-picker type="date" v-model="addForm.applyDate" style="width: 100%;" disabled></el-date-picker>
+                    <el-date-picker type="date" v-model="addForm.applyDate" style="width: 82%;" disabled></el-date-picker>
                 </el-form-item>
             </el-form>
             <!--            底部区域-->
@@ -84,27 +84,28 @@
 
         <!--        添加赞助申请的对话框-->
         <el-dialog title="公告详情" ref="showFormRef" :visible.sync="addDialogVisible"
-                   width="50%">
+                   width="50%" center>
             <!--            展示内容主体区域 -->
             <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="100px">
                 <el-form-item label="赞助方:">
-                    <el-input v-model="addForm.sponsor" placeholder="请输入赞助方..."></el-input>
+                    <el-input v-model="addForm.sponsor" placeholder="请输入赞助方..." style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="赞助金额/￥:">
-                    <el-input v-model="addForm.amount" placeholder="请输入赞助金额..."></el-input>
+                    <el-input v-model="addForm.amount" placeholder="请输入赞助金额..." style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="赞助需求:" prop="requirement">
                     <el-input
                         type="textarea"
                         :rows="7"
                         placeholder="请输入赞助需求..."
-                        v-model="addForm.requirement">
+                        v-model="addForm.requirement"
+						style="width: 82%;">
                     </el-input>
                 </el-form-item>
             </el-form>
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
-                <el-button @click="cancelAdd">取 消</el-button>
+                <el-button @click="cancelAdd" style="margin-right: 20px;">取 消</el-button>
                 <el-button type="primary" @click="addSponsorship">确 定</el-button>
             </span>
         </el-dialog>
