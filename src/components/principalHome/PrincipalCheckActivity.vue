@@ -223,10 +223,12 @@ export default {
         statusToStr(status)
         {
             switch(status) {
-                case 0:
+                case true:
+                    return '已通过';
+                case false:
                     return '待审核';
                 default:
-                    return '已通过';
+                    return '未定义';
             }
         },
     }
