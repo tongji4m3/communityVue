@@ -42,7 +42,6 @@
                 </el-table-column>
 
             </el-table>
-			<br>
 
             <!--            分页区域-->
             <el-pagination

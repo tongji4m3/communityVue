@@ -54,7 +54,9 @@
                 </el-table-column>
 
             </el-table>
-			<br>
+
+            <el-divider></el-divider>
+
 
             <!--            分页区域-->
             <el-pagination

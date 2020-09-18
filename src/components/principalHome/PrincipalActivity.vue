@@ -174,7 +174,6 @@
                     <el-button style="margin-left:20px" type="primary" @click="editActivity">确 定</el-button>
             </span>
             </el-dialog>
-			<br>
             <!--            分页区域-->
             <el-pagination
                     @size-change="handleSizeChange"
