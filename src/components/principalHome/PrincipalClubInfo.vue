@@ -17,8 +17,8 @@
             <!--            <span> {{addForm.description}}</span>-->
 
             <div align="center">
-                <el-popconfirm title="确定解散社团吗？" cancelButtonType="danger" icon="el-icon-magic-stick" style="margin: 15px;">
-                    <el-button slot="reference" type="danger" @click="deleteClub">解散社团</el-button>
+                <el-popconfirm title="确定解散社团吗？" @onConfirm="deleteClub" cancelButtonType="danger" icon="el-icon-magic-stick" style="margin: 15px;">
+                    <el-button slot="reference" type="danger">解散社团</el-button>
                 </el-popconfirm>
                 <!--                <el-button type="danger" @click="deleteClub">解散社团</el-button>-->
                 <el-button type="primary" @click="showEditClubInfo" style="margin: 20px;">修 改</el-button>
@@ -186,7 +186,8 @@ export default {
         async deleteClub()
         {
             await this.$http.post(this.$api.PrincipalDissolveClub);
-
+            window.sessionStorage.clear();
+            await this.$router.push({ path: "/welcome" });
         },
     }
 }
