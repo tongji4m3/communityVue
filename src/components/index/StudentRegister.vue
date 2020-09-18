@@ -37,6 +37,7 @@
       <p id="img-context">上传个人头像</p>
       <div class="el-upload__tip" slot="tip">只能上传jpg/jpeg/png文件，且不超过5MB</div>
     </el-upload>
+
     <el-form-item style="width: 100%">
       <el-button
         type="primary"
