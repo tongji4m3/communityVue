@@ -118,7 +118,7 @@
                    width="50%">
 
 
-            <el-form :model="addForm" ref="addFormRef" label-width="150px">
+            <el-form :model="addForm" ref="addFormRef" :rules="addFormRules" label-width="150px">
 <!--                <el-form-item label="社团编号">-->
 <!--                    <el-input v-model="addForm.id" readonly="true"></el-input>-->
 <!--                </el-form-item>-->
@@ -223,7 +223,7 @@
                         {required: true, message: '请输入社团编号', trigger: 'blur'}
                     ],
                     reason: [
-                        {required: true, message: '请输入退社理由', trigger: 'blur'},
+                        {required: true, message: '请输入入社理由', trigger: 'blur'},
                     ],
                 }
             }
@@ -342,15 +342,15 @@
                     async valid =>
                     {
                         if (!valid) return;
-                        var clubId=this.addForm.id;
-                        var applyReason=this.addForm.reason;
+                        // var clubId=this.addForm.id;
+                        // var applyReason=this.addForm.reason;
 
                         let result = await this.$http.post(this.$api.StudentJoinClub,
                             {
-                                clubId,
-                                applyReason,
+                                clubId:this.addForm.id,
+                                applyReason:this.addForm.reason,
                             });
-                        console.log(clubId,applyReason);
+
                         //隐藏添加活动对话框
                         this.addDialogVisible = false;
                         console.log(result);

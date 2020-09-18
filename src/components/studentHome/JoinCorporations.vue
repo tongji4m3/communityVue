@@ -7,6 +7,33 @@
             <el-breadcrumb-item>已加入社团</el-breadcrumb-item>
         </el-breadcrumb>
         <el-divider></el-divider>
+
+        <el-carousel :interval="4000" type="card" height="366px">
+
+            <el-carousel-item >
+                <img src="../../assets/img/tj_typlt.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
+            </el-carousel-item>
+            <el-carousel-item >
+                <img  src="../../assets/img/tj_cp1.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
+            </el-carousel-item>
+            <el-carousel-item >
+                <img src="../../assets/img/tj_cp4.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
+            </el-carousel-item>
+            <el-carousel-item >
+                <img src="../../assets/img/tj_cp2.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
+            </el-carousel-item>
+
+            <el-carousel-item >
+                <img src="../../assets/img/tj_cp3.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
+            </el-carousel-item>
+            <!--            <el-carousel-item >-->
+            <!--                <img src="../../assets/img/tj_cp4.jpg" alt="" style="height: 366px;width: 100%;margin:0;">-->
+            <!--            </el-carousel-item>-->
+            <el-carousel-item >
+                <img src="../../assets/img/tj_cp5.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
+            </el-carousel-item>
+        </el-carousel>
+        <el-divider></el-divider>
         <!--        卡片-->
         <el-card class="box-card">
             <!--            搜索与添加-->
@@ -70,7 +97,7 @@
         <el-dialog title="提交申请" :visible.sync="addDialogVisible"
                    width="50%">
             <!--            内容主体区域 放置一个表单-->
-            <el-form :model="addForm"  ref="addFormRef" label-width="150px">
+            <el-form :model="addForm"  ref="addFormRef" :rules="addFormRules" label-width="150px">
 <!--                <el-form-item label="社团编号:" prop="corporationId">-->
 <!--                    <el-input v-model="addForm.clubid" readonly="true"></el-input>-->
 <!--                </el-form-item>-->
@@ -305,9 +332,9 @@
                         var title="退出社团";
                         var content=this.addForm.summary;
                         let result1 =await this.$http.post(this.$api.StudentSendMessage,{
-                            userid,
+                            userid:this.addForm.clubid,
                             title,
-                            content,
+                            content:this.addForm.summary,
                         });
                         //隐藏添加活动对话框
                         this.addDialogVisible = false;

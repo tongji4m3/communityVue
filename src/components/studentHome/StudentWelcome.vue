@@ -1,12 +1,40 @@
 <template>
     <div>
-        <el-card class="box-card1" shadow="never">
-            <div class="text1 item1" >
+        <el-row :gutter="0" class="el-row">
+            <el-col :span="6">
+                <el-card class="card0" :body-style="{ padding: '20px'}">
+                    <br>
+                    <div class="image" >
+                        <img width="140" height="140" :src="imgUrl">
+                    </div>
+                    <br>
+                    <div class="image">1851632 李鸿飞</div>
 
-                <img src="../../assets/img/welcome.png" alt="" style="vertical-align: middle">
-                <span> 欢迎回来 {{username}} ！</span>
-            </div>
-        </el-card>
+                </el-card>
+            </el-col>
+            <el-col :span="18">
+                <el-card class="card1" :body-style="{ padding: '20px'}">
+                    <!--                    系统公告列表 只展示一些系统公告信息,详细文本可在详情查看-->
+                    <div id="announce_head">
+                        <img src="../../assets/img/icon_announcement.png" alt="" style="vertical-align: middle">
+                        <span> <h3> 社团公告</h3></span>
+                        <!--                        <span @click="SystemNotice" class="more"> <h3>更多</h3></span>-->
+                    </div>
+                    <!--                    <div @click="SystemNotice">系统公告：</div>-->
+
+                    <el-table :data="AnnouncementList" height="177" :cell-style="{padding:'5px 0'}">
+                        <el-table-column type="index" width="40"></el-table-column>
+                        <el-table-column label="标题" prop="title" width="490%"></el-table-column>
+                        <el-table-column label="公告时间" prop="time"></el-table-column>
+                        <el-table-column label="详情">
+                            <template slot-scope="scope">
+                                <el-button type="text" @click="showDialog(scope.row.announcementId)">查看</el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                </el-card>
+            </el-col>
+        </el-row>
 
         <!--        日历按钮-->
 <!--        <el-button type="success" @click="openCalendar">查看日历</el-button>-->
@@ -18,7 +46,14 @@
 <!--        </el-dialog>-->
 
         <br>
-        <el-carousel :interval="4000" type="card" height="366px">
+
+
+
+
+
+
+
+        <el-carousel :interval="4000"  height="366px" width="100%">
             
             <el-carousel-item >
                 <img src="../../assets/img/tj_typlt.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
@@ -45,11 +80,11 @@
         </el-carousel>
         <br>
 
-        <div id="announce_head">
+<!--        <div id="announce_head">-->
 
-            <img src="../../assets/img/icon_announcement.png" alt="" style="vertical-align: middle">
-            <span> <h3> 社团公告</h3></span>
-        </div>
+<!--            <img src="../../assets/img/icon_announcement.png" alt="" style="vertical-align: middle">-->
+<!--            <span> <h3> 社团公告</h3></span>-->
+<!--        </div>-->
         <el-divider></el-divider>
             <!--            搜索与添加-->
 <!--            <el-row :gutter="20">-->
@@ -161,6 +196,7 @@
                 },
                 informationList: [],
                 username: "",
+                imgUrl: window.sessionStorage.getItem('imgUrl'),
             }
         },
         //一开始就显示系统公告列表
@@ -248,6 +284,27 @@
         margin: 0;
         padding: 0;
     }
+    .card0 {
+        /*min-width: 100%;*/
+        height: 100%;
+        margin-right: 20px;
+
+        /*transition: all .5s;*/
+    }
+
+    .card1 {
+        /*min-width: 100%;*/
+        height: 100%;
+        margin-right: 20px;
+        width: 100%;
+        /*transition: all .5s;*/
+    }
+    .image{
+        width: 100%;
+        /*height:100%;*/
+        display: block;
+        text-align:center;
+    }
     .text1 {
         font-size: 16px;
         /*color: #409EFF;*/
@@ -316,6 +373,15 @@
         float: right;
 
     }
+    #announce_head{
+        display: flex;
+    }
+
+    #announce_head img{
+        height: 30px;
+        margin-right: 10px;
+    }
+
     /*#myCard {*/
     /*    float: right;*/
     /*    !*margin-top: 10px;*!*/
