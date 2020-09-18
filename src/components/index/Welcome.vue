@@ -1,5 +1,8 @@
 <template>
   <div id="banner">
+    <el-backtop target="#banner">
+      <div>UP</div>
+    </el-backtop>
     <el-carousel :height="banH+'px'" width="100%">
       <el-carousel-item>
         <img
@@ -327,6 +330,16 @@ export default {
 };
 </script>
 <style >
+#banner {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  height: 100%;
+
+  overflow-y: scroll;
+}
+
 .mokuai {
   display: flex;
   margin: 150px;
