@@ -45,7 +45,7 @@
                 </el-table-column>
 
             </el-table>
-
+            <br>
             <!--            分页区域-->
             <el-pagination
                 @size-change="handleSizeChange"
@@ -60,20 +60,20 @@
 
         <!--        展示申请原因-->
         <el-dialog title="申请参加活动详情" ref="showFormRef" :visible.sync="showDialogVisible"
-                   width="50%">
+                   width="50%" center>
             <!--            展示内容主体区域 -->
             <el-form :model="checkForm" label-width="130px">
                 <el-form-item label="学生ID:" prop="studentId">
-                    <el-input v-model="checkForm.studentId" readonly></el-input>
+                    <el-input v-model="checkForm.studentId" readonly style="width:82%;"></el-input>
                 </el-form-item>
-                <el-form-item label="申请参加活动时间:" prop="applyDate">
-                    <el-date-picker type="date" v-model="checkForm.applyDate" style="width: 100%;" readonly></el-date-picker>
+                <el-form-item label="参加时间:" prop="applyDate">
+                    <el-date-picker type="date" v-model="checkForm.applyDate" style="width: 82%;" readonly></el-date-picker>
                 </el-form-item>
-                <el-form-item label="申请参加活动理由:" prop="applyReason">
+                <el-form-item label="申请理由:" prop="applyReason">
                     <el-input
                         type="textarea"
                         :rows="7"
-                        v-model="checkForm.applyReason" readonly>
+                        v-model="checkForm.applyReason" readonly style="width:82%;">
                     </el-input>
                 </el-form-item>
             </el-form>
@@ -81,11 +81,11 @@
             <span slot="footer" class="dialog-footer">
                 <!--                        通过按钮-->
                 <el-button type="success" @click="agreeStudent(this.checkForm.studentId,this.checkForm.activityId,1)"
-                           icon="el-icon-check" circle></el-button>
+                           icon="el-icon-check" circle style="margin-right: 30px;"></el-button>
                 <!--                        不通过按钮-->
                 <el-button type="danger" @click="rejectStudent(this.checkForm.studentId,this.checkForm.activityId,0)"
                            icon="el-icon-close" circle></el-button>
-                <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
+                <!-- <el-button type="primary" @click="closeDialogVisible">确 定</el-button> -->
             </span>
         </el-dialog>
     </div>

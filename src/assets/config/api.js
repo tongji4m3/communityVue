@@ -405,4 +405,9 @@ module.exports = {
     //      grade(年级), status(状态)
     //响应参数：isSuccess(是否成功)
     AdminInsertStudentMetaUrl:APIRootUrl+'admin/insertstudentmeta',
+
+    //获取待办事项
+    //请求参数：
+    //响应参数：club(社团), sponsorship(赞助), activity(活动)
+    AdminGetTodoUrl:APIRootUrl+'admin/gettodo',
 };

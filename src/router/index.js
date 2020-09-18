@@ -121,6 +121,9 @@ const routes = [
             {path: '/adminCheckSponsor', component: AdminCheckSponsor},
             {path: '/adminNotice', component: AdminNotice},
 
+            {path: '/adminSystemInformation', component: SystemInformation},
+            {path: '/adminSystemNotice', component: SystemNotice},
+
             {path: '/adminChangePassword', component: ChangePassword}
         ]
     },
