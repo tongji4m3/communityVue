@@ -106,12 +106,12 @@
             systemInformation()
             {
                 this.showDot = true;
-                this.$router.push("/principalSystemInformation")
+                this.$router.push("/adminSystemInformation")
             },
             systemNotice()
             {
                 this.showDot = true;
-                this.$router.push("/principalSystemNotice")
+                this.$router.push("/adminSystemNotice")
             },
             goIndex()
             {
