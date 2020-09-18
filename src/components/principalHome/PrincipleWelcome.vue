@@ -144,8 +144,11 @@
     <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
   </span>
         </el-dialog>
-
-
+        
+        <el-dialog :visible.sync="showSchoolCalendar"
+                   width="50%">
+            <img src="../../assets/img/calendar.jpg" alt="" style="width: 100%;margin:0;">
+        </el-dialog>
     </div>
 
 </template>
