@@ -172,8 +172,8 @@ export default {
         {
             console.log(StudentId_in,ActivityId_in);
             let result = await this.$http.post(this.$api.PrincipalGetOneActivityMemberUrl, {
-                StudentId_in,
-                ActivityId_in,
+                studentId:StudentId_in,
+                activityId:ActivityId_in,
             });
             // this.checkForm.studentId = result.data.studentId;
             this.checkForm = result.data;
