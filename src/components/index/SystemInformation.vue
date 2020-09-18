@@ -1,6 +1,5 @@
 <template>
     <div>
-        <el-backtop :bottom="60" :right="60">
 <!--        <el-divider></el-divider>-->
         <!--        卡片-->
 <!--        <el-card class="box-card">-->
