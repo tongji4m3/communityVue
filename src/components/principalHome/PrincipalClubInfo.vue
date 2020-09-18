@@ -225,11 +225,7 @@ export default {
         },
         async getClubInfo()
         {
-            let result = await this.$http.post(this.$api.PrincipalGetClubInfo,
-                {
-                    description: this.description,
-                    logo: this.logo,
-                });
+            let result = await this.$http.post(this.$api.PrincipalGetClubInfo);
             this.addForm = result.data;
             // console.log(this.addForm.description);
         },
