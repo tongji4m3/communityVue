@@ -1,5 +1,8 @@
 <template>
     <div id="banner">
+        <el-backtop target="#banner">
+            <div>UP</div>
+        </el-backtop>
         <el-carousel :height="banH+'px'" width="100%">
             <el-carousel-item>
                 <img
@@ -66,7 +69,7 @@
                     为管理员提供管理学生和社团信息、编辑系统公告、审核社团工作等功能。此外，游客也可以通过主页的信息来了解同济大学社团的风采！
                 </p>
             </div>
-            <img src="../../assets/img/zonghelou.png" alt/>
+            <img src="../../assets/img/zonghelou.png" alt />
         </div>
 
         <!-- 社团列表模块 -->
@@ -76,62 +79,62 @@
             <el-divider></el-divider>
             <div id="clubTable">
                 <div class="clubItem">
-                    <img src="../../assets/img/shudumiti.png" alt/>
+                    <img src="../../assets/img/shudumiti.png" alt />
                     <div class="clubName">数独迷题社</div>
                 </div>
                 <div class="clubItem">
-                    <img src="../../assets/img/xingkongyanyi.png" alt/>
+                    <img src="../../assets/img/xingkongyanyi.png" alt />
                     <div class="clubName">星空演艺社</div>
                 </div>
                 <div class="clubItem">
-                    <img src="../../assets/img/OMYUJIA.png" alt/>
+                    <img src="../../assets/img/OMYUJIA.png" alt />
                     <div class="clubName">OM瑜伽社</div>
                 </div>
                 <div class="clubItem">
-                    <img src="../../assets/img/jinyindiyi.png" alt/>
+                    <img src="../../assets/img/jinyindiyi.png" alt />
                     <div class="clubName">金音笛艺社</div>
                 </div>
                 <div class="clubItem">
-                    <img src="../../assets/img/zhuoyoushe.png" alt/>
+                    <img src="../../assets/img/zhuoyoushe.png" alt />
                     <div class="clubName">桌游社</div>
                 </div>
                 <div class="clubItem">
-                    <img src="../../assets/img/daobiyouhua.png" alt/>
+                    <img src="../../assets/img/daobiyouhua.png" alt />
                     <div class="clubName">刀笔油画社</div>
                 </div>
                 <div class="clubItem">
-                    <img src="../../assets/img/piyonghanfushe.png" alt/>
+                    <img src="../../assets/img/piyonghanfushe.png" alt />
                     <div class="clubName">辟雍汉服社</div>
                 </div>
                 <div class="clubItem">
-                    <img src="../../assets/img/jixianfeipan.png" alt/>
+                    <img src="../../assets/img/jixianfeipan.png" alt />
                     <div class="clubName">极限飞盘协会</div>
                 </div>
 
                 <div class="clubItem">
-                    <img src="../../assets/img/tongfeihangmo.png" alt/>
+                    <img src="../../assets/img/tongfeihangmo.png" alt />
                     <div class="clubName">同飞航模协会</div>
                 </div>
                 <div class="clubItem">
-                    <img src="../../assets/img/dijiuyishu.png" alt/>
+                    <img src="../../assets/img/dijiuyishu.png" alt />
                     <div class="clubName">第九艺术协会</div>
                 </div>
                 <div class="clubItem">
-                    <img src="../../assets/img/jianshenxiehui.png" alt/>
+                    <img src="../../assets/img/jianshenxiehui.png" alt />
                     <div class="clubName">健身协会</div>
                 </div>
                 <div class="clubItem">
-                    <img src="../../assets/img/jitaxiehui.png" alt/>
+                    <img src="../../assets/img/jitaxiehui.png" alt />
                     <div class="clubName">吉他协会</div>
                 </div>
 
                 <div class="clubItem">
-                    <img src="../../assets/img/moshuaihaozhe.png" alt/>
+                    <img src="../../assets/img/moshuaihaozhe.png" alt />
                     <div class="clubName">魔术协会</div>
                 </div>
 
                 <div class="clubItem">
-                    <img src="../../assets/img/wushuxiehui.png" alt/>
+                    <img src="../../assets/img/wushuxiehui.png" alt />
                     <div class="clubName">武术协会</div>
                 </div>
             </div>
@@ -145,39 +148,39 @@
                 <ol>
                     <li>
                         <p>同济大学第一届狼人杀比赛开始报名啦！</p>
-                        <hr align="left" size="1"/>
+                        <hr align="left" size="1" />
                     </li>
                     <li>
                         <p>同济国标 | 开学的第一场舞！</p>
-                        <hr align="left" size="1"/>
+                        <hr align="left" size="1" />
                     </li>
                     <li>
                         <p>C4Family九周年专场公演</p>
-                        <hr align="left" size="1"/>
+                        <hr align="left" size="1" />
                     </li>
                     <li>
                         <p>同声汇雅韵——上海大学生戏曲汇演揭幕在即</p>
-                        <hr align="left" size="1"/>
+                        <hr align="left" size="1" />
                     </li>
                     <li>
                         <p>同一片蓝天 | 沪上高校社团携手云端开唱</p>
-                        <hr align="left" size="1"/>
+                        <hr align="left" size="1" />
                     </li>
                     <li>
                         <p>2020同济吉他协会春季招新</p>
-                        <hr align="left" size="1"/>
+                        <hr align="left" size="1" />
                     </li>
                     <li>
                         <p>音乐创作大赛——同济大学站启动啦~</p>
-                        <hr align="left" size="1"/>
+                        <hr align="left" size="1" />
                     </li>
                     <li>
                         <p>全国大学生数独挑战赛开赛在即！你准备好了吗？</p>
-                        <hr align="left" size="1"/>
+                        <hr align="left" size="1" />
                     </li>
                 </ol>
             </div>
-            <img src="../../assets/img/yinghua.png" alt style="margin-left: 45px;height: 470px;"/>
+            <img src="../../assets/img/yinghua.png" alt style="margin-left: 45px;height: 470px;" />
         </div>
 
         <!-- 底部	 -->
@@ -210,33 +213,23 @@
             志同道合的伙伴，站上属于自己的舞台吧-->
             <span id="shineText">快来寻找志同道合的伙伴，站上属于自己的舞台吧</span>
         </div>
-
     </div>
 </template>
 <script>
 // export default{
 // 	// var width = window.innerWidth,
 // 	// height = window.innerHeight;
-
 // 	// if (typeof width != 'number') {  //如果类型不为number,表示该浏览器不支持innerWidth属性
-
 // 	//  if (document.compatMode == 'CSS1Compat') {   //CSS1Compat：判断是否为标准兼容模式。
-
 // 	//   width = document.documentElement.clientWidth;
-
 // 	//   height = document.docuementElement.clientHeight;
-
 // 	//  } else { //不是标准模式,则有可能是IE6或及其以下版本(早期的浏览器对css进行解析时，并未遵守W3C标准)
-
 // 	//   width = document.body.clientWidth;   //网页可见区域宽
-
 // 	//   height = document.body.clientHeight;   //网页可见区域高
 // 	// }
-
 // 	// var ZMD = document.querySelector("#zoumadeng");
 // 	// ZMD.style.height="height px";
 // }
-
 // window.onresize = window.onload = function(){
 //      var w,h
 //      if(!!(window.attachEvent && !window.opera))
@@ -252,15 +245,12 @@
 //     //bgImg.width = (w - 5);
 //    // bgImg.height= (h-5);
 //    //bgImg.style.height=400;
-
 //    }
-
 // computed: {
 //   cancard: () => {
 //     return ""
 //   }
 // },
-
 //   mounted() {
 //     let that = this;
 //     window.onresize = function windowResize() {
@@ -279,7 +269,6 @@
 //       // console.log(that.hdgd)
 //     }
 //   }
-
 export default {
     // data(){
     // 	return{
@@ -294,7 +283,6 @@ export default {
     // mounted(){
     // 	this.setbanH()
     // }
-
     data() {
         return {
             banH: 550,
@@ -327,13 +315,20 @@ export default {
     },
 };
 </script>
-<style>
+<style >
+#banner {
+    font-family: "Avenir", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+}
 .mokuai {
     display: flex;
     margin: 150px;
     margin-top: 110px;
 }
-
 /* #shetuan {
   display: flex;
   flex-direction: column;
@@ -344,7 +339,6 @@ export default {
   width: 100%;
   background-image: url("../../assets/img/blueBG.jpg");
 } */
-
 #shetuan {
     color: rgba(255, 255, 255, 0.65);
     background-color: rgb(0, 129, 215);
@@ -361,35 +355,29 @@ export default {
     height: 650px;
     width: 100%;
 }
-
 .mokuaiTitle {
     color: #0099ff;
     font-size: 20px;
     line-height: 40px;
 }
-
 #shetuanTitle {
     color: rgb(255, 255, 255);
     font-size: 20px;
     line-height: 40px;
     margin-top: 50px;
 }
-
 .engTitle {
     color: #b0b0b0;
     font-size: 13px;
 }
-
 #aboutText {
     margin: 20px;
     margin-right: 30px;
 }
-
 #aboutNews {
     margin: 20px;
     width: 55%;
 }
-
 #aboutText p {
     margin-right: 70px;
     font-size: 14px;
@@ -398,7 +386,6 @@ export default {
     line-height: 22px;
     letter-spacing: 0.4px;
 }
-
 #firstP {
     margin-top: 50px;
     margin-right: 70px;
@@ -408,19 +395,16 @@ export default {
     line-height: 22px;
     letter-spacing: 0.4px;
 }
-
 #aboutNews ol {
     margin-top: 40px;
     margin-left: 15px;
     color: rgba(52, 52, 52, 0.9);
 }
-
 #aboutNews ol li p {
     line-height: 22px;
     transition: 0.5s;
     color: rgba(52, 52, 52, 0.8);
 }
-
 #aboutNews hr {
     color: #b0b0b0;
     border-top: dashed;
@@ -428,20 +412,16 @@ export default {
     margin-bottom: 10px;
     transition: 0.5s;
 }
-
 #aboutNews ol li:hover hr {
     color: #0099ff;
 }
-
 #aboutNews ol li:hover p {
     text-indent: 1em;
     color: #0099ff;
 }
-
 .el-divider--horizontal {
     border-top: 0.1px solid #b0b0b0;
 }
-
 #clubTable {
     width: 80%;
     height: 400px;
@@ -451,7 +431,6 @@ export default {
     align-content: space-around;
     margin: 20px;
 }
-
 #clubTable .clubItem {
     width: 13%;
     height: 150px;
@@ -462,22 +441,18 @@ export default {
     align-items: center;
     transition: all 0.5s;
 }
-
 #clubTable .clubItem img {
     height: 90px;
     margin: 15px;
 }
-
 #clubTable .clubItem .clubName {
     font-size: 13px;
     color: rgba(52, 52, 52, 0.7);
 }
-
 #clubTable .clubItem:hover {
     box-shadow: 0 7px 12px rgba(52, 52, 52, 0.7);
     transform: scale(1.1);
 }
-
 /* 普通 */
 /* #foot{
 		height: 50px;
@@ -487,10 +462,8 @@ export default {
 		align-items: center;
 		color: rgb(255,255,255);
 		font-size: 15px;
-
 	}
 	*/
-
 /* 流动 */
 /* 	#foot{
 		height: 40px;
@@ -514,7 +487,6 @@ export default {
 		0%
 		{
 			transform:translateY(0px);
-
 		}
 		20%
 		{
@@ -525,7 +497,6 @@ export default {
 			transform: translateY(0px);
 		}
 	} */
-
 /* 聚光灯 */
 #foot {
     height: 50px;
@@ -533,7 +504,6 @@ export default {
     -webkit-font-smoothing: grayscale;
     position: relative;
 }
-
 #shineText {
     position: absolute;
     top: 50%;
@@ -551,7 +521,6 @@ export default {
     font-size: 26px;
     white-space: nowrap;
 }
-
 @keyframes shine {
     0% {
         background-position: 0;
