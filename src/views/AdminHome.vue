@@ -21,9 +21,9 @@
                         <el-dropdown-item class="navigation-text" @click.native="systemInformation">
                             <el-badge value="new" class="item" :hidden="showDot">系统消息</el-badge>
                         </el-dropdown-item>
-<!--                        <el-dropdown-item class="navigation-text" @click.native="systemNotice">-->
-<!--                            <el-badge value="new" class="item" :hidden="showDot">系统公告</el-badge>-->
-<!--                        </el-dropdown-item>-->
+                        <el-dropdown-item class="navigation-text" @click.native="systemNotice">
+                            <el-badge value="new" class="item" :hidden="showDot">系统公告</el-badge>
+                        </el-dropdown-item>
                         <el-dropdown-item class="navigation-text" @click.native="goIndex">回到首页</el-dropdown-item>
                         <el-dropdown-item class="navigation-text" id="exit-div" divided @click.native="logout">退出
                         </el-dropdown-item>
