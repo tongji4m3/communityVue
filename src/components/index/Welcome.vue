@@ -1,11 +1,7 @@
 <template>
   <div id="banner">
     <el-backtop target="#banner">
-<<<<<<< Updated upstream
       <div>up</div>
-=======
-      <div>UP</div>
->>>>>>> Stashed changes
     </el-backtop>
     <el-carousel :height="banH+'px'" width="100%">
       <el-carousel-item>
@@ -333,20 +329,6 @@ export default {
   margin: 150px;
   margin-top: 110px;
 }
-<<<<<<< Updated upstream
-=======
-
-#banner {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  width: 100%;
-  height: 100%;
-
-  overflow-y: scroll;
-}
-
->>>>>>> Stashed changes
 /* #shetuan {
   display: flex;
   flex-direction: column;
@@ -375,21 +357,18 @@ export default {
 }
 .mokuaiTitle {
   color: #0099ff;
-  font-size: 25px;
+  font-size: 20px;
   line-height: 40px;
-  font-weight: bold;
 }
 #shetuanTitle {
   color: rgb(255, 255, 255);
-  font-size: 25px;
+  font-size: 20px;
   line-height: 40px;
   margin-top: 50px;
-  font-weight: bold;
 }
 .engTitle {
   color: #b0b0b0;
-  font-size: 20px;
-  letter-spacing: 1px;
+  font-size: 13px;
 }
 #aboutText {
   margin: 20px;
