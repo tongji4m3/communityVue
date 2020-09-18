@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-card class="box-card1" shadow="never">
+        <el-card class="box-card1" >
             <div class="text1 item1" >
 
                 <img src="../../assets/img/welcome.png" alt="" style="vertical-align: middle">
@@ -31,7 +31,7 @@
         </el-carousel> -->
 
         <!-- 待办事项 -->
-        <el-card class="chart-card">
+        <el-card class="chart-card" >
             <div id="announce_head">
                 <img src="../../assets/img/mention.png" alt="" style="vertical-align: middle">
                 <span> <h3>   待办事项</h3></span>
@@ -40,7 +40,7 @@
             <div id="chart" style="width: 100%;height:300px;"/>
         </el-card>
 
-        <el-card>
+        <el-card id="box-card2" >
 
             <div id="announce_head">
                 <img src="../../assets/img/icon_announcement.png" alt="" style="vertical-align: middle">
@@ -251,11 +251,19 @@ export default {
         height:20px;
     }
     .chart-card {
-        width: 100%;
-
-        margin-bottom: 20px;
+        width: 95%;
+        margin: 10px;
+		padding: 2px;
+        /* margin-bottom: 50px; */
         align-items: center;
     }
+	#box-card2{
+		width: 95%;
+		margin: 10px;
+		padding: 2px;
+		/* margin-bottom: 50px; */
+		align-items: center;
+	}
 
     #announce{
         width: 95%;
