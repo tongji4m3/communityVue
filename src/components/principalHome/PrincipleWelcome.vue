@@ -127,8 +127,6 @@
             </el-col>
         </el-row>
         <!--        展示系统公告对话框-->
-<<<<<<< HEAD
-<<<<<<< HEAD
         <el-dialog ref="showFormRef" :visible.sync="showDialogVisible"
                    width="50%">
             <!--            展示内容主体区域 -->
@@ -140,24 +138,6 @@
                     {{addForm.time}}
                 </div>
             </div>
-<!--            <el-form :model="addForm" label-width="150px">-->
-<!--                <el-form-item label="系统公告标题:">-->
-<!--                    <el-input v-model="addForm.title" readonly></el-input>-->
-<!--                </el-form-item>-->
-<!--                &lt;!&ndash;                <el-form-item label="系统公告内容:">&ndash;&gt;-->
-<!--                &lt;!&ndash;                    <el-input v-model="addForm.content" disabled></el-input>&ndash;&gt;-->
-<!--                &lt;!&ndash;                </el-form-item>&ndash;&gt;-->
-<!--                <el-form-item label="系统公告内容:" prop="content">-->
-<!--                    <el-input-->
-<!--                        type="textarea"-->
-<!--                        :rows="7"-->
-<!--                        v-model="addForm.content" readonly>-->
-<!--                    </el-input>-->
-<!--                </el-form-item>-->
-<!--                <el-form-item label="系统公告时间:" prop="time">-->
-<!--                    <el-date-picker type="date" v-model="addForm.time" style="width: 100%;" readonly></el-date-picker>-->
-<!--                </el-form-item>-->
-<!--            </el-form>-->
             {{addForm.content}}
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
