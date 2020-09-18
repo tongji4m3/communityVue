@@ -72,45 +72,47 @@
         </el-card>
         <!-- 审核对话框 -->
         <el-dialog title="活动详情" :visible.sync="replyDialogVisible"
-                   width="50%">
+                   width="50%" center>
             <!-- 展示内容主体区域 -->
             <el-form :model="this.replyForm" label-width="150px">
                 <el-form-item label="社团名称:">
-                    <el-input v-model="this.replyForm.clubName" readonly></el-input>
+                    <el-input v-model="this.replyForm.clubName" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="活动名称:">
-                    <el-input v-model="this.replyForm.name" readonly></el-input>
+                    <el-input v-model="this.replyForm.name" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="是否公开:">
-                    <el-input v-model="this.replyForm.isPublic_str" readonly></el-input>
+                    <el-input v-model="this.replyForm.isPublic_str" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="活动经费:">
-                    <el-input v-model="this.replyForm.budget" readonly></el-input>
+                    <el-input v-model="this.replyForm.budget" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="活动地点:">
-                    <el-input v-model="this.replyForm.place" readonly></el-input>
+                    <el-input v-model="this.replyForm.place" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="活动时间:">
-                    <el-date-picker type="date" v-model="this.replyForm.evenTime" style="width: 100%;" readonly></el-date-picker>
+                    <el-date-picker type="date" v-model="this.replyForm.evenTime" style="width: 82%;" readonly></el-date-picker>
                 </el-form-item>
                 <el-form-item label="提交时间:">
-                    <el-date-picker type="date" v-model="this.replyForm.applyDate" style="width: 100%;" readonly></el-date-picker>
+                    <el-date-picker type="date" v-model="this.replyForm.applyDate" style="width: 82%;" readonly></el-date-picker>
                 </el-form-item>
                 <el-form-item label="审核状态:">
-                    <el-input v-model="this.replyForm.status_name" readonly></el-input>
+                    <el-input v-model="this.replyForm.status_name" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="活动描述:">
                     <el-input 
                         v-model="replyForm.description"
                         type="textarea"
                         :autosize = "{ minRows: 3, maxRows: 8 }"
-                        readonly>
+                        readonly
+						style="width: 82%;">
                     </el-input>
                 </el-form-item>
                 <el-form-item label="建    议:">
                     <el-input 
                         v-model="replyForm.suggestion"
                         type="textarea"
+						style="width: 82%;"
                         :autosize = "{ minRows: 3, maxRows: 10 }"
                         palceholder="请在此处输入您对这项活动的建议"
                         maxlength="2000"
