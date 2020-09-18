@@ -263,7 +263,7 @@ export default {
                     clubId: result.data.data[i].clubId,
                     name: result.data.data[i].name,
                     presidentName: result.data.data[i].presidentName,
-                    type: result.data.data[i].type,
+                    type: this.typeToStr(result.data.data[i].type),
                     managerId: result.data.data[i].managerId,
                     establishmentDate: result.data.data[i].establishmentDate.slice(0, result.data.data[i].establishmentDate.indexOf('T')),
                     status_name: this.statusToStr(result.data.data[i].status),
@@ -328,7 +328,7 @@ export default {
                 });
             this.replyForm.clubId = result.data.clubId;
             this.replyForm.name = result.data.name;
-            this.replyForm.type = result.data.type;
+            this.replyForm.type = this.typeToStr(result.data.type);
             this.replyForm.description = result.data.description;
             this.replyForm.presidentName = result.data.presidentName;
             this.replyForm.establishmentDate = result.data.establishmentDate.slice(0, result.data.establishmentDate.indexOf('T'));
@@ -398,6 +398,32 @@ export default {
                     break;
             }
         },
+        typeToStr(type){
+            switch(type){
+                case 0:
+                    return "学术科技类";
+                    break;
+                case 1:
+                    return "传统文化与文学类";
+                    break;
+                case 2:
+                    return "公益实践类";
+                    break;
+                case 3:
+                    return "文化与艺术类";
+                    break;
+                case 4:
+                    return "体育竞技类";
+                    break;
+                case 5:
+                    return "创新创业类";
+                    break;
+                default:
+                    console.log("出现未定义社团类型");
+                    return "未定义";
+                    break;
+            }
+        }
     }
 }
 </script>
