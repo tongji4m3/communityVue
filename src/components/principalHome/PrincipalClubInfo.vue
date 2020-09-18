@@ -9,18 +9,19 @@
         <el-divider></el-divider>
         <!--        卡片-->
         <el-card class="box-card">
-            <span> {{addForm.name}}的社团负责人您好！</span>
-            <br>
-            <br>
+            <!-- <span> {{addForm.name}}的社团负责人您好！</span> -->
+            <!-- <br>
+            <br> -->
             <div v-html="addForm.logo">{{addForm.logo}}</div>
-            <div v-html="addForm.description">{{addForm.description}}</div>
+            <div v-html="addForm.description" style="margin: 20px;">{{addForm.description}}</div>
             <!--            <span> {{addForm.description}}</span>-->
 
-            <div align="right">
-                <el-popconfirm title="确定解散社团吗？" cancelButtonType="danger" icon="el-icon-magic-stick">
+            <div align="center">
+                <el-popconfirm title="确定解散社团吗？" cancelButtonType="danger" icon="el-icon-magic-stick" style="margin: 15px;">
                     <el-button slot="reference" type="danger" @click="deleteClub">解散社团</el-button>
                 </el-popconfirm>
                 <!--                <el-button type="danger" @click="deleteClub">解散社团</el-button>-->
+<<<<<<< HEAD
                 <el-button type="primary" @click="showEditClubInfo">修 改</el-button>
                 <el-upload
                         class="upload-demo"
@@ -35,6 +36,10 @@
                 >
                     <el-button  type="primary">修改Logo</el-button>
                 </el-upload>
+=======
+                <el-button type="primary" @click="showEditClubInfo" style="margin: 20px;">修 改</el-button>
+                <el-button type="primary" @click="showEditClubLogo">修改Logo</el-button>
+>>>>>>> d103fd5bcc6d3e563f1e45e83636777ca0a3826d
             </div>
         </el-card>
 
@@ -281,4 +286,12 @@ export default {
 }
 
 </script>
+<<<<<<< HEAD
 <style scoped></style>
+=======
+<style scoped>
+	.box-card{
+		height: 400px;
+	}
+</style>
+>>>>>>> d103fd5bcc6d3e563f1e45e83636777ca0a3826d
