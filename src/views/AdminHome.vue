@@ -43,10 +43,11 @@
                     </el-menu-item>
                     <el-menu-item index="/adminNotice">
                         <i class="el-icon-s-shop"></i>
-                        系统公告管理
+                        系统公告
                     </el-menu-item>
                     <el-submenu index="1">
                         <template slot="title"><i class="el-icon-menu"></i>管理</template>
+						
                         <el-menu-item index="/adminStudent">学生管理</el-menu-item>
                         <el-menu-item index="/adminInformation">社团管理</el-menu-item>
                     </el-submenu>
@@ -106,12 +107,12 @@
             systemInformation()
             {
                 this.showDot = true;
-                this.$router.push("/principalSystemInformation")
+                this.$router.push("/adminSystemInformation")
             },
             systemNotice()
             {
                 this.showDot = true;
-                this.$router.push("/principalSystemNotice")
+                this.$router.push("/adminSystemNotice")
             },
             goIndex()
             {

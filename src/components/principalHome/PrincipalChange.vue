@@ -40,7 +40,7 @@
                 </el-table-column>
 
             </el-table>
-
+            <br>
             <!--            分页区域-->
             <el-pagination
                     @size-change="handleSizeChange"
@@ -55,7 +55,7 @@
 
         <!--        查看历史负责人对话框-->
         <el-dialog title="历史负责人" :visible.sync="dialogVisible"
-                   width="850px" top="60px" center>
+                   width="850px" top="120px" center>
             <el-table :data="historyMemberList">
                 <el-table-column type="index"></el-table-column>
                 <el-table-column label="任期" prop="term"></el-table-column>

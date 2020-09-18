@@ -9,10 +9,10 @@
         </el-card>
 
         <!--        日历按钮-->
-        <el-button type="text" @click="openCalendar">查看日历</el-button>
-        <el-button type="text" @click="openSchoolCalendar">查看校历</el-button>
+        <!-- <el-button type="text" @click="openCalendar">查看日历</el-button>
+        <el-button type="text" @click="openSchoolCalendar">查看校历</el-button> -->
         <!--        日历框-->
-        <el-dialog :visible.sync="showCalendar"
+        <!-- <el-dialog :visible.sync="showCalendar"
                    width="50%">
             <el-calendar>
             </el-calendar>
@@ -28,7 +28,7 @@
             <el-carousel-item>
                 
             </el-carousel-item>
-        </el-carousel>
+        </el-carousel> -->
 
         <!-- 待办事项 -->
         <el-card class="chart-card">
@@ -67,6 +67,7 @@
                     </template>
                 </el-table-column>
             </el-table>
+			<br>
             <el-pagination
                 @size-change="handleSizeChange"
                 @current-change="handleCurrentChange"

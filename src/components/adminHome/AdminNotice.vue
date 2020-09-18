@@ -45,7 +45,7 @@
                 </el-table-column>
 
             </el-table>
-
+            <br>
             <!--            分页区域-->
             <el-pagination
                 @size-change="handleSizeChange"
@@ -60,11 +60,11 @@
 
         <!--        展示公告对话框-->
         <el-dialog title="公告详情" ref="showFormRef" :visible.sync="showDialogVisible"
-                   width="50%">
+                   width="50%" center>
             <!--            展示内容主体区域 -->
             <el-form :model="addForm" label-width="150px">
                 <el-form-item label="公告标题:">
-                    <el-input v-model="addForm.title" disabled></el-input>
+                    <el-input v-model="addForm.title" readonly style="width: 82%;"></el-input>
                 </el-form-item>
 <!--                <el-form-item label="公告内容:">-->
 <!--                    <el-input v-model="addForm.content" disabled></el-input>-->
@@ -73,11 +73,11 @@
                     <el-input
                         type="textarea"
                         :rows="7"
-                        v-model="addForm.content" disabled>
+                        v-model="addForm.content" readonly style="width: 82%;">
                     </el-input>
                 </el-form-item>
                 <el-form-item label="公告时间:" prop="time">
-                    <el-date-picker type="date" v-model="addForm.time" style="width: 100%;" disabled></el-date-picker>
+                    <el-date-picker type="date" v-model="addForm.time" style="width: 82%;" readonly></el-date-picker>
                 </el-form-item>
             </el-form>
             <!--            底部区域-->
@@ -89,17 +89,17 @@
 
         <!--        添加公告对话框-->
         <el-dialog title="添加公告" :visible.sync="addDialogVisible"
-                   width="50%">
+                   width="50%" center>
             <!--            内容主体区域 放置一个表单-->
             <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="150px">
                 <el-form-item label="公告标题:" prop="title">
-                    <el-input v-model="addForm.title"></el-input>
+                    <el-input v-model="addForm.title" style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="公告内容:" prop="content">
                     <el-input
                         type="textarea"
                         :rows="7"
-                        v-model="addForm.content">
+                        v-model="addForm.content" style="width: 82%;">
                     </el-input>
                 </el-form-item>
 <!--                <el-form-item label="公告内容:" prop="content">-->
@@ -108,23 +108,23 @@
             </el-form>
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
-    <el-button @click="cancelAdd">取 消</el-button>
+    <el-button @click="cancelAdd" style="margin-right: 20px;">取 消</el-button>
     <el-button type="primary" @click="addAnnouncement">确 定</el-button>
   </span>
         </el-dialog>
 
         <!--        修改公告对话框-->
         <el-dialog title="修改公告" :visible.sync="editDialogVisible"
-                   width="50%">
+                   width="50%" center>
             <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="150px">
                 <el-form-item label="公告标题:" prop="title">
-                    <el-input v-model="addForm.title" ></el-input>
+                    <el-input v-model="addForm.title" style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="公告内容:" prop="content">
                     <el-input
                         type="textarea"
                         :rows="7"
-                        v-model="addForm.content">
+                        v-model="addForm.content" style="width: 82%;">
                     </el-input>
                 </el-form-item>
 <!--                <el-form-item label="公告内容:" prop="content">-->
@@ -133,7 +133,7 @@
             </el-form>
 
             <span slot="footer" class="dialog-footer">
-                    <el-button @click="cancelEdit">取 消</el-button>
+                    <el-button @click="cancelEdit" style="margin-right: 20px;">取 消</el-button>
                     <el-button type="primary" @click="editAnnouncement">确 定</el-button>
             </span>
         </el-dialog>

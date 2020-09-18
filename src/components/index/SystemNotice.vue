@@ -1,5 +1,7 @@
 <template>
     <div>
+        <el-backtop :bottom="60" :right="60">
+        </el-backtop>
         <div id="announce_head">
             <img src="../../assets/img/icon_announcement.png" alt="" style="vertical-align: middle">
             <span> <h3>   系统公告</h3></span>
@@ -8,7 +10,7 @@
         <!--        <div v-for="n in evenNumbers">-->
         <div v-for="announcement in AnnouncementList">
             <el-card id="myCard">
-                <div id="announcementContent">{{ announcement.content }}</div>
+                <div id="announcementContent">{{ announcement.title }}</div>
                 <br>
                 <div id="announcementTime">{{ announcement.time }}</div>
                 <br>
@@ -16,7 +18,6 @@
             </el-card>
             <br>
         </div>
-
         <!--        展示系统公告对话框-->
         <el-dialog title="系统公告详情" ref="showFormRef" :visible.sync="showDialogVisible"
                    width="50%">
