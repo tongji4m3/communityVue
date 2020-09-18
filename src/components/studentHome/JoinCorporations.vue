@@ -10,18 +10,18 @@
 
         <el-carousel :interval="4000" type="card" height="366px">
 
-<!--            <el-carousel-item >-->
-<!--                <img src="../../assets/img/tj_typlt.jpg" alt="" style="height: 366px;width: 100%;margin:0;">-->
-<!--            </el-carousel-item>-->
+            <el-carousel-item >
+                <img src="../../assets/img/tj_typlt.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
+            </el-carousel-item>
             <el-carousel-item >
                 <img  src="../../assets/img/tj_cp1.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
             </el-carousel-item>
             <el-carousel-item >
                 <img src="../../assets/img/tj_cp4.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
             </el-carousel-item>
-<!--            <el-carousel-item >-->
-<!--                <img src="../../assets/img/tj_cp2.jpg" alt="" style="height: 366px;width: 100%;margin:0;">-->
-<!--            </el-carousel-item>-->
+            <el-carousel-item >
+                <img src="../../assets/img/tj_cp2.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
+            </el-carousel-item>
 
             <el-carousel-item >
                 <img src="../../assets/img/tj_cp3.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
@@ -29,19 +29,13 @@
             <!--            <el-carousel-item >-->
             <!--                <img src="../../assets/img/tj_cp4.jpg" alt="" style="height: 366px;width: 100%;margin:0;">-->
             <!--            </el-carousel-item>-->
-<!--            <el-carousel-item >-->
-<!--                <img src="../../assets/img/tj_cp5.jpg" alt="" style="height: 366px;width: 100%;margin:0;">-->
-<!--            </el-carousel-item>-->
+            <el-carousel-item >
+                <img src="../../assets/img/tj_cp5.jpg" alt="" style="height: 366px;width: 100%;margin:0;">
+            </el-carousel-item>
         </el-carousel>
         <el-divider></el-divider>
         <!--        卡片-->
-        <el-card>
-            <div id="announce_head">
-<!--                <img src="../../assets/img/icon_announcement.png" alt="" style="vertical-align: middle">-->
-                <span> <h3> 已加入社团</h3></span>
-                <!--                        <span @click="SystemNotice" class="more"> <h3>更多</h3></span>-->
-            </div>
-            <el-divider></el-divider>
+        <el-card class="box-card">
             <!--            搜索与添加-->
             <el-row :gutter="20">
                 <el-col :span="7">

@@ -24,7 +24,7 @@
         <br>
 
         <!--        卡片-->
-        <el-card>
+        <el-card class="box-card">
             <!--            搜索与添加-->
             <el-row :gutter="20">
                 <el-col :span="7">
@@ -86,9 +86,10 @@
 <!--                    <el-input v-model="addForm.id" readonly="true"></el-input>-->
 <!--                </el-form-item>-->
                 <h3 style="text-align:center; font-size:20px ">活动详情</h3>
-
-<!--                <hr>-->
                 <br>
+                <br>
+<!--                <hr>-->
+<!--                <br>-->
 <!--                <p style="font-size:15px" v-html="addForm.summary">简介：{{addForm.summary}}</p>-->
 <!--                <br>-->
 <!--                <hr>-->

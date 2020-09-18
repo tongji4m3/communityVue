@@ -22,7 +22,7 @@
             <el-col :span="8" v-for="corporation in corporationsList">
                 <el-card class="myCard" :body-style="{ padding: '20px'}" shadow="hover">
 <!--                    <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">-->
-                    <img :src="corporation.logo" class="image">
+                    <p v-html="corporation.logo">{{corporation.logo}}</p>
                     <div style="padding: 10px;">
                         <span>{{corporation.name}}</span>
 <!--                        <span>{{corporation.type}}</span>-->
@@ -102,6 +102,8 @@
             <p style="text-align: right;font-size:15px;margin-bottom: 7px;">成立时间：{{addForm.date}}</p>
 
             <p style="text-align: right;font-size:15px">会长：{{addForm.president}}</p>
+
+
 
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">

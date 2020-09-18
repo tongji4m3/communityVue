@@ -23,8 +23,8 @@
             </el-row>
             <!--            活动列表 只展示一些活动信息,详细信息可在详情查看-->
             <el-table :data="corporationsList" >
-                <el-table-column type="index" width="130"></el-table-column>
-                <el-table-column label="活动名称" prop="name" ></el-table-column>
+                <el-table-column type="index"></el-table-column>
+                <el-table-column label="活动名称" prop="name"></el-table-column>
                 <el-table-column label="活动地点" prop="place"></el-table-column>
                 <el-table-column label="查看详情">
                     <template slot-scope="scope">
