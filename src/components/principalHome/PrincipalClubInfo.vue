@@ -9,11 +9,70 @@
         <el-divider></el-divider>
         <!-- <span> {{addForm.name}}的社团负责人您好！</span> -->
         <!-- <br> --><!-- <br> -->
-        <!--        卡片-->
-        <el-card :body-style="{ padding: '10px'}">
-            <img :src="imgUrl">
-            <div v-html="addForm.description" style="margin: 20px;">{{addForm.description}}</div>
-        </el-card>
+
+
+        <el-row :gutter="0" class="el-row">
+            <el-col :span="4">
+                <el-card class="card0" :body-style="{ padding: '20px'}">
+                    <div class="image" >
+                        <img width="140" height="140" :src="imgUrl" style="border-radius:50%; ">
+                        <el-upload
+                            class="upload-demo"
+                            action="https://jsonplaceholder.typicode.com/posts/"
+                            :on-remove="handleRemove"
+                            multiple
+                            :limit="3"
+                            style="margin: 20px; float: left"
+                            :file-list="images"
+                            :http-request="uploadHttp"
+                            :before-upload="beforeAvatarUpload"
+                        >
+                            <el-button type="text" class="text">点击修改 LOGO</el-button>
+                        </el-upload>
+<!--                        <el-button type="text" @click="showEditClubInfo" style="margin: 20px;">点击修改社团信息</el-button>-->
+                    </div>
+                </el-card>
+            </el-col>
+            <el-col :span="20">
+                <el-card class="card1" :body-style="{ padding: '10px'}">
+                    <el-col :span="12">
+                        <div style="margin: 20px;">{{addForm.name}}</div>
+                        <div style="margin: 20px;">类型：{{addForm.type}}</div>
+                        <div style="margin: 20px;">编号：{{addForm.clubId}}</div>
+                        <div style="margin: 20px;">创始时间：{{addForm.establishmentDate}}</div>
+                        <div style="margin: 20px;">现任会长：{{addForm.presidentName}}</div>
+                    </el-col>
+                    <el-col :span="12">
+                        <div style="margin: 20px;">{{addForm.presidentName}}</div>
+                        <div style="margin: 20px;">学号：{{addForm.number}}</div>
+                        <div style="margin: 20px;">年级：{{addForm.grade}}</div>
+                        <div style="margin: 20px;">联系方式：{{addForm.phone}}</div>
+                        <div style="margin: 20px;">Email：{{addForm.mail}}</div>
+                    </el-col>
+
+                </el-card>
+            </el-col>
+        </el-row>
+
+        <el-row class="el-row2">
+            <el-col :span="24">
+                <el-card>
+                    <div v-html="addForm.description" style="margin: 20px;">{{addForm.description}}</div>
+                    <el-divider></el-divider>
+                    <div style="text-align:right;">
+                        <el-popconfirm title="确定解散社团吗？" @onConfirm="deleteClub" cancelButtonType="danger" icon="el-icon-magic-stick"
+                                       style="margin: 15px;">
+                            <el-button slot="reference" type="danger">解散社团</el-button>
+                        </el-popconfirm>
+                        <!--                <el-button type="danger" @click="deleteClub">解散社团</el-button>-->
+
+                        <el-button type="primary" @click="showEditClubInfo">修 改</el-button>
+                    </div>
+                </el-card>
+
+            </el-col>
+        </el-row>
+
 
 
         <!--        &lt;!&ndash;        卡片&ndash;&gt;-->
@@ -25,38 +84,15 @@
         <!--            <div v-html="addForm.description" style="margin: 20px;">{{addForm.description}}</div>-->
         <!--            &lt;!&ndash;            <span> {{addForm.description}}</span>&ndash;&gt;-->
 
-
-        <!--        </el-card>-->
-        <div>
-            <el-popconfirm title="确定解散社团吗？" @onConfirm="deleteClub" cancelButtonType="danger" icon="el-icon-magic-stick"
-                           style="margin: 15px;">
-                <el-button slot="reference" type="danger">解散社团</el-button>
-            </el-popconfirm>
-            <!--                <el-button type="danger" @click="deleteClub">解散社团</el-button>-->
-            <el-button type="primary" @click="showEditClubInfo" style="margin: 20px;">修 改</el-button>
-            <el-upload
-                    class="upload-demo"
-                    action="https://jsonplaceholder.typicode.com/posts/"
-                    :on-remove="handleRemove"
-                    multiple
-                    :limit="3"
-                    style="margin: 20px; float: left"
-                    :file-list="images"
-                    :http-request="uploadHttp"
-                    :before-upload="beforeAvatarUpload"
-            >
-                <el-button type="primary">修改Logo</el-button>
-            </el-upload>
-        </div>
         <!--        修改社团信息对话框-->
         <el-dialog title="修改社团信息" :visible.sync="editDialogVisible"
                    width="50%" center>
             <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="100px">
                 <el-form-item label="社团名称:">
-                    <el-input v-model="addForm.name" placeholder="请输入社团名称..." style="width:82%;"></el-input>
+                    <el-input v-model="addForm.name" placeholder="请输入社团名称..." ></el-input>
                 </el-form-item>
 
-                <quill-editor v-model="addForm.description" ref="myQuillEditor" style="height: 500px;width: 82%;"
+                <quill-editor v-model="addForm.description" ref="myQuillEditor" style="height: 500px;"
                               :options="editorOption">
                 </quill-editor>
 
@@ -125,10 +161,14 @@
                 editDialogVisible2: false,
                 //添加赞助表单数据
                 addForm: {
-                    name: "",
-                    description: "",
-                    logo: "",
-                    status: false,
+                    // name: "",
+                    // description: "",
+                    // logo: "",
+                    // status: false,
+                    // establishmentDate:"",
+                    // presidentName:"",
+                    // type:"",
+
                 },
                 //添加赞助申请的校验规则
                 addFormRules: {},
@@ -225,6 +265,25 @@
         {
             let result = await this.$http.post(this.$api.PrincipalGetClubInfo);
             this.addForm = result.data;
+            this.addForm.establishmentDate=this.addForm.establishmentDate.substring(0,10);
+            if(this.addForm.type===0){
+                this.addForm.type="学术科技类";
+            }
+            else if(this.addForm.type===1){
+                this.addForm.type="传统文化与文学类";
+            }
+            else if(this.addForm.type===2){
+                this.addForm.type="公益实践类";
+            }
+            else if(this.addForm.type===3){
+                this.addForm.type="文化艺术类";
+            }
+            else if(this.addForm.type===4){
+                this.addForm.type="体育竞技类";
+            }
+            else{
+                this.addForm.type="创新创业类";
+            }
             // console.log(this.addForm.description);
         },
         cancelEdit()
@@ -296,5 +355,54 @@
 <style scoped>
     .box-card {
         height: 400px;
+    }
+    .card0 {
+        /*min-width: 100%;*/
+        height: 100%;
+        margin-right: 20px;
+
+        /*transition: all .5s;*/
+    }
+
+    .card1 {
+        /*min-width: 100%;*/
+        height: 100%;
+        margin-right: 20px;
+        width: 100%;
+        /*transition: all .5s;*/
+    }
+    .el-row3 {
+        /*margin-bottom: 20px;*/
+        /*height: 100px;*/
+        /*display: flex;*/
+        flex-wrap: wrap
+    }
+    .el-row2 {
+        /*margin-bottom: 20px;*/
+        /*height: 100px;*/
+        /*display: flex;*/
+        flex-wrap: wrap
+    }
+
+    .el-row {
+        margin-bottom: 20px;
+        height: 240px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .el-row {
+        margin-bottom: 20px;
+        /*height: 240px;*/
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .image{
+        width: 100%;
+        /*height:100%;*/
+        display: block;
+        text-align:center;
+    }
+    .text{
+        text-align:center;
     }
 </style>

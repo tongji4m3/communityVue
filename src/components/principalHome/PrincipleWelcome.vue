@@ -12,13 +12,13 @@
             <img src="../../assets/img/calendar.jpg" alt="" style="width: 100%;margin:0;">
         </el-dialog>
 
-        
+
         <el-row :gutter="0" class="el-row">
             <el-col :span="6">
                 <el-card class="card0" :body-style="{ padding: '20px'}">
                     <br>
                     <div class="image" >
-                        <img width="140" height="140" src="../../assets/img/jitaxiehui.png">
+                        <img width="140" height="140" :src="imgUrl" style="border-radius:50%; ">
                     </div>
                     <br>
                     <div class="image">{{clubForm.type}}</div>
@@ -239,6 +239,8 @@ export default {
             content: null,
             editorOption: {},
 
+            username: window.sessionStorage.getItem('name'),
+            imgUrl: window.sessionStorage.getItem("imgUrl"),
 
         }
     },
@@ -469,19 +471,6 @@ export default {
     flex-wrap: wrap;
 }
 
-.el-row2 {
-    margin-bottom: 20px;
-    height: 100px;
-    display: flex;
-    flex-wrap: wrap
-}
-
-.el-row3 {
-    /*margin-bottom: 20px;*/
-    height: 600px;
-    display: flex;
-    flex-wrap: wrap
-}
 .card0 {
     /*min-width: 100%;*/
     height: 100%;
