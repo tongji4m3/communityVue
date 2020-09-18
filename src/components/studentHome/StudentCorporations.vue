@@ -21,8 +21,8 @@
         <el-row>
             <el-col :span="8" v-for="corporation in corporationsList">
                 <el-card class="myCard" :body-style="{ padding: '20px'}" shadow="hover">
-<!--                    <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">-->
-                    <p v-html="corporation.logo">{{corporation.logo}}</p>
+                    <img :src="corporation.logo" class="image">
+<!--                    <p v-html="corporation.logo">{{corporation.logo}}</p>-->
                     <div style="padding: 10px;">
                         <span>{{corporation.name}}</span>
 <!--                        <span>{{corporation.type}}</span>-->
@@ -211,6 +211,7 @@
                     type:"",
                     reason:"",
                 },
+                imgUrl: window.sessionStorage.getItem('imgUrl'),
                 //添加活动的校验规则
                 addFormRules: {
                     studentID: [
