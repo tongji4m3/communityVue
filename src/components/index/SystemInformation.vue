@@ -101,9 +101,9 @@
                         pageNumber: this.pageNumber,
                         pageSize: this.pageSize,
                     });
-                console.log(result);
+                // console.log(result);
                 this.MessageList = result.data.data;
-                console.log(this.MessageList[0].read);
+                // console.log(this.MessageList[0].read);
                 for (let i = 0; i < this.MessageList.length; i++)
                 {
                     this.MessageList[i].time = this.MessageList[i].time.substring(0, 10);
@@ -126,7 +126,7 @@
 
             async showDialog(MessageId)
             {
-                console.log(MessageId);
+                // console.log(MessageId);
                 let result = await this.$http.post(this.$api.GetOneMessagesUrl + '/' + MessageId);
                 this.addForm = result.data;
                 this.addForm.time=this.addForm.time.substring(0,10);
