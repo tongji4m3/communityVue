@@ -7,7 +7,8 @@
                     <div class="image" >
 
 <!--                        <img width="140" height="140" src="imgUrl">-->
-                        <img width="140" height="140" src="../../assets/img/jitaxiehui.png">
+                        <img width="140" height="140" :src="imgUrl">
+<!--                        <img width="140" height="140" src="../../assets/img/jitaxiehui.png">-->
                     </div>
                     <br>
                     <div class="image">{{clubForm.type}}</div>
@@ -85,6 +86,7 @@ import {
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
+import ossClient from "@/assets/config/aliyun.oss.client";
 export default {
     name: 'FuncFormsEdit',
     components: {
@@ -145,7 +147,7 @@ export default {
             content: null,
             editorOption: {},
 
-            imgUrl: window.sessionStorage.getItem('imgUrl'),
+            imgUrl: window.sessionStorage.getItem("imgUrl"),
         }
     },
     mounted()
@@ -161,6 +163,38 @@ export default {
 
     },
     methods: {
+
+        async uploadHttp({file})
+        {
+            this.init();
+            const {imgName} = "ALIOSS_IMG_";
+            const fileName = `${imgName}/${Date.parse(new Date())}`; //定义唯一的文件名
+            await ossClient(this.uploadConf)
+                .put(fileName, file, {
+                    ContentType: "image/jpeg",
+                })
+                .then(({res, url, name}) =>
+                {
+                    if (res && res.status === 200)
+                    {
+                        console.log(`阿里云OSS上传图片成功回调`, res, url, name);
+                        this.imgUrl = url;
+                        // {
+                        //     // imgUrl: this.imgUrl,
+                        //     imgUrl:"http://database-community.oss-cn-shanghai.aliyuncs.com/undefined/1600416216000"
+                        // });
+                    }
+                })
+                .catch((err) =>
+                {
+                    console.log(`阿里云OSS上传图片失败回调`, err);
+                });
+            console.log("这里", this.imgUrl);
+            let result = await this.$http.post(this.$api.UpdateAvatar + "?imgUrl=" + this.imgUrl);
+            window.sessionStorage.setItem("imgUrl", this.imgUrl);
+            location.reload();
+        },
+
         async getCommunityGraph()
         {
             let result = await this.$http.post(this.$api.PrincipalGetCommunityGraph);
