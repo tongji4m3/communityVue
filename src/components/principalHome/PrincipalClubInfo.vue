@@ -35,15 +35,15 @@
             <!--                <el-button type="danger" @click="deleteClub">解散社团</el-button>-->
             <el-button type="primary" @click="showEditClubInfo" style="margin: 20px;">修 改</el-button>
             <el-upload
-                class="upload-demo"
-                action="https://jsonplaceholder.typicode.com/posts/"
-                :on-remove="handleRemove"
-                multiple
-                :limit="3"
-                style="margin: 20px; float: left"
-                :file-list="images"
-                :http-request="uploadHttp"
-                :before-upload="beforeAvatarUpload"
+                    class="upload-demo"
+                    action="https://jsonplaceholder.typicode.com/posts/"
+                    :on-remove="handleRemove"
+                    multiple
+                    :limit="3"
+                    style="margin: 20px; float: left"
+                    :file-list="images"
+                    :http-request="uploadHttp"
+                    :before-upload="beforeAvatarUpload"
             >
                 <el-button type="primary">修改Logo</el-button>
             </el-upload>
@@ -56,7 +56,8 @@
                     <el-input v-model="addForm.name" placeholder="请输入社团名称..." style="width:82%;"></el-input>
                 </el-form-item>
 
-                <quill-editor v-model="addForm.description" ref="myQuillEditor" style="height: 500px;width: 82%;" :options="editorOption">
+                <quill-editor v-model="addForm.description" ref="myQuillEditor" style="height: 500px;width: 82%;"
+                              :options="editorOption">
                 </quill-editor>
 
                 <!--                <el-form-item label="社团介绍:" prop="discription">-->
@@ -81,7 +82,8 @@
                 <el-form-item label="社团名称:">
                     <el-input v-model="addForm.name" placeholder="请输入社团名称..." style="width:82%;"></el-input>
                 </el-form-item>
-                <quill-editor v-model="addForm.logo" ref="myQuillEditor" style="height: 500px;width: 82%;" :options="editorOption">
+                <quill-editor v-model="addForm.logo" ref="myQuillEditor" style="height: 500px;width: 82%;"
+                              :options="editorOption">
                 </quill-editor>
                 <!--                <el-form-item label="社团介绍:" prop="discription">-->
                 <!--                    <el-input-->
@@ -102,101 +104,97 @@
 </template>
 
 <script>
-import {
-    quillEditor
-} from 'vue-quill-editor'
-import 'quill/dist/quill.core.css'
-import 'quill/dist/quill.snow.css'
-import 'quill/dist/quill.bubble.css'
-import ossClient from "../../assets/config/aliyun.oss.client";
-
-export default {
-    name: 'FuncFormsEdit',
-    components: {
+    import {
         quillEditor
-    },
-    data()
-    {
+    } from 'vue-quill-editor'
+    import 'quill/dist/quill.core.css'
+    import 'quill/dist/quill.snow.css'
+    import 'quill/dist/quill.bubble.css'
+    import ossClient from "../../assets/config/aliyun.oss.client";
 
-        return {
-            editDialogVisible: false,
-            editDialogVisible2: false,
-            //添加赞助表单数据
-            addForm: {
-                name: "",
-                description: "",
-                logo: "",
-                status: false,
-            },
-            //添加赞助申请的校验规则
-            addFormRules: {},
-
-            content: null,
-            editorOption: {},
-            //上传图片相关
-            images: [],
-            uploadConf: {
-                region: null,
-                accessKeyId: null,
-                accessKeySecret: null,
-                bucket: null,
-            },
-            imgUrl: window.sessionStorage.getItem("imgUrl"),
-        }
-    },
-    //一开始就显示赞助列表
-    created()
-    {
-        this.getClubInfo();
-    },
-    methods: {
-        /**
-         * 初始化
-         */
-        async init()
-        {
-            //获取阿里云token  这里是后台返回来的数据
-            this.uploadConf.region = "oss-cn-shanghai";
-            this.uploadConf.accessKeyId = "LTAI4G6fA6yN4LfpNVr8UsD2";
-            this.uploadConf.accessKeySecret = "fiq7xeXtzdnt2jL0Zr58OpWd6mCcXd";
-            this.uploadConf.bucket = "database-community";
+    export default {
+        name: 'FuncFormsEdit',
+        components: {
+            quillEditor
         },
-        /**
-         * 阿里云OSS上传
-         */
-        async uploadHttp({file})
+        data()
         {
-            this.init();
-            const {imgName} = "ALIOSS_IMG_";
-            const fileName = `${imgName}/${Date.parse(new Date())}`; //定义唯一的文件名
-            ossClient(this.uploadConf)
-                .put(fileName, file, {
-                    ContentType: "image/jpeg",
-                })
-                .then(({res, url, name}) =>
-                {
-                    if (res && res.status === 200)
+
+            return {
+                editDialogVisible: false,
+                editDialogVisible2: false,
+                //添加赞助表单数据
+                addForm: {
+                    name: "",
+                    description: "",
+                    logo: "",
+                    status: false,
+                },
+                //添加赞助申请的校验规则
+                addFormRules: {},
+                content: null,
+                editorOption: {},
+                //上传图片相关
+                images: [],
+                uploadConf: {
+                    region: null,
+                    accessKeyId: null,
+                    accessKeySecret: null,
+                    bucket: null,
+                },
+                imgUrl: window.sessionStorage.getItem("imgUrl"),
+            }
+        },
+        //一开始就显示赞助列表
+        created()
+        {
+            this.getClubInfo();
+        },
+        methods: {
+            /**
+             * 初始化
+             */
+            init()
+            {
+                //获取阿里云token  这里是后台返回来的数据
+                this.uploadConf.region = "oss-cn-shanghai";
+                this.uploadConf.accessKeyId = "LTAI4G6fA6yN4LfpNVr8UsD2";
+                this.uploadConf.accessKeySecret = "fiq7xeXtzdnt2jL0Zr58OpWd6mCcXd";
+                this.uploadConf.bucket = "database-community";
+            },
+            /**
+             * 阿里云OSS上传
+             */
+            async uploadHttp({file})
+            {
+                this.init();
+                const {imgName} = "ALIOSS_IMG_";
+                const fileName = `${imgName}/${Date.parse(new Date())}`; //定义唯一的文件名
+                await ossClient(this.uploadConf)
+                    .put(fileName, file, {
+                        ContentType: "image/jpeg",
+                    })
+                    .then(({res, url, name}) =>
                     {
-                        console.log(`阿里云OSS上传图片成功回调`, res, url, name);
-                        this.imgUrl = url;
-                        console.log("这里", this.imgUrl);
-                        this.$http.post(this.$api.UpdateAvatar, this.imgUrl);
-                        // {
-                        //     // imgUrl: this.imgUrl,
-                        //     imgUrl:"http://database-community.oss-cn-shanghai.aliyuncs.com/undefined/1600416216000"
-                        // });
-                    }
-                })
-                .catch((err) =>
-                {
-                    console.log(`阿里云OSS上传图片失败回调`, err);
-                });
-            await this.$http.post(this.$api.UpdateAvatar, {
-                // imgUrl: this.imgUrl,
-                imgUrl:"http://database-community.oss-cn-shanghai.aliyuncs.com/undefined/1600416216000"
-            });
-
-        },
+                        if (res && res.status === 200)
+                        {
+                            console.log(`阿里云OSS上传图片成功回调`, res, url, name);
+                            this.imgUrl = url;
+                            // {
+                            //     // imgUrl: this.imgUrl,
+                            //     imgUrl:"http://database-community.oss-cn-shanghai.aliyuncs.com/undefined/1600416216000"
+                            // });
+                        }
+                    })
+                    .catch((err) =>
+                    {
+                        console.log(`阿里云OSS上传图片失败回调`, err);
+                    });
+                console.log("这里", this.imgUrl);
+                let result = await this.$http.post(this.$api.UpdateAvatar + "?imgUrl=" + this.imgUrl);
+                window.sessionStorage.setItem("imgUrl", this.imgUrl);
+                location.reload();
+            },
         /**
          * 图片限制
          */
@@ -292,11 +290,11 @@ export default {
             await this.$router.push({path: "/welcome"});
         },
     }
-}
+    }
 
 </script>
 <style scoped>
-.box-card {
-    height: 400px;
-}
+    .box-card {
+        height: 400px;
+    }
 </style>

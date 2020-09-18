@@ -121,14 +121,12 @@
                 <el-card>
                     <el-row :gutter="20">
                         <el-col :span="12"><div id="gradeChart" style="width: 600px;height:400px;"></div></el-col>
-                        <el-col :span="12"><div id="genderChart" style="width: 600px;height:400px;"></div></el-col>
+                        <el-col :span="12"><div id="majorChart" style="width: 600px;height:400px;"></div></el-col>
                     </el-row>
                 </el-card>
             </el-col>
         </el-row>
         <!--        展示系统公告对话框-->
-<<<<<<< HEAD
-<<<<<<< HEAD
         <el-dialog ref="showFormRef" :visible.sync="showDialogVisible"
                    width="50%">
             <!--            展示内容主体区域 -->
@@ -140,24 +138,6 @@
                     {{addForm.time}}
                 </div>
             </div>
-<!--            <el-form :model="addForm" label-width="150px">-->
-<!--                <el-form-item label="系统公告标题:">-->
-<!--                    <el-input v-model="addForm.title" readonly></el-input>-->
-<!--                </el-form-item>-->
-<!--                &lt;!&ndash;                <el-form-item label="系统公告内容:">&ndash;&gt;-->
-<!--                &lt;!&ndash;                    <el-input v-model="addForm.content" disabled></el-input>&ndash;&gt;-->
-<!--                &lt;!&ndash;                </el-form-item>&ndash;&gt;-->
-<!--                <el-form-item label="系统公告内容:" prop="content">-->
-<!--                    <el-input-->
-<!--                        type="textarea"-->
-<!--                        :rows="7"-->
-<!--                        v-model="addForm.content" readonly>-->
-<!--                    </el-input>-->
-<!--                </el-form-item>-->
-<!--                <el-form-item label="系统公告时间:" prop="time">-->
-<!--                    <el-date-picker type="date" v-model="addForm.time" style="width: 100%;" readonly></el-date-picker>-->
-<!--                </el-form-item>-->
-<!--            </el-form>-->
             {{addForm.content}}
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
@@ -208,19 +188,15 @@ export default {
                 time: "",
                 status: false,
             },
-
-            // dialogTitle:addForm.title,
-
             //社团成员年级分布图表数据
             gradeGraphDescription:["16级","17级","18级","19级","20级","21级"],
             gradeGraphData:[5, 20, 36, 10, 10,20],
-
             //社团成员专业分布图表数据
             majorGraphData:[
                 {value:235, name:'软件工程'},
                 {value:400, name:'土木工程'},
                 {value:400, name:'车辆工程'},
-            ],
+                ],
 
             editDialogVisible: false,
             editDialogVisible2: false,
@@ -246,23 +222,28 @@ export default {
     },
     mounted()
     {
-        this.drawPeople();
+        this.getCommunityGraph();
+
     },
     //一开始就显示赞助列表
     created()
     {
         this.getAnnouncementList();
         this.getClubInfo();
-        this.getCommunityGraph();
+
     },
     methods: {
         async getCommunityGraph()
         {
             let result = await this.$http.post(this.$api.PrincipalGetCommunityGraph);
+
             this.gradeGraphDescription = result.data.gradeGraphDescription;
             this.gradeGraphData = result.data.gradeGraphData;
             this.majorGraphData = result.data.majorGraphData;
-            console.log(result.data);
+            console.log("getCommunityGraph")
+            console.log(this.gradeGraphDescription);
+            this.drawPeople();
+
             /*
             //社团成员年级分布图表数据
             gradeGraphDescription:["16级","17级","18级","19级","20级","21级"],
@@ -293,9 +274,9 @@ export default {
                 }]
             });
 
-            //性别分布饼状图
-            let genderChart = this.$echarts.init(document.getElementById('genderChart'), 'light');
-            genderChart.setOption({
+            //年级分布饼状图
+            let majorChart = this.$echarts.init(document.getElementById('majorChart'), 'light');
+            majorChart.setOption({
                 title: { text: '社团人员专业分布',left:'center' },
                 series : [
                     {
@@ -555,7 +536,7 @@ export default {
 
 <!--        <el-row :gutter="20">-->
 <!--            <el-col :span="12"><div id="gradeChart" style="width: 600px;height:400px;"></div></el-col>-->
-<!--            <el-col :span="12"><div id="genderChart" style="width: 600px;height:400px;"></div></el-col>-->
+<!--            <el-col :span="12"><div id="majorChart" style="width: 600px;height:400px;"></div></el-col>-->
 <!--        </el-row>-->
 
 
@@ -709,8 +690,8 @@ export default {
 <!--            });-->
 
 <!--            //性别分布饼状图-->
-<!--            let genderChart = this.$echarts.init(document.getElementById('genderChart'), 'light');-->
-<!--            genderChart.setOption({-->
+<!--            let majorChart = this.$echarts.init(document.getElementById('majorChart'), 'light');-->
+<!--            majorChart.setOption({-->
 <!--                title: { text: '社团人员专业分布' },-->
 <!--                series : [-->
 <!--                    {-->
