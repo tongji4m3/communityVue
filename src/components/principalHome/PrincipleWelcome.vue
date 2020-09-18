@@ -1,5 +1,18 @@
 <template>
     <div>
+        <!--        日历框-->
+        <el-dialog :visible.sync="showCalendar"
+                   width="50%">
+            <el-calendar>
+            </el-calendar>
+        </el-dialog>
+
+        <el-dialog :visible.sync="showSchoolCalendar"
+                   width="50%">
+            <img src="../../assets/img/calendar.jpg" alt="" style="width: 100%;margin:0;">
+        </el-dialog>
+
+        
         <el-row :gutter="0" class="el-row">
             <el-col :span="6">
                 <el-card class="card0" :body-style="{ padding: '20px'}">
@@ -13,6 +26,15 @@
                     <div class="image">{{clubForm.name}}负责人</div>
                     <br>
                     <div class="image">{{clubForm.number}} {{clubForm.presidentName}}</div>
+                    <br>
+                    <div class="image">
+                        <el-button @click="openCalendar" type="text">
+                            查看日历
+                        </el-button>
+                        <el-button @click="openSchoolCalendar" type="text">
+                            查看校历
+                        </el-button>
+                    </div>
 <!--                    <br>-->
 <!--                    <div class="image">{{clubForm.establishmentDate}}</div>-->
 

@@ -23,7 +23,7 @@
             <el-table :data="StudentList">
                 <el-table-column type="index"></el-table-column>
 
-                <el-table-column label="学生ID" prop="number"></el-table-column>
+                <el-table-column label="学号" prop="number"></el-table-column>
                 <el-table-column label="学生姓名" prop="studentName"></el-table-column>
                 <el-table-column label="活动名称" prop="activityName"></el-table-column>
                 <el-table-column label="申请时间" prop="applyDate"></el-table-column>
@@ -64,8 +64,11 @@
                    width="50%" center>
             <!--            展示内容主体区域 -->
             <el-form :model="checkForm" label-width="130px">
-                <el-form-item label="学生ID:" prop="studentId">
+                <el-form-item label="学号:" prop="studentId">
                     <el-input v-model="checkForm.number" readonly style="width:82%;"></el-input>
+                </el-form-item>
+                <el-form-item label="姓名:" prop="studentName">
+                    <el-input v-model="checkForm.studentName" readonly style="width:82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="参加时间:" prop="applyDate">
                     <el-date-picker type="date" v-model="checkForm.applyDate" style="width: 82%;" readonly></el-date-picker>

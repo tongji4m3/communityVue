@@ -8,11 +8,11 @@
             </div>
         </el-card>
 
-        <!--        日历按钮-->
-        <!-- <el-button type="text" @click="openCalendar">查看日历</el-button>
-        <el-button type="text" @click="openSchoolCalendar">查看校历</el-button> -->
+<!--        &lt;!&ndash;        日历按钮&ndash;&gt;-->
+<!--        <el-button :type="text" @click="openCalendar">查看日历</el-button>-->
+<!--        <el-button :type="text" @click="openSchoolCalendar">查看校历</el-button>-->
         <!--        日历框-->
-        <!-- <el-dialog :visible.sync="showCalendar"
+        <el-dialog :visible.sync="showCalendar"
                    width="50%">
             <el-calendar>
             </el-calendar>
@@ -23,12 +23,6 @@
             <img src="../../assets/img/calendar.jpg" alt="" style="width: 100%;margin:0;">
         </el-dialog>
 
-
-        <el-carousel :interval="4000" type="card" height="200px">
-            <el-carousel-item>
-                
-            </el-carousel-item>
-        </el-carousel> -->
 
         <!-- 待办事项 -->
         <el-card class="chart-card" >
