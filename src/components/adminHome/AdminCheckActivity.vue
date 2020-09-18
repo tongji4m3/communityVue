@@ -51,9 +51,13 @@
                 <el-table-column label="审核状态" prop="status_name"></el-table-column>
                 <el-table-column label="操作">
                     <template slot-scope="scope">
-                        <el-button type="primary" 
+                        <el-button v-if="activityList[scope.$index].status_name == '待审核'" type="primary" 
                             @click="showReplyDialog(scope.$index)">
                             审核
+                        </el-button>
+                        <el-button v-else type="primary" 
+                            @click="showReplyDialog(scope.$index)">
+                            详情
                         </el-button>
                     </template>
                 </el-table-column>
@@ -128,6 +132,7 @@
                 <el-button type="primary" @click="submitSuggestion()">提交建议</el-button>
                 <!-- 通过按钮 -->
                 <el-button 
+                    v-if="replyForm.status_name == '待审核'"
                     type="success" 
                     @click="updateStatusAndRefresh(this.replyForm.activityId, 1, 1)"
                     icon="el-icon-check" 
@@ -136,6 +141,7 @@
                 <!-- 拒绝按钮 -->
                 <el-button 
                     type="danger" 
+                    v-if="replyForm.status_name == '待审核'"
                     @click="updateStatusAndRefresh(this.replyForm.activityId, 2, 1)"
                     icon="el-icon-close" 
                     circle>
@@ -288,6 +294,7 @@ export default {
             this.replyForm.isPublic_str = result.data.isPublic?"公开活动":"社内活动";
             this.replyForm.adminName = result.data.adminName;
             this.replyForm.suggestion = result.data.suggestion;
+            this.replyDialogVisible = true;
         },
         //关闭详情对话框
         closeReplyDialog()
