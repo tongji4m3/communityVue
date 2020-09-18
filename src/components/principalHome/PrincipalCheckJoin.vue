@@ -22,7 +22,7 @@
             <!--            学生列表 只展示一些学生信息,详细文本可在详情查看-->
             <el-table :data="StudentList">
                 <el-table-column type="index"></el-table-column>
-                <el-table-column label="学生ID" prop="studentId"></el-table-column>
+                <el-table-column label="学生ID" prop="number"></el-table-column>
                 <el-table-column label="姓名" prop="studentName"></el-table-column>
                 <el-table-column label="申请入社时间" prop="applyDate"></el-table-column>
                 <el-table-column label="显示详情">
@@ -61,7 +61,7 @@
             <!--            展示内容主体区域 -->
             <el-form :model="checkForm" label-width="130px">
                 <el-form-item label="学生ID:">
-                    <el-input v-model="checkForm.studentId" readonly></el-input>
+                    <el-input v-model="checkForm.number" readonly></el-input>
                 </el-form-item>
                 <el-form-item label="姓名:">
                     <el-input v-model="checkForm.studentName" readonly></el-input>
@@ -107,7 +107,7 @@ export default {
             //查询到的当页学生
             StudentList: [
                 {
-                    studentId: "",
+                    number: "",
                     studentName:"",
                     applyDate:"",
                     applyReason:"",
@@ -121,7 +121,8 @@ export default {
 
             //添加学生表单数据
             checkForm: {
-                studentId: "",
+                number: "",
+                studentId:"",
                 studentName:"",
                 applyDate:"",
                 applyReason:"",
@@ -130,13 +131,16 @@ export default {
 
 
             //添加学生的校验规则
-            checkFormRules: {}
+            checkFormRules: {},
+            //社团名称
+            clubName:"",
         }
     },
     //一开始就显示申请学生的页面
     created()
     {
         this.getStudentList();
+        this.getClubName();
     },
     methods: {
         async getStudentList()
@@ -170,6 +174,7 @@ export default {
 
         async showDialog(StudentId)
         {
+            // console.log(StudentId);
             let result = await this.$http.post(this.$api.PrincipalGetOneJoinUrl + "/" + StudentId);
 
             this.checkForm = result.data;
@@ -187,7 +192,8 @@ export default {
               studentId:studentId_in,
               status:status_in
             });
-            console.log(studentId_in, status_in);
+            await this.sendAgreeMessage(studentId_in);
+            // console.log(studentId_in, status_in);
             //关闭对话框
             this.showDialogVisible = false;
             //    刷新数据列表
@@ -202,8 +208,8 @@ export default {
             studentId:studentId_in,
             status:status_in
           });
-          await this.sendMessage(studentId_in);
-          console.log(studentId_in, status_in);
+          await this.sendRejectMessage(studentId_in);
+          // console.log(studentId_in, status_in);
           //关闭对话框
           this.showDialogVisible = false;
           //    刷新数据列表
@@ -212,13 +218,33 @@ export default {
           this.$message.success("申请审核未通过!");
         },
 
-        async sendMessage(userId_in)
+        async sendRejectMessage(userId_in)
         {
+            console.log(this.clubName);
             await this.$http.post(this.$api.PrincipalRejectSendMessage, {
                 userId:userId_in,
                 title:'拒绝入社消息',
+
                 content:'很抱歉地通知您，您被拒绝加入社团',
             });
+        },
+
+        async sendAgreeMessage(userId_in)
+        {
+            await this.$http.post(this.$api.PrincipalRejectSendMessage, {
+                userId:userId_in,
+                title:'通过入社消息',
+
+                content:'很高兴地通知您，您被同意加入社团',
+            });
+        },
+
+        async getClubName()
+        {
+            let result = await this.$http.post(this.$api.PrincipalGetClubName);
+            thrtis.clubName = result.name;
+            console.log(this.clubName);
+            // console.log(this.addForm.description);
         },
     }
 }

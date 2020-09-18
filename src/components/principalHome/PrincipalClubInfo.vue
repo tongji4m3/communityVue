@@ -56,7 +56,8 @@
                     <el-input v-model="addForm.name" placeholder="请输入社团名称..." style="width:82%;"></el-input>
                 </el-form-item>
 
-                <quill-editor v-model="addForm.description" ref="myQuillEditor" style="height: 500px;width: 82%;" :options="editorOption">
+                <quill-editor v-model="addForm.description" ref="myQuillEditor" style="height: 500px;width: 82%;"
+                              :options="editorOption">
                 </quill-editor>
 
                 <!--                <el-form-item label="社团介绍:" prop="discription">-->
@@ -81,7 +82,8 @@
                 <el-form-item label="社团名称:">
                     <el-input v-model="addForm.name" placeholder="请输入社团名称..." style="width:82%;"></el-input>
                 </el-form-item>
-                <quill-editor v-model="addForm.logo" ref="myQuillEditor" style="height: 500px;width: 82%;" :options="editorOption">
+                <quill-editor v-model="addForm.logo" ref="myQuillEditor" style="height: 500px;width: 82%;"
+                              :options="editorOption">
                 </quill-editor>
                 <!--                <el-form-item label="社团介绍:" prop="discription">-->
                 <!--                    <el-input-->
@@ -130,7 +132,6 @@
                 },
                 //添加赞助申请的校验规则
                 addFormRules: {},
-
                 content: null,
                 editorOption: {},
                 //上传图片相关
@@ -145,7 +146,7 @@
             }
         },
         //一开始就显示赞助列表
-        async created()
+        created()
         {
             this.getClubInfo();
         },
@@ -179,10 +180,10 @@
                         {
                             console.log(`阿里云OSS上传图片成功回调`, res, url, name);
                             this.imgUrl = url;
-                                // {
-                                //     // imgUrl: this.imgUrl,
-                                //     imgUrl:"http://database-community.oss-cn-shanghai.aliyuncs.com/undefined/1600416216000"
-                                // });
+                            // {
+                            //     // imgUrl: this.imgUrl,
+                            //     imgUrl:"http://database-community.oss-cn-shanghai.aliyuncs.com/undefined/1600416216000"
+                            // });
                         }
                     })
                     .catch((err) =>
@@ -190,109 +191,105 @@
                         console.log(`阿里云OSS上传图片失败回调`, err);
                     });
                 console.log("这里", this.imgUrl);
-                let result = await this.$http.post(this.$api.UpdateAvatar + "?imgUrl="+this.imgUrl);
+                let result = await this.$http.post(this.$api.UpdateAvatar + "?imgUrl=" + this.imgUrl);
                 window.sessionStorage.setItem("imgUrl", this.imgUrl);
                 location.reload();
             },
-            /**
-             * 图片限制
-             */
-            beforeAvatarUpload(file)
+        /**
+         * 图片限制
+         */
+        beforeAvatarUpload(file)
+        {
+            const isJPEG = file.name.split(".")[1] === "jpeg";
+            const isJPG = file.name.split(".")[1] === "jpg";
+            const isPNG = file.name.split(".")[1] === "png";
+            const isLt500K = file.size / 1024 / 1024 / 5 < 2;
+            if (!isJPG && !isJPEG && !isPNG)
             {
-                const isJPEG = file.name.split(".")[1] === "jpeg";
-                const isJPG = file.name.split(".")[1] === "jpg";
-                const isPNG = file.name.split(".")[1] === "png";
-                const isLt500K = file.size / 1024 / 1024 / 5 < 2;
-                if (!isJPG && !isJPEG && !isPNG)
+                this.$message.error("上传图片只能是 JPEG/JPG/PNG 格式!");
+            }
+            if (!isLt500K)
+            {
+                this.$message.error("单张图片大小不能超过 5MB!");
+            }
+            return (isJPEG || isJPG || isPNG) && isLt500K;
+        },
+        /**
+         * 移除图片
+         */
+        handleRemove(file, fileList)
+        {
+            console.log(`移除图片回调`, fileList);
+        },
+        async getClubInfo()
+        {
+            let result = await this.$http.post(this.$api.PrincipalGetClubInfo);
+            this.addForm = result.data;
+            // console.log(this.addForm.description);
+        },
+        cancelEdit()
+        {
+            this.editDialogVisible = false;
+            this.$message.info("取消修改社团信息!");
+        },
+        async showEditClubInfo()
+        {
+            let result = await this.$http.post(this.$api.PrincipalGetClubInfo);
+            this.addForm = result.data;
+            this.editDialogVisible = true;
+        },
+        async showEditClubLogo()
+        {
+            let result = await this.$http.post(this.$api.PrincipalGetClubInfo);
+            this.addForm = result.data;
+            this.editDialogVisible2 = true;
+        },
+        //点击确定按钮后,修改社团信息
+        async editClubInfo()
+        {
+            this.$refs.addFormRef.validate(
+                async valid =>
                 {
-                    this.$message.error("上传图片只能是 JPEG/JPG/PNG 格式!");
+                    if (!valid) return;
+                    // console.log(this.addForm);
+                    await this.$http.post(this.$api.PrincipalEditClubInfo, this.addForm);
+                    // this.clearAddForm();
+                    // this.$refs.addFormRef.resetFields();
+                    //关闭对话框
+                    this.editDialogVisible = false;
+                    //    刷新数据列表
+                    await this.getClubInfo();
+                    //    提示成功
+                    this.$message.success("修改社团信息成功!");
                 }
-                if (!isLt500K)
+            );
+        },
+        async editClubLogo()
+        {
+            this.$refs.addFormRef.validate(
+                async valid =>
                 {
-                    this.$message.error("单张图片大小不能超过 5MB!");
+                    if (!valid) return;
+                    // console.log(this.addForm);
+                    await this.$http.post(this.$api.PrincipalEditClubInfo, this.addForm);
+                    // this.clearAddForm();
+                    // this.$refs.addFormRef.resetFields();
+                    //关闭对话框
+                    this.editDialogVisible2 = false;
+                    //    刷新数据列表
+                    await this.getClubInfo();
+                    //    提示成功
+                    this.$message.success("修改社团Logo成功!");
                 }
-                return (isJPEG || isJPG || isPNG) && isLt500K;
-            },
-            /**
-             * 移除图片
-             */
-            handleRemove(file, fileList)
-            {
-                console.log(`移除图片回调`, fileList);
-            },
-            async getClubInfo()
-            {
-                let result = await this.$http.post(this.$api.PrincipalGetClubInfo,
-                    {
-                        description: this.description,
-                        logo: this.logo,
-                    });
-                this.addForm = result.data;
-                // console.log(this.addForm.description);
-            },
-            cancelEdit()
-            {
-                this.editDialogVisible = false;
-                this.$message.info("取消修改社团信息!");
-            },
-            async showEditClubInfo()
-            {
-                let result = await this.$http.post(this.$api.PrincipalGetClubInfo);
-                this.addForm = result.data;
-                this.editDialogVisible = true;
-            },
-            async showEditClubLogo()
-            {
-                let result = await this.$http.post(this.$api.PrincipalGetClubInfo);
-                this.addForm = result.data;
-                this.editDialogVisible2 = true;
-            },
-            //点击确定按钮后,修改社团信息
-            async editClubInfo()
-            {
-                this.$refs.addFormRef.validate(
-                    async valid =>
-                    {
-                        if (!valid) return;
-                        // console.log(this.addForm);
-                        await this.$http.post(this.$api.PrincipalEditClubInfo, this.addForm);
-                        // this.clearAddForm();
-                        // this.$refs.addFormRef.resetFields();
-                        //关闭对话框
-                        this.editDialogVisible = false;
-                        //    刷新数据列表
-                        await this.getClubInfo();
-                        //    提示成功
-                        this.$message.success("修改社团信息成功!");
-                    }
-                );
-            },
-            async editClubLogo()
-            {
-                this.$refs.addFormRef.validate(
-                    async valid =>
-                    {
-                        if (!valid) return;
-                        // console.log(this.addForm);
-                        await this.$http.post(this.$api.PrincipalEditClubInfo, this.addForm);
-                        // this.clearAddForm();
-                        // this.$refs.addFormRef.resetFields();
-                        //关闭对话框
-                        this.editDialogVisible2 = false;
-                        //    刷新数据列表
-                        await this.getClubInfo();
-                        //    提示成功
-                        this.$message.success("修改社团Logo成功!");
-                    }
-                );
-            },
-            async deleteClub()
-            {
-                await this.$http.post(this.$api.PrincipalDissolveClub);
-                window.sessionStorage.clear();
-                await this.$router.push({path: "/welcome"});
-            },
-        }
+            );
+        },
+        async deleteClub()
+        {
+            await this.$http.post(this.$api.PrincipalDissolveClub);
+            window.sessionStorage.clear();
+            await this.$router.push({path: "/welcome"});
+        },
+    }
     }
 
 </script>

@@ -169,6 +169,8 @@ module.exports = {
      */
     PrincipalGetClubInfo:APIRootUrl+'principal/getClubInfo',
 
+    PrincipalGetClubName:APIRootUrl+'principal/getClubName',
+
     PrincipalEditClubInfo:APIRootUrl+'principal/editClubInfo',
 
     PrincipalDissolveClub:APIRootUrl+'principal/dissolveClub',
