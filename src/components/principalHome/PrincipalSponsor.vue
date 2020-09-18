@@ -24,7 +24,7 @@
             <!--            公告列表 只展示一些公告信息,详细文本可在详情查看-->
             <el-table :data="SponsorshipList">
                 <el-table-column type="index"></el-table-column>
-<!--                                <el-table-column label="编号" prop="sponsorshipId"></el-table-column>-->
+                <!--                <el-table-column label="编号" prop="sponsorshipId"></el-table-column>-->
                 <el-table-column label="赞助方" prop="sponsor"></el-table-column>
                 <el-table-column label="赞助金额/￥" prop="amount"></el-table-column>
                 <el-table-column label="申请时间" prop="applyDate"></el-table-column>

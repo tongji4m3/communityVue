@@ -18,9 +18,9 @@
                     <el-dropdown-menu slot="dropdown">
                         <el-dropdown-item class="navigation-text" id="username-div">{{username}}</el-dropdown-item>
                         <el-dropdown-item class="navigation-text" @click.native="changePassword">修改密码</el-dropdown-item>
-<!--                        <el-dropdown-item class="navigation-text" @click.native="systemInformation">-->
-<!--                            <el-badge value="new" class="item" :hidden="showDot">系统消息</el-badge>-->
-<!--                        </el-dropdown-item>-->
+                        <el-dropdown-item class="navigation-text" @click.native="systemInformation">
+                            <el-badge value="new" class="item" :hidden="showDot">系统消息</el-badge>
+                        </el-dropdown-item>
                         <el-dropdown-item class="navigation-text" @click.native="systemNotice">
                             <el-badge value="new" class="item" :hidden="showDot">系统公告</el-badge>
                         </el-dropdown-item>

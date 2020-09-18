@@ -22,7 +22,7 @@
             <!--            学生列表 只展示一些学生信息,详细文本可在详情查看-->
             <el-table :data="StudentList">
                 <el-table-column type="index"></el-table-column>
-                <el-table-column label="学号" prop="number"></el-table-column>
+                <el-table-column label="学生ID" prop="number"></el-table-column>
                 <el-table-column label="姓名" prop="studentName"></el-table-column>
                 <el-table-column label="申请入社时间" prop="applyDate"></el-table-column>
                 <el-table-column label="显示详情">
@@ -60,7 +60,7 @@
                    width="50%" center>
             <!--            展示内容主体区域 -->
             <el-form :model="checkForm" label-width="130px">
-                <el-form-item label="学号:">
+                <el-form-item label="学生ID:">
                     <el-input v-model="checkForm.number" readonly></el-input>
                 </el-form-item>
                 <el-form-item label="姓名:">
@@ -220,7 +220,7 @@ export default {
 
         async sendRejectMessage(userId_in)
         {
-            // console.log(this.clubName);
+            console.log(this.clubName);
             await this.$http.post(this.$api.PrincipalRejectSendMessage, {
                 userId:userId_in,
                 title:'拒绝入社消息',

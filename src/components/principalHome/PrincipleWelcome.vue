@@ -5,15 +5,7 @@
                 <el-card class="card0" :body-style="{ padding: '20px'}">
                     <br>
                     <div class="image" >
-
-<!--                        <img width="140" height="140" src="imgUrl">-->
-<!--                        <el-avatar width="140" height="140" :src="imgUrl"></el-avatar>-->
-                        <img
-                            width="140"
-                            height="140"
-                            :src="imgUrl"
-                            style="border-radius:50%; ">
-<!--                        <img width="140" height="140" src="../../assets/img/jitaxiehui.png">-->
+                        <img width="140" height="140" src="../../assets/img/jitaxiehui.png">
                     </div>
                     <br>
                     <div class="image">{{clubForm.type}}</div>
@@ -21,15 +13,6 @@
                     <div class="image">{{clubForm.name}}负责人</div>
                     <br>
                     <div class="image">{{clubForm.number}} {{clubForm.presidentName}}</div>
-                    <br>
-                    <div class="image">
-                        <el-button type="text" @click="openCalendar()">
-                            查看日历
-                        </el-button>
-                        <el-button type="text" @click="openSchoolCalendar()">
-                            查看校历
-                        </el-button>
-                    </div>
 <!--                    <br>-->
 <!--                    <div class="image">{{clubForm.establishmentDate}}</div>-->
 
@@ -57,7 +40,81 @@
                     </el-table>
                 </el-card>
             </el-col>
+            <!-- <el-col :span="8">
+                <el-card>
+                    <el-row class="el-row2">
+                        <el-col :span="8">
+                            <div  class="img">
+                                <img width="60" height="60" src="../../assets/img/jitaxiehui.png">
+                                <br>
+                                社团信息
+                            </div>
+                        </el-col>
+                        <el-col :span="8">
+                            <div  class="img">
+                                <img width="60" height="60" src="../../assets/img/jitaxiehui.png">
+                                <br>
+                                公告管理
+                            </div>
+                        </el-col>
+                        <el-col :span="8">
+                            <div  class="img">
+                                <img width="60" height="60" src="../../assets/img/jitaxiehui.png">
+                                <br>
+                                活动管理
+                            </div>
+                        </el-col>
+                    </el-row>
+                    <el-row class="el-row2">
+                        <el-col :span="8">
+                            <div  class="img">
+                                <img width="60" height="60" src="../../assets/img/jitaxiehui.png">
+                                <br>
+                                成员管理
+                            </div>
+                        </el-col>
+                        <el-col :span="8">
+                            <div  class="img">
+                                <img width="60" height="60" src="../../assets/img/jitaxiehui.png">
+                                <br>
+                                入社人员审核
+                            </div>
+                        </el-col>
+                        <el-col :span="8">
+                            <div  class="img">
+                                <img width="60" height="60" src="../../assets/img/jitaxiehui.png">
+                                <br>
+                                活动人员审核
+                            </div>
+                        </el-col>
+                    </el-row>
+                    <el-row class="el-row2">
+                        <el-col :span="8">
+                            <div  class="img">
+                                <img width="60" height="60" src="../../assets/img/jitaxiehui.png">
+                                <br>
+                                换届管理
+                            </div>
+                        </el-col>
+                        <el-col :span="8">
+                            <div  class="img">
+                                <img width="60" height="60" src="../../assets/img/jitaxiehui.png">
+                                <br>
+                                赞助申报
+                            </div>
+                        </el-col>
+                        <el-col :span="8">
+                            <div  class="img">
+                                <img width="60" height="60" src="../../assets/img/jitaxiehui.png">
+                                <br>
+                                查看校历
+                            </div>
+                        </el-col>
+                    </el-row>
+                </el-card>
+            </el-col> -->
         </el-row>
+        <!--        <br>-->
 		<!-- 图表 -->
         <el-row :gutter="0" class="el-row">
             <el-col :span="24">
@@ -88,24 +145,7 @@
   </span>
         </el-dialog>
 
-        <!--        日历按钮-->
-        <el-button type="text" @click="openCalendar">
-            查看日历
-        </el-button>
-        <el-button type="text" @click="openSchoolCalendar">
-            查看校历
-        </el-button>
-        <!--        日历框-->
-        <el-dialog :visible.sync="showCalendar"
-                   width="50%">
-            <el-calendar>
-            </el-calendar>
-        </el-dialog>
 
-        <el-dialog :visible.sync="showSchoolCalendar"
-                   width="50%">
-            <img src="../../assets/img/calendar.jpg" alt="" style="width: 100%;margin:0;">
-        </el-dialog>
     </div>
 
 </template>
@@ -117,7 +157,6 @@ import {
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
-import ossClient from "@/assets/config/aliyun.oss.client";
 export default {
     name: 'FuncFormsEdit',
     components: {
@@ -178,7 +217,7 @@ export default {
             content: null,
             editorOption: {},
 
-            imgUrl: window.sessionStorage.getItem("imgUrl"),
+
         }
     },
     mounted()
@@ -194,38 +233,6 @@ export default {
 
     },
     methods: {
-
-        async uploadHttp({file})
-        {
-            this.init();
-            const {imgName} = "ALIOSS_IMG_";
-            const fileName = `${imgName}/${Date.parse(new Date())}`; //定义唯一的文件名
-            await ossClient(this.uploadConf)
-                .put(fileName, file, {
-                    ContentType: "image/jpeg",
-                })
-                .then(({res, url, name}) =>
-                {
-                    if (res && res.status === 200)
-                    {
-                        console.log(`阿里云OSS上传图片成功回调`, res, url, name);
-                        this.imgUrl = url;
-                        // {
-                        //     // imgUrl: this.imgUrl,
-                        //     imgUrl:"http://database-community.oss-cn-shanghai.aliyuncs.com/undefined/1600416216000"
-                        // });
-                    }
-                })
-                .catch((err) =>
-                {
-                    console.log(`阿里云OSS上传图片失败回调`, err);
-                });
-            console.log("这里", this.imgUrl);
-            let result = await this.$http.post(this.$api.UpdateAvatar + "?imgUrl=" + this.imgUrl);
-            window.sessionStorage.setItem("imgUrl", this.imgUrl);
-            location.reload();
-        },
-
         async getCommunityGraph()
         {
             let result = await this.$http.post(this.$api.PrincipalGetCommunityGraph);
@@ -499,8 +506,6 @@ export default {
     margin-right: 10px;
 }
 </style>
-<<<<<<< HEAD
-=======
 
 <!--<template>-->
 <!--    <div>-->
