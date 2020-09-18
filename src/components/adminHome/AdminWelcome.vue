@@ -6,7 +6,10 @@
                     <br>
                     <div class="image" >
 <!--                        https://tongji4m3.oss-cn-beijing.aliyuncs.com/f_f_object_156_s512_f_object_156_0.png-->
-                        <img width="140" height="140" :src="imgUrl">
+                        <img width="140"
+                             height="140"
+                             :src="imgUrl"
+                             style="border-radius:50%; ">
 <!--                        <el-avatar width="140" height="140" :src="imgUrl"></el-avatar>-->
 <!--                        <img width="140" height="140" src="https://tongji4m3.oss-cn-beijing.aliyuncs.com/f_f_object_156_s512_f_object_156_0.png">-->
                     </div>
