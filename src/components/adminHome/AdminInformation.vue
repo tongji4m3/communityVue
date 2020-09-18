@@ -77,44 +77,44 @@
         </el-card>
         <!-- 详细内容对话框 -->
         <el-dialog title="社团详情" :visible.sync="replyDialogVisible"
-                   width="50%">
+                   width="50%" center>
             <!-- 展示内容主体区域 -->
             <el-form :model="this.replyForm" label-width="150px">
                 <el-form-item label="社团名称:">
-                    <el-input v-model="this.replyForm.name" readonly></el-input>
+                    <el-input v-model="this.replyForm.name" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="社团状态:">
-                    <el-input v-model="this.replyForm.status_name" readonly></el-input>
+                    <el-input v-model="this.replyForm.status_name" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="社团类型:">
-                    <el-input v-model="this.replyForm.type" readonly></el-input>
+                    <el-input v-model="this.replyForm.type" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="成立时间:">
-                    <el-date-picker type="date" v-model="this.replyForm.establishmentDate" style="width: 100%;" readonly></el-date-picker>
+                    <el-date-picker type="date" v-model="this.replyForm.establishmentDate" style="width: 82%;" readonly></el-date-picker>
                 </el-form-item>
                 <el-form-item label="社团描述:">
                     <div v-html="this.replyForm.description">{{this.replyForm.description}}</div>
                 </el-form-item>
                 <el-form-item label="负责人姓名:">
-                    <el-input v-model="this.replyForm.presidentName" readonly></el-input>
+                    <el-input v-model="this.replyForm.presidentName" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="负责人电话:">
-                    <el-input v-model="this.replyForm.phone" readonly></el-input>
+                    <el-input v-model="this.replyForm.phone" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="负责人邮箱:">
-                    <el-input v-model="this.replyForm.mail" readonly></el-input>
+                    <el-input v-model="this.replyForm.mail" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="负责人年级:">
-                    <el-input v-model="this.replyForm.grade" readonly></el-input>
+                    <el-input v-model="this.replyForm.grade" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="负责人专业:">
-                    <el-input v-model="this.replyForm.major" readonly></el-input>
+                    <el-input v-model="this.replyForm.major" readonly style="width: 82%;"></el-input>
                 </el-form-item>
             </el-form>
             <!-- 底部区域 -->
             <span slot="footer" class="dialog-footer">
                 <!-- 取消按钮 -->
-                <el-button @click="closeReplyDialog()">返 回</el-button>
+                <el-button @click="closeReplyDialog()" >返 回</el-button>
                 <!-- 联系按钮 -->
                 <el-button type="primary" @click="showMessageDialog()">联系负责人</el-button>
                 <!-- 通过按钮 -->

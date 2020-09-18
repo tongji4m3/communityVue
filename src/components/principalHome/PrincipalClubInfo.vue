@@ -7,8 +7,8 @@
             <el-breadcrumb-item>社团信息</el-breadcrumb-item>
         </el-breadcrumb>
         <el-divider></el-divider>
-        <span> {{addForm.name}}的社团负责人您好！</span>
-        <br><br>
+        <!-- <span> {{addForm.name}}的社团负责人您好！</span> -->
+        <!-- <br> --><!-- <br> -->
         <!--        卡片-->
         <el-card  :body-style="{ padding: '10px'}">
             <div v-html="addForm.logo">{{addForm.logo}}</div>
@@ -40,13 +40,13 @@
         </div>
         <!--        修改社团信息对话框-->
         <el-dialog title="修改社团信息" :visible.sync="editDialogVisible"
-                   width="80%">
+                   width="50%" center>
             <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="100px">
                 <el-form-item label="社团名称:">
-                    <el-input v-model="addForm.name" placeholder="请输入社团名称..."></el-input>
+                    <el-input v-model="addForm.name" placeholder="请输入社团名称..." style="width:82%;"></el-input>
                 </el-form-item>
 
-                <quill-editor v-model="addForm.description" ref="myQuillEditor" style="height: 500px;" :options="editorOption">
+                <quill-editor v-model="addForm.description" ref="myQuillEditor" style="height: 500px;width: 82%;" :options="editorOption">
                 </quill-editor>
 
                 <!--                <el-form-item label="社团介绍:" prop="discription">-->
@@ -60,18 +60,18 @@
             </el-form>
 
             <span slot="footer" class="dialog-footer">
-                    <el-button @click="cancelEdit">取 消</el-button>
+                    <el-button @click="cancelEdit" style="margin-right: 20px;">取 消</el-button>
                     <el-button type="primary" @click="editClubInfo">确 定</el-button>
             </span>
         </el-dialog>
         <!--        修改社团信息对话框-->
         <el-dialog title="修改社团信息" :visible.sync="editDialogVisible2"
-                   width="80%">
+                   width="50%" center>
             <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="100px">
                 <el-form-item label="社团名称:">
-                    <el-input v-model="addForm.name" placeholder="请输入社团名称..."></el-input>
+                    <el-input v-model="addForm.name" placeholder="请输入社团名称..." style="width:82%;"></el-input>
                 </el-form-item>
-                <quill-editor v-model="addForm.logo" ref="myQuillEditor" style="height: 500px;" :options="editorOption">
+                <quill-editor v-model="addForm.logo" ref="myQuillEditor" style="height: 500px;width: 82%;" :options="editorOption">
                 </quill-editor>
                 <!--                <el-form-item label="社团介绍:" prop="discription">-->
                 <!--                    <el-input-->
@@ -84,7 +84,7 @@
             </el-form>
 
             <span slot="footer" class="dialog-footer">
-                          <el-button @click="cancelEdit">取 消</el-button>
+                          <el-button @click="cancelEdit" style="margin-right: 20px;">取 消</el-button>
                           <el-button type="primary" @click="editClubLogo">确 定</el-button>
                 </span>
         </el-dialog>
@@ -131,11 +131,7 @@ export default {
     methods: {
         async getClubInfo()
         {
-            let result = await this.$http.post(this.$api.PrincipalGetClubInfo,
-                {
-                    description: this.description,
-                    logo:this.logo,
-                });
+            let result = await this.$http.post(this.$api.PrincipalGetClubInfo);
             this.addForm = result.data;
             // console.log(this.addForm.description);
         },

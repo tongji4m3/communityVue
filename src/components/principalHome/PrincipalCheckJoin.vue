@@ -42,7 +42,7 @@
                 </el-table-column>
 
             </el-table>
-
+            <br>
             <!--            分页区域-->
             <el-pagination
                 @size-change="handleSizeChange"
@@ -57,7 +57,7 @@
 
         <!--        展示申请原因-->
         <el-dialog title="申请入社详情" ref="showFormRef" :visible.sync="showDialogVisible"
-                   width="50%">
+                   width="50%" center>
             <!--            展示内容主体区域 -->
             <el-form :model="checkForm" label-width="130px">
                 <el-form-item label="学生ID:">
@@ -82,11 +82,11 @@
             <span slot="footer" class="dialog-footer">
                 <!--                        通过按钮-->
                 <el-button type="success" @click="agreeStudent(checkForm.studentId,1)"
-                       icon="el-icon-check" circle></el-button>
+                       icon="el-icon-check" circle style="margin-right:30px ;"></el-button>
                 <!--                        不通过按钮-->
                 <el-button type="danger" @click="rejectStudent(checkForm.studentId,0)"
                        icon="el-icon-close " circle></el-button>
-                <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
+                <!-- <el-button type="primary" @click="closeDialogVisible">确 定</el-button> -->
             </span>
         </el-dialog>
     </div>
@@ -107,7 +107,7 @@ export default {
             //查询到的当页学生
             StudentList: [
                 {
-                    studentId: "",
+                    number: "",
                     studentName:"",
                     applyDate:"",
                     applyReason:"",
@@ -121,7 +121,7 @@ export default {
 
             //添加学生表单数据
             checkForm: {
-                studentId: "",
+                number: "",
                 studentName:"",
                 applyDate:"",
                 applyReason:"",
@@ -170,6 +170,7 @@ export default {
 
         async showDialog(StudentId)
         {
+            // console.log(StudentId);
             let result = await this.$http.post(this.$api.PrincipalGetOneJoinUrl + "/" + StudentId);
 
             this.checkForm = result.data;

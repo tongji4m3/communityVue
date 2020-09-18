@@ -90,36 +90,37 @@
         </el-card>
          <!-- 展示批复对话框 -->
         <el-dialog title="活动详情" :visible.sync="replyDialogVisible"
-                   width="50%">
+                   width="50%" center>
             <!-- 展示内容主体区域 -->
             <el-form :model="this.replyForm" label-width="150px">
                 <el-form-item label="社团名称:">
-                    <el-input v-model="this.replyForm.clubName" readonly></el-input>
+                    <el-input v-model="this.replyForm.clubName" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="赞助商:">
-                    <el-input v-model="this.replyForm.sponsor" readonly></el-input>
+                    <el-input v-model="this.replyForm.sponsor" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="赞助金额:">
-                    <el-input v-model="this.replyForm.amount" readonly></el-input>
+                    <el-input v-model="this.replyForm.amount" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="提交时间:">
-                    <el-date-picker type="date" v-model="this.replyForm.applyDate" style="width: 100%;" readonly></el-date-picker>
+                    <el-date-picker type="date" v-model="this.replyForm.applyDate" style="width: 82%;" readonly></el-date-picker>
                 </el-form-item>
                 <el-form-item label="审核状态:">
-                    <el-input v-model="this.replyForm.status_name" readonly></el-input>
+                    <el-input v-model="this.replyForm.status_name" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="赞助商需求:">
                     <el-input 
                         v-model="replyForm.requirement"
                         type="textarea"
                         :autosize = "{ minRows: 3, maxRows: 8 }"
-                        readonly>
+                        readonly style="width: 82%;">
                     </el-input>
                 </el-form-item>
                 <el-form-item label="建议:">
                     <el-input 
                         v-model="replyForm.suggestion"
                         type="textarea"
+						style="width: 82%;"
                         :autosize = "{ minRows: 3, maxRows: 10 }"
                         palceholder="请在此处输入您对这项赞助的建议"
                         maxlength="2000"
@@ -232,6 +233,8 @@ export default {
                     amount: result.data.data[i].amount,
                     status_name: this.statusToStr(result.data.data[i].status)
                 };
+                console.log(sponsorItem);
+                console.log(result.data);
                 this.sponsorList.push(sponsorItem);
             }
             this.totalCount = parseInt(result.data.totalCount);
