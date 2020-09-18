@@ -6,8 +6,9 @@
                     <br>
                     <div class="image" >
 <!--                        https://tongji4m3.oss-cn-beijing.aliyuncs.com/f_f_object_156_s512_f_object_156_0.png-->
-<!--                        <img width="140" height="140" src="../../assets/img/jitaxiehui.png">-->
-                        <img width="140" height="140" src="https://tongji4m3.oss-cn-beijing.aliyuncs.com/f_f_object_156_s512_f_object_156_0.png">
+                        <img width="140" height="140" :src="imgUrl">
+<!--                        <el-avatar width="140" height="140" :src="imgUrl"></el-avatar>-->
+<!--                        <img width="140" height="140" src="https://tongji4m3.oss-cn-beijing.aliyuncs.com/f_f_object_156_s512_f_object_156_0.png">-->
                     </div>
                     <br>
                     <div class="image">{{username}}</div>
@@ -140,6 +141,7 @@ export default {
                 status: false,
             },
             username: window.sessionStorage.getItem('name'),
+            imgUrl: window.sessionStorage.getItem("imgUrl"),
         }
     },
     //一开始就显示系统公告列表，待办事项

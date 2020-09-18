@@ -7,6 +7,7 @@
                     <div class="image" >
 
 <!--                        <img width="140" height="140" src="imgUrl">-->
+<!--                        <el-avatar width="140" height="140" :src="imgUrl"></el-avatar>-->
                         <img width="140" height="140" :src="imgUrl">
 <!--                        <img width="140" height="140" src="../../assets/img/jitaxiehui.png">-->
                     </div>
