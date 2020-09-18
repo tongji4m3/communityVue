@@ -225,8 +225,10 @@ export default {
             switch(status) {
                 case true:
                     return '已通过';
+                case false:
+                    return '未审核'
                 default:
-                    return '未审核';
+                    return '未定义';
             }
         },
     }

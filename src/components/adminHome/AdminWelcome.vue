@@ -10,9 +10,18 @@
                         <img width="140" height="140" src="https://tongji4m3.oss-cn-beijing.aliyuncs.com/f_f_object_156_s512_f_object_156_0.png">
                     </div>
                     <br>
+                    <div class="image">{{username}}</div>
+                    <br>
                     <div class="image">管理员</div>
                     <br>
-                    <div class="image"></div>
+                    <div class="image">
+                        <el-button type="text" @click="openCalendar()">
+                            查看日历
+                        </el-button>
+                        <el-button type="text" @click="openSchoolCalendar()">
+                            查看校历
+                        </el-button>
+                    </div>
                     <!--                    <br>-->
                     <!--                    <div class="image">{{clubForm.establishmentDate}}</div>-->
 
@@ -56,10 +65,14 @@
         </el-row>
 
         <!--        日历按钮-->
-        <!-- <el-button type="text" @click="openCalendar">查看日历</el-button>
-        <el-button type="text" @click="openSchoolCalendar">查看校历</el-button> -->
+        <el-button type="text" @click="openCalendar">
+            查看日历
+        </el-button>
+        <el-button type="text" @click="openSchoolCalendar">
+            查看校历
+        </el-button>
         <!--        日历框-->
-        <!-- <el-dialog :visible.sync="showCalendar"
+        <el-dialog :visible.sync="showCalendar"
                    width="50%">
             <el-calendar>
             </el-calendar>
@@ -71,11 +84,11 @@
         </el-dialog>
 
 
-        <el-carousel :interval="4000" type="card" height="200px">
-            <el-carousel-item>
-                
-            </el-carousel-item>
-        </el-carousel> -->
+<!--        <el-carousel :interval="4000" type="card" height="200px">-->
+<!--            <el-carousel-item>-->
+<!--                -->
+<!--            </el-carousel-item>-->
+<!--        </el-carousel>-->
 
         <!--        展示系统公告对话框-->
         <el-dialog ref="showFormRef" :visible.sync="showDialogVisible"
@@ -126,6 +139,7 @@ export default {
                 time: "",
                 status: false,
             },
+            username: window.sessionStorage.getItem('name'),
         }
     },
     //一开始就显示系统公告列表，待办事项

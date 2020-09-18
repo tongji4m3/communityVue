@@ -16,6 +16,15 @@
                     <div class="image">{{clubForm.name}}负责人</div>
                     <br>
                     <div class="image">{{clubForm.number}} {{clubForm.presidentName}}</div>
+                    <br>
+                    <div class="image">
+                        <el-button type="text" @click="openCalendar()">
+                            查看日历
+                        </el-button>
+                        <el-button type="text" @click="openSchoolCalendar()">
+                            查看校历
+                        </el-button>
+                    </div>
 <!--                    <br>-->
 <!--                    <div class="image">{{clubForm.establishmentDate}}</div>-->
 
@@ -74,7 +83,24 @@
   </span>
         </el-dialog>
 
+        <!--        日历按钮-->
+        <el-button type="text" @click="openCalendar">
+            查看日历
+        </el-button>
+        <el-button type="text" @click="openSchoolCalendar">
+            查看校历
+        </el-button>
+        <!--        日历框-->
+        <el-dialog :visible.sync="showCalendar"
+                   width="50%">
+            <el-calendar>
+            </el-calendar>
+        </el-dialog>
 
+        <el-dialog :visible.sync="showSchoolCalendar"
+                   width="50%">
+            <img src="../../assets/img/calendar.jpg" alt="" style="width: 100%;margin:0;">
+        </el-dialog>
     </div>
 
 </template>
@@ -793,4 +819,3 @@ export default {
 <!--        /*margin-top: 10px;*/-->
 <!--    }-->
 <!--</style>-->
->>>>>>> bf88343655adf4408a9f4682d1a1b7a4942a80fa
