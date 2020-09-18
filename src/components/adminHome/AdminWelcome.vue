@@ -9,10 +9,10 @@
         </el-card>
 
         <!--        日历按钮-->
-        <el-button type="text" @click="openCalendar">查看日历</el-button>
-        <el-button type="text" @click="openSchoolCalendar">查看校历</el-button>
+        <!-- <el-button type="text" @click="openCalendar">查看日历</el-button>
+        <el-button type="text" @click="openSchoolCalendar">查看校历</el-button> -->
         <!--        日历框-->
-        <el-dialog :visible.sync="showCalendar"
+        <!-- <el-dialog :visible.sync="showCalendar"
                    width="50%">
             <el-calendar>
             </el-calendar>
@@ -27,7 +27,7 @@
             <el-carousel-item v-for="item in 6" :key="item">
                 <h3 class="medium">{{ item }}</h3>
             </el-carousel-item>
-        </el-carousel>
+        </el-carousel> -->
 
         <el-card>
 
@@ -56,6 +56,7 @@
                     </template>
                 </el-table-column>
             </el-table>
+			<br>
             <el-pagination
                 @size-change="handleSizeChange"
                 @current-change="handleCurrentChange"

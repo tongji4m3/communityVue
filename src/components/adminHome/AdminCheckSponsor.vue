@@ -4,12 +4,12 @@
         <el-breadcrumb separator-class="el-icon-arrow-right">
             <el-breadcrumb-item :to="{ path: '/welcome' }">首页</el-breadcrumb-item>
             <el-breadcrumb-item :to="{ path: '/adminWelcome' }">管理员首页</el-breadcrumb-item>
-            <el-breadcrumb-item>社团赞助审核</el-breadcrumb-item>
+            <el-breadcrumb-item>赞助审核</el-breadcrumb-item>
         </el-breadcrumb>
         <el-divider></el-divider>
         <!-- 卡片 -->
         <el-card class="box-card">
-            <el-row :gutter="20">
+            <el-row :gutter="24">
                  <!-- 模糊搜索 -->
                 <el-col :span="10">
                     <el-input clearable @clear="getSponsorList('all', query)"  placeholder="请输入内容" v-model="query">
@@ -20,7 +20,7 @@
                 <el-col :span="1"  class="center">
                     <el-button type="text" disabled>状态：</el-button>
                 </el-col>
-                <el-col :span="2">
+                <!-- <el-col :span="2">
                     <el-button type="primary" @click="getSponsorList('all', query)">{{quanbu}}</el-button>
                 </el-col>
                 <el-col :span="2">
@@ -31,7 +31,14 @@
                 </el-col>
                 <el-col :span="2">
                     <el-button type="primary" @click="getSponsorList('failed', query)">未通过</el-button>
-                </el-col>
+                </el-col> -->
+				<el-col :span="12">
+					<el-button type="primary" @click="getSponsorList('all', query)">{{quanbu}}</el-button>
+					<el-button type="primary" @click="getSponsorList('unaudited', query)">待审核</el-button>
+					<el-button type="primary" @click="getSponsorList('pass', query)">已通过</el-button>
+				    <el-button type="primary" @click="getSponsorList('failed', query)">未通过</el-button>
+				</el-col>
+				
             </el-row>
             <!-- 赞助列表 -->
             <el-table :data="sponsorList">
@@ -69,7 +76,7 @@
                 </el-table-column>
             </el-table>
         
-
+         <br>
         <!-- 分页区域 -->
         <el-pagination
                 @size-change="handleSizeChange"
@@ -327,5 +334,6 @@ export default {
     margin: auto 0;
     vertical-align: 50%;
 }
+
 </style>
 
