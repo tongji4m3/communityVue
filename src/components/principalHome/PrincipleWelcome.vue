@@ -8,9 +8,13 @@
                         <img width="140" height="140" src="../../assets/img/jitaxiehui.png">
                     </div>
                     <br>
+                    <div class="image">{{clubForm.type}}</div>
+                    <br>
                     <div class="image">{{clubForm.name}}负责人</div>
                     <br>
-                    <div class="image">1851632 李鸿飞</div>
+                    <div class="image">{{clubForm.number}} {{clubForm.presidentName}}</div>
+<!--                    <br>-->
+<!--                    <div class="image">{{clubForm.establishmentDate}}</div>-->
 
                 </el-card>
             </el-col>
@@ -123,27 +127,18 @@
             </el-col>
         </el-row>
         <!--        展示系统公告对话框-->
-        <el-dialog title="系统公告详情" ref="showFormRef" :visible.sync="showDialogVisible"
-                   width="50%" center>
+        <el-dialog ref="showFormRef" :visible.sync="showDialogVisible"
+                   width="50%">
             <!--            展示内容主体区域 -->
-            <el-form :model="addForm" label-width="150px">
-                <el-form-item label="公告标题:">
-                    <el-input v-model="addForm.title" readonly style="width: 82%;"></el-input>
-                </el-form-item>
-                <!--                <el-form-item label="系统公告内容:">-->
-                <!--                    <el-input v-model="addForm.content" disabled></el-input>-->
-                <!--                </el-form-item>-->
-                <el-form-item label="公告内容:" prop="content">
-                    <el-input
-                        type="textarea"
-                        :rows="7"
-                        v-model="addForm.content" readonly style="width: 82%;">
-                    </el-input>
-                </el-form-item>
-                <el-form-item label="公告时间:" prop="time">
-                    <el-date-picker type="date" v-model="addForm.time" style="width: 82%;" readonly></el-date-picker>
-                </el-form-item>
-            </el-form>
+            <div slot="title">
+                <h1>
+                    {{addForm.title}}
+                </h1>
+                <div>
+                    {{addForm.time}}
+                </div>
+            </div>
+            {{addForm.content}}
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
     <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
@@ -169,7 +164,6 @@ export default {
     },
     data()
     {
-
         return {
             //获取系统公告列表参数对象
             query: '',
@@ -195,6 +189,7 @@ export default {
                 status: false,
             },
 
+            // dialogTitle:addForm.title,
 
             //社团成员年级分布图表数据
             gradeGraphDescription:["16级","17级","18级","19级","20级","21级"],
@@ -215,12 +210,18 @@ export default {
                 description:"",
                 logo:"",
                 status: false,
+                type:"",
+                presidentName:"",
+                establishmentDate:"",
+                number:"",
             },
             //添加赞助申请的校验规则
             clubFormRules: {},
 
             content: null,
-            editorOption: {}
+            editorOption: {},
+
+
         }
     },
     mounted()
@@ -291,13 +292,28 @@ export default {
 
         async getClubInfo()
         {
-            let result = await this.$http.post(this.$api.PrincipalGetClubInfo,
-                {
-                    description: this.description,
-                    logo:this.logo,
-                });
+            let result = await this.$http.post(this.$api.PrincipalGetClubInfo);
             this.clubForm = result.data;
             // console.log(this.clubForm.description);
+
+            if(this.clubForm.type===0){
+                this.clubForm.type="学术科技类";
+            }
+            else if(this.clubForm.type===1){
+                this.clubForm.type="传统文化与文学类";
+            }
+            else if(this.clubForm.type===2){
+                this.clubForm.type="公益实践类";
+            }
+            else if(this.clubForm.type===3){
+                this.clubForm.type="文化艺术类";
+            }
+            else if(this.clubForm.type===4){
+                this.clubForm.type="体育竞技类";
+            }
+            else{
+                this.clubForm.type="创新创业类";
+            }
         },
         cancelEdit()
         {
@@ -393,6 +409,7 @@ export default {
         {
             let result = await this.$http.post(this.$api.GetOneAnnouncementUrl + "/" + AnnouncementId);
             this.addForm = result.data;
+            this.addForm.time=this.addForm.time.substring(0,10);
             this.showDialogVisible = true;
         },
         //显示系统公告详情页面按确定后的触发事件
@@ -413,8 +430,7 @@ export default {
         async SystemNotice()
         {
             await this.$router.push('/principalSystemNotice');
-        }
-
+        },
     }
 }
 

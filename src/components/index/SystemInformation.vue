@@ -1,50 +1,5 @@
 <template>
     <div>
-<!--        <el-divider></el-divider>-->
-        <!--        卡片-->
-<!--        <el-card class="box-card">-->
-<!--            &lt;!&ndash;            搜索与添加&ndash;&gt;-->
-<!--            <el-row :gutter="20">-->
-<!--                <el-col :span="7">-->
-<!--                    &lt;!&ndash;                    搜索取消时也会刷新搜索页面,搜索确定时,将携带query搜索特点内容的系统消息&ndash;&gt;-->
-<!--                    <el-input clearable @clear="getMessageList" placeholder="请输入内容" v-model="query">-->
-<!--                        <el-button slot="append" icon="el-icon-search" @click="getMessageList"></el-button>-->
-<!--                    </el-input>-->
-<!--                </el-col>-->
-<!--            </el-row>-->
-<!--            &lt;!&ndash;            系统消息列表 只展示一些系统消息信息,详细文本可在详情查看&ndash;&gt;-->
-<!--            <el-table :data="MessageList">-->
-<!--                <el-table-column type="index"></el-table-column>-->
-<!--                <el-table-column label="标题" prop="title"></el-table-column>-->
-<!--                <el-table-column label="系统消息时间" prop="time"></el-table-column>-->
-<!--                <el-table-column label="已读" prop="read"></el-table-column>-->
-<!--                <el-table-column label="显示详情">-->
-<!--                    <template slot-scope="scope">-->
-<!--                        <el-button type="success" @click="showDialog(scope.row.messageId)">查看</el-button>-->
-<!--                    </template>-->
-<!--                </el-table-column>-->
-<!--                <el-table-column label="操作">-->
-<!--                    <template slot-scope="scope">-->
-<!--                        &lt;!&ndash;                        已读按钮&ndash;&gt;-->
-<!--                        <el-button type="success" @click="read(scope.row.messageId)">已读</el-button>-->
-<!--                        &lt;!&ndash;                        已读按钮&ndash;&gt;-->
-<!--                        <el-button type="success" @click="delete(scope.row.messageId)">删除</el-button>-->
-<!--                    </template>-->
-<!--                </el-table-column>-->
-<!--            </el-table>-->
-
-<!--            &lt;!&ndash;            分页区域&ndash;&gt;-->
-<!--            <el-pagination-->
-<!--                    @size-change="handleSizeChange"-->
-<!--                    @current-change="handleCurrentChange"-->
-<!--                    :current-page="pageNumber"-->
-<!--                    :page-sizes="[1, 2, 5, 10]"-->
-<!--                    :page-size="pageSize"-->
-<!--                    layout="total, sizes, prev, pager, next, jumper"-->
-<!--                    :total="totalCount">-->
-<!--            </el-pagination>-->
-<!--        </el-card>-->
-
         <div id="announce_head">
             <img src="../../assets/img/icon_announcement.png" alt="" style="vertical-align: middle">
             <span> <h3>   消息</h3></span>
@@ -61,27 +16,43 @@
             </el-card>
             <br>
         </div>
-
-        <!--        展示系统消息对话框-->
-        <el-dialog title="系统消息详情" ref="showFormRef" :visible.sync="showDialogVisible"
+        <el-dialog ref="showFormRef" :visible.sync="showDialogVisible"
                    width="50%">
             <!--            展示内容主体区域 -->
-            <el-form :model="addForm" label-width="150px">
-                <el-form-item label="系统消息标题:">
-                    <el-input v-model="addForm.title" disabled></el-input>
-                </el-form-item>
-                <el-form-item label="系统消息内容:">
-                    <el-input v-model="addForm.content" disabled></el-input>
-                </el-form-item>
-                <el-form-item label="系统消息时间:" prop="time">
-                    <el-date-picker type="date" v-model="addForm.time" style="width: 100%;" disabled></el-date-picker>
-                </el-form-item>
-            </el-form>
+            <div slot="title">
+                <h1>
+                    {{addForm.title}}
+                </h1>
+                <div>
+                    {{addForm.time}}
+                </div>
+            </div>
+            {{addForm.content}}
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
     <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
   </span>
         </el-dialog>
+<!--        &lt;!&ndash;        展示系统消息对话框&ndash;&gt;-->
+<!--        <el-dialog title="系统消息详情" ref="showFormRef" :visible.sync="showDialogVisible"-->
+<!--                   width="50%">-->
+<!--            &lt;!&ndash;            展示内容主体区域 &ndash;&gt;-->
+<!--            <el-form :model="addForm" label-width="150px">-->
+<!--                <el-form-item label="系统消息标题:">-->
+<!--                    <el-input v-model="addForm.title" disabled></el-input>-->
+<!--                </el-form-item>-->
+<!--                <el-form-item label="系统消息内容:">-->
+<!--                    <el-input v-model="addForm.content" disabled></el-input>-->
+<!--                </el-form-item>-->
+<!--                <el-form-item label="系统消息时间:" prop="time">-->
+<!--                    <el-date-picker type="date" v-model="addForm.time" style="width: 100%;" disabled></el-date-picker>-->
+<!--                </el-form-item>-->
+<!--            </el-form>-->
+<!--            &lt;!&ndash;            底部区域&ndash;&gt;-->
+<!--            <span slot="footer" class="dialog-footer">-->
+<!--    <el-button type="primary" @click="closeDialogVisible">确 定</el-button>-->
+<!--  </span>-->
+<!--        </el-dialog>-->
     </div>
 </template>
 
@@ -158,6 +129,7 @@
                 console.log(MessageId);
                 let result = await this.$http.post(this.$api.GetOneMessagesUrl + '/' + MessageId);
                 this.addForm = result.data;
+                this.addForm.time=this.addForm.time.substring(0,10);
                 this.showDialogVisible = true;
             },
             //显示系统消息详情页面按确定后的触发事件

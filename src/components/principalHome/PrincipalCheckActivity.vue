@@ -23,10 +23,11 @@
             <el-table :data="StudentList">
                 <el-table-column type="index"></el-table-column>
 
-                <el-table-column label="学生ID" prop="studentId"></el-table-column>
+                <el-table-column label="学生ID" prop="number"></el-table-column>
                 <el-table-column label="学生姓名" prop="studentName"></el-table-column>
                 <el-table-column label="活动名称" prop="activityName"></el-table-column>
                 <el-table-column label="申请时间" prop="applyDate"></el-table-column>
+                <el-table-column label="状态" prop="statusName"></el-table-column>
 
                 <el-table-column label="显示详情">
                     <template slot-scope="scope">
@@ -64,7 +65,7 @@
             <!--            展示内容主体区域 -->
             <el-form :model="checkForm" label-width="130px">
                 <el-form-item label="学生ID:" prop="studentId">
-                    <el-input v-model="checkForm.studentId" readonly style="width:82%;"></el-input>
+                    <el-input v-model="checkForm.number" readonly style="width:82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="参加时间:" prop="applyDate">
                     <el-date-picker type="date" v-model="checkForm.applyDate" style="width: 82%;" readonly></el-date-picker>
@@ -120,6 +121,7 @@ export default {
             //添加学生表单数据
             checkForm: {
                 studentId: "",
+                number:"",
                 studentName:"",
                 activityId:"",
                 activityName:"",
@@ -151,8 +153,10 @@ export default {
             this.StudentList = result.data.data;
             for (let i = 0; i < this.StudentList.length; i++)
             {
-                this.StudentList[i].applyDate=this.StudentList[i].applyDate.substring(0,10)
+                this.StudentList[i].applyDate=this.StudentList[i].applyDate.substring(0,10);
+                this.StudentList[i].statusName=this.statusToStr(this.StudentList[i].status)
             }
+
             this.totalCount = parseInt(result.data.totalCount);
         },
         //监听pageSize改变的事件
@@ -216,7 +220,15 @@ export default {
           //    提示成功
           this.$message.success("申请审核未通过!");
         },
-
+        statusToStr(status)
+        {
+            switch(status) {
+                case 0:
+                    return '待审核';
+                default:
+                    return '已通过';
+            }
+        },
     }
 }
 </script>
