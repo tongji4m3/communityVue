@@ -66,7 +66,7 @@
             <hr>
             <br>
             <p style="font-size:16px;text-indent: 2em;line-height: 22px;
-  letter-spacing: 0.4px;">{{showForm.content}}</p>
+  letter-spacing: 0.4px;" class="text-wrapper">{{showForm.content}}</p>
             <br>
             <hr>
             <br>
@@ -160,7 +160,7 @@
                 addFormRules: {
                     title: [
                         {required: true, message: '请输入公告标题', trigger: 'blur'},
-                        {min: 2, max: 10, message: '公告标题必须在2-10字符之间', trigger: 'blur'}
+                        {min: 2, max: 20, message: '公告标题必须在2-20字符之间', trigger: 'blur'}
                     ],
                     content: [
                         {required: true, message: '请输入公告内容', trigger: 'blur'},
@@ -318,5 +318,9 @@
     }
 </script>
 
-<style scoped></style>
+<style scoped>
+    .text-wrapper {
+        white-space: pre-wrap;
+    }
+</style>
 
