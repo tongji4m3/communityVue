@@ -4,31 +4,36 @@
         <el-breadcrumb separator-class="el-icon-arrow-right">
             <el-breadcrumb-item :to="{ path: '/welcome' }">首页</el-breadcrumb-item>
             <el-breadcrumb-item :to="{ path: '/adminWelcome' }">管理员首页</el-breadcrumb-item>
-            <el-breadcrumb-item>社团学生管理</el-breadcrumb-item>
+            <el-breadcrumb-item>学生管理</el-breadcrumb-item>
         </el-breadcrumb>
         <el-divider></el-divider>
         <!-- 卡片 -->
         <el-card class="box-card">
             <el-row :gutter="20">
                 <!-- 模糊搜索 -->
-                <el-col :span="10">
+                <el-col :span="11">
                     <el-input clearable @clear="getStudentList('all', query)"  placeholder="请输入内容" v-model="query">
                         <el-button slot="append" icon="el-icon-search" @click="getStudentList('all', query)"></el-button>
                     </el-input>
                 </el-col>
                  <!-- 带状态的模糊搜索 -->
-                <el-col :span="1"  class="center">
+                <el-col :span="1"  class="center" style="margin-right: 3px;">
                     <el-button type="text" disabled>状态：</el-button>
                 </el-col>
-                <el-col :span="2">
+                <!-- <el-col :span="3">
                     <el-button type="primary" @click="getStudentList('all', query)">{{quanbu}}</el-button>
                 </el-col>
-                <el-col :span="2">
+                <el-col :span="3">
                     <el-button type="primary" @click="getStudentList('graduated', query)">离校生</el-button>
                 </el-col>
-                <el-col :span="2">
+                <el-col :span="3">
                     <el-button type="primary" @click="getStudentList('atSchool', query)">在校生</el-button>
-                </el-col>
+                </el-col> -->
+				<el-col :span="8">
+				    <el-button type="primary" @click="getStudentList('all', query)">{{quanbu}}</el-button>
+					<el-button type="primary" @click="getStudentList('graduated', query)">离校生</el-button>
+					<el-button type="primary" @click="getStudentList('atSchool', query)">在校生</el-button>
+				</el-col>
             </el-row>
         
         <!-- 活动列表 -->
@@ -48,8 +53,9 @@
                     </template>
                 </el-table-column>
         </el-table>
-            <el-row :gutter="22">
-                <el-col :span="14">
+		<br>
+            <el-row :gutter="24">
+                <el-col :span="13">
                     <!-- 分页区域 -->
                     <el-pagination
                         @size-change="handleSizeChange"
@@ -61,7 +67,7 @@
                         :total="totalCount">
                     </el-pagination>
                 </el-col>
-                <el-col :span='2'>
+                <!-- <el-col :span='2'>
                     <el-button type="primary" 
                         @click="showEmptyReplyDialog()">
                         新增
@@ -85,7 +91,25 @@
                     <span>
                         <el-button type="primary" icon="el-icon-upload" @click="graduateBtnClick">批量离校</el-button>
                     </span>
-                </el-col>
+                </el-col> -->
+				<el-col :span='11'>
+				    <el-button type="primary" 
+				        @click="showEmptyReplyDialog()" style="margin-right:11px;">
+				        新增
+				    </el-button>
+					<input
+					    class="input-file"
+					    type="file"
+					    @change="exportData"
+					    accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+					/>
+					
+					    <el-button type="primary" icon="el-icon-upload" @click="freshBtnClick">批量新增</el-button>
+					
+					    <el-button type="primary" icon="el-icon-upload" @click="graduateBtnClick">批量离校</el-button>
+					
+					
+				</el-col>
             </el-row>
 
         </el-card>
