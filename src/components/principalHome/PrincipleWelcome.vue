@@ -231,6 +231,7 @@ export default {
     {
         this.getAnnouncementList();
         this.getClubInfo();
+        this.getCommunityGraph();
     },
     methods: {
 
@@ -242,6 +243,7 @@ export default {
             this.gradeGraphDescription = result.data.gradeGraphDescription;
             this.gradeGraphData = result.data.gradeGraphData;
             this.majorGraphData = result.data.majorGraphData;
+            console.log(result);
 
             /*
             //社团成员年级分布图表数据
