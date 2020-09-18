@@ -54,26 +54,26 @@
             <!--            展示内容主体区域 -->
             <el-form :model="addForm" label-width="150px">
                 <el-form-item label="编号:">
-                    <el-input v-model="addForm.sponsorshipId" readonly></el-input>
+                    <el-input v-model="addForm.sponsorshipId" readonly style="width:82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="赞助方:">
-                    <el-input v-model="addForm.sponsor" readonly></el-input>
+                    <el-input v-model="addForm.sponsor" readonly style="width:82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="赞助金额/￥:">
-                    <el-input v-model="addForm.amount" readonly></el-input>
+                    <el-input v-model="addForm.amount" readonly style="width:82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="赞助需求:">
                     <el-input
                         type="textarea"
                         :rows="7"
-                        v-model="addForm.requirement" readonly>
+                        v-model="addForm.requirement" readonlystyle="width:82%;">
                     </el-input>
                 </el-form-item>
                 <el-form-item label="状态:">
-                    <el-input v-model="addForm.statusName" readonly></el-input>
+                    <el-input v-model="addForm.statusName" readonly style="width:82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="申请赞助时间:">
-                    <el-date-picker type="date" v-model="addForm.applyDate" style="width: 100%;" readonly></el-date-picker>
+                    <el-date-picker type="date" v-model="addForm.applyDate" style="width: 82%;" readonly></el-date-picker>
                 </el-form-item>
             </el-form>
             <!--            底部区域-->
@@ -88,17 +88,18 @@
             <!--            展示内容主体区域 -->
             <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="100px">
                 <el-form-item label="赞助方:">
-                    <el-input v-model="addForm.sponsor" placeholder="请输入赞助方..."></el-input>
+                    <el-input v-model="addForm.sponsor" placeholder="请输入赞助方..." style="width:90%;"></el-input>
                 </el-form-item>
-                <el-form-item label="赞助金额/￥:">
-                    <el-input v-model="addForm.amount" placeholder="请输入赞助金额..."></el-input>
+                <el-form-item label="金额/￥:">
+                    <el-input v-model="addForm.amount" placeholder="请输入赞助金额..." style="width:90%;"></el-input>
                 </el-form-item>
                 <el-form-item label="赞助需求:" prop="requirement">
                     <el-input
                         type="textarea"
                         :rows="7"
                         placeholder="请输入赞助需求..."
-                        v-model="addForm.requirement">
+                        v-model="addForm.requirement"
+						style="width:90%;">
                     </el-input>
                 </el-form-item>
             </el-form>

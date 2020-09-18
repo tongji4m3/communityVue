@@ -40,13 +40,13 @@
         </div>
         <!--        修改社团信息对话框-->
         <el-dialog title="修改社团信息" :visible.sync="editDialogVisible"
-                   width="80%" center>
+                   width="50%" center>
             <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="100px">
                 <el-form-item label="社团名称:">
-                    <el-input v-model="addForm.name" placeholder="请输入社团名称..."></el-input>
+                    <el-input v-model="addForm.name" placeholder="请输入社团名称..." style="width:82%;"></el-input>
                 </el-form-item>
 
-                <quill-editor v-model="addForm.description" ref="myQuillEditor" style="height: 500px;" :options="editorOption">
+                <quill-editor v-model="addForm.description" ref="myQuillEditor" style="height: 500px;width: 82%;" :options="editorOption">
                 </quill-editor>
 
                 <!--                <el-form-item label="社团介绍:" prop="discription">-->
@@ -66,12 +66,12 @@
         </el-dialog>
         <!--        修改社团信息对话框-->
         <el-dialog title="修改社团信息" :visible.sync="editDialogVisible2"
-                   width="80%" center>
+                   width="50%" center>
             <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="100px">
                 <el-form-item label="社团名称:">
-                    <el-input v-model="addForm.name" placeholder="请输入社团名称..."></el-input>
+                    <el-input v-model="addForm.name" placeholder="请输入社团名称..." style="width:82%;"></el-input>
                 </el-form-item>
-                <quill-editor v-model="addForm.logo" ref="myQuillEditor" style="height: 500px;" :options="editorOption">
+                <quill-editor v-model="addForm.logo" ref="myQuillEditor" style="height: 500px;width: 82%;" :options="editorOption">
                 </quill-editor>
                 <!--                <el-form-item label="社团介绍:" prop="discription">-->
                 <!--                    <el-input-->
