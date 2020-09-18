@@ -145,7 +145,7 @@
             }
         },
         //一开始就显示赞助列表
-        created()
+        async created()
         {
             this.getClubInfo();
         },
@@ -153,7 +153,7 @@
             /**
              * 初始化
              */
-            async init()
+            init()
             {
                 //获取阿里云token  这里是后台返回来的数据
                 this.uploadConf.region = "oss-cn-shanghai";
@@ -169,7 +169,7 @@
                 this.init();
                 const {imgName} = "ALIOSS_IMG_";
                 const fileName = `${imgName}/${Date.parse(new Date())}`; //定义唯一的文件名
-                ossClient(this.uploadConf)
+                await ossClient(this.uploadConf)
                     .put(fileName, file, {
                         ContentType: "image/jpeg",
                     })
@@ -179,8 +179,6 @@
                         {
                             console.log(`阿里云OSS上传图片成功回调`, res, url, name);
                             this.imgUrl = url;
-                            console.log("这里", this.imgUrl);
-                            this.$http.post(this.$api.UpdateAvatar, this.imgUrl);
                                 // {
                                 //     // imgUrl: this.imgUrl,
                                 //     imgUrl:"http://database-community.oss-cn-shanghai.aliyuncs.com/undefined/1600416216000"
@@ -191,11 +189,10 @@
                     {
                         console.log(`阿里云OSS上传图片失败回调`, err);
                     });
-                await this.$http.post(this.$api.UpdateAvatar, {
-                    // imgUrl: this.imgUrl,
-                    imgUrl:"http://database-community.oss-cn-shanghai.aliyuncs.com/undefined/1600416216000"
-                });
-
+                console.log("这里", this.imgUrl);
+                let result = await this.$http.post(this.$api.UpdateAvatar + "?imgUrl="+this.imgUrl);
+                window.sessionStorage.setItem("imgUrl", this.imgUrl);
+                location.reload();
             },
             /**
              * 图片限制

@@ -117,7 +117,7 @@
                 <el-card>
                     <el-row :gutter="20">
                         <el-col :span="12"><div id="gradeChart" style="width: 600px;height:400px;"></div></el-col>
-                        <el-col :span="12"><div id="genderChart" style="width: 600px;height:400px;"></div></el-col>
+                        <el-col :span="12"><div id="majorChart" style="width: 600px;height:400px;"></div></el-col>
                     </el-row>
                 </el-card>
             </el-col>
@@ -195,17 +195,15 @@ export default {
                 status: false,
             },
 
-
             //社团成员年级分布图表数据
             gradeGraphDescription:["16级","17级","18级","19级","20级","21级"],
             gradeGraphData:[5, 20, 36, 10, 10,20],
-
             //社团成员专业分布图表数据
             majorGraphData:[
                 {value:235, name:'软件工程'},
                 {value:400, name:'土木工程'},
                 {value:400, name:'车辆工程'},
-            ],
+                ],
 
             editDialogVisible: false,
             editDialogVisible2: false,
@@ -225,23 +223,28 @@ export default {
     },
     mounted()
     {
-        this.drawPeople();
+        this.getCommunityGraph();
+
     },
     //一开始就显示赞助列表
     created()
     {
         this.getAnnouncementList();
         this.getClubInfo();
-        this.getCommunityGraph();
+
     },
     methods: {
         async getCommunityGraph()
         {
             let result = await this.$http.post(this.$api.PrincipalGetCommunityGraph);
+
             this.gradeGraphDescription = result.data.gradeGraphDescription;
             this.gradeGraphData = result.data.gradeGraphData;
             this.majorGraphData = result.data.majorGraphData;
-            console.log(result.data);
+            console.log("getCommunityGraph")
+            console.log(this.gradeGraphDescription);
+            this.drawPeople();
+
             /*
             //社团成员年级分布图表数据
             gradeGraphDescription:["16级","17级","18级","19级","20级","21级"],
@@ -272,9 +275,9 @@ export default {
                 }]
             });
 
-            //性别分布饼状图
-            let genderChart = this.$echarts.init(document.getElementById('genderChart'), 'light');
-            genderChart.setOption({
+            //年级分布饼状图
+            let majorChart = this.$echarts.init(document.getElementById('majorChart'), 'light');
+            majorChart.setOption({
                 title: { text: '社团人员专业分布',left:'center' },
                 series : [
                     {
@@ -519,7 +522,7 @@ export default {
 
 <!--        <el-row :gutter="20">-->
 <!--            <el-col :span="12"><div id="gradeChart" style="width: 600px;height:400px;"></div></el-col>-->
-<!--            <el-col :span="12"><div id="genderChart" style="width: 600px;height:400px;"></div></el-col>-->
+<!--            <el-col :span="12"><div id="majorChart" style="width: 600px;height:400px;"></div></el-col>-->
 <!--        </el-row>-->
 
 
@@ -673,8 +676,8 @@ export default {
 <!--            });-->
 
 <!--            //性别分布饼状图-->
-<!--            let genderChart = this.$echarts.init(document.getElementById('genderChart'), 'light');-->
-<!--            genderChart.setOption({-->
+<!--            let majorChart = this.$echarts.init(document.getElementById('majorChart'), 'light');-->
+<!--            majorChart.setOption({-->
 <!--                title: { text: '社团人员专业分布' },-->
 <!--                series : [-->
 <!--                    {-->
