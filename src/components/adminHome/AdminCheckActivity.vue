@@ -95,7 +95,7 @@
                     <el-input v-model="this.replyForm.place" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="活动时间:">
-                    <el-date-picker type="date" v-model="this.replyForm.evenTime" style="width: 82%;" readonly></el-date-picker>
+                    <el-date-picker type="date" v-model="this.replyForm.eventTime" style="width: 82%;" readonly></el-date-picker>
                 </el-form-item>
                 <el-form-item label="提交时间:">
                     <el-date-picker type="date" v-model="this.replyForm.applyDate" style="width: 82%;" readonly></el-date-picker>
@@ -282,6 +282,7 @@ export default {
                 {
                     activityId: this.replyForm.activityId
                 });
+            console.log(result.data);
             this.replyForm.activityId = result.data.activityId;
             this.replyForm.clubName = result.data.clubName;
             this.replyForm.name = result.data.name;
@@ -295,6 +296,7 @@ export default {
             this.replyForm.adminName = result.data.adminName;
             this.replyForm.suggestion = result.data.suggestion;
             this.replyDialogVisible = true;
+            console.log(this.replyForm.eventTime);
         },
         //关闭详情对话框
         closeReplyDialog()
