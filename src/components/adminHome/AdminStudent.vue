@@ -115,23 +115,23 @@
         </el-card>
         <!-- 详情对话框 -->
         <el-dialog title="学生信息" :visible.sync="replyDialogVisible"
-                   width="50%">
+                   width="50%" center>
             <!-- 展示内容主体区域 -->
             <el-form :model="this.replyForm" label-width="150px">
                 <el-form-item label="姓名:">
-                    <el-input v-model="replyForm.name" readonly></el-input>
+                    <el-input v-model="replyForm.name" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="学号:">
-                    <el-input v-model="replyForm.number"></el-input>
+                    <el-input v-model="replyForm.number" style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="专业:">
-                    <el-input v-model="replyForm.major"></el-input>
+                    <el-input v-model="replyForm.major" style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="年级:">
-                    <el-input v-model="replyForm.grade"></el-input>
+                    <el-input v-model="replyForm.grade" style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="状态:">
-                    <el-input v-model="replyForm.status_name" readonly></el-input>
+                    <el-input v-model="replyForm.status_name" readonly style="width: 82%;"></el-input>
                 </el-form-item>
             </el-form>
             <!-- 底部区域 -->
