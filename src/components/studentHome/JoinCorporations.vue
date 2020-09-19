@@ -167,13 +167,13 @@ export default {
         }
       );
       this.corporationsList = result.data.data;
-      for (var j = 0; j < result.data.totalCount-1; j++) {
+      for (var j = 0; j < result.data.totalCount; j++) {
         this.corporationsList[j].establishmentDate = this.corporationsList[
           j
         ].establishmentDate.substring(0, 10);
       }
 
-      for (var i = 0; i < result.data.totalCount-1; i++) {
+      for (var i = 0; i < result.data.totalCount; i++) {
         if (this.corporationsList[i].type === 0) {
           this.corporationsList[i].type = "学术科技类";
         } else if (this.corporationsList[i].type === 1) {

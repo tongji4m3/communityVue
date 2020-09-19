@@ -28,7 +28,7 @@
             <div class="bottom">
               <time>{{corporation.type}}</time>
             </div>
-           
+
             <div class="button">
               <el-button
                 type="text"
