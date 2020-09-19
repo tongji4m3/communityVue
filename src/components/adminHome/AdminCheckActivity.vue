@@ -275,9 +275,9 @@ export default {
         async showReplyDialog(pos_in)
         {
             this.replyForm.activityId = this.activityList[pos_in].activityId;
-            console.log({
-                    activityId: this.replyForm.activityId
-                });
+            // console.log({
+            //         activityId: this.replyForm.activityId
+            //     });
             let result = await this.$http.post(this.$api.AdminGetActivityDetailsUrl, 
                 {
                     activityId: this.replyForm.activityId
@@ -305,10 +305,13 @@ export default {
         async submitSuggestion()
         {
             this.closeReplyDialog();
-            console.log(this.replyForm.activityId);
+            // console.log({
+            //         activityId: this.replyForm.activityId,
+            //         suggestion: this.replyForm.suggestion
+            //     });
             let result = await this.$http.post(this.$api.AdminUpdateActSuggestionUrl, 
                 {
-                    activityId: this.replyForm.actvityId,
+                    activityId: this.replyForm.activityId,
                     suggestion: this.replyForm.suggestion
                 });
         },
