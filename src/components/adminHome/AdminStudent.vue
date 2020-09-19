@@ -101,7 +101,7 @@
             <!-- 展示内容主体区域 -->
             <el-form :model="this.replyForm" label-width="150px">
                 <el-form-item label="姓名:">
-                    <el-input v-model="replyForm.name" readonly style="width: 82%;"></el-input>
+                    <el-input v-model="replyForm.name" style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="学号:">
                     <el-input v-model="replyForm.number" style="width: 82%;"></el-input>

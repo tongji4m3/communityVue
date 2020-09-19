@@ -61,13 +61,13 @@
             <!--            展示内容主体区域 -->
             <el-form :model="addForm" label-width="150px">
                 <el-form-item label="系统公告标题:">
-                    <el-input v-model="addForm.title" disabled></el-input>
+                    <el-input v-model="addForm.title" readonly></el-input>
                 </el-form-item>
                 <el-form-item label="系统公告内容:">
-                    <el-input v-model="addForm.content" disabled></el-input>
+                    <el-input v-model="addForm.content" readonly></el-input>
                 </el-form-item>
                 <el-form-item label="系统公告时间:" prop="time">
-                    <el-date-picker type="date" v-model="addForm.time" style="width: 100%;" disabled></el-date-picker>
+                    <el-date-picker type="date" v-model="addForm.time" style="width: 100%;" readonly></el-date-picker>
                 </el-form-item>
             </el-form>
             <!--            底部区域-->
@@ -101,7 +101,7 @@ export default {
             //当前的页码
             pageNumber: 1,
             //每页显示的条数
-            pageSize: 5,
+            pageSize: 100,
 
             //查询到的当页系统公告
             AnnouncementList: [],
