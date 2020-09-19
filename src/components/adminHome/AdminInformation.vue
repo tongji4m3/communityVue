@@ -295,7 +295,7 @@ export default {
         handleCurrentChange(newPage)
         {
             this.pageNumber = newPage;
-            this.getclubList(this.status, this.query);
+            this.getClubList(this.status, this.query);
         },
         //输出status的文字描述
         statusToStr(status_int)
