@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-row :gutter="24" class="el-row">
+        <el-row :gutter="24" class="card-row">
             <el-col :span="6">
                 <el-card class="card0" :body-style="{ padding: '20px'}">
                     <br>
@@ -134,8 +134,14 @@ export default {
         this.genChart();
     },
     methods: {
-        genChart(){
-            let chart = this.$echarts.init(document.getElementById('chart'),'light')
+        async genChart(){
+            let chart = this.$echarts.init(document.getElementById('chart'),'light');
+            let result = await this.$http.post(this.$api.AdminGetTodoUrl);
+            let resultData = [
+                result.data.club,
+                result.data.sponsorship,
+                result.data.activity
+            ]
             // 绘制图表
             chart.setOption({
                 title: {
@@ -160,7 +166,7 @@ export default {
                 series: [{
                     name: '待处理数量',
                     type: 'bar',
-                    data: [5, 20, 36],
+                    data: resultData,
                     barWidth: '30%'
                 }],
             });
@@ -292,9 +298,8 @@ export default {
     .el-carousel__item:nth-child(2n+1) {
         background-color: #d3dce6;
     }
-
-        .el-row {
-        margin-bottom: 20px;
+    .card-row {
+        margin-bottom: 40px;
         height: 380px;
         display: flex;
         flex-wrap: wrap;
