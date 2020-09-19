@@ -23,10 +23,11 @@
             <el-table :data="StudentList">
                 <el-table-column type="index"></el-table-column>
 
-                <el-table-column label="学生ID" prop="studentId"></el-table-column>
+                <el-table-column label="学号" prop="number"></el-table-column>
                 <el-table-column label="学生姓名" prop="studentName"></el-table-column>
                 <el-table-column label="活动名称" prop="activityName"></el-table-column>
                 <el-table-column label="申请时间" prop="applyDate"></el-table-column>
+                <el-table-column label="状态" prop="statusName"></el-table-column>
 
                 <el-table-column label="显示详情">
                     <template slot-scope="scope">
@@ -45,7 +46,7 @@
                 </el-table-column>
 
             </el-table>
-
+            <br>
             <!--            分页区域-->
             <el-pagination
                 @size-change="handleSizeChange"
@@ -60,20 +61,23 @@
 
         <!--        展示申请原因-->
         <el-dialog title="申请参加活动详情" ref="showFormRef" :visible.sync="showDialogVisible"
-                   width="50%">
+                   width="50%" center>
             <!--            展示内容主体区域 -->
             <el-form :model="checkForm" label-width="130px">
-                <el-form-item label="学生ID:" prop="studentId">
-                    <el-input v-model="checkForm.studentId" disabled></el-input>
+                <el-form-item label="学号:" prop="studentId">
+                    <el-input v-model="checkForm.number" readonly style="width:82%;"></el-input>
                 </el-form-item>
-                <el-form-item label="申请参加活动时间:" prop="applyDate">
-                    <el-date-picker type="date" v-model="checkForm.applyDate" style="width: 100%;" disabled></el-date-picker>
+                <el-form-item label="姓名:" prop="studentName">
+                    <el-input v-model="checkForm.studentName" readonly style="width:82%;"></el-input>
                 </el-form-item>
-                <el-form-item label="申请参加活动理由:" prop="applyReason">
+                <el-form-item label="参加时间:" prop="applyDate">
+                    <el-date-picker type="date" v-model="checkForm.applyDate" style="width: 82%;" readonly></el-date-picker>
+                </el-form-item>
+                <el-form-item label="申请理由:" prop="applyReason">
                     <el-input
                         type="textarea"
                         :rows="7"
-                        v-model="checkForm.applyReason" disabled>
+                        v-model="checkForm.applyReason" readonly style="width:82%;">
                     </el-input>
                 </el-form-item>
             </el-form>
@@ -81,11 +85,11 @@
             <span slot="footer" class="dialog-footer">
                 <!--                        通过按钮-->
                 <el-button type="success" @click="agreeStudent(this.checkForm.studentId,this.checkForm.activityId,1)"
-                           icon="el-icon-check" circle></el-button>
+                           icon="el-icon-check" circle style="margin-right: 30px;"></el-button>
                 <!--                        不通过按钮-->
                 <el-button type="danger" @click="rejectStudent(this.checkForm.studentId,this.checkForm.activityId,0)"
                            icon="el-icon-close" circle></el-button>
-                <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
+                <!-- <el-button type="primary" @click="closeDialogVisible">确 定</el-button> -->
             </span>
         </el-dialog>
     </div>
@@ -120,6 +124,7 @@ export default {
             //添加学生表单数据
             checkForm: {
                 studentId: "",
+                number:"",
                 studentName:"",
                 activityId:"",
                 activityName:"",
@@ -151,8 +156,10 @@ export default {
             this.StudentList = result.data.data;
             for (let i = 0; i < this.StudentList.length; i++)
             {
-                this.StudentList[i].applyDate=this.StudentList[i].applyDate.substring(0,10)
+                this.StudentList[i].applyDate=this.StudentList[i].applyDate.substring(0,10);
+                this.StudentList[i].statusName=this.statusToStr(this.StudentList[i].status)
             }
+
             this.totalCount = parseInt(result.data.totalCount);
         },
         //监听pageSize改变的事件
@@ -172,8 +179,8 @@ export default {
         {
             console.log(StudentId_in,ActivityId_in);
             let result = await this.$http.post(this.$api.PrincipalGetOneActivityMemberUrl, {
-                StudentId_in,
-                ActivityId_in,
+                studentId:StudentId_in,
+                activityId:ActivityId_in,
             });
             // this.checkForm.studentId = result.data.studentId;
             this.checkForm = result.data;
@@ -216,7 +223,17 @@ export default {
           //    提示成功
           this.$message.success("申请审核未通过!");
         },
-
+        statusToStr(status)
+        {
+            switch(status) {
+                case true:
+                    return '已通过';
+                case false:
+                    return '待审核';
+                default:
+                    return '未定义';
+            }
+        },
     }
 }
 </script>

@@ -45,7 +45,7 @@
                 </el-table-column>
 
             </el-table>
-
+            <br>
             <!--            分页区域-->
             <el-pagination
                 @size-change="handleSizeChange"
@@ -58,92 +58,82 @@
             </el-pagination>
         </el-card>
 
-        <!--        展示公告对话框-->
-        <el-dialog title="公告详情" ref="showFormRef" :visible.sync="showDialogVisible"
+        <!--        展示系统公告对话框-->
+        <el-dialog ref="showFormRef" :visible.sync="showDialogVisible"
                    width="50%">
             <!--            展示内容主体区域 -->
-            <el-form :model="addForm" label-width="150px">
-                <el-form-item label="公告标题:">
-                    <el-input v-model="addForm.title" disabled></el-input>
-                </el-form-item>
-<!--                <el-form-item label="公告内容:">-->
-<!--                    <el-input v-model="addForm.content" disabled></el-input>-->
-<!--                </el-form-item>-->
-                <el-form-item label="公告内容:" prop="content">
-                    <el-input
-                        type="textarea"
-                        :rows="7"
-                        v-model="addForm.content" disabled>
-                    </el-input>
-                </el-form-item>
-                <el-form-item label="公告时间:" prop="time">
-                    <el-date-picker type="date" v-model="addForm.time" style="width: 100%;" disabled></el-date-picker>
-                </el-form-item>
-            </el-form>
+            <div slot="title">
+                <h1>
+                    {{ addForm.title }}
+                </h1>
+                <div>
+                    {{ addForm.time }}
+                </div>
+            </div>
+            {{ addForm.content }}
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
-    <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
-  </span>
+                <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
+            </span>
         </el-dialog>
 
 
         <!--        添加公告对话框-->
         <el-dialog title="添加公告" :visible.sync="addDialogVisible"
-                   width="50%">
+                   width="50%" center>
             <!--            内容主体区域 放置一个表单-->
             <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="150px">
                 <el-form-item label="公告标题:" prop="title">
-                    <el-input v-model="addForm.title"></el-input>
+                    <el-input v-model="addForm.title" style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="公告内容:" prop="content">
                     <el-input
                         type="textarea"
                         :rows="7"
-                        v-model="addForm.content">
+                        v-model="addForm.content" style="width: 82%;">
                     </el-input>
                 </el-form-item>
-<!--                <el-form-item label="公告内容:" prop="content">-->
-<!--                    <el-input v-model="addForm.content"></el-input>-->
-<!--                </el-form-item>-->
+                <!--                <el-form-item label="公告内容:" prop="content">-->
+                <!--                    <el-input v-model="addForm.content"></el-input>-->
+                <!--                </el-form-item>-->
             </el-form>
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
-    <el-button @click="cancelAdd">取 消</el-button>
+    <el-button @click="cancelAdd" style="margin-right: 20px;">取 消</el-button>
     <el-button type="primary" @click="addAnnouncement">确 定</el-button>
   </span>
         </el-dialog>
 
         <!--        修改公告对话框-->
         <el-dialog title="修改公告" :visible.sync="editDialogVisible"
-                   width="50%">
+            width="50%" center>
             <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="150px">
                 <el-form-item label="公告标题:" prop="title">
-                    <el-input v-model="addForm.title" ></el-input>
+                    <el-input v-model="addForm.title" style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="公告内容:" prop="content">
                     <el-input
                         type="textarea"
                         :rows="7"
-                        v-model="addForm.content">
+                        v-model="addForm.content" style="width: 82%;">
                     </el-input>
                 </el-form-item>
-<!--                <el-form-item label="公告内容:" prop="content">-->
-<!--                    <el-input v-model="addForm.content"></el-input>-->
-<!--                </el-form-item>-->
+                <!--                <el-form-item label="公告内容:" prop="content">-->
+                <!--                    <el-input v-model="addForm.content"></el-input>-->
+                <!--                </el-form-item>-->
             </el-form>
 
             <span slot="footer" class="dialog-footer">
-                    <el-button @click="cancelEdit">取 消</el-button>
+                    <el-button @click="cancelEdit" style="margin-right: 20px;">取 消</el-button>
                     <el-button type="primary" @click="editAnnouncement">确 定</el-button>
             </span>
-        </el-dialog>
+            </el-dialog>
     </div>
 </template>
 
 <script>
 export default {
-    data()
-    {
+    data() {
         return {
             //获取公告列表参数对象
             query: '',
@@ -164,7 +154,7 @@ export default {
             //添加公告表单数据
             addForm: {
                 AnnouncementId: "",
-                title:"",
+                title: "",
                 content: "",
                 time: "",
                 status: false,
@@ -174,13 +164,11 @@ export default {
         }
     },
     //一开始就显示公告列表
-    created()
-    {
+    created() {
         this.getAnnouncementList();
     },
     methods: {
-        async getAnnouncementList()
-        {
+        async getAnnouncementList() {
             let result = await this.$http.post(this.$api.AdminGetAnnouncementsUrl,
                 {
                     query: this.query,
@@ -189,33 +177,28 @@ export default {
                     status: true
                 });
             this.AnnouncementList = result.data.data;
-            for (let i = 0; i < this.AnnouncementList.length; i++)
-            {
-                this.AnnouncementList[i].time=this.AnnouncementList[i].time.substring(0,10)
+            for (let i = 0; i < this.AnnouncementList.length; i++) {
+                this.AnnouncementList[i].time = this.AnnouncementList[i].time.substring(0, 10)
             }
             this.totalCount = parseInt(result.data.totalCount);
         },
         //监听pageSize改变的事件
-        handleSizeChange(newSize)
-        {
+        handleSizeChange(newSize) {
             this.pageSize = newSize;
             this.getAnnouncementList();
         },
         //监听pageNum改变的事件
-        handleCurrentChange(newPage)
-        {
+        handleCurrentChange(newPage) {
             this.pageNumber = newPage;
             this.getAnnouncementList();
         },
 
         //添加公告
-        showAddAnnouncement()
-        {
+        showAddAnnouncement() {
 
             this.addDialogVisible = true;
             //清空表单的校验项
-            this.$nextTick(() =>
-            {
+            this.$nextTick(() => {
                 this.$refs.addFormRef.resetFields();
             });
 
@@ -226,11 +209,9 @@ export default {
         },
 
         //点击确定按钮后,添加公告
-        addAnnouncement()
-        {
+        addAnnouncement() {
             this.$refs.addFormRef.validate(
-                async valid =>
-                {
+                async valid => {
                     if (!valid) return;
                     this.addForm.AnnouncementId = 0;
                     let result = await this.$http.post(this.$api.AdminAddOneAnnouncement,
@@ -249,41 +230,35 @@ export default {
             );
         },
         //添加公告框里面的取消添加公告按钮触发的事件
-        cancelAdd()
-        {
+        cancelAdd() {
             //隐藏添加公告对话框
             this.addDialogVisible = false;
             this.$message.info("取消添加公告!");
         },
 
-        async showDialog(AnnouncementId)
-        {
+        async showDialog(AnnouncementId) {
             let result = await this.$http.post(this.$api.AdminGetOneAnnouncement + "/" + AnnouncementId);
             this.addForm = result.data;
+            this.addForm.time = this.addForm.time.substring(0, 10);
             this.showDialogVisible = true;
         },
         //显示公告详情页面按确定后的触发事件
-        closeDialogVisible()
-        {
+        closeDialogVisible() {
             this.showDialogVisible = false;
         },
-        cancelEdit()
-        {
+        cancelEdit() {
             this.editDialogVisible = false;
             this.$message.info("取消修改公告!");
         },
         //修改公告页面弹出后,会查询要修改的id所对应公告的内容
-        async showEditDialog(AnnouncementId)
-        {
+        async showEditDialog(AnnouncementId) {
             let result = await this.$http.post(this.$api.AdminGetOneAnnouncement + "/" + AnnouncementId);
             this.addForm = result.data;
             this.editDialogVisible = true;
         },
-        async editAnnouncement()
-        {
+        async editAnnouncement() {
             this.$refs.addFormRef.validate(
-                async valid =>
-                {
+                async valid => {
                     if (!valid) return;
                     console.log(this.addForm);
                     await this.$http.post(this.$api.AdminUpdateOneAnnouncement + "/" + this.addForm.AnnouncementId, this.addForm);
@@ -299,8 +274,7 @@ export default {
             );
         },
         //根据ID删除对应信息
-        async removeById(AnnouncementId)
-        {
+        async removeById(AnnouncementId) {
             //    弹框提示
             let confirmResult = await this.$confirm('此操作将永久删除该公告, 是否继续?', '提示', {
                 confirmButtonText: '确定',
@@ -308,11 +282,9 @@ export default {
                 type: 'warning'
             }).catch(err => err);
             //    如果选择不删除
-            if (confirmResult !== "confirm")
-            {
+            if (confirmResult !== "confirm") {
                 return this.$message.info("已经取消删除");
-            } else
-            {
+            } else {
                 await this.$http.post(this.$api.AdminDeleteOneAnnouncement + "/" + AnnouncementId);
                 this.$message.info("删除成功!");
                 await this.getAnnouncementList();

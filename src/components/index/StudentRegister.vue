@@ -1,6 +1,7 @@
 <!--有前端验证注册信息是否合理-->
 <template>
 <body id="poster">
+<!--注册表单-->
   <el-form
     ref="registerFormRef"
     :model="registerForm"
@@ -23,6 +24,7 @@
       <el-input type="password" v-model="registerForm.confirmPassword" placeholder="确认密码"></el-input>
     </el-form-item>
 
+<!--    上传个人头像组件-->
     <el-upload
       class="upload"
       action
@@ -37,6 +39,8 @@
       <p id="img-context">上传个人头像</p>
       <div class="el-upload__tip" slot="tip">只能上传jpg/jpeg/png文件，且不超过5MB</div>
     </el-upload>
+
+<!--    注册按钮-->
     <el-form-item style="width: 100%">
       <el-button
         type="primary"
@@ -94,7 +98,7 @@ export default {
         username: "",
         password: "",
         confirmPassword: "",
-        imgUrl: "https://tongji4m3.oss-cn-beijing.aliyuncs.com/OIP.jpg",
+        imgUrl: "https://tongji4m3.oss-cn-beijing.aliyuncs.com/f_f_object_156_s512_f_object_156_0.png",
       },
       //表单的验证规则
       registerFormRules: {
@@ -108,8 +112,8 @@ export default {
           { required: true, message: "请输入用户名", trigger: "blur" },
           {
             min: 3,
-            max: 10,
-            message: "用户名必须在3-10个字符之间",
+            max: 20,
+            message: "用户名必须在3-20个字符之间",
             trigger: "blur",
           },
         ],

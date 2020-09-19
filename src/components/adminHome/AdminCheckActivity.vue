@@ -4,12 +4,12 @@
         <el-breadcrumb separator-class="el-icon-arrow-right">
             <el-breadcrumb-item :to="{ path: '/welcome' }">首页</el-breadcrumb-item>
             <el-breadcrumb-item :to="{ path: '/adminWelcome' }">管理员首页</el-breadcrumb-item>
-            <el-breadcrumb-item>社团活动审核</el-breadcrumb-item>
+            <el-breadcrumb-item>活动审核</el-breadcrumb-item>
         </el-breadcrumb>
         <el-divider></el-divider>
         <!-- 卡片 -->
         <el-card class="box-card">
-            <el-row :gutter="20">
+            <el-row :gutter="24">
                 <!-- 模糊搜索 -->
                 <el-col :span="10">
                     <el-input clearable @clear="getActivityList('all', query)"  placeholder="请输入内容" v-model="query">
@@ -20,7 +20,7 @@
                 <el-col :span="1"  class="center">
                     <el-button type="text" disabled>状态：</el-button>
                 </el-col>
-                <el-col :span="2">
+                <!-- <el-col :span="2">
                     <el-button type="primary" @click="getActivityList('all', query)">{{quanbu}}</el-button>
                 </el-col>
                 <el-col :span="2">
@@ -31,7 +31,13 @@
                 </el-col>
                 <el-col :span="2">
                     <el-button type="primary" @click="getActivityList('failed', query)">未通过</el-button>
-                </el-col>
+                </el-col> -->
+				<el-col :span="12">
+					<el-button type="primary" plain @click="getActivityList('all', query)">{{quanbu}}</el-button>
+					<el-button type="primary" plain @click="getActivityList('unaudited', query)">待审核</el-button>
+					<el-button type="primary" plain @click="getActivityList('pass', query)">已通过</el-button>
+				    <el-button type="primary" plain @click="getActivityList('failed', query)">未通过</el-button>
+				</el-col>
             </el-row>
         
         <!-- 活动列表 -->
@@ -45,13 +51,18 @@
                 <el-table-column label="审核状态" prop="status_name"></el-table-column>
                 <el-table-column label="操作">
                     <template slot-scope="scope">
-                        <el-button type="primary" 
+                        <el-button v-if="activityList[scope.$index].status_name == '待审核'" type="primary" 
                             @click="showReplyDialog(scope.$index)">
                             审核
+                        </el-button>
+                        <el-button v-else type="primary" 
+                            @click="showReplyDialog(scope.$index)">
+                            详情
                         </el-button>
                     </template>
                 </el-table-column>
         </el-table>
+		<br>
         <!-- 分页区域 -->
         <el-pagination
                 @size-change="handleSizeChange"
@@ -65,45 +76,47 @@
         </el-card>
         <!-- 审核对话框 -->
         <el-dialog title="活动详情" :visible.sync="replyDialogVisible"
-                   width="50%">
+                   width="50%" center>
             <!-- 展示内容主体区域 -->
             <el-form :model="this.replyForm" label-width="150px">
                 <el-form-item label="社团名称:">
-                    <el-input v-model="this.replyForm.clubName" readonly></el-input>
+                    <el-input v-model="this.replyForm.clubName" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="活动名称:">
-                    <el-input v-model="this.replyForm.name" readonly></el-input>
+                    <el-input v-model="this.replyForm.name" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="是否公开:">
-                    <el-input v-model="this.replyForm.isPublic_str" readonly></el-input>
+                    <el-input v-model="this.replyForm.isPublic_str" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="活动经费:">
-                    <el-input v-model="this.replyForm.budget" readonly></el-input>
+                    <el-input v-model="this.replyForm.budget" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="活动地点:">
-                    <el-input v-model="this.replyForm.place" readonly></el-input>
+                    <el-input v-model="this.replyForm.place" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="活动时间:">
-                    <el-date-picker type="date" v-model="this.replyForm.evenTime" style="width: 100%;" readonly></el-date-picker>
+                    <el-date-picker type="date" v-model="this.replyForm.evenTime" style="width: 82%;" readonly></el-date-picker>
                 </el-form-item>
                 <el-form-item label="提交时间:">
-                    <el-date-picker type="date" v-model="this.replyForm.applyDate" style="width: 100%;" readonly></el-date-picker>
+                    <el-date-picker type="date" v-model="this.replyForm.applyDate" style="width: 82%;" readonly></el-date-picker>
                 </el-form-item>
                 <el-form-item label="审核状态:">
-                    <el-input v-model="this.replyForm.status_name" readonly></el-input>
+                    <el-input v-model="this.replyForm.status_name" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="活动描述:">
                     <el-input 
                         v-model="replyForm.description"
                         type="textarea"
                         :autosize = "{ minRows: 3, maxRows: 8 }"
-                        readonly>
+                        readonly
+						style="width: 82%;">
                     </el-input>
                 </el-form-item>
                 <el-form-item label="建    议:">
                     <el-input 
                         v-model="replyForm.suggestion"
                         type="textarea"
+						style="width: 82%;"
                         :autosize = "{ minRows: 3, maxRows: 10 }"
                         palceholder="请在此处输入您对这项活动的建议"
                         maxlength="2000"
@@ -119,15 +132,17 @@
                 <el-button type="primary" @click="submitSuggestion()">提交建议</el-button>
                 <!-- 通过按钮 -->
                 <el-button 
+                    v-if="replyForm.status_name == '待审核'"
                     type="success" 
-                    @click="updateStatusAndRefresh(this.replyForm.activityId, 1, 1)"
+                    @click="updateStatusAndRefresh(replyForm.activityId, 1, 1)"
                     icon="el-icon-check" 
                     circle>
                 </el-button>
                 <!-- 拒绝按钮 -->
                 <el-button 
                     type="danger" 
-                    @click="updateStatusAndRefresh(this.replyForm.activityId, 2, 1)"
+                    v-if="replyForm.status_name == '待审核'"
+                    @click="updateStatusAndRefresh(replyForm.activityId, 2, 1)"
                     icon="el-icon-close" 
                     circle>
                 </el-button>
@@ -260,9 +275,9 @@ export default {
         async showReplyDialog(pos_in)
         {
             this.replyForm.activityId = this.activityList[pos_in].activityId;
-            console.log({
-                    activityId: this.replyForm.activityId
-                });
+            // console.log({
+            //         activityId: this.replyForm.activityId
+            //     });
             let result = await this.$http.post(this.$api.AdminGetActivityDetailsUrl, 
                 {
                     activityId: this.replyForm.activityId
@@ -279,6 +294,7 @@ export default {
             this.replyForm.isPublic_str = result.data.isPublic?"公开活动":"社内活动";
             this.replyForm.adminName = result.data.adminName;
             this.replyForm.suggestion = result.data.suggestion;
+            this.replyDialogVisible = true;
         },
         //关闭详情对话框
         closeReplyDialog()
@@ -289,8 +305,13 @@ export default {
         async submitSuggestion()
         {
             this.closeReplyDialog();
+            // console.log({
+            //         activityId: this.replyForm.activityId,
+            //         suggestion: this.replyForm.suggestion
+            //     });
             let result = await this.$http.post(this.$api.AdminUpdateActSuggestionUrl, 
                 {
+                    activityId: this.replyForm.activityId,
                     suggestion: this.replyForm.suggestion
                 });
         },
@@ -308,7 +329,7 @@ export default {
                     this.getActivityList();
                     break;
                 case 1://详情界面
-                    this.replyForm.status_name = statusToStr(status_in);
+                    this.replyForm.status_name = this.statusToStr(status_in);
                     break;
                 default:
                     console.log("出现未定义界面编号");

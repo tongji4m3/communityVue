@@ -27,6 +27,7 @@
                 <el-table-column type="index"></el-table-column>
                 <el-table-column label="活动名称" prop="name"></el-table-column>
                 <el-table-column label="活动位置" prop="place"></el-table-column>
+                <el-table-column label="审核状态" prop="status"></el-table-column>
                 <el-table-column label="显示详情">
                     <template slot-scope="scope">
                         <el-button type="primary" @click="showDialog(scope.row.activityId)">查看</el-button>
@@ -51,18 +52,18 @@
                 <!--            内容主体区域 放置一个表单-->
                 <!--绑定到addForm中，绑定验证规则对象addFormRules 表单校验项的引用为addFormRef-->
                 <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="150px"
-                         style="height:470px">
+                         style="height:385px">
                     <!-- prop属性指定验证规则-->
                     <el-form-item label="活动名称:" prop="name">
                         <!--v-model双向绑定-->
-                        <el-input style="width:360px" v-model="addForm.name"></el-input>
+                        <el-input style="width: 82%;" v-model="addForm.name"></el-input>
                     </el-form-item>
                     <el-form-item label="活动介绍:" prop="description">
-                        <el-input style="width:360px" type="textarea"
-                                  :autosize="{ minRows: 1, maxRows: 4}" v-model="addForm.description"></el-input>
+                        <el-input style="width: 82%;" type="textarea"
+                                  :autosize="{ minRows: 3, maxRows: 4}" v-model="addForm.description"></el-input>
                     </el-form-item>
                     <el-form-item label="活动经费:" prop="budget">
-                        <el-input style="width:360px" v-model="addForm.budget"></el-input>
+                        <el-input style="width: 82%;" v-model="addForm.budget"></el-input>
                     </el-form-item>
                     <el-form-item label="活动位置:" prop="place">
                         <el-select v-model="addForm.place" placeholder="请选择活动区域" style="width: 360px">
@@ -92,35 +93,35 @@
             <el-dialog title="活动详情" :visible.sync="showDialogVisible"
                        width="630px" top="60px" center>
                 <!--            展示内容主体区域 -->
-                <el-form :model="showForm" label-width="150px" style="height:650px">
+                <el-form :model="showForm" label-width="150px" style="height:580px">
                     <el-form-item label="活动名称:">
-                        <el-input style="width:360px" v-model="showForm.name" readonly="true"></el-input>
+                        <el-input style="width: 82%;" v-model="showForm.name" readonly="true"></el-input>
                     </el-form-item>
                     <el-form-item label="活动介绍:">
                         <el-input type="textarea"
-                                  :autosize="{ minRows: 1, maxRows: 4}" style="width:360px"
+                                  :autosize="{ minRows: 3, maxRows: 4}" style="width: 82%;"
                                   v-model="showForm.description"
                                   readonly="true"></el-input>
                     </el-form-item>
                     <el-form-item label="活动经费:">
-                        <el-input style="width:360px" v-model="showForm.budget" readonly="true"></el-input>
+                        <el-input style="width: 82%;" v-model="showForm.budget" readonly="true"></el-input>
                     </el-form-item>
                     <el-form-item label="活动位置:">
-                        <el-input style="width:360px" v-model="showForm.place" readonly="true"></el-input>
+                        <el-input style="width: 82%;" v-model="showForm.place" readonly="true"></el-input>
                     </el-form-item>
                     <el-form-item label="活动时间:">
-                        <el-date-picker style="width:360px" type="date" v-model="showForm.eventTime"
+                        <el-date-picker style="width: 82%;" type="date" v-model="showForm.eventTime"
                                         readonly="true"></el-date-picker>
                     </el-form-item>
                     <el-form-item label="申请时间:">
-                        <el-date-picker style="width:360px" type="date" v-model="showForm.applyDate"
+                        <el-date-picker style="width: 82%;" type="date" v-model="showForm.applyDate"
                                         readonly="true"></el-date-picker>
                     </el-form-item>
                     <el-form-item label="审核状态:">
-                        <el-switch v-model="showForm.status" disabled></el-switch>
+                        <el-input style="width: 82%;" v-model="showForm.status" readonly="true"></el-input>
                     </el-form-item>
                     <el-form-item label="审核信息:">
-                        <el-input style="width:360px" v-model="showForm.suggestion" readonly="true"></el-input>
+                        <el-input style="width: 82%;" v-model="showForm.suggestion" readonly="true"></el-input>
                     </el-form-item>
                     <el-form-item label="是否公开:" >
                         <el-switch v-model="showForm.isPublic" disabled></el-switch>
@@ -136,29 +137,31 @@
             <!--        修改活动对话框-->
             <el-dialog title="修改活动" :visible.sync="editDialogVisible"
                        width="630px" top="60px" center>
-                <el-form :model="editForm" :rules="addFormRules" ref="editFormRef" label-width="150px" style="height:470px">
+                <el-form :model="editForm" :rules="addFormRules" ref="editFormRef" label-width="150px" style="height:380px">
                     <el-form-item label="活动名称:" prop="name">
-                        <el-input style="width:360px" v-model="editForm.name"></el-input>
+                        <el-input style="width: 82%;" v-model="editForm.name"></el-input>
                     </el-form-item>
                     <el-form-item label="活动介绍:" prop="description">
-                        <el-input style="width:360px" type="textarea"
-                                  :autosize="{ minRows: 1, maxRows: 4}" v-model="editForm.description"></el-input>
+                        <el-input style="width: 82%;" type="textarea"
+                                  :autosize="{ minRows: 3, maxRows: 4}" v-model="editForm.description"></el-input>
                     </el-form-item>
                     <el-form-item label="活动经费:" prop="budget">
-                        <el-input style="width:360px" v-model="editForm.budget"></el-input>
+                        <el-input style="width: 82%;" v-model="editForm.budget"></el-input>
                     </el-form-item>
                     <el-form-item label="活动位置:" prop="place">
-                        <el-select v-model="editForm.place" placeholder="请选择活动区域" style="width:360px">
+                        <el-select v-model="editForm.place" placeholder="请选择活动区域" style="width: 82%;">
                             <el-option label="本部南楼" value="本部南楼"></el-option>
                             <el-option label="本部北楼" value="本部北楼"></el-option>
                             <el-option label="本部西南七楼" value="本部西南七楼"></el-option>
                             <el-option label="嘉定图书馆" value="嘉定图书馆"></el-option>
                             <el-option label="嘉定友园19号楼" value="嘉定友园19号楼"></el-option>
+                            <el-option label="嘉定仰望星空" value="嘉定仰望星空"></el-option>
+                            <el-option label="嘉定体育馆" value="嘉定体育馆"></el-option>
                         </el-select>
                     </el-form-item>
 
                     <el-form-item label="活动时间:" prop="eventTime">
-                        <el-date-picker style="width:360px" type="date" v-model="editForm.eventTime">
+                        <el-date-picker style="width: 82%;" type="date" v-model="editForm.eventTime">
                         </el-date-picker>
                     </el-form-item>
                     <el-form-item label="是否公开:" prop="isPublic">
@@ -171,6 +174,7 @@
                     <el-button style="margin-left:20px" type="primary" @click="editActivity">确 定</el-button>
             </span>
             </el-dialog>
+			<br>
             <!--            分页区域-->
             <el-pagination
                     @size-change="handleSizeChange"
@@ -269,6 +273,16 @@
                     });
 
                 this.activityList = result.data.data;
+
+                for (let i = 0; i < this.activityList.length; i++)
+                {
+                    if(this.activityList[i].status===1)
+                        this.activityList[i].status = "已审核";
+                    else
+                        this.activityList[i].status = "未审核";
+                }
+
+                console.log(this.activityList);
                 this.totalCount = parseInt(result.data.totalCount);
             },
             //监听pageSize改变的事件
@@ -339,6 +353,14 @@
                 let result = await this.$http.post(this.$api.PrincipalGetOneActivityUrl + "/" + activityId);
                 this.showForm = result.data;
                 this.showDialogVisible = true;
+
+                if(this.showForm.status===1)
+                    this.showForm.status = "已审核";
+                else
+                    this.showForm.status = "未审核";
+
+                if(this.showForm.suggestion==null)
+                    this.showForm.suggestion = "暂无审核信息";
             },
             //显示活动详情页面按确定后的触发事件
             closeDialogVisible()

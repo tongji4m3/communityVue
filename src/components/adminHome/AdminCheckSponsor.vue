@@ -4,12 +4,12 @@
         <el-breadcrumb separator-class="el-icon-arrow-right">
             <el-breadcrumb-item :to="{ path: '/welcome' }">首页</el-breadcrumb-item>
             <el-breadcrumb-item :to="{ path: '/adminWelcome' }">管理员首页</el-breadcrumb-item>
-            <el-breadcrumb-item>社团赞助审核</el-breadcrumb-item>
+            <el-breadcrumb-item>赞助审核</el-breadcrumb-item>
         </el-breadcrumb>
         <el-divider></el-divider>
         <!-- 卡片 -->
         <el-card class="box-card">
-            <el-row :gutter="20">
+            <el-row :gutter="24">
                  <!-- 模糊搜索 -->
                 <el-col :span="10">
                     <el-input clearable @clear="getSponsorList('all', query)"  placeholder="请输入内容" v-model="query">
@@ -20,7 +20,7 @@
                 <el-col :span="1"  class="center">
                     <el-button type="text" disabled>状态：</el-button>
                 </el-col>
-                <el-col :span="2">
+                <!-- <el-col :span="2">
                     <el-button type="primary" @click="getSponsorList('all', query)">{{quanbu}}</el-button>
                 </el-col>
                 <el-col :span="2">
@@ -31,7 +31,14 @@
                 </el-col>
                 <el-col :span="2">
                     <el-button type="primary" @click="getSponsorList('failed', query)">未通过</el-button>
-                </el-col>
+                </el-col> -->
+				<el-col :span="12">
+					<el-button type="primary" plain @click="getSponsorList('all', query)">{{quanbu}}</el-button>
+					<el-button type="primary" plain @click="getSponsorList('unaudited', query)">待审核</el-button>
+					<el-button type="primary" plain @click="getSponsorList('pass', query)">已通过</el-button>
+				    <el-button type="primary" plain @click="getSponsorList('failed', query)">未通过</el-button>
+				</el-col>
+				
             </el-row>
             <!-- 赞助列表 -->
             <el-table :data="sponsorList">
@@ -53,6 +60,7 @@
                     <template slot-scope="scope">
                         <!-- 通过按钮 -->
                         <el-button
+                            v-if="scope.row.status_name == '待审核'"
                             type="success"
                             @click="updateStatusAndRefresh(scope.row.sponsorshipId, 1, 0)"
                             icon="el-icon-check"
@@ -60,6 +68,7 @@
                         </el-button>
                         <!-- 拒绝按钮 -->
                         <el-button
+                            v-if="scope.row.status_name == '待审核'"
                             type="danger"
                             @click="updateStatusAndRefresh(scope.row.sponsorshipId, 2, 0)"
                             icon="el-icon-close"
@@ -69,7 +78,7 @@
                 </el-table-column>
             </el-table>
         
-
+         <br>
         <!-- 分页区域 -->
         <el-pagination
                 @size-change="handleSizeChange"
@@ -83,36 +92,37 @@
         </el-card>
          <!-- 展示批复对话框 -->
         <el-dialog title="活动详情" :visible.sync="replyDialogVisible"
-                   width="50%">
+                   width="50%" center>
             <!-- 展示内容主体区域 -->
             <el-form :model="this.replyForm" label-width="150px">
                 <el-form-item label="社团名称:">
-                    <el-input v-model="this.replyForm.clubName" readonly></el-input>
+                    <el-input v-model="this.replyForm.clubName" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="赞助商:">
-                    <el-input v-model="this.replyForm.sponsor" readonly></el-input>
+                    <el-input v-model="this.replyForm.sponsor" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="赞助金额:">
-                    <el-input v-model="this.replyForm.amount" readonly></el-input>
+                    <el-input v-model="this.replyForm.amount" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="提交时间:">
-                    <el-date-picker type="date" v-model="this.replyForm.applyDate" style="width: 100%;" readonly></el-date-picker>
+                    <el-date-picker type="date" v-model="this.replyForm.applyDate" style="width: 82%;" readonly></el-date-picker>
                 </el-form-item>
                 <el-form-item label="审核状态:">
-                    <el-input v-model="this.replyForm.status_name" readonly></el-input>
+                    <el-input v-model="this.replyForm.status_name" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="赞助商需求:">
                     <el-input 
                         v-model="replyForm.requirement"
                         type="textarea"
                         :autosize = "{ minRows: 3, maxRows: 8 }"
-                        readonly>
+                        readonly style="width: 82%;">
                     </el-input>
                 </el-form-item>
                 <el-form-item label="建议:">
                     <el-input 
                         v-model="replyForm.suggestion"
                         type="textarea"
+						style="width: 82%;"
                         :autosize = "{ minRows: 3, maxRows: 10 }"
                         palceholder="请在此处输入您对这项赞助的建议"
                         maxlength="2000"
@@ -128,15 +138,17 @@
                 <el-button type="primary" @click="submitSuggestion()">提交建议</el-button>
                 <!-- 通过按钮 -->
                 <el-button 
+                    v-if="replyForm.status_name == '待审核'"
                     type="success" 
-                    @click="updateStatusAndRefresh(this.replyForm.sponsorshipId, 1, 1)"
+                    @click="updateStatusAndRefresh(replyForm.sponsorshipId, 1, 1)"
                     icon="el-icon-check" 
                     circle>
                 </el-button>
                 <!-- 拒绝按钮 -->
                 <el-button 
+                    v-if="replyForm.status_name == '待审核'"
                     type="danger" 
-                    @click="updateStatusAndRefresh(this.replyForm.sponsorshipId, 2, 1)"
+                    @click="updateStatusAndRefresh(replyForm.sponsorshipId, 2, 1)"
                     icon="el-icon-close" 
                     circle>
                 </el-button>
@@ -225,6 +237,8 @@ export default {
                     amount: result.data.data[i].amount,
                     status_name: this.statusToStr(result.data.data[i].status)
                 };
+                console.log(sponsorItem);
+                console.log(result.data);
                 this.sponsorList.push(sponsorItem);
             }
             this.totalCount = parseInt(result.data.totalCount);
@@ -277,7 +291,7 @@ export default {
             this.replyForm.applyDate = result.data.applyDate;
             this.replyForm.sponsor = result.data.sponsor;
             this.replyForm.amount = result.data.amount;
-            this.replyForm.status_name = statusToStr(result.data.status);
+            this.replyForm.status_name = this.statusToStr(result.data.status);
             this.replyDialogVisible = true;
         },
         //关闭详情对话框
@@ -290,10 +304,12 @@ export default {
         {
             this.closeReplyDialog();
             console.log({
+                    sponsorshipId: this.replyForm.sponsorshipId,
                     suggestion: this.replyForm.suggestion
                 });
             let result = await this.$http.post(this.$api.AdminUpdateSponSuggestionUrl, 
                 {
+                    sponsorshipId: this.replyForm.sponsorshipId,
                     suggestion: this.replyForm.suggestion
                 });
         },
@@ -311,7 +327,7 @@ export default {
                     this.getSponsorList();
                     break;
                 case 1://详情界面
-                    this.replyForm.status_name = statusToStr(status_in);
+                    this.replyForm.status_name = this.statusToStr(status_in);
                     break;
                 default:
                     console.log("出现未定义界面编号");
@@ -327,5 +343,6 @@ export default {
     margin: auto 0;
     vertical-align: 50%;
 }
+
 </style>
 

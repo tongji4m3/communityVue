@@ -32,7 +32,7 @@
         <!--        页面主体-->
         <el-container>
             <!--            侧边栏-->
-            <el-aside width="200px">
+            <el-aside width="170px">
                 <el-menu router
                          background-color="rgb(239,239,239)" text-color="rgb(43,43,43)" active-text-color="#409EFF">
                         <el-menu-item index="/StudentWelcome">
@@ -43,22 +43,29 @@
                             <i class="el-icon-s-shop"></i>
                             个人信息管理
                         </el-menu-item>
-                        <el-menu-item index="/studentCorporations">
-                            <i class="el-icon-menu"></i>
-                            社团信息查询
-                        </el-menu-item>
-                        <el-menu-item index="/joinCorporations">
-                            <i class="el-icon-s-check"></i>
-                            已加入社团
-                        </el-menu-item>
-                        <el-menu-item index="/joinActivity">
-                            <i class="el-icon-s-custom"></i>
-                            活动信息查询
-                        </el-menu-item>
-                        <el-menu-item index="/InActivity">
-                            <i class="el-icon-star-on"></i>
-                            已参加活动
-                        </el-menu-item>
+                        <el-submenu index="2">
+                            <template slot="title"><i class="el-icon-menu"></i>信息查询</template>
+                            <el-menu-item-group>
+                                <el-menu-item index="/studentCorporations">社团信息查询</el-menu-item>
+                                <el-menu-item index="/joinActivity">活动信息查询</el-menu-item>
+                            </el-menu-item-group>
+                        </el-submenu>
+<!--                        <el-menu-item index="/studentCorporations">-->
+<!--                            <i class="el-icon-menu"></i>-->
+<!--                            社团信息查询-->
+<!--                        </el-menu-item>-->
+<!--                        -->
+<!--                        <el-menu-item index="/joinActivity">-->
+<!--                            <i class="el-icon-s-custom"></i>-->
+<!--                            活动信息查询-->
+<!--                        </el-menu-item>-->
+                        <el-submenu index="3">
+                            <template slot="title"><i class="el-icon-s-custom"></i>已加入</template>
+                            <el-menu-item-group>
+                                <el-menu-item index="/joinCorporations">已加入社团</el-menu-item>
+                                <el-menu-item index="/InActivity">已参加活动</el-menu-item>
+                            </el-menu-item-group>
+                        </el-submenu>
                 </el-menu>
             </el-aside>
             <!--            右侧内容主体-->

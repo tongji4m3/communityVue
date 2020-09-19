@@ -4,31 +4,36 @@
         <el-breadcrumb separator-class="el-icon-arrow-right">
             <el-breadcrumb-item :to="{ path: '/welcome' }">首页</el-breadcrumb-item>
             <el-breadcrumb-item :to="{ path: '/adminWelcome' }">管理员首页</el-breadcrumb-item>
-            <el-breadcrumb-item>社团学生管理</el-breadcrumb-item>
+            <el-breadcrumb-item>学生管理</el-breadcrumb-item>
         </el-breadcrumb>
         <el-divider></el-divider>
         <!-- 卡片 -->
         <el-card class="box-card">
             <el-row :gutter="20">
                 <!-- 模糊搜索 -->
-                <el-col :span="10">
+                <el-col :span="11">
                     <el-input clearable @clear="getStudentList('all', query)"  placeholder="请输入内容" v-model="query">
                         <el-button slot="append" icon="el-icon-search" @click="getStudentList('all', query)"></el-button>
                     </el-input>
                 </el-col>
                  <!-- 带状态的模糊搜索 -->
-                <el-col :span="1"  class="center">
+                <el-col :span="1"  class="center" style="margin-right: 3px;">
                     <el-button type="text" disabled>状态：</el-button>
                 </el-col>
-                <el-col :span="2">
+                <!-- <el-col :span="3">
                     <el-button type="primary" @click="getStudentList('all', query)">{{quanbu}}</el-button>
                 </el-col>
-                <el-col :span="2">
+                <el-col :span="3">
                     <el-button type="primary" @click="getStudentList('graduated', query)">离校生</el-button>
                 </el-col>
-                <el-col :span="2">
+                <el-col :span="3">
                     <el-button type="primary" @click="getStudentList('atSchool', query)">在校生</el-button>
-                </el-col>
+                </el-col> -->
+				<el-col :span="8">
+				    <el-button type="primary" plain @click="getStudentList('all', query)">{{quanbu}}</el-button>
+					<el-button type="primary" plain @click="getStudentList('graduated', query)">离校生</el-button>
+					<el-button type="primary" plain @click="getStudentList('atSchool', query)">在校生</el-button>
+				</el-col>
             </el-row>
         
         <!-- 活动列表 -->
@@ -48,7 +53,8 @@
                     </template>
                 </el-table-column>
         </el-table>
-            <el-row :gutter="20">
+		<br>
+            <el-row :gutter="24">
                 <el-col :span="13">
                     <!-- 分页区域 -->
                     <el-pagination
@@ -67,31 +73,47 @@
                         新增
                     </el-button>
                 </el-col>
-                <el-col :span="2">
-                    <import-excel @getResult="getExcelData" />
+                <el-col :span='0'>
+                    <input
+                        class="input-file"
+                        type="file"
+                        @change="exportData"
+                        accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                    />
+                </el-col>
+                <el-col :span="3">
+                    <span>
+                        <el-button type="primary" icon="el-icon-upload" @click="freshBtnClick">批量新增</el-button>
+                    </span>
+                </el-col>
+
+                <el-col :span="3">
+                    <span>
+                        <el-button type="primary" icon="el-icon-upload" @click="graduateBtnClick">批量离校</el-button>
+                    </span>
                 </el-col>
             </el-row>
 
         </el-card>
         <!-- 详情对话框 -->
         <el-dialog title="学生信息" :visible.sync="replyDialogVisible"
-                   width="50%">
+                   width="50%" center>
             <!-- 展示内容主体区域 -->
             <el-form :model="this.replyForm" label-width="150px">
                 <el-form-item label="姓名:">
-                    <el-input v-model="replyForm.name"></el-input>
+                    <el-input v-model="replyForm.name" style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="学号:">
-                    <el-input v-model="replyForm.number"></el-input>
+                    <el-input v-model="replyForm.number" style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="专业:">
-                    <el-input v-model="replyForm.major"></el-input>
+                    <el-input v-model="replyForm.major" style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="年级:">
-                    <el-input v-model="replyForm.grade"></el-input>
+                    <el-input v-model="replyForm.grade" style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="状态:">
-                    <el-input v-model="replyForm.status_name" readonly></el-input>
+                    <el-input v-model="replyForm.status_name" readonly style="width: 82%;"></el-input>
                 </el-form-item>
             </el-form>
             <!-- 底部区域 -->
@@ -141,11 +163,12 @@
 </template>
 
 <script>
-import importExcel from "./importExcel.vue"
+// import importFreshC from "./importFresh.vue";
+// import uploadGraduateC from "./uploadGraduate.vue";
+import XLSX from "xlsx";
+
 export default {
-    components:{
-        importExcel
-    },
+
     data()
     {
         return {
@@ -157,6 +180,7 @@ export default {
             //每页显示的条数
             pageSize: 5,
             quanbu:"全　部",
+            isFresh: true,
             //查询到的当前页活动列表
             studentList: [
                 // {
@@ -303,6 +327,7 @@ export default {
                     grade: this.replyForm.grade,
                     status: this.replyForm.status
                 });
+            this.getStudentList();
             return result.data.isSuccess;
         },
         //新增学生信息
@@ -314,7 +339,8 @@ export default {
                     major: this.replyForm.major,
                     grade: this.replyForm.grade,
                     status: this.replyForm.status
-                })
+                });
+            this.getStudentList();
             return result.data.isSuccess;
         },
         //标记为已离校
@@ -336,12 +362,12 @@ export default {
             let result = await this.$http.post(this.$api.AdminDeleteStudentMetaUrl,
                 {
                     number: this.replyForm.number
-                })
+                });
+            this.getStudentList();
+            this.replyDialogVisible = false;
             return result.data.isSuccess;
         },
-        async getExcelData(data){
-            // console.log(data);
-            this.ws = data;
+        async importFresh(){
             console.log(this.ws);
             var irow;
             for(irow = 0; irow < this.ws.length; irow++){
@@ -352,20 +378,99 @@ export default {
                     grade: this.ws[irow].年级,
                     status: true
                 }
-                let result = await this.$http.post(
-                    this.$api.AdminInsertStudentMetaUrl,
-                    questObject
-                    )
+                let result = await this.$http.post(this.$api.AdminInsertStudentMetaUrl, questObject);
                 console.log(result);
                 if(result.data.isSuccess == false){
                     this.errorForm.op = "批量新增";
                     this.errorForm.row = irow;
                     this.errorForm.notice = "已存在同学号学生，请刷新页面并修改错误学生信息";
                     this.errorDialogVisible = true;
+                    this.getStudentList();
+                    return false;
                     break;
                 }
 
             }
+            this.getStudentList();
+            return true;
+            
+        },
+        async uploadGraduate(){
+            // console.log(data);
+            console.log(this.ws);
+            var irow;
+            for(irow = 0; irow < this.ws.length; irow++){
+                let questObject = {
+                    number: this.ws[irow].学号
+                }
+                let result = await this.$http.post(this.$api.AdminUpdateGraduateUrl, questObject);
+                console.log(result);
+                if(result.data.isSuccess == false){
+                    this.errorForm.op = "批量离校";
+                    this.errorForm.row = irow;
+                    this.errorForm.notice = "无匹配学生学号，请刷新页面并修改错误学生信息";
+                    this.errorDialogVisible = true;
+                    this.getStudentList();
+                    return true;
+                    break;
+                }
+
+            }
+            this.getStudentList();
+            return true;
+        },
+        freshBtnClick(){
+            this.isFresh = true;
+            this.readBtnClick();
+        },
+        graduateBtnClick(){
+            this.isFresh = false;
+            this.readBtnClick();
+        },
+        readBtnClick() {
+            // 点击事件
+            document.querySelector(".input-file").click();
+        },
+        exportData(event) {
+            if (!event.currentTarget.files.length) {
+                return;
+            }
+            const that = this;
+            // 拿取文件对象
+            var f = event.currentTarget.files[0];
+            // 用FileReader来读取
+            var reader = new FileReader();
+            // 重写FileReader上的readAsBinaryString方法
+            FileReader.prototype.readAsBinaryString = function (f) {
+                var binary = "";
+                var wb; // 读取完成的数据
+                var outdata; // 你需要的数据
+                var reader = new FileReader();
+                reader.onload = function () {
+                    // 读取成Uint8Array，再转换为Unicode编码（Unicode占两个字节）
+                    var bytes = new Uint8Array(reader.result);
+                    var length = bytes.byteLength;
+                    for (var i = 0; i < length; i++) {
+                        binary += String.fromCharCode(bytes[i]);
+                    }
+                    wb = XLSX.read(binary, {
+                        type: "binary"
+                    });
+                    outdata = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
+                    console.log(outdata);
+                    that.ws = outdata;
+                    if(that.isFresh){
+                        console.log("fresh");
+                        that.importFresh();
+                    }
+                    else{
+                        that.uploadGraduate();
+                    }
+                };
+                reader.readAsArrayBuffer(f);
+            };
+            reader.readAsBinaryString(f);
+
         }
     }
 }
@@ -375,6 +480,9 @@ export default {
 .center{
     margin: auto 0;
     vertical-align: 50%;
+}
+.input-file {
+    display: none;
 }
 </style>
 

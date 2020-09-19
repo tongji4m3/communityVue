@@ -1,5 +1,8 @@
 <template>
   <div id="banner">
+    <el-backtop target="#banner">
+      <div>up</div>
+    </el-backtop>
     <el-carousel :height="banH+'px'" width="100%">
       <el-carousel-item>
         <img
@@ -183,30 +186,30 @@
     <!-- 底部	 -->
     <div id="foot">
       <!-- <span style="--i:1;">快</span>
-			<span style="--i:2;">来</span>
-			<span style="--i:3;">寻</span>
-			<span style="--i:4;">找</span>
-			<span style="--i:5;">志</span>
-			<span style="--i:6;">同</span>
-			<span style="--i:7;">道</span>
-			<span style="--i:8;">合</span>
-			<span style="--i:9;">的</span>
-			<span style="--i:10;">伙</span>
-			<span style="--i:11;">伴</span>
-			<span style="--i:12;">，</span>
-			<span style="--i:13;">站</span>
-			<span style="--i:14;">上</span>
-			<span style="--i:15;">属</span>
-			<span style="--i:16;">于</span>
-			<span style="--i:17;">自</span>
-			<span style="--i:18;">己</span>
-			<span style="--i:19;">的</span>
-			<span style="--i:20;">舞</span>
-			<span style="--i:21;">台</span>
+                  <span style="--i:2;">来</span>
+                  <span style="--i:3;">寻</span>
+                  <span style="--i:4;">找</span>
+                  <span style="--i:5;">志</span>
+                  <span style="--i:6;">同</span>
+                  <span style="--i:7;">道</span>
+                  <span style="--i:8;">合</span>
+                  <span style="--i:9;">的</span>
+                  <span style="--i:10;">伙</span>
+                  <span style="--i:11;">伴</span>
+                  <span style="--i:12;">，</span>
+                  <span style="--i:13;">站</span>
+                  <span style="--i:14;">上</span>
+                  <span style="--i:15;">属</span>
+                  <span style="--i:16;">于</span>
+                  <span style="--i:17;">自</span>
+                  <span style="--i:18;">己</span>
+                  <span style="--i:19;">的</span>
+                  <span style="--i:20;">舞</span>
+                  <span style="--i:21;">台</span>
       <span style="--i:22;">吧</span>-->
       <!-- 来
-			寻
-			找
+                  寻
+                  找
       志同道合的伙伴，站上属于自己的舞台吧-->
       <span id="shineText">快来寻找志同道合的伙伴，站上属于自己的舞台吧</span>
     </div>
@@ -216,26 +219,17 @@
 // export default{
 // 	// var width = window.innerWidth,
 // 	// height = window.innerHeight;
-
 // 	// if (typeof width != 'number') {  //如果类型不为number,表示该浏览器不支持innerWidth属性
-
 // 	//  if (document.compatMode == 'CSS1Compat') {   //CSS1Compat：判断是否为标准兼容模式。
-
 // 	//   width = document.documentElement.clientWidth;
-
 // 	//   height = document.docuementElement.clientHeight;
-
 // 	//  } else { //不是标准模式,则有可能是IE6或及其以下版本(早期的浏览器对css进行解析时，并未遵守W3C标准)
-
 // 	//   width = document.body.clientWidth;   //网页可见区域宽
-
 // 	//   height = document.body.clientHeight;   //网页可见区域高
 // 	// }
-
 // 	// var ZMD = document.querySelector("#zoumadeng");
 // 	// ZMD.style.height="height px";
 // }
-
 // window.onresize = window.onload = function(){
 //      var w,h
 //      if(!!(window.attachEvent && !window.opera))
@@ -251,15 +245,12 @@
 //     //bgImg.width = (w - 5);
 //    // bgImg.height= (h-5);
 //    //bgImg.style.height=400;
-
 //    }
-
 // computed: {
 //   cancard: () => {
 //     return ""
 //   }
 // },
-
 //   mounted() {
 //     let that = this;
 //     window.onresize = function windowResize() {
@@ -278,7 +269,6 @@
 //       // console.log(that.hdgd)
 //     }
 //   }
-
 export default {
   // data(){
   // 	return{
@@ -293,7 +283,6 @@ export default {
   // mounted(){
   // 	this.setbanH()
   // }
-
   data() {
     return {
       banH: 550,
@@ -327,12 +316,19 @@ export default {
 };
 </script>
 <style >
+#banner {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+}
 .mokuai {
   display: flex;
   margin: 150px;
   margin-top: 110px;
 }
-
 /* #shetuan {
   display: flex;
   flex-direction: column;
@@ -343,7 +339,6 @@ export default {
   width: 100%;
   background-image: url("../../assets/img/blueBG.jpg");
 } */
-
 #shetuan {
   color: rgba(255, 255, 255, 0.65);
   background-color: rgb(0, 129, 215);
@@ -360,34 +355,32 @@ export default {
   height: 650px;
   width: 100%;
 }
-
 .mokuaiTitle {
   color: #0099ff;
   font-size: 20px;
   line-height: 40px;
+  /* font-weight: bold; */
 }
-
 #shetuanTitle {
   color: rgb(255, 255, 255);
   font-size: 20px;
   line-height: 40px;
   margin-top: 50px;
+  /* font-weight: bold; */
 }
-
 .engTitle {
   color: #b0b0b0;
   font-size: 13px;
+  /* letter-spacing: 1px; */
 }
 #aboutText {
   margin: 20px;
   margin-right: 30px;
 }
-
 #aboutNews {
   margin: 20px;
   width: 55%;
 }
-
 #aboutText p {
   margin-right: 70px;
   font-size: 14px;
@@ -396,7 +389,6 @@ export default {
   line-height: 22px;
   letter-spacing: 0.4px;
 }
-
 #firstP {
   margin-top: 50px;
   margin-right: 70px;
@@ -406,19 +398,16 @@ export default {
   line-height: 22px;
   letter-spacing: 0.4px;
 }
-
 #aboutNews ol {
   margin-top: 40px;
   margin-left: 15px;
   color: rgba(52, 52, 52, 0.9);
 }
-
 #aboutNews ol li p {
   line-height: 22px;
   transition: 0.5s;
   color: rgba(52, 52, 52, 0.8);
 }
-
 #aboutNews hr {
   color: #b0b0b0;
   border-top: dashed;
@@ -426,20 +415,16 @@ export default {
   margin-bottom: 10px;
   transition: 0.5s;
 }
-
 #aboutNews ol li:hover hr {
   color: #0099ff;
 }
-
 #aboutNews ol li:hover p {
   text-indent: 1em;
   color: #0099ff;
 }
-
 .el-divider--horizontal {
   border-top: 0.1px solid #b0b0b0;
 }
-
 #clubTable {
   width: 80%;
   height: 400px;
@@ -449,7 +434,6 @@ export default {
   align-content: space-around;
   margin: 20px;
 }
-
 #clubTable .clubItem {
   width: 13%;
   height: 150px;
@@ -460,22 +444,18 @@ export default {
   align-items: center;
   transition: all 0.5s;
 }
-
 #clubTable .clubItem img {
   height: 90px;
   margin: 15px;
 }
-
 #clubTable .clubItem .clubName {
   font-size: 13px;
   color: rgba(52, 52, 52, 0.7);
 }
-
 #clubTable .clubItem:hover {
   box-shadow: 0 7px 12px rgba(52, 52, 52, 0.7);
   transform: scale(1.1);
 }
-
 /* 普通 */
 /* #foot{
 		height: 50px;
@@ -485,10 +465,8 @@ export default {
 		align-items: center;
 		color: rgb(255,255,255);
 		font-size: 15px;
-
 	}
 	*/
-
 /* 流动 */
 /* 	#foot{
 		height: 40px;
@@ -512,7 +490,6 @@ export default {
 		0%
 		{
 			transform:translateY(0px);
-
 		}
 		20%
 		{
@@ -523,7 +500,6 @@ export default {
 			transform: translateY(0px);
 		}
 	} */
-
 /* 聚光灯 */
 #foot {
   height: 50px;

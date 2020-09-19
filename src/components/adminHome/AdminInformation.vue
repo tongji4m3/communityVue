@@ -4,12 +4,12 @@
         <el-breadcrumb separator-class="el-icon-arrow-right">
             <el-breadcrumb-item :to="{ path: '/welcome' }">首页</el-breadcrumb-item>
             <el-breadcrumb-item :to="{ path: '/adminWelcome' }">管理员首页</el-breadcrumb-item>
-            <el-breadcrumb-item>社团信息管理</el-breadcrumb-item>
+            <el-breadcrumb-item>社团管理</el-breadcrumb-item>
         </el-breadcrumb>
         <el-divider></el-divider>
         <!-- 卡片 -->
         <el-card class="box-card">
-            <el-row :gutter="20">
+            <el-row :gutter="24">
                 <!-- 模糊搜索 -->
                 <el-col :span="10">
                     <el-input clearable @clear="getClubList('all', query)"  placeholder="请输入内容" v-model="query">
@@ -20,7 +20,7 @@
                 <el-col :span="1"  class="center">
                     <el-button type="text" disabled>状态：</el-button>
                 </el-col>
-                <el-col :span="2">
+                <!-- <el-col :span="2">
                     <el-button type="primary" @click="getClubList('all', query)">{{quanbu}}</el-button>
                 </el-col>
                 <el-col :span="2">
@@ -31,7 +31,13 @@
                 </el-col>
                 <el-col :span="2">
                     <el-button type="primary" @click="getClubList('dissolved', query)">已解散</el-button>
-                </el-col>
+                </el-col> -->
+				<el-col :span="12">
+				    <el-button type="primary" plain @click="getClubList('all', query)">{{quanbu}}</el-button>
+					<el-button type="primary" plain @click="getClubList('unaudited', query)">待审核</el-button>
+					<el-button type="primary" plain @click="getClubList('pass', query)">运行中</el-button>
+					<el-button type="primary" plain @click="getClubList('dissolved', query)">已解散</el-button>
+				</el-col>
             </el-row>
         
         <!-- 社团列表 -->
@@ -57,6 +63,7 @@
                     </template>
                 </el-table-column>
         </el-table>
+		<br>
         <!-- 分页区域 -->
         <el-pagination
                 @size-change="handleSizeChange"
@@ -70,44 +77,44 @@
         </el-card>
         <!-- 详细内容对话框 -->
         <el-dialog title="社团详情" :visible.sync="replyDialogVisible"
-                   width="50%">
+                   width="50%" center>
             <!-- 展示内容主体区域 -->
             <el-form :model="this.replyForm" label-width="150px">
                 <el-form-item label="社团名称:">
-                    <el-input v-model="this.replyForm.name" readonly></el-input>
+                    <el-input v-model="this.replyForm.name" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="社团状态:">
-                    <el-input v-model="this.replyForm.status_name" readonly></el-input>
+                    <el-input v-model="this.replyForm.status_name" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="社团类型:">
-                    <el-input v-model="this.replyForm.type" readonly></el-input>
+                    <el-input v-model="this.replyForm.type" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="成立时间:">
-                    <el-date-picker type="date" v-model="this.replyForm.establishmentDate" style="width: 100%;" readonly></el-date-picker>
+                    <el-date-picker type="date" v-model="this.replyForm.establishmentDate" style="width: 82%;" readonly></el-date-picker>
                 </el-form-item>
                 <el-form-item label="社团描述:">
                     <div v-html="this.replyForm.description">{{this.replyForm.description}}</div>
                 </el-form-item>
                 <el-form-item label="负责人姓名:">
-                    <el-input v-model="this.replyForm.presidentName" readonly></el-input>
+                    <el-input v-model="this.replyForm.presidentName" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="负责人电话:">
-                    <el-input v-model="this.replyForm.phone" readonly></el-input>
+                    <el-input v-model="this.replyForm.phone" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="负责人邮箱:">
-                    <el-input v-model="this.replyForm.mail" readonly></el-input>
+                    <el-input v-model="this.replyForm.mail" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="负责人年级:">
-                    <el-input v-model="this.replyForm.grade" readonly></el-input>
+                    <el-input v-model="this.replyForm.grade" readonly style="width: 82%;"></el-input>
                 </el-form-item>
                 <el-form-item label="负责人专业:">
-                    <el-input v-model="this.replyForm.major" readonly></el-input>
+                    <el-input v-model="this.replyForm.major" readonly style="width: 82%;"></el-input>
                 </el-form-item>
             </el-form>
             <!-- 底部区域 -->
             <span slot="footer" class="dialog-footer">
                 <!-- 取消按钮 -->
-                <el-button @click="closeReplyDialog()">返 回</el-button>
+                <el-button @click="closeReplyDialog()" >返 回</el-button>
                 <!-- 联系按钮 -->
                 <el-button type="primary" @click="showMessageDialog()">联系负责人</el-button>
                 <!-- 通过按钮 -->
@@ -256,7 +263,7 @@ export default {
                     clubId: result.data.data[i].clubId,
                     name: result.data.data[i].name,
                     presidentName: result.data.data[i].presidentName,
-                    type: result.data.data[i].type,
+                    type: this.typeToStr(result.data.data[i].type),
                     managerId: result.data.data[i].managerId,
                     establishmentDate: result.data.data[i].establishmentDate.slice(0, result.data.data[i].establishmentDate.indexOf('T')),
                     status_name: this.statusToStr(result.data.data[i].status),
@@ -288,7 +295,7 @@ export default {
         handleCurrentChange(newPage)
         {
             this.pageNumber = newPage;
-            this.getclubList(this.status, this.query);
+            this.getClubList(this.status, this.query);
         },
         //输出status的文字描述
         statusToStr(status_int)
@@ -321,13 +328,13 @@ export default {
                 });
             this.replyForm.clubId = result.data.clubId;
             this.replyForm.name = result.data.name;
-            this.replyForm.type = result.data.type;
+            this.replyForm.type = this.typeToStr(result.data.type);
             this.replyForm.description = result.data.description;
             this.replyForm.presidentName = result.data.presidentName;
             this.replyForm.establishmentDate = result.data.establishmentDate.slice(0, result.data.establishmentDate.indexOf('T'));
             this.replyForm.status_name = this.statusToStr(result.data.status);
-            // this.replyForm.isChecking = this.statusToIsChecking(result.data.status);
-            this.replyForm.isChecking = true;
+            this.replyForm.isChecking = this.statusToIsChecking(result.data.status);
+            // this.replyForm.isChecking = true;
             this.replyForm.phone = result.data.phone;
             this.replyForm.mail = result.data.mail;
             this.replyForm.grade = result.data.grade;
@@ -391,6 +398,32 @@ export default {
                     break;
             }
         },
+        typeToStr(type){
+            switch(type){
+                case 0:
+                    return "学术科技类";
+                    break;
+                case 1:
+                    return "传统文化与文学类";
+                    break;
+                case 2:
+                    return "公益实践类";
+                    break;
+                case 3:
+                    return "文化与艺术类";
+                    break;
+                case 4:
+                    return "体育竞技类";
+                    break;
+                case 5:
+                    return "创新创业类";
+                    break;
+                default:
+                    console.log("出现未定义社团类型");
+                    return "未定义";
+                    break;
+            }
+        }
     }
 }
 </script>

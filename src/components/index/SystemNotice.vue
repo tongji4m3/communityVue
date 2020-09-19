@@ -1,5 +1,7 @@
 <template>
     <div>
+        <el-backtop :bottom="60" :right="60">
+        </el-backtop>
         <div id="announce_head">
             <img src="../../assets/img/icon_announcement.png" alt="" style="vertical-align: middle">
             <span> <h3>   系统公告</h3></span>
@@ -8,7 +10,7 @@
         <!--        <div v-for="n in evenNumbers">-->
         <div v-for="announcement in AnnouncementList">
             <el-card id="myCard">
-                <div id="announcementContent">{{ announcement.content }}</div>
+                <div id="announcementContent">{{ announcement.title }}</div>
                 <br>
                 <div id="announcementTime">{{ announcement.time }}</div>
                 <br>
@@ -16,29 +18,19 @@
             </el-card>
             <br>
         </div>
-
         <!--        展示系统公告对话框-->
-        <el-dialog title="系统公告详情" ref="showFormRef" :visible.sync="showDialogVisible"
+        <el-dialog ref="showFormRef" :visible.sync="showDialogVisible"
                    width="50%">
             <!--            展示内容主体区域 -->
-            <el-form :model="addForm" label-width="150px">
-                <el-form-item label="系统公告标题:">
-                    <el-input v-model="addForm.title" disabled></el-input>
-                </el-form-item>
-                <!--                <el-form-item label="系统公告内容:">-->
-                <!--                    <el-input v-model="addForm.content" disabled></el-input>-->
-                <!--                </el-form-item>-->
-                <el-form-item label="系统公告内容:" prop="content">
-                    <el-input
-                        type="textarea"
-                        :rows="7"
-                        v-model="addForm.content" disabled>
-                    </el-input>
-                </el-form-item>
-                <el-form-item label="系统公告时间:" prop="time">
-                    <el-date-picker type="date" v-model="addForm.time" style="width: 100%;" disabled></el-date-picker>
-                </el-form-item>
-            </el-form>
+            <div slot="title">
+                <h1>
+                    {{addForm.title}}
+                </h1>
+                <div>
+                    {{addForm.time}}
+                </div>
+            </div>
+            {{addForm.content}}
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
     <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
@@ -122,6 +114,7 @@ export default {
             console.log(this.AnnouncementList[0].AnnouncementId);
             let result = await this.$http.post(this.$api.GetOneAnnouncementUrl + "/" + AnnouncementId);
             this.addForm = result.data;
+            this.addForm.time=this.addForm.time.substring(0,10);
             this.showDialogVisible = true;
         },
         //显示系统公告详情页面按确定后的触发事件
