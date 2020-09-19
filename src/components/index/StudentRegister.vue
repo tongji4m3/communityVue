@@ -94,7 +94,7 @@ export default {
         username: "",
         password: "",
         confirmPassword: "",
-        imgUrl: "https://tongji4m3.oss-cn-beijing.aliyuncs.com/OIP.jpg",
+        imgUrl: "https://tongji4m3.oss-cn-beijing.aliyuncs.com/f_f_object_156_s512_f_object_156_0.png",
       },
       //表单的验证规则
       registerFormRules: {
