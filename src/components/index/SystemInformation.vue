@@ -93,6 +93,7 @@
             this.getMessageList();
         },
         methods: {
+            //异步得到系统消息
             async getMessageList()
             {
                 let result = await this.$http.post(this.$api.GetMessagesUrl,

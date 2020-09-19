@@ -88,7 +88,7 @@
     <!--            </el-pagination>-->
     <!--        </el-card>-->
 
-    <!--        展示活动对话框-->
+    <!--        展示社团信息对话框-->
     <el-dialog ref="showFormRef" :visible.sync="showDialogVisible" width="50%" center>
       <!--            展示内容主体区域 -->
       <h3 style="text-align:center; font-size:25px ">社团简介</h3>
@@ -113,28 +113,15 @@
       </span>
     </el-dialog>
 
-    <!--        展示活动对话框-->
     <el-dialog title="加入社团" :visible.sync="addDialogVisible" width="50%" center>
       <el-form :model="addForm" ref="addFormRef" :rules="addFormRules" label-width="150px">
-        <!--                <el-form-item label="社团编号">-->
-        <!--                    <el-input v-model="addForm.id" readonly="true"></el-input>-->
-        <!--                </el-form-item>-->
 
         <el-form-item label="社团名称">
           <el-input v-model="addForm.name" readonly="true" style="width:82%;"></el-input>
         </el-form-item>
-        <!--                <el-form-item label="社团性质">-->
-        <!--                    <el-input v-model="addForm.type" readonly="true"></el-input>-->
-        <!--                </el-form-item>-->
         <el-form-item label="成立时间">
           <el-input v-model="addForm.date" readonly="true" style="width:82%;"></el-input>
         </el-form-item>
-        <!--                <el-form-item label="会长">-->
-        <!--                    <el-input v-model="addForm.president" readonly="true"></el-input>-->
-        <!--                </el-form-item>-->
-        <!--                <el-form-item label="简介">-->
-        <!--                    <el-input v-model="addForm.summary" type="textarea" readonly="true"></el-input>-->
-        <!--                </el-form-item>-->
         <el-form-item label="加入原因:">
           <el-input
             type="textarea"

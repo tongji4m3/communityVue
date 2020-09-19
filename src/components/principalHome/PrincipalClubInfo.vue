@@ -121,14 +121,6 @@
                 <quill-editor v-model="addForm.logo" ref="myQuillEditor" style="height: 500px;width: 82%;"
                               :options="editorOption">
                 </quill-editor>
-                <!--                <el-form-item label="社团介绍:" prop="discription">-->
-                <!--                    <el-input-->
-                <!--                        type="textarea"-->
-                <!--                        :rows="14"-->
-                <!--                        placeholder="请输入社团介绍..."-->
-                <!--                        v-model="addForm.description">-->
-                <!--                    </el-input>-->
-                <!--                </el-form-item>-->
             </el-form>
 
             <span slot="footer" class="dialog-footer">
