@@ -1,27 +1,14 @@
 <template>
     <div>
-        <!--        日历框-->
-        <el-dialog :visible.sync="showCalendar"
-                   width="50%">
-            <el-calendar>
-            </el-calendar>
-        </el-dialog>
-
-        <el-dialog :visible.sync="showSchoolCalendar"
-                   width="50%">
-            <img src="../../assets/img/calendar.jpg" alt="" style="width: 100%;margin:0;">
-        </el-dialog>
-
-
-        <el-row :gutter="0" class="el-row">
+        <el-row :gutter="24" class="el-row">
             <el-col :span="6">
                 <el-card class="card0" :body-style="{ padding: '20px'}">
                     <br>
                     <div class="image" >
-                        <img width="140" height="140" :src="imgUrl"  style="border-radius:50%; ">
+                        <img width="140" height="140" src="https://tongji4m3.oss-cn-beijing.aliyuncs.com/f_f_object_156_s512_f_object_156_0.png">
                     </div>
                     <br><br>
-                    <div class="image">{{username}}管理员</div>
+                    <div class="image">{{username}}</div>
                     <br><br>
                     <div class="image">
                         <el-button @click="openCalendar" type="text">
@@ -31,9 +18,6 @@
                             查看校历
                         </el-button>
                     </div>
-                    <!--                    <br>-->
-                    <!--                    <div class="image">{{clubForm.establishmentDate}}</div>-->
-
                 </el-card>
             </el-col>
             <el-col :span="18">
@@ -48,7 +32,7 @@
 
                     <el-table :data="AnnouncementList" height="300" :cell-style="{padding:'5px 0'}">
                         <el-table-column type="index" width="40"></el-table-column>
-                        <el-table-column label="标题" prop="title" width="490%"></el-table-column>
+                        <el-table-column label="标题" prop="title"></el-table-column>
                         <el-table-column label="系统公告时间" prop="time"></el-table-column>
                         <el-table-column label="详情">
                             <template slot-scope="scope">
@@ -59,54 +43,56 @@
                 </el-card>
             </el-col>
         </el-row>
-        <!--        <br>-->
-        <!-- 图表 -->
-        <el-row :gutter="0" class="el-row">
-            <el-col :span="24">
-                <el-card>
-                    <el-row :gutter="20">
-                        <el-col :span="12"><div id="gradeChart" style="width: 600px;height:400px;"></div></el-col>
-                        <el-col :span="12"><div id="majorChart" style="width: 600px;height:400px;"></div></el-col>
-                    </el-row>
-                </el-card>
-            </el-col>
-        </el-row>
+
+        <!-- 待办事项 -->
+        <el-card class="chart-card" >
+            <div id="announce_head">
+                <img src="../../assets/img/mention.png" alt="" style="vertical-align: middle">
+                <span> <h3>   待办事项</h3></span>
+            </div>
+            <el-divider></el-divider>
+            <div id="chart" style="width: 100%;height:300px;"/>
+        </el-card>
+
+
         <!--        展示系统公告对话框-->
-        <el-dialog ref="showFormRef" :visible.sync="showDialogVisible"
+        <el-dialog title="系统公告详情" ref="showFormRef" :visible.sync="showDialogVisible"
                    width="50%">
             <!--            展示内容主体区域 -->
-            <div slot="title">
-                <h1>
-                    {{addForm.title}}
-                </h1>
-                <div>
-                    {{addForm.time}}
-                </div>
-            </div>
-            {{addForm.content}}
+            <el-form :model="addForm" label-width="150px">
+                <el-form-item label="系统公告标题:">
+                    <el-input v-model="addForm.title" disabled></el-input>
+                </el-form-item>
+                <el-form-item label="系统公告内容:">
+                    <el-input v-model="addForm.content" disabled></el-input>
+                </el-form-item>
+                <el-form-item label="系统公告时间:" prop="time">
+                    <el-date-picker type="date" v-model="addForm.time" style="width: 100%;" disabled></el-date-picker>
+                </el-form-item>
+            </el-form>
             <!--            底部区域-->
             <span slot="footer" class="dialog-footer">
-    <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
-  </span>
+                    <el-button type="primary" @click="closeDialogVisible">确 定</el-button>
+            </span>
         </el-dialog>
 
+        <!--        日历框-->
+        <el-dialog :visible.sync="showCalendar"
+                   width="50%">
+            <el-calendar>
+            </el-calendar>
+        </el-dialog>
+
+        <el-dialog :visible.sync="showSchoolCalendar"
+                   width="50%">
+            <img src="../../assets/img/calendar.jpg" alt="" style="width: 100%;margin:0;">
+        </el-dialog>
 
     </div>
-
 </template>
 
 <script>
-import {
-    quillEditor
-} from 'vue-quill-editor'
-import 'quill/dist/quill.core.css'
-import 'quill/dist/quill.snow.css'
-import 'quill/dist/quill.bubble.css'
 export default {
-    name: 'FuncFormsEdit',
-    components: {
-        quillEditor
-    },
     data()
     {
         return {
@@ -125,6 +111,7 @@ export default {
 
             showCalendar: false,
             showSchoolCalendar: false,
+
             //添加系统公告表单数据
             addForm: {
                 AnnouncementId: "",
@@ -133,204 +120,59 @@ export default {
                 time: "",
                 status: false,
             },
-            //社团成员年级分布图表数据
-            gradeGraphDescription:["16级","17级","18级","19级","20级","21级"],
-            gradeGraphData:[5, 20, 36, 10, 10,20],
-            //社团成员专业分布图表数据
-            majorGraphData:[
-                {value:235, name:'软件工程'},
-                {value:400, name:'土木工程'},
-                {value:400, name:'车辆工程'},
-            ],
 
-            editDialogVisible: false,
-            editDialogVisible2: false,
-            //添加赞助表单数据
-            clubForm: {
-                name: "",
-                description:"",
-                logo:"",
-                status: false,
-                type:"",
-                presidentName:"",
-                establishmentDate:"",
-                number:"",
-            },
-            //添加赞助申请的校验规则
-            clubFormRules: {},
-
-            content: null,
-            editorOption: {},
-
-            username: window.sessionStorage.getItem('name'),
-            imgUrl: window.sessionStorage.getItem("imgUrl"),
+            username: window.sessionStorage.getItem('name')
         }
     },
-    mounted()
-    {
-        this.getCommunityGraph();
-
-    },
-    //一开始就显示赞助列表
+    //一开始就显示系统公告列表，待办事项
     created()
     {
         this.getAnnouncementList();
-        this.getClubInfo();
-
+    },
+    mounted()
+    {
+        this.genChart();
     },
     methods: {
-        async getCommunityGraph()
-        {
-            let result = await this.$http.post(this.$api.PrincipalGetCommunityGraph);
-
-            this.gradeGraphDescription = result.data.gradeGraphDescription;
-            this.gradeGraphData = result.data.gradeGraphData;
-            this.majorGraphData = result.data.majorGraphData;
-            console.log("getCommunityGraph")
-            console.log(this.gradeGraphDescription);
-            this.drawPeople();
-
-            /*
-            //社团成员年级分布图表数据
-            gradeGraphDescription:["16级","17级","18级","19级","20级","21级"],
-                gradeGraphData:[5, 20, 36, 10, 10,20],
-            //社团成员专业分布图表数据
-            majorGraphData:[
-            {value:235, name:'软件工程'},
-            {value:400, name:'土木工程'},
-            {value:400, name:'车辆工程'},
-            */
-        },
-        drawPeople(){
-            //年级分布图
-            // 基于准备好的dom，初始化echarts实例
-            let gradeChart = this.$echarts.init(document.getElementById('gradeChart'),'light')
+        genChart(){
+            let chart = this.$echarts.init(document.getElementById('chart'),'light')
             // 绘制图表
-            gradeChart.setOption({
-                title: { text: '社团成员分布',left:'center'},
-                tooltip: {},
-                xAxis: {
-                    data: this.gradeGraphDescription
+            chart.setOption({
+                title: {
+                    text: ''
                 },
-                yAxis: {},
-                series: [{
-                    name: '人数',
-                    type: 'bar',
-                    data: this.gradeGraphData
-                }]
-            });
-
-            //年级分布饼状图
-            let majorChart = this.$echarts.init(document.getElementById('majorChart'), 'light');
-            majorChart.setOption({
-                title: { text: '社团人员专业分布',left:'center' },
-                series : [
-                    {
-
-                        name: '访问来源',
-                        type: 'pie',    // 设置图表类型为饼图
-                        radius: '55%',  // 饼图的半径，外半径为可视区尺寸（容器高宽中较小一项）的 55% 长度。
-                        data: this.majorGraphData
+                tooltip: {},
+                legend: {
+                    data:['待处理数量']
+                },
+                xAxis: {
+                    
+                },
+                yAxis: {
+                    data: ["社团","赞助","活动"],
+                    nameTextStyle: {
+                        fontSize: 15
+                    },
+                    axisLabel: {
+                        fontSize: 15
                     }
-                ]
-            })
-
-        },
-
-        async getClubInfo()
-        {
-            let result = await this.$http.post(this.$api.PrincipalGetClubInfo);
-            this.clubForm = result.data;
-            // console.log(this.clubForm.description);
-
-            if(this.clubForm.type===0){
-                this.clubForm.type="学术科技类";
-            }
-            else if(this.clubForm.type===1){
-                this.clubForm.type="传统文化与文学类";
-            }
-            else if(this.clubForm.type===2){
-                this.clubForm.type="公益实践类";
-            }
-            else if(this.clubForm.type===3){
-                this.clubForm.type="文化艺术类";
-            }
-            else if(this.clubForm.type===4){
-                this.clubForm.type="体育竞技类";
-            }
-            else{
-                this.clubForm.type="创新创业类";
-            }
-        },
-        cancelEdit()
-        {
-            this.editDialogVisible = false;
-            this.$message.info("取消修改社团信息!");
-        },
-        async showEditClubInfo()
-        {
-            let result = await this.$http.post(this.$api.PrincipalGetClubInfo);
-            this.clubForm = result.data;
-            this.editDialogVisible = true;
-        },
-        async showEditClubLogo()
-        {
-            let result = await this.$http.post(this.$api.PrincipalGetClubInfo);
-            this.clubForm = result.data;
-            this.editDialogVisible2 = true;
-        },
-        //点击确定按钮后,修改社团信息
-        async editClubInfo()
-        {
-            this.$refs.clubFormRef.validate(
-                async valid =>
-                {
-                    if (!valid) return;
-                    // console.log(this.clubForm);
-                    await this.$http.post(this.$api.PrincipalEditClubInfo, this.clubForm);
-                    // this.clearclubForm();
-                    // this.$refs.clubFormRef.resetFields();
-                    //关闭对话框
-                    this.editDialogVisible = false;
-                    //    刷新数据列表
-                    await this.getClubInfo();
-                    //    提示成功
-                    this.$message.success("修改社团信息成功!");
-                }
-            );
-        },
-        async editClubLogo()
-        {
-            this.$refs.clubFormRef.validate(
-                async valid =>
-                {
-                    if (!valid) return;
-                    // console.log(this.clubForm);
-                    await this.$http.post(this.$api.PrincipalEditClubInfo, this.clubForm);
-                    // this.clearclubForm();
-                    // this.$refs.clubFormRef.resetFields();
-                    //关闭对话框
-                    this.editDialogVisible2 = false;
-                    //    刷新数据列表
-                    await this.getClubInfo();
-                    //    提示成功
-                    this.$message.success("修改社团Logo成功!");
-                }
-            );
-        },
-        async deleteClub()
-        {
-            await this.$http.post(this.$api.PrincipalDissolveClub);
+                },
+                series: [{
+                    name: '待处理数量',
+                    type: 'bar',
+                    data: [5, 20, 36],
+                    barWidth: '30%'
+                }],
+            });
         },
         async getAnnouncementList()
         {
-            let result = await this.$http.post(this.$api.GetAnnouncementsUrl,
+            let result = await this.$http.post(this.$api.AdminGetAnnouncementsUrl,
                 {
                     query: this.query,
                     pageNumber: this.pageNumber,
                     pageSize: this.pageSize,
-                    status: true,
-                    value: new Date()//日历
+                    status: true
                 });
             this.AnnouncementList = result.data.data;
             for (let i = 0; i < this.AnnouncementList.length; i++)
@@ -373,82 +215,112 @@ export default {
         {
             this.showSchoolCalendar = true;
         },
-
         async SystemNotice()
         {
             await this.$router.push('/principalSystemNotice');
         },
     }
 }
-
 </script>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .text1 {
+        font-size: 16px;
+        /*color: #409EFF;*/
+    }
+    .box-card1 {
+        width: 95%;
+        height:40px;
+        padding: 2px;
+        margin: 10px;
 
-<style scoped>
+        display: flex;
+        align-items: center;
+    }
+    .box-card1 img{
 
+        height:20px;
+    }
+    .chart-card {
+        width: 95%;
+        margin: 10px;
+		padding: 2px;
+        /* margin-bottom: 50px; */
+        align-items: center;
+    }
+	#box-card2{
+		width: 95%;
+		margin: 10px;
+		padding: 2px;
+		/* margin-bottom: 50px; */
+		align-items: center;
+	}
 
-.el-row {
-    margin-bottom: 20px;
-    height: 380px;
-    display: flex;
-    flex-wrap: wrap;
-}
+    #announce{
+        width: 95%;
+        height:300px;
+        padding: 2px;
+        margin-left: 10px;
+        margin-top: 30px;
+        margin-right: 20px;
+    }
 
-.el-row2 {
-    margin-bottom: 20px;
-    height: 100px;
-    display: flex;
-    flex-wrap: wrap
-}
+    #announce_head{
+        display: flex;
+    }
 
-.el-row3 {
-    /*margin-bottom: 20px;*/
-    height: 600px;
-    display: flex;
-    flex-wrap: wrap
-}
-.card0 {
-    /*min-width: 100%;*/
-    height: 100%;
-    margin-right: 20px;
+    #announce_head img{
+        height: 30px;
+        margin-right: 10px;
+    }
 
-    /*transition: all .5s;*/
-}
+    .el-carousel__item h3 {
+        color: #475669;
+        font-size: 14px;
+        opacity: 0.75;
+        line-height: 200px;
+        margin: 0;
+    }
 
-.card1 {
-    /*min-width: 100%;*/
-    height: 100%;
-    margin-right: 20px;
-    width: 100%;
-    /*transition: all .5s;*/
-}
-.image{
-    width: 100%;
-    /*height:100%;*/
-    display: block;
-    text-align:center;
-}
-.img{
-    width: 100%;
-    display: block;
-    text-align:center;
-}
-.more{
-    /*width: 100%;*/
-    /*height:100%;*/
-    /*display: block;*/
-    text-align:right;
-}
-/*.card1{*/
-/*    !*margin-left: 10px;*!*/
-/*    !*margin-right: 10px;*!*/
-/*    height:100%;*/
-/*}*/
-#announce_head{
-    display: flex;
-}
+    .el-carousel__item:nth-child(2n) {
+        background-color: #99a9bf;
+    }
 
-#announce_head img{
-    height: 30px;
-    margin-right: 10px;
-}
+    .el-carousel__item:nth-child(2n+1) {
+        background-color: #d3dce6;
+    }
+
+        .el-row {
+        margin-bottom: 20px;
+        height: 380px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .card0 {
+        /*min-width: 100%;*/
+        height: 100%;
+        margin-right: 20px;
+
+        /*transition: all .5s;*/
+    }
+
+    .card1 {
+        /*min-width: 100%;*/
+        height: 100%;
+        margin-right: 20px;
+        width: 100%;
+        /*transition: all .5s;*/
+    }
+
+    .image{
+        width: 100%;
+        /*height:100%;*/
+        display: block;
+        text-align:center;
+    }
+
 </style>
