@@ -94,7 +94,7 @@ export default {
         username: "",
         password: "",
         confirmPassword: "",
-        imgUrl: "https://tongji4m3.oss-cn-beijing.aliyuncs.com/OIP.jpg",
+        imgUrl: "https://tongji4m3.oss-cn-beijing.aliyuncs.com/f_f_object_156_s512_f_object_156_0.png",
       },
       //表单的验证规则
       registerFormRules: {
@@ -108,8 +108,8 @@ export default {
           { required: true, message: "请输入用户名", trigger: "blur" },
           {
             min: 3,
-            max: 10,
-            message: "用户名必须在3-10个字符之间",
+            max: 20,
+            message: "用户名必须在3-20个字符之间",
             trigger: "blur",
           },
         ],
