@@ -30,9 +30,9 @@
                     <el-button type="primary" @click="getStudentList('atSchool', query)">在校生</el-button>
                 </el-col> -->
 				<el-col :span="8">
-				    <el-button type="primary" @click="getStudentList('all', query)">{{quanbu}}</el-button>
-					<el-button type="primary" @click="getStudentList('graduated', query)">离校生</el-button>
-					<el-button type="primary" @click="getStudentList('atSchool', query)">在校生</el-button>
+				    <el-button type="primary" plain @click="getStudentList('all', query)">{{quanbu}}</el-button>
+					<el-button type="primary" plain @click="getStudentList('graduated', query)">离校生</el-button>
+					<el-button type="primary" plain @click="getStudentList('atSchool', query)">在校生</el-button>
 				</el-col>
             </el-row>
         

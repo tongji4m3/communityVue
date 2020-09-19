@@ -33,10 +33,10 @@
                     <el-button type="primary" @click="getClubList('dissolved', query)">已解散</el-button>
                 </el-col> -->
 				<el-col :span="12">
-				    <el-button type="primary" @click="getClubList('all', query)">{{quanbu}}</el-button>
-					<el-button type="primary" @click="getClubList('unaudited', query)">待审核</el-button>
-					<el-button type="primary" @click="getClubList('pass', query)">运行中</el-button>
-					<el-button type="primary" @click="getClubList('dissolved', query)">已解散</el-button>
+				    <el-button type="primary" plain @click="getClubList('all', query)">{{quanbu}}</el-button>
+					<el-button type="primary" plain @click="getClubList('unaudited', query)">待审核</el-button>
+					<el-button type="primary" plain @click="getClubList('pass', query)">运行中</el-button>
+					<el-button type="primary" plain @click="getClubList('dissolved', query)">已解散</el-button>
 				</el-col>
             </el-row>
         

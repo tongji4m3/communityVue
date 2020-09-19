@@ -33,10 +33,10 @@
                     <el-button type="primary" @click="getActivityList('failed', query)">未通过</el-button>
                 </el-col> -->
 				<el-col :span="12">
-					<el-button type="primary" @click="getActivityList('all', query)">{{quanbu}}</el-button>
-					<el-button type="primary" @click="getActivityList('unaudited', query)">待审核</el-button>
-					<el-button type="primary" @click="getActivityList('pass', query)">已通过</el-button>
-				    <el-button type="primary" @click="getActivityList('failed', query)">未通过</el-button>
+					<el-button type="primary" plain @click="getActivityList('all', query)">{{quanbu}}</el-button>
+					<el-button type="primary" plain @click="getActivityList('unaudited', query)">待审核</el-button>
+					<el-button type="primary" plain @click="getActivityList('pass', query)">已通过</el-button>
+				    <el-button type="primary" plain @click="getActivityList('failed', query)">未通过</el-button>
 				</el-col>
             </el-row>
         

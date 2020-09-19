@@ -33,10 +33,10 @@
                     <el-button type="primary" @click="getSponsorList('failed', query)">未通过</el-button>
                 </el-col> -->
 				<el-col :span="12">
-					<el-button type="primary" @click="getSponsorList('all', query)">{{quanbu}}</el-button>
-					<el-button type="primary" @click="getSponsorList('unaudited', query)">待审核</el-button>
-					<el-button type="primary" @click="getSponsorList('pass', query)">已通过</el-button>
-				    <el-button type="primary" @click="getSponsorList('failed', query)">未通过</el-button>
+					<el-button type="primary" plain @click="getSponsorList('all', query)">{{quanbu}}</el-button>
+					<el-button type="primary" plain @click="getSponsorList('unaudited', query)">待审核</el-button>
+					<el-button type="primary" plain @click="getSponsorList('pass', query)">已通过</el-button>
+				    <el-button type="primary" plain @click="getSponsorList('failed', query)">未通过</el-button>
 				</el-col>
 				
             </el-row>
