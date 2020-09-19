@@ -19,7 +19,7 @@
     <el-row>
       <el-col :span="6" v-for="corporation in corporationsList">
         <el-card class="myCard" :body-style="{ padding: '20px'}" shadow="hover">
-          <img :src="corporation.logo" class="image" height="200px"/>
+          <img :src="corporation.logo" class="image" height="210px"/>
           <!--                    <p v-html="corporation.logo">{{corporation.logo}}</p>-->
           <br>
           <div style="padding: 10px;text-align: center">
@@ -28,7 +28,7 @@
             <div class="bottom">
               <time>{{corporation.type}}</time>
             </div>
-            <br>
+           
             <div class="button">
               <el-button
                 type="text"
@@ -419,7 +419,7 @@ export default {
 }
 .myCard {
   height: 350px;
-  margin-top: 30px;
+  margin-top: 20px;
   margin-left: 30px;
   margin-right: 30px;
 }
