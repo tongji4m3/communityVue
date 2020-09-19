@@ -155,7 +155,9 @@
             //查看历史负责人
             async showHistoryPrincipal()
             {
+                //显示历史负责人窗口
                 this.dialogVisible = true;
+                //异步请求历史负责人数据
                 let result = await this.$http.post(this.$api.PrincipalGetManagersUrl,
                     {
                         query: this.query,
