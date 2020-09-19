@@ -304,11 +304,12 @@ export default {
         {
             this.closeReplyDialog();
             console.log({
+                    sponsorshipId: this.replyForm.sponsorshipId,
                     suggestion: this.replyForm.suggestion
                 });
             let result = await this.$http.post(this.$api.AdminUpdateSponSuggestionUrl, 
                 {
-                    activityId: this.replyForm.activityId,
+                    sponsorshipId: this.replyForm.sponsorshipId,
                     suggestion: this.replyForm.suggestion
                 });
         },
