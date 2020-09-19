@@ -134,7 +134,7 @@
                 <el-button 
                     v-if="replyForm.status_name == '待审核'"
                     type="success" 
-                    @click="updateStatusAndRefresh(this.replyForm.activityId, 1, 1)"
+                    @click="updateStatusAndRefresh(replyForm.activityId, 1, 1)"
                     icon="el-icon-check" 
                     circle>
                 </el-button>
@@ -142,7 +142,7 @@
                 <el-button 
                     type="danger" 
                     v-if="replyForm.status_name == '待审核'"
-                    @click="updateStatusAndRefresh(this.replyForm.activityId, 2, 1)"
+                    @click="updateStatusAndRefresh(replyForm.activityId, 2, 1)"
                     icon="el-icon-close" 
                     circle>
                 </el-button>
@@ -305,8 +305,10 @@ export default {
         async submitSuggestion()
         {
             this.closeReplyDialog();
+            console.log(this.replyForm.activityId);
             let result = await this.$http.post(this.$api.AdminUpdateActSuggestionUrl, 
                 {
+                    activityId: this.replyForm.actvityId,
                     suggestion: this.replyForm.suggestion
                 });
         },
@@ -324,7 +326,7 @@ export default {
                     this.getActivityList();
                     break;
                 case 1://详情界面
-                    this.replyForm.status_name = statusToStr(status_in);
+                    this.replyForm.status_name = this.statusToStr(status_in);
                     break;
                 default:
                     console.log("出现未定义界面编号");

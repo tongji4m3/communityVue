@@ -67,7 +67,7 @@
                         :total="totalCount">
                     </el-pagination>
                 </el-col>
-                <!-- <el-col :span='2'>
+                <el-col :span='2'>
                     <el-button type="primary" 
                         @click="showEmptyReplyDialog()">
                         新增
@@ -91,25 +91,7 @@
                     <span>
                         <el-button type="primary" icon="el-icon-upload" @click="graduateBtnClick">批量离校</el-button>
                     </span>
-                </el-col> -->
-				<el-col :span='11'>
-				    <el-button type="primary" 
-				        @click="showEmptyReplyDialog()" style="margin-right:11px;">
-				        新增
-				    </el-button>
-					<input
-					    class="input-file"
-					    type="file"
-					    @change="exportData"
-					    accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
-					/>
-					
-					    <el-button type="primary" icon="el-icon-upload" @click="freshBtnClick">批量新增</el-button>
-					
-					    <el-button type="primary" icon="el-icon-upload" @click="graduateBtnClick">批量离校</el-button>
-					
-					
-				</el-col>
+                </el-col>
             </el-row>
 
         </el-card>

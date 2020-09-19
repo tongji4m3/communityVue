@@ -60,6 +60,7 @@
                     <template slot-scope="scope">
                         <!-- 通过按钮 -->
                         <el-button
+                            v-if="scope.row.status_name == '待审核'"
                             type="success"
                             @click="updateStatusAndRefresh(scope.row.sponsorshipId, 1, 0)"
                             icon="el-icon-check"
@@ -67,6 +68,7 @@
                         </el-button>
                         <!-- 拒绝按钮 -->
                         <el-button
+                            v-if="scope.row.status_name == '待审核'"
                             type="danger"
                             @click="updateStatusAndRefresh(scope.row.sponsorshipId, 2, 0)"
                             icon="el-icon-close"
@@ -136,15 +138,17 @@
                 <el-button type="primary" @click="submitSuggestion()">提交建议</el-button>
                 <!-- 通过按钮 -->
                 <el-button 
+                    v-if="replyForm.status_name == '待审核'"
                     type="success" 
-                    @click="updateStatusAndRefresh(this.replyForm.sponsorshipId, 1, 1)"
+                    @click="updateStatusAndRefresh(replyForm.sponsorshipId, 1, 1)"
                     icon="el-icon-check" 
                     circle>
                 </el-button>
                 <!-- 拒绝按钮 -->
                 <el-button 
+                    v-if="replyForm.status_name == '待审核'"
                     type="danger" 
-                    @click="updateStatusAndRefresh(this.replyForm.sponsorshipId, 2, 1)"
+                    @click="updateStatusAndRefresh(replyForm.sponsorshipId, 2, 1)"
                     icon="el-icon-close" 
                     circle>
                 </el-button>
@@ -287,7 +291,7 @@ export default {
             this.replyForm.applyDate = result.data.applyDate;
             this.replyForm.sponsor = result.data.sponsor;
             this.replyForm.amount = result.data.amount;
-            this.replyForm.status_name = statusToStr(result.data.status);
+            this.replyForm.status_name = this.statusToStr(result.data.status);
             this.replyDialogVisible = true;
         },
         //关闭详情对话框
@@ -304,6 +308,7 @@ export default {
                 });
             let result = await this.$http.post(this.$api.AdminUpdateSponSuggestionUrl, 
                 {
+                    activityId: this.replyForm.activityId,
                     suggestion: this.replyForm.suggestion
                 });
         },
@@ -321,7 +326,7 @@ export default {
                     this.getSponsorList();
                     break;
                 case 1://详情界面
-                    this.replyForm.status_name = statusToStr(status_in);
+                    this.replyForm.status_name = this.statusToStr(status_in);
                     break;
                 default:
                     console.log("出现未定义界面编号");
