@@ -17,7 +17,7 @@
     <el-divider></el-divider>
     <el-alert title="欢迎查看公开活动" type="info" center show-icon></el-alert>
     <br />
-    <el-carousel :interval="4000" type="card" height="366px">
+    <!-- <el-carousel :interval="4000" type="card" height="366px">
       <el-carousel-item>
         <img src="../../assets/img/tj_typlt.jpg" alt style="height: 366px;width: 100%;margin:0;" />
       </el-carousel-item>
@@ -26,7 +26,7 @@
       </el-carousel-item>
       <el-carousel-item>
         <img src="../../assets/img/tj_cp4.jpg" alt style="height: 366px;width: 100%;margin:0;" />
-      </el-carousel-item>
+      </el-carousel-item> -->
       <!--            <el-carousel-item >-->
       <!--                <img src="../../assets/img/tj_cp2.jpg" alt="" style="height: 366px;width: 100%;margin:0;">-->
       <!--            </el-carousel-item>-->
@@ -40,8 +40,8 @@
       <!--            <el-carousel-item >-->
       <!--                <img src="../../assets/img/tj_cp5.jpg" alt="" style="height: 366px;width: 100%;margin:0;">-->
       <!--            </el-carousel-item>-->
-    </el-carousel>
-    <el-divider></el-divider>
+    <!-- </el-carousel> -->
+    <!-- <el-divider></el-divider> -->
     <!--        卡片-->
     <el-card class="box-card">
       <!--            搜索与添加-->

@@ -18,7 +18,7 @@
 
     <el-row>
       <el-col :span="6" v-for="corporation in corporationsList">
-        <el-card class="myCard" :body-style="{ padding: '20px'}" shadow="hover">
+        <el-card class="myCard" :body-style="{ padding: '20px'}" shadow="hover" style="align-items: center;">
           <img :src="corporation.logo" class="image" height="210px"/>
           <!--                    <p v-html="corporation.logo">{{corporation.logo}}</p>-->
           <br>

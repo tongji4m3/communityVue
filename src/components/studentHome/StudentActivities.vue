@@ -4,7 +4,7 @@
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/welcome' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item :to="{ path: '/StudentWelcome' }">学生首页</el-breadcrumb-item>
-      <el-breadcrumb-item>社团信息查询</el-breadcrumb-item>
+      <el-breadcrumb-item>社团活动查询</el-breadcrumb-item>
     </el-breadcrumb>
 
     <el-alert title="已加入的社团为橙色" type="info" center show-icon></el-alert>

@@ -357,21 +357,21 @@ export default {
 }
 .mokuaiTitle {
   color: #0099ff;
-  font-size: 25px;
+  font-size: 20px;
   line-height: 40px;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 #shetuanTitle {
   color: rgb(255, 255, 255);
-  font-size: 25px;
+  font-size: 20px;
   line-height: 40px;
   margin-top: 50px;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 .engTitle {
   color: #b0b0b0;
-  font-size: 20px;
-  letter-spacing: 1px;
+  font-size: 13px;
+  /* letter-spacing: 1px; */
 }
 #aboutText {
   margin: 20px;
