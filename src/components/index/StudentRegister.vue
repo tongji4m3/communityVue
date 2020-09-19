@@ -108,8 +108,8 @@ export default {
           { required: true, message: "请输入用户名", trigger: "blur" },
           {
             min: 3,
-            max: 10,
-            message: "用户名必须在3-10个字符之间",
+            max: 20,
+            message: "用户名必须在3-20个字符之间",
             trigger: "blur",
           },
         ],
