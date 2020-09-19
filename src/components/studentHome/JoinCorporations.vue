@@ -136,9 +136,6 @@ export default {
       //添加活动的校验规则
       addFormRules: {
         studentID: [{ required: true, message: "请输入学号", trigger: "blur" }],
-        corporationName: [
-          { required: true, message: "请输入社团名称", trigger: "blur" },
-        ],
         corporationId: [
           { required: true, message: "请输入社团编号", trigger: "blur" },
         ],
@@ -170,13 +167,13 @@ export default {
         }
       );
       this.corporationsList = result.data.data;
-      for (var j = 0; j < result.data.totalCount; j++) {
+      for (var j = 0; j < result.data.totalCount-1; j++) {
         this.corporationsList[j].establishmentDate = this.corporationsList[
           j
         ].establishmentDate.substring(0, 10);
       }
 
-      for (var i = 0; i < result.data.totalCount; i++) {
+      for (var i = 0; i < result.data.totalCount-1; i++) {
         if (this.corporationsList[i].type === 0) {
           this.corporationsList[i].type = "学术科技类";
         } else if (this.corporationsList[i].type === 1) {

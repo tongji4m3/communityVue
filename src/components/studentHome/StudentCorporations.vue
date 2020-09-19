@@ -19,14 +19,16 @@
     <el-row>
       <el-col :span="6" v-for="corporation in corporationsList">
         <el-card class="myCard" :body-style="{ padding: '20px'}" shadow="hover">
-          <img :src="corporation.logo" class="image" height="220px"/>
+          <img :src="corporation.logo" class="image" height="200px"/>
           <!--                    <p v-html="corporation.logo">{{corporation.logo}}</p>-->
-          <div style="padding: 10px;">
+          <br>
+          <div style="padding: 10px;text-align: center">
             <span>{{corporation.name}}</span>
             <!--                        <span>{{corporation.type}}</span>-->
             <div class="bottom">
               <time>{{corporation.type}}</time>
             </div>
+            <br>
             <div class="button">
               <el-button
                 type="text"
@@ -272,6 +274,9 @@ export default {
     // 因为公有addForm所以必须有这个操作,且点击后都是重新axios请求新信息,所以没有问题
     clearAddForm() {
       //清空数据
+      this.addForm.summary = "";
+      this.addForm.president = "";
+      this.addForm.id = "";
       this.addForm.name = "";
       this.addForm.date = "";
       this.addForm.reason = "";
