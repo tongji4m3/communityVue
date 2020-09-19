@@ -45,10 +45,10 @@
       <br />
       <br />
       <el-row>
-        <el-col :span="4" v-for="corporation in corporationsList">
-          <img :src="corporation.logo" class="image" />
-          <br />
-          <div style="text-align: center">
+        <el-col :span="4" v-for="corporation in corporationsList" style="margin-left: 20px">
+          <img :src="corporation.logo" class="image" height="200px" style="border-radius: 50%"/>
+          <br>
+          <div style="text-align: center;float: bottom">
             <span>{{corporation.name}}</span>
           </div>
         </el-col>

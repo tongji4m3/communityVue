@@ -199,25 +199,19 @@ export default {
       showDialogVisible: false,
       //添加活动表单数据
       addForm: {
-        summary: "",
-        date: "",
-        president: "",
-        id: "",
+
         name: "",
-        type: "",
+        date: "",
         reason: "",
       },
       imgUrl: window.sessionStorage.getItem("imgUrl"),
       //添加活动的校验规则
       addFormRules: {
-        studentID: [
-          { required: true, message: "请输入修改后的手机号", trigger: "blur" },
-        ],
-        corporationName: [
+        name: [
           { required: true, message: "请输入社团名称", trigger: "blur" },
         ],
-        corporationId: [
-          { required: true, message: "请输入社团编号", trigger: "blur" },
+        date: [
+          { required: true, message: "请输入成立时间", trigger: "blur" },
         ],
         reason: [
           { required: true, message: "请输入入社理由", trigger: "blur" },
@@ -278,11 +272,8 @@ export default {
     // 因为公有addForm所以必须有这个操作,且点击后都是重新axios请求新信息,所以没有问题
     clearAddForm() {
       //清空数据
-      this.addForm.summary = "";
-      this.addForm.president = "";
-      this.addForm.id = "";
       this.addForm.name = "";
-      this.addForm.type = "";
+      this.addForm.date = "";
       this.addForm.reason = "";
     },
     //添加活动框里面的取消添加活动按钮触发的事件

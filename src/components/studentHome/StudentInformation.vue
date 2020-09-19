@@ -259,7 +259,7 @@ export default {
       addFormRules: {
         phone: [
           { required: true, message: "请输入修改后的手机号", trigger: "blur" },
-          { max: 11, message: "请输入正确的手机号", trigger: "blur" },
+          { min:11, max: 11, message: "请输入正确的手机号", trigger: "blur" },
         ],
         signature: [
           { required: true, message: "请输入修改后的签名", trigger: "blur" },
