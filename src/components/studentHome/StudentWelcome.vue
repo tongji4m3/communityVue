@@ -41,7 +41,11 @@
     </el-row>
     <br />
     <el-card>
-		<h3>已加入社团</h3>
+		<div id="join_head">
+			<img src="../../assets/img/join.png" alt style="vertical-align: middle" />
+			<span><h3>已加入社团</h3></span>
+		</div>
+		
 		<br>
       <p style="font-size:15px">时间过得真快，不知不觉你已经是这些社团的一员啦！要好好珍惜在这里遇到的伙伴，经历的时光呀！</p>
       <br />
@@ -572,6 +576,14 @@ export default {
 }
 
 #announce_head img {
+  height: 30px;
+  margin-right: 10px;
+}
+
+#join_head{
+	display: flex;
+}
+#join_head img {
   height: 30px;
   margin-right: 10px;
 }
