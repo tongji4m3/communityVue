@@ -45,8 +45,8 @@
       <br />
       <br />
       <el-row>
-        <el-col :span="3" v-for="corporation in corporationsList" style="margin-left: 20px;margin-right: 20px">
-          <img :src="corporation.logo" class="image" height="155px" width="100px" style="border-radius: 50%"/>
+        <el-col :span="2" v-for="corporation in corporationsList" style="margin-left: 20px;margin-right: 20px">
+          <img :src="corporation.logo" class="image" height="100px" width="100px" style="border-radius: 50%"/>
           <br>
           <div style="text-align: center;float: bottom">
             <span>{{corporation.name}}</span>
@@ -272,13 +272,14 @@ export default {
         }
       );
       this.corporationsList = result.data.data;
+      console.log(this.corporationsList);
       for (var j = 0; j < result.data.totalCount; j++) {
         this.corporationsList[j].establishmentDate = this.corporationsList[
           j
         ].establishmentDate.substring(0, 10);
       }
 
-      for (var i = 0; i < result.data.totalCount; i++) {
+      for (var i = 0; i < result.data.totalCount-1; i++) {
         if (this.corporationsList[i].type === 0) {
           this.corporationsList[i].type = "学术科技类";
         } else if (this.corporationsList[i].type === 1) {
