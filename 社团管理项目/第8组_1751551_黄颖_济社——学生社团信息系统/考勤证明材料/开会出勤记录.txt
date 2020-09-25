@@ -1,0 +1,31 @@
+4-11 全勤
+4-17 全勤
+4-29 全勤
+5-8 石稼晟有课
+7-20 刘春涵缺勤
+7-27 全勤
+8-5 刘春涵缺勤
+8-12 刘春涵缺勤
+8-19 刘春涵缺勤
+9-2 刘春涵缺勤
+9-9 赵碧霄缺勤
+9-15 全勤 
+
+Frontend
+
+Tongji4m3 李翠琪
+icedancemelody 李家瑞
+ribbon 张欣民
+sjspingfandeshijie 石稼晟
+QingxuDw 王景业
+Owarimasu 刘春涵
+
+
+Backend
+
+bigstomach 黄颖
+Lijinqizuishuai 李金旗
+1851906 李雨森
+zbx99/Aili 赵碧霄
+Aili01 阿里云
+
