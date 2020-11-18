@@ -7,7 +7,7 @@ const APIRootUrl = 'http://139.9.134.43:5000/communitySystem/';
 /*
 学生界面
  */
-const APIRootUrl_stu = 'https://139.9.134.43:44383/communitySystem/';
+// const APIRootUrl_stu = 'https://139.9.134.43:44383/communitySystem/';
 
 // =======
 // // const APIRootUrl = 'http://139.9.134.43:5000/communitySystem/';
