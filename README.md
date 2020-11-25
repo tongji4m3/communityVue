@@ -1,4 +1,5 @@
-[toc]
+# Community
+<a href="#"><img src="https://img.shields.io/badge/qq号-1254931237-red.svg" alt="qq号"></a>   <a href="http://139.9.134.43:5000/" alt="项目地址"><img src="https://img.shields.io/badge/项目部署地址-济社-blue.svg"></a>  
 
 # 项目简介
 
@@ -6,49 +7,70 @@
 
 **社团管理系统**是用Vue框架开发的单页面应用项目。
 
-[Github地址](https://github.com/tongji4m3/communityVue)
-
-[网站部署地址](http://47.103.203.188:8080/dist/index.html#/welcome)
 
 ## 项目选型
 
 + Vue.js
-+ Vue-cli
++ Vue-CLI
 + Vue Router 
 + Vuex
 + Element-UI
 + Axios
 
-## 实用工具
 
-+ PostMan 测试后端接口
+# 文件结构
 
-+ [Swagger](http://139.9.134.43:5000/swagger/index.html) 查看后端提供的接口
+```
+├── document 相关文档文件
+    ├── 0.项目要求
+    ├── 1.需求分析
+    ├── 2.项目设计
+    ├── 3.前端文档
+    ├── 4.最终文档
+├── public 存储静态资源
+    ├── favicon.ico
+    └── index.html
+├── src 项目实际代码
+    ├── App.vue 单页面入口
+    ├── assets
+    │   ├── config 主要放置api.js,即与后端交互的API接口
+    │   ├── css 全局样式表
+    │   └── img 存储了项目用到的所有图片
+    ├── components
+    │   ├── adminHome 管理员页面相关组件
+    │   ├── index 首页相关组件
+    │   ├── principalHome 负责人页面相关组件
+    │   └── studentHome 学生页面相关组件
+    ├── main.js 导入全局的一些配置信息
+    ├── router
+    │   └── index.js 配置项目的路由
+    ├── store
+    │   └── index.js 本项目中没有使用
+    └── views
+        ├── AdminHome.vue 管理员页面
+        ├── Index.vue 首页
+        ├── PrincipalHome.vue 负责人页面
+        └── StudentHome.vue 学生页面
+├── .gitignore git提交忽略的文件
+├── README.md 项目说明文档
+├── babel.config.js 项目自定义配置文件
+├── dockerfile 将项目自动化部署于云服务器上
+├── package-lock.json 锁定安装时的包的版本号
+├── package.json 本模块的描述文件
+├── vue-cli-service 模块Vue CLI提供的快速开发命令 
+└── vue.config.js 可选的配置文件
 
-+ Mock.js 拦截`Axios`请求再生成随机数据响应
+```
 
-## 相关指令
 
-+ 项目启动：`npm run serve`
-
- # 感想
-
-1. 小组需要先头脑风暴，充分交流意见。把需求先完全敲定，把用例图,用例规约等规定下来，建立数据库
-2. 分工要明确。且不要立刻开始写代码，要先不断讨论，完善业务逻辑，使得业务逻辑各种细节经得住推敲。接下来根据分工前后端对接进行讨论
-3. 前后端组长要先把框架搭建好,并且定下小组内的代码规范,接口规范等
-4. 前后端交接的人要充分交流需求,把接口按规范约定好,再讨论细节问题。最后小组再汇总，完成需求分析，之后再开始具体实现。 
-5. 每周定下一个ddl,定时汇报,防止组员懒惰
-6. 写代码时完善文档，并且写的时间不宜推太长，以免忘记细节。
-7. 合理使用Git进行代码管理
-8. 尽量使得与后端的交互只局限于很小的区域，这样后端修改代码或新增字段等可以尽可能少地修改
 
 # 运行流程
 
 ## 本地运行流程
 
-1. 执行`npm run serve`
+1. 在项目路径下,运行**npm run build**、**npm run serve**
 2. 点击:[本地社团管理系统](http://localhost:8080/)
-3. 注意:此次连接的是远程服务器。如果想连本地的后端，则修改`src\assets\config\api.js`文件夹下的`const APIRootUrl = 'http://139.9.134.43:5000/communitySystem/';`为`const APIRootUrl =自己本地的服务器地址`
+3. 注意:此次连接的是远程服务器。如果想连本地的后端，则修改**src\assets\config\api.js**文件夹下的**APIRootUrl**指向自己的服务器地址
 
 ## 云服务器运行流程
 
