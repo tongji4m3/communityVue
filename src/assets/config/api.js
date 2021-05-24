@@ -3,7 +3,7 @@
 /*
 负责人界面
  */
-const APIRootUrl = 'http://139.9.134.43:5000/communitySystem/';
+const APIRootUrl = 'http://47.117.4.125:5000/communitySystem/';
 /*
 学生界面
  */
