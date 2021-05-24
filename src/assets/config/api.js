@@ -4,18 +4,7 @@
 负责人界面
  */
 const APIRootUrl = 'http://47.117.4.125:5000/communitySystem/';
-/*
-学生界面
- */
-// const APIRootUrl_stu = 'https://139.9.134.43:44383/communitySystem/';
 
-// =======
-// // const APIRootUrl = 'http://139.9.134.43:5000/communitySystem/';
-// const APIRootUrl = 'http://139.9.134.43:5000';
-// >>>>>>> aa166d9a31de315e6a1b1c8ec87272df57e5dbd1
-
-// const APIRootUrl = 'http://47.103.203.188:8888/communitySystem/';
-//const APIRootUrl = 'http://localhost:8888/communitySystem/';
 
 module.exports = {
     /*
