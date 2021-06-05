@@ -149,9 +149,9 @@ export default {
     async init() {
       //获取阿里云token  这里是后台返回来的数据
       this.uploadConf.region = "oss-cn-shanghai";
-      this.uploadConf.accessKeyId = "LTAI4G6fA6yN4LfpNVr8UsD2";
-      this.uploadConf.accessKeySecret = "fiq7xeXtzdnt2jL0Zr58OpWd6mCcXd";
-      this.uploadConf.bucket = "database-community";
+      this.uploadConf.accessKeyId = "LTAI4FzMDhgBN9LMBr71T3Ny";
+      this.uploadConf.accessKeySecret = "hTPgQQSyBgEDnfMNe06RPf8ecDafpz";
+      this.uploadConf.bucket = "tongji-boying";
     },
 
     /**
@@ -209,6 +209,8 @@ export default {
 
         let msg = "";
         let status = 200;
+
+        console.log(this.$md5(this.registerForm.password))
 
         let result = await this.$http
           .post(this.$api.RegisterUrl, {
