@@ -3,7 +3,8 @@
 /*
 负责人界面
  */
-const APIRootUrl = 'http://47.117.4.125:5000/communitySystem/';
+const APIRootUrl = 'http://localhost:5000/communitySystem/';
+// const APIRootUrl = 'http://47.117.4.125:5000/communitySystem/';
 
 
 module.exports = {
@@ -20,7 +21,7 @@ module.exports = {
 
     PrincipalGetCommunityGraph: APIRootUrl + 'principal/getCommunityGraph',//修改图表
 
-    UpdateAvatar:APIRootUrl+"user/updateAvatar",//修改用户logo
+    UpdateAvatar: APIRootUrl + "user/updateAvatar",//修改用户logo
 
 
     //请求参数:无
@@ -129,11 +130,11 @@ module.exports = {
     // pageNumber(当前的页码),pageSize(每页显示条数)
     //响应参数:sponsorships
 
-    PrincipalGetSponsorshipsUrl:APIRootUrl+'principal/getClubHadSponsorship',
+    PrincipalGetSponsorshipsUrl: APIRootUrl + 'principal/getClubHadSponsorship',
 
-    PrincipalAddOneSponsorship:APIRootUrl+'principal/addOneSponsorship',
+    PrincipalAddOneSponsorship: APIRootUrl + 'principal/addOneSponsorship',
 
-    PrincipalGetOneSponsorship:APIRootUrl+'principal/getOneHadSponsorship',
+    PrincipalGetOneSponsorship: APIRootUrl + 'principal/getOneHadSponsorship',
 
     /*
     PrincipalCheckJoin组件
@@ -142,13 +143,13 @@ module.exports = {
     //请求参数:query(查询参数 做条件查询时才有),
     // pageNumber(当前的页码),pageSize(每页显示条数)
     //响应参数:joinClub
-    PrincipalGetJoinUrl:APIRootUrl+'principal/getJoin',
+    PrincipalGetJoinUrl: APIRootUrl + 'principal/getJoin',
 
-    PrincipalGetOneJoinUrl:APIRootUrl+'principal/getOneJoin',
+    PrincipalGetOneJoinUrl: APIRootUrl + 'principal/getOneJoin',
 
-    PrincipalJoinResult:APIRootUrl+'principal/joinResult',
+    PrincipalJoinResult: APIRootUrl + 'principal/joinResult',
 
-    PrincipalRejectSendMessage:APIRootUrl+'principal/sendMessage',
+    PrincipalRejectSendMessage: APIRootUrl + 'principal/sendMessage',
     //
     // PrincipalRejectJoinUrl:APIRootUrl+'principal/rejectJoin',
 
@@ -156,13 +157,13 @@ module.exports = {
     PrincipalClubInfo组件
     负责人社团信息修改数据接口
      */
-    PrincipalGetClubInfo:APIRootUrl+'principal/getClubInfo',
+    PrincipalGetClubInfo: APIRootUrl + 'principal/getClubInfo',
 
-    PrincipalGetClubName:APIRootUrl+'principal/getClubName',
+    PrincipalGetClubName: APIRootUrl + 'principal/getClubName',
 
-    PrincipalEditClubInfo:APIRootUrl+'principal/editClubInfo',
+    PrincipalEditClubInfo: APIRootUrl + 'principal/editClubInfo',
 
-    PrincipalDissolveClub:APIRootUrl+'principal/dissolveClub',
+    PrincipalDissolveClub: APIRootUrl + 'principal/dissolveClub',
 
 
     /*
@@ -172,12 +173,11 @@ module.exports = {
     //请求参数:query(查询参数 做条件查询时才有),
     // pageNumber(当前的页码),pageSize(每页显示条数)
     //响应参数:participateActivity
-    PrincipalGetActivityMembersUrl:APIRootUrl+'principal/getAllActivityMembers',
+    PrincipalGetActivityMembersUrl: APIRootUrl + 'principal/getAllActivityMembers',
 
-    PrincipalGetOneActivityMemberUrl:APIRootUrl+'principal/getOneActivityMember',
+    PrincipalGetOneActivityMemberUrl: APIRootUrl + 'principal/getOneActivityMember',
 
-    PrincipalParticipateResultUrl:APIRootUrl+'principal/participateResult',
-
+    PrincipalParticipateResultUrl: APIRootUrl + 'principal/participateResult',
 
 
     /*
@@ -213,42 +213,42 @@ module.exports = {
     StudentGetNameUrl: APIRootUrl + 'Student/getStudentName',
 
     //获取社团内部参加活动信息
-    StudentInActivitesInformationUrl:APIRootUrl+'Student/getInActivityInfo',
+    StudentInActivitesInformationUrl: APIRootUrl + 'Student/getInActivityInfo',
 
     //获取社团外部参加获得信息
-    StudentOutActivitesInformationUrl:APIRootUrl+'Student/getOutActivityInfo',
+    StudentOutActivitesInformationUrl: APIRootUrl + 'Student/getOutActivityInfo',
 
     //获取学生信息
-    StudentGetInformation:APIRootUrl+'Student/getStudentInfo',
+    StudentGetInformation: APIRootUrl + 'Student/getStudentInfo',
 
     //修改学生信息
-    StudentChangeInformation:APIRootUrl+'Student/changeStudentInfo',
+    StudentChangeInformation: APIRootUrl + 'Student/changeStudentInfo',
 
     //加入社团
-    StudentJoinClub:APIRootUrl+'Student/joinClub',
+    StudentJoinClub: APIRootUrl + 'Student/joinClub',
 
     //退出社团
-    StudentExitClub:APIRootUrl+'Student/quitOneClub',
+    StudentExitClub: APIRootUrl + 'Student/quitOneClub',
 
     //退出社团接收的信息
-    StudentSendMessage:APIRootUrl+'Student/sendMessage',
+    StudentSendMessage: APIRootUrl + 'Student/sendMessage',
 
     //加入活动
-    StudentJoinActivity:APIRootUrl+'Student/joinActivity',
+    StudentJoinActivity: APIRootUrl + 'Student/joinActivity',
 
     //显示已加入活动
-    StudentInActivity:APIRootUrl+'Student/InActivity',
+    StudentInActivity: APIRootUrl + 'Student/InActivity',
 
     //学生端的社团公告
-    StudentInClubAnnouncements:APIRootUrl+'Student/inClubAnnouncements',
+    StudentInClubAnnouncements: APIRootUrl + 'Student/inClubAnnouncements',
 
     //学生端的系统消息
 
     //学生端加入社团判断
-    StudentJudgeJoinClubUrl:APIRootUrl+'Student/judgeClubJoin',
+    StudentJudgeJoinClubUrl: APIRootUrl + 'Student/judgeClubJoin',
 
     //学生端加入社团判断
-    StudentJudgeJoinActivityUrl:APIRootUrl+'Student/judgeActivityJoin',
+    StudentJudgeJoinActivityUrl: APIRootUrl + 'Student/judgeActivityJoin',
 
     /*
     AdminNotice组件
@@ -279,24 +279,24 @@ module.exports = {
     //响应参数：pageIndex(页码), totalPages(总页数), totolCount(总条数)
     //  data:sponorshipId(赞助id), clubName(社团名称), applyDate(提交时间)
     //      sponsor(赞助商), amount(金额), adminName(审核者名字), status(审核状态)
-    AdminGetSponsorListUrl:APIRootUrl+'admin/getsponsorships',
+    AdminGetSponsorListUrl: APIRootUrl + 'admin/getsponsorships',
 
     //赞助详情信息获取
     //请求参数：sponsorshipId(赞助ID)
     //响应参数：sponorshipId(赞助id), clubName(社团名称), applyDate(提交时间),
     //      sponsor(赞助商), amount(金额), adminName(审核者名字), status(审核状态)，
     //      suggestion(建议)， requirement(需求)
-    AdminGetSponsorshipDetailsUrl:APIRootUrl+'admin/getsponsorshipdetails',
+    AdminGetSponsorshipDetailsUrl: APIRootUrl + 'admin/getsponsorshipdetails',
 
     //赞助建议信息更新
     //请求参数：sponsorshipId(赞助ID), suggestion(建议)
     //响应参数：
-    AdminUpdateSponSuggestionUrl:APIRootUrl+'admin/updatesponsuggestion',
+    AdminUpdateSponSuggestionUrl: APIRootUrl + 'admin/updatesponsuggestion',
 
     //赞助审核状态更新
     //请求参数：sponsorshipId(赞助ID), status(审核状态)
     //响应参数：
-    AdminUpdateSponStatusUrl:APIRootUrl+'admin/updatesponstatus',
+    AdminUpdateSponStatusUrl: APIRootUrl + 'admin/updatesponstatus',
 
     /*
     AdminCheckActivity组件
@@ -309,7 +309,7 @@ module.exports = {
     //响应参数：pageIndex(页码), totalPages(总页数), totolCount(总条数)
     //  data:activityId(活动id), clubName(社团名称), name(活动名称),
     //      budget(经费), place(活动地点), eventTime(活动时间), status(审核状态)
-    AdminGetActivityListUrl:APIRootUrl+'admin/getactivities',
+    AdminGetActivityListUrl: APIRootUrl + 'admin/getactivities',
 
     //活动详情信息获取
     //请求参数：activityId(活动ID)
@@ -317,17 +317,17 @@ module.exports = {
     //      budget(经费)，place(活动地点), eventTime(活动时间),
     //      status(审核状态)，applyDate(申请时间)，description(活动描述)，
     //      isPublic(是否公开)，adminName(管理员姓名)，suggestion(建议)，
-    AdminGetActivityDetailsUrl:APIRootUrl+'admin/getactivitydetails',
+    AdminGetActivityDetailsUrl: APIRootUrl + 'admin/getactivitydetails',
 
     //活动建议信息更新
     //请求参数：activityId(活动ID), suggestion(建议)
     //响应参数：
-    AdminUpdateActSuggestionUrl:APIRootUrl+'admin/updateactsuggestion',
+    AdminUpdateActSuggestionUrl: APIRootUrl + 'admin/updateactsuggestion',
 
     //活动审核状态更新
     //请求参数：activitytId(活动ID), status(审核状态)
     //响应参数：
-    AdminUpdateActStatusUrl:APIRootUrl+'admin/updateactstatus',
+    AdminUpdateActStatusUrl: APIRootUrl + 'admin/updateactstatus',
 
 
     /*
@@ -341,7 +341,7 @@ module.exports = {
     //  data:clubId(社团ID), name(社团名称), presidentName(负责人姓名),
     //      type(社团类型)，establishmentDate(成立时间), managerId(负责人账号ID),
     //      status(社团状态)
-    AdminGetClubListUrl:APIRootUrl+'admin/getclubs',
+    AdminGetClubListUrl: APIRootUrl + 'admin/getclubs',
 
     //社团详情信息获取
     //请求参数：clubId(社团ID), managerId(负责人账号ID)
@@ -349,17 +349,17 @@ module.exports = {
     //      type(社团类型), description(社团描述), establishmentDate(成立时间),
     //      presidentName(负责人姓名), managerId(负责人ID), phone(手机号),
     //      mail(邮箱), number(学号), grade(年级)，major(专业）
-    AdminGetClubDetailsUrl:APIRootUrl+'admin/getclubdetails',
+    AdminGetClubDetailsUrl: APIRootUrl + 'admin/getclubdetails',
 
     //消息发送
     //请求参数：userId(用户ID), content(消息内容), title(标题)
     //响应参数：
-    AdminSendMessageUrl:APIRootUrl+'admin/sendmessage',
+    AdminSendMessageUrl: APIRootUrl + 'admin/sendmessage',
 
     //社团审核状态更新
     //请求参数：clubId(社团ID), status(社团状态)
     //响应参数：
-    AdminUpdateClubStatusUrl:APIRootUrl+'admin/updateclubstatus',
+    AdminUpdateClubStatusUrl: APIRootUrl + 'admin/updateclubstatus',
 
 
     /*
@@ -373,32 +373,32 @@ module.exports = {
     //响应参数：pageIndex(页码), totalPages(总页数), totolCount(总条数)
     //  data:number(学号), name(姓名), major(专业),
     //      grade(年级), status(状态)
-    AdminGetStudentMetaListUrl:APIRootUrl+'admin/getstudentmetas',
+    AdminGetStudentMetaListUrl: APIRootUrl + 'admin/getstudentmetas',
 
     //更新学生信息
     //请求参数：number(学号), name(姓名), major(专业),
     //      grade(年级), status(状态)
     //响应参数：isSuccess(是否成功)
-    AdminUpdateStudentMetaUrl:APIRootUrl+'admin/updatestudentmeta',
+    AdminUpdateStudentMetaUrl: APIRootUrl + 'admin/updatestudentmeta',
 
     //更新学生毕业状态
     //请求参数：number(学号)
     //响应参数：isSuccess(是否成功)
-    AdminUpdateGraduateUrl:APIRootUrl+'admin/updategraduate',
+    AdminUpdateGraduateUrl: APIRootUrl + 'admin/updategraduate',
 
     //删除学生信息
     //请求参数：number(学号)
     //响应参数：isSuccess(是否成功)
-    AdminDeleteStudentMetaUrl:APIRootUrl+'admin/deletestudentmeta',
+    AdminDeleteStudentMetaUrl: APIRootUrl + 'admin/deletestudentmeta',
 
     //新增学生信息
     //请求参数：number(学号), name(姓名), major(专业),
     //      grade(年级), status(状态)
     //响应参数：isSuccess(是否成功)
-    AdminInsertStudentMetaUrl:APIRootUrl+'admin/insertstudentmeta',
+    AdminInsertStudentMetaUrl: APIRootUrl + 'admin/insertstudentmeta',
 
     //获取待办事项
     //请求参数：
     //响应参数：club(社团), sponsorship(赞助), activity(活动)
-    AdminGetTodoUrl:APIRootUrl+'admin/gettodo',
+    AdminGetTodoUrl: APIRootUrl + 'admin/gettodo',
 };
